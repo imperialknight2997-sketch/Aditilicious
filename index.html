@@ -3,70 +3,165 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Aditi Budhathoki Fanpage</title>
+  <title>Aditilicious ✨</title>
+  
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  
   <style>
+    /* General Styles */
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
-      background: #fdfdfd;
+      font-family: 'Poppins', sans-serif;
+      background: #fff;
       color: #333;
+      scroll-behavior: smooth;
     }
-    header {
-      background: linear-gradient(120deg, #f48fb1, #ba68c8);
-      color: white;
-      padding: 2rem;
-      text-align: center;
+    
+    h1, h2 {
+      font-family: 'Playfair Display', serif;
     }
-    header h1 {
-      margin: 0;
-      font-size: 2.5rem;
-    }
+
+    /* Navbar */
     nav {
-      background: #333;
-      padding: 0.5rem;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(50, 0, 70, 0.9);
+      padding: 1rem;
       text-align: center;
+      z-index: 1000;
     }
     nav a {
       color: white;
       text-decoration: none;
       margin: 0 1rem;
-      font-weight: bold;
+      font-weight: 600;
+      transition: color 0.3s;
     }
+    nav a:hover {
+      color: #ffb3ec;
+    }
+
+    /* Hero Section */
+    .hero {
+      height: 100vh;
+      background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+                  url('https://i.pinimg.com/736x/7f/2b/f0/7f2bf0e3e0f6dcdf3c676b0dc7e7a4c2.jpg') center/cover no-repeat;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      text-align: center;
+      color: white;
+    }
+    .hero h1 {
+      font-size: 4rem;
+      margin: 0;
+      animation: fadeIn 2s ease-in-out;
+    }
+    .hero p {
+      font-size: 1.5rem;
+      margin: 1rem 0;
+      animation: fadeIn 3s ease-in-out;
+    }
+    .hero a {
+      padding: 0.8rem 2rem;
+      background: linear-gradient(120deg, #f48fb1, #ba68c8);
+      color: white;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: bold;
+      animation: fadeIn 4s ease-in-out;
+      transition: 0.3s;
+    }
+    .hero a:hover {
+      background: linear-gradient(120deg, #ba68c8, #f48fb1);
+    }
+
+    /* Sections */
     section {
-      padding: 2rem;
-      max-width: 1000px;
+      padding: 5rem 2rem;
+      max-width: 1200px;
       margin: auto;
     }
     h2 {
+      text-align: center;
+      font-size: 2.5rem;
       color: #ba68c8;
-      border-bottom: 2px solid #f48fb1;
-      display: inline-block;
-      padding-bottom: 0.2rem;
+      margin-bottom: 2rem;
+    }
+
+    /* Gallery */
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
     }
     .gallery img {
       width: 30%;
-      margin: 1%;
       border-radius: 10px;
-      transition: 0.3s;
+      transition: transform 0.3s;
     }
     .gallery img:hover {
       transform: scale(1.05);
     }
+
+    /* News */
+    .news-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+    .news-card {
+      background: #fff0f7;
+      padding: 1.5rem;
+      border-radius: 12px;
+      width: 280px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      transition: transform 0.3s;
+    }
+    .news-card:hover {
+      transform: translateY(-5px);
+    }
+
+    /* Fan Zone */
+    .fan-zone {
+      text-align: center;
+      font-size: 1.2rem;
+      background: #f9f3ff;
+      padding: 3rem;
+      border-radius: 12px;
+    }
+
+    /* Footer */
     footer {
-      background: #333;
+      background: #2c003e;
       color: white;
       text-align: center;
-      padding: 1rem;
+      padding: 1.5rem;
       margin-top: 2rem;
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .gallery img {
+        width: 90%;
+      }
     }
   </style>
 </head>
 <body>
-  <header>
-    <h1>Aditi Budhathoki Fanpage</h1>
-    <p>Celebrating the beauty, talent, and charm of Aditi ❤️</p>
-  </header>
   
+  <!-- Navbar -->
   <nav>
     <a href="#about">About</a>
     <a href="#gallery">Gallery</a>
@@ -74,42 +169,67 @@
     <a href="#fan">Fan Zone</a>
     <a href="#contact">Contact</a>
   </nav>
-  
+
+  <!-- Hero -->
+  <div class="hero">
+    <h1>Aditi Budhathoki ✨</h1>
+    <p>Beauty • Elegance • Inspiration</p>
+    <a href="#about">Discover More</a>
+  </div>
+
+  <!-- About -->
   <section id="about">
     <h2>About Aditi</h2>
-    <p>Aditi Budhathoki is a Nepalese actress and model, best known for her work in Nepali and Indian films. She gained huge recognition after appearing in various music videos and films. Fans admire her not only for her beauty but also for her charm and grace.</p>
+    <p style="text-align:center; max-width:800px; margin:auto;">
+      Aditi Budhathoki is a celebrated actress and model from Nepal, 
+      admired across South Asia for her timeless beauty and charm. 
+      With her growing influence in films, music, and fashion, 
+      Aditi continues to win the hearts of millions of fans worldwide. 💖
+    </p>
   </section>
-  
-  <section id="gallery" class="gallery">
+
+  <!-- Gallery -->
+  <section id="gallery">
     <h2>Gallery</h2>
-    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Aditi_Budhathoki.jpg/440px-Aditi_Budhathoki.jpg" alt="Aditi Budhathoki">
-    <img src="https://i.pinimg.com/736x/7f/2b/f0/7f2bf0e3e0f6dcdf3c676b0dc7e7a4c2.jpg" alt="Aditi Budhathoki">
-    <img src="https://static.toiimg.com/thumb/msid-94779229,width-400,resizemode-4/94779229.jpg" alt="Aditi Budhathoki">
+    <div class="gallery">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Aditi_Budhathoki.jpg/440px-Aditi_Budhathoki.jpg" alt="Aditi">
+      <img src="https://i.pinimg.com/736x/7f/2b/f0/7f2bf0e3e0f6dcdf3c676b0dc7e7a4c2.jpg" alt="Aditi">
+      <img src="https://static.toiimg.com/thumb/msid-94779229,width-400,resizemode-4/94779229.jpg" alt="Aditi">
+    </div>
   </section>
-  
+
+  <!-- News -->
   <section id="news">
     <h2>Latest News</h2>
-    <ul>
-      <li>✨ New Instagram photoshoot released</li>
-      <li>🎬 Upcoming film announcement soon</li>
-      <li>📺 Recent interview gaining popularity on YouTube</li>
-    </ul>
+    <div class="news-container">
+      <div class="news-card">✨ New Instagram photoshoot trending</div>
+      <div class="news-card">🎬 Upcoming film announcement soon</div>
+      <div class="news-card">📺 Exclusive interview on YouTube</div>
+    </div>
   </section>
-  
+
+  <!-- Fan Zone -->
   <section id="fan">
     <h2>Fan Zone</h2>
-    <p>Here you’ll find reels, fan art, and wallpapers dedicated to Aditi! 💖</p>
+    <div class="fan-zone">
+      <p>Welcome to the heart of Aditi’s fandom 💜</p>
+      <p>Here you’ll find fan art, reels, wallpapers, and heartfelt messages from supporters worldwide!</p>
+    </div>
   </section>
-  
+
+  <!-- Contact -->
   <section id="contact">
     <h2>Follow Aditi</h2>
-    <p>👉 <a href="https://www.instagram.com/aditi_budhathoki" target="_blank">Instagram</a></p>
-    <p>👉 <a href="https://twitter.com/aditi_budhathoki" target="_blank">Twitter</a></p>
+    <p style="text-align:center;">
+      👉 <a href="https://www.instagram.com/aditi_budhathoki" target="_blank">Instagram</a><br>
+      👉 <a href="https://twitter.com/aditi_budhathoki" target="_blank">Twitter</a>
+    </p>
   </section>
-  
+
+  <!-- Footer -->
   <footer>
-    <p>Fanpage created with love ❤️ | Not official</p>
+    <p>Aditilicious Fanpage ❤️ | Made with love by fans | Not official</p>
   </footer>
+
 </body>
-</html> 
-<!-- trigger rebuild -->
+</html>
