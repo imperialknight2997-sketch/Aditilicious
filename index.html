@@ -16,7 +16,6 @@
       background: #fff;
       color: #333;
       scroll-behavior: smooth;
-      padding-top: 200px; /* ✅ creates space for header + navbar */
     }
     
     h1, h2 {
@@ -25,18 +24,15 @@
 
     /* Animated Gradient Header */
     header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
       text-align: center;
-      padding: 20px;
+      padding: 40px 20px;
       color: white;
       font-family: Arial, sans-serif;
       background: linear-gradient(270deg, red, green, blue);
       background-size: 600% 600%;
       animation: gradientShift 12s ease infinite;
-      z-index: 1001;
+      position: relative;
+      z-index: 1000;
     }
 
     @keyframes gradientShift {
@@ -48,12 +44,12 @@
     /* Navbar */
     nav {
       position: fixed;
-      top: 90px; /* ✅ below header */
+      top: 0;
       width: 100%;
       background: rgba(50, 0, 70, 0.9);
       padding: 1rem;
       text-align: center;
-      z-index: 1000;
+      z-index: 1100;
     }
     nav a {
       color: white;
@@ -68,7 +64,7 @@
 
     /* Hero Section */
     .hero {
-      height: 100vh;
+      height: calc(100vh - 160px); /* adjusted to account for header + navbar */
       background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
                   url('https://i.pinimg.com/736x/7f/2b/f0/7f2bf0e3e0f6dcdf3c676b0dc7e7a4c2.jpg') center/cover no-repeat;
       display: flex;
@@ -168,32 +164,6 @@
       margin-top: 2rem;
     }
 
-    /* Floating Heart Button */
-    .floating-heart {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      width: 60px;
-      height: 60px;
-      background: pink;
-      border-radius: 50%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-size: 1.8rem;
-      color: red;
-      cursor: pointer;
-      box-shadow: 0 0 15px rgba(255,0,100,0.6);
-      animation: pulse 2s infinite;
-      z-index: 2000;
-    }
-
-    @keyframes pulse {
-      0% { transform: scale(1); box-shadow: 0 0 10px rgba(255,0,100,0.6); }
-      50% { transform: scale(1.1); box-shadow: 0 0 20px rgba(255,0,100,0.8); }
-      100% { transform: scale(1); box-shadow: 0 0 10px rgba(255,0,100,0.6); }
-    }
-
     /* Animations */
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(20px); }
@@ -204,6 +174,9 @@
     @media (max-width: 768px) {
       .gallery img {
         width: 90%;
+      }
+      .hero h1 {
+        font-size: 2.5rem;
       }
     }
   </style>
@@ -289,9 +262,5 @@
     <p>Aditilicious Fanpage ❤️ | Made with love by fans | Not official</p>
   </footer>
 
-  <!-- Floating Heart Button -->
-  <div class="floating-heart" onclick="document.getElementById('fan').scrollIntoView({ behavior: 'smooth' });">
-    ❤️
-  </div>
-</body>
+</body> 
 </html>
