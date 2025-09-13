@@ -16,16 +16,39 @@
       background: #fff;
       color: #333;
       scroll-behavior: smooth;
+      padding-top: 200px; /* ✅ creates space for header + navbar */
     }
     
     h1, h2 {
       font-family: 'Playfair Display', serif;
     }
 
+    /* Animated Gradient Header */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      text-align: center;
+      padding: 20px;
+      color: white;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(270deg, red, green, blue);
+      background-size: 600% 600%;
+      animation: gradientShift 12s ease infinite;
+      z-index: 1001;
+    }
+
+    @keyframes gradientShift {
+      0%   { background-position: 0% 50%; }
+      50%  { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
     /* Navbar */
     nav {
       position: fixed;
-      top: 0;
+      top: 90px; /* ✅ below header */
       width: 100%;
       background: rgba(50, 0, 70, 0.9);
       padding: 1rem;
@@ -145,51 +168,36 @@
       margin-top: 2rem;
     }
 
-    /* Animations */
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    /* Gradient Header */
-    header {
-      text-align: center;
-      padding: 20px;
-      color: white;
-      font-family: Arial, sans-serif;
-      background: linear-gradient(270deg, red, green, blue);
-      background-size: 600% 600%;
-      animation: gradientShift 12s ease infinite;
-    }
-
-    @keyframes gradientShift {
-      0%   { background-position: 0% 50%; }
-      50%  { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-
     /* Floating Heart Button */
-    .heart-btn {
+    .floating-heart {
       position: fixed;
       bottom: 20px;
       right: 20px;
-      background: #ff4d6d;
-      color: white;
-      border: none;
-      border-radius: 50%;
       width: 60px;
       height: 60px;
-      font-size: 1.5rem;
+      background: pink;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 1.8rem;
+      color: red;
       cursor: pointer;
-      box-shadow: 0 0 15px rgba(255, 77, 109, 0.8);
-      animation: pulse 1.5s infinite;
+      box-shadow: 0 0 15px rgba(255,0,100,0.6);
+      animation: pulse 2s infinite;
       z-index: 2000;
     }
 
     @keyframes pulse {
-      0% { transform: scale(1); box-shadow: 0 0 10px rgba(255,77,109,0.6); }
-      50% { transform: scale(1.1); box-shadow: 0 0 20px rgba(255,77,109,1); }
-      100% { transform: scale(1); box-shadow: 0 0 10px rgba(255,77,109,0.6); }
+      0% { transform: scale(1); box-shadow: 0 0 10px rgba(255,0,100,0.6); }
+      50% { transform: scale(1.1); box-shadow: 0 0 20px rgba(255,0,100,0.8); }
+      100% { transform: scale(1); box-shadow: 0 0 10px rgba(255,0,100,0.6); }
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     /* Responsive */
@@ -201,8 +209,8 @@
   </style>
 </head>
 <body>
-    <!-- Fanpage Header -->
-    <header class="animated-header">
+  <!-- Fanpage Header -->
+  <header class="animated-header">
     <h1 style="margin: 0; font-size: 2.5em;">Aditi Budhathoki Fanpage</h1>
     <p style="margin: 10px 0 0; font-size: 1.2em;">
       ❤️ Followed & Appreciated by 
@@ -240,13 +248,13 @@
   </section>
 
   <!-- Gallery -->
-<section id="gallery">
-  <h2>Gallery</h2>
-  <div class="gallery">
-    <img src="images/IMG_0473.jpeg" alt="Aditi">
-    <img src="images/IMG_0467.jpeg" alt="Aditi">
-  </div>
-</section>
+  <section id="gallery">
+    <h2>Gallery</h2>
+    <div class="gallery">
+      <img src="images/IMG_0473.jpeg" alt="Aditi">
+      <img src="images/IMG_0467.jpeg" alt="Aditi">
+    </div>
+  </section>
 
   <!-- News -->
   <section id="news">
@@ -282,7 +290,8 @@
   </footer>
 
   <!-- Floating Heart Button -->
-  <button class="heart-btn" onclick="document.getElementById('fan').scrollIntoView({behavior:'smooth'});">❤️</button>
-
+  <div class="floating-heart" onclick="document.getElementById('fan').scrollIntoView({ behavior: 'smooth' });">
+    ❤️
+  </div>
 </body>
 </html>
