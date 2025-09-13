@@ -151,6 +151,47 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
+    /* Gradient Header */
+    header {
+      text-align: center;
+      padding: 20px;
+      color: white;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(270deg, red, green, blue);
+      background-size: 600% 600%;
+      animation: gradientShift 12s ease infinite;
+    }
+
+    @keyframes gradientShift {
+      0%   { background-position: 0% 50%; }
+      50%  { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* Floating Heart Button */
+    .heart-btn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #ff4d6d;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      font-size: 1.5rem;
+      cursor: pointer;
+      box-shadow: 0 0 15px rgba(255, 77, 109, 0.8);
+      animation: pulse 1.5s infinite;
+      z-index: 2000;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); box-shadow: 0 0 10px rgba(255,77,109,0.6); }
+      50% { transform: scale(1.1); box-shadow: 0 0 20px rgba(255,77,109,1); }
+      100% { transform: scale(1); box-shadow: 0 0 10px rgba(255,77,109,0.6); }
+    }
+
     /* Responsive */
     @media (max-width: 768px) {
       .gallery img {
@@ -158,25 +199,6 @@
       }
     }
   </style>
-     /* ===== Animated Gradient Header ===== */
-.animated-header {
-  text-align: center;
-  padding: 20px;
-  color: white;
-  font-family: Arial, sans-serif;
-  background: linear-gradient(270deg, #ffdde1, #ee9ca7, #fbc2eb, #a6c1ee);
-  background-size: 800% 800%;
-  animation: gradientShift 12s ease infinite;
-  box-shadow: 0 0 15px rgba(255, 255, 255, 0.7);
-  border-bottom: 2px solid rgba(255, 255, 255, 0.5);
-}
-
-@keyframes gradientShift {
-  0%   { background-position: 0% 50%; }
-  50%  { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-</style>
 </head>
 <body>
     <!-- Fanpage Header -->
@@ -217,7 +239,6 @@
     </p>
   </section>
 
-  <!-- Gallery -->
   <!-- Gallery -->
 <section id="gallery">
   <h2>Gallery</h2>
@@ -260,5 +281,8 @@
     <p>Aditilicious Fanpage ❤️ | Made with love by fans | Not official</p>
   </footer>
 
+  <!-- Floating Heart Button -->
+  <button class="heart-btn" onclick="document.getElementById('fan').scrollIntoView({behavior:'smooth'});">❤️</button>
+
 </body>
-</html> 
+</html>
