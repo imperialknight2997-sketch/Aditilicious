@@ -22,25 +22,6 @@
       font-family: 'Playfair Display', serif;
     }
 
-    /* Pastel Animated Header */
-    header {
-      text-align: center;
-      padding: 20px;
-      color: white;
-      font-family: Arial, sans-serif;
-      background: linear-gradient(270deg, #fbc2eb, #a18cd1, #cfd9df);
-      background-size: 600% 600%;
-      animation: gradientShift 12s ease infinite;
-      border-bottom-left-radius: 15px;
-      border-bottom-right-radius: 15px;
-    }
-
-    @keyframes gradientShift {
-      0%   { background-position: 0% 50%; }
-      50%  { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-
     /* Navbar */
     nav {
       position: fixed;
@@ -65,17 +46,19 @@
     /* Hero Section */
     .hero {
       height: 100vh;
-      background: linear-gradient(rgba(186, 104, 200, 0.6), rgba(244, 143, 177, 0.6)),
-                  url('https://i.pinimg.com/736x/7f/2b/f0/7f2bf0e3e0f6dcdf3c676b0dc7e7a4c2.jpg') center/cover no-repeat;
+      background: 
+        linear-gradient(rgba(255, 182, 193, 0.6), rgba(186, 104, 200, 0.6)),
+        url("images/IMG_0483.jpeg") center/cover no-repeat;
       display: flex;
       justify-content: center;
       align-items: center;
       flex-direction: column;
       text-align: center;
       color: white;
+      padding: 0 1rem;
     }
     .hero h1 {
-      font-size: 4rem;
+      font-size: 3.5rem;
       margin: 0;
       animation: fadeIn 2s ease-in-out;
     }
@@ -155,29 +138,6 @@
       border-radius: 12px;
     }
 
-    /* Floating Heart Button */
-    .floating-btn {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background: #ff69b4;
-      color: white;
-      border: none;
-      border-radius: 50%;
-      width: 60px;
-      height: 60px;
-      font-size: 24px;
-      cursor: pointer;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-      animation: pulse 2s infinite;
-      z-index: 1001;
-    }
-    @keyframes pulse {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.1); }
-      100% { transform: scale(1); }
-    }
-
     /* Footer */
     footer {
       background: #2c003e;
@@ -198,93 +158,86 @@
       .gallery img {
         width: 90%;
       }
+      .hero h1 {
+        font-size: 2.2rem;
+      }
+      .hero p {
+        font-size: 1rem;
+      }
     }
   </style>
 </head>
 <body>
-    <!-- Fanpage Header -->
-    <header>
-      <h1 style="margin: 0; font-size: 2.5em;">Aditi Budhathoki Fanpage</h1>
-      <p style="margin: 10px 0 0; font-size: 1.2em;">
-        ❤️ Followed & Appreciated by 
-        <strong>Aditi Budhathoki</strong>
-        <span style="display: inline-block; background: gold; color: black; font-size: 0.8em; padding: 2px 6px; border-radius: 50%; margin-left: 5px;">★</span>
-        ❤️
-      </p>
-    </header>
   
-    <!-- Navbar -->
-    <nav>
-      <a href="#about">About</a>
-      <a href="#gallery">Gallery</a>
-      <a href="#news">News</a>
-      <a href="#fan">Fan Zone</a>
-      <a href="#contact">Contact</a>
-    </nav>
+  <!-- Navbar -->
+  <nav>
+    <a href="#about">About</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#news">News</a>
+    <a href="#fan">Fan Zone</a>
+    <a href="#contact">Contact</a>
+  </nav>
 
-    <!-- Hero -->
-    <div class="hero">
-      <h1>Aditi Budhathoki ✨</h1>
-      <p>Beauty • Elegance • Inspiration</p>
-      <a href="#about">Discover More</a>
+  <!-- Hero -->
+  <div class="hero">
+    <h1>Aditi Budhathoki ✨</h1>
+    <p>Beauty • Elegance • Inspiration</p>
+    <a href="#about">Discover More</a>
+  </div>
+
+  <!-- About -->
+  <section id="about">
+    <h2>About Aditi</h2>
+    <p style="text-align:center; max-width:800px; margin:auto;">
+      ❤️ Followed & Appreciated by <strong>Aditi Budhathoki</strong> ❤️ <br><br>
+      Aditi Budhathoki is a celebrated actress and model from Nepal, 
+      admired across South Asia for her timeless beauty and charm. 
+      With her growing influence in films, music, and fashion, 
+      Aditi continues to win the hearts of millions of fans worldwide. 💖
+    </p>
+  </section>
+
+  <!-- Gallery -->
+  <section id="gallery">
+    <h2>Gallery</h2>
+    <div class="gallery">
+      <img src="images/IMG_0473.jpeg" alt="Aditi">
+      <img src="images/IMG_0467.jpeg" alt="Aditi">
     </div>
+  </section>
 
-    <!-- About -->
-    <section id="about">
-      <h2>About Aditi</h2>
-      <p style="text-align:center; max-width:800px; margin:auto;">
-        Aditi Budhathoki is a celebrated actress and model from Nepal, 
-        admired across South Asia for her timeless beauty and charm. 
-        With her growing influence in films, music, and fashion, 
-        Aditi continues to win the hearts of millions of fans worldwide. 💖
-      </p>
-    </section>
+  <!-- News -->
+  <section id="news">
+    <h2>Latest News</h2>
+    <div class="news-container">
+      <div class="news-card">✨ New Instagram photoshoot trending</div>
+      <div class="news-card">🎬 Upcoming film announcement soon</div>
+      <div class="news-card">📺 Exclusive interview on YouTube</div>
+    </div>
+  </section>
 
-    <!-- Gallery -->
-    <section id="gallery">
-      <h2>Gallery</h2>
-      <div class="gallery">
-        <img src="images/IMG_0473.jpeg" alt="Aditi">
-        <img src="images/IMG_0467.jpeg" alt="Aditi">
-      </div>
-    </section>
+  <!-- Fan Zone -->
+  <section id="fan">
+    <h2>Fan Zone</h2>
+    <div class="fan-zone">
+      <p>Welcome to the heart of Aditi’s fandom 💜</p>
+      <p>Here you’ll find fan art, reels, wallpapers, and heartfelt messages from supporters worldwide!</p>
+    </div>
+  </section>
 
-    <!-- News -->
-    <section id="news">
-      <h2>Latest News</h2>
-      <div class="news-container">
-        <div class="news-card">✨ New Instagram photoshoot trending</div>
-        <div class="news-card">🎬 Upcoming film announcement soon</div>
-        <div class="news-card">📺 Exclusive interview on YouTube</div>
-      </div>
-    </section>
+  <!-- Contact -->
+  <section id="contact">
+    <h2>Follow Aditi</h2>
+    <p style="text-align:center;">
+      👉 <a href="https://www.instagram.com/aditi_budhathoki" target="_blank">Instagram</a><br>
+      👉 <a href="https://twitter.com/aditi_budhathoki" target="_blank">Twitter</a>
+    </p>
+  </section>
 
-    <!-- Fan Zone -->
-    <section id="fan">
-      <h2>Fan Zone</h2>
-      <div class="fan-zone">
-        <p>Welcome to the heart of Aditi’s fandom 💜</p>
-        <p>Here you’ll find fan art, reels, wallpapers, and heartfelt messages from supporters worldwide!</p>
-      </div>
-    </section>
+  <!-- Footer -->
+  <footer>
+    <p>Aditilicious Fanpage ❤️ | Made with love by fans | Not official</p>
+  </footer>
 
-    <!-- Contact -->
-    <section id="contact">
-      <h2>Follow Aditi</h2>
-      <p style="text-align:center;">
-        👉 <a href="https://www.instagram.com/aditi_budhathoki" target="_blank">Instagram</a><br>
-        👉 <a href="https://twitter.com/aditi_budhathoki" target="_blank">Twitter</a>
-      </p>
-    </section>
-
-    <!-- Floating Heart Button -->
-    <button class="floating-btn" onclick="document.getElementById('fan').scrollIntoView({behavior: 'smooth'})">
-      ❤️
-    </button>
-
-    <!-- Footer -->
-    <footer>
-      <p>Aditilicious Fanpage ❤️ | Made with love by fans | Not official</p>
-    </footer>
 </body>
 </html>
