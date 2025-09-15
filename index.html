@@ -17,7 +17,6 @@
       color: #333;
       scroll-behavior: smooth;
     }
-    
     h1, h2 {
       font-family: 'Playfair Display', serif;
     }
@@ -27,7 +26,7 @@
       position: fixed;
       top: 0;
       width: 100%;
-      background: rgba(50, 0, 70, 0.9);
+      background: rgba(50, 0, 70, 0.95);
       padding: 1rem;
       text-align: center;
       z-index: 1000;
@@ -46,7 +45,8 @@
     /* Hero Section */
     .hero {
       height: 100vh;
-      background: url("images/IMG_0483.jpeg") center/cover no-repeat;
+      background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)),
+                  url('images/IMG_0483.jpeg') center/cover no-repeat;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -56,16 +56,14 @@
       padding: 0 1rem;
     }
     .hero h1 {
-      font-size: 3.5rem;
+      font-size: 4rem;
       margin: 0;
       animation: fadeIn 2s ease-in-out;
-      text-shadow: 2px 2px 8px rgba(0,0,0,0.6); /* makes text readable */
     }
     .hero p {
       font-size: 1.5rem;
       margin: 1rem 0;
       animation: fadeIn 3s ease-in-out;
-      text-shadow: 1px 1px 6px rgba(0,0,0,0.5);
     }
     .hero a {
       padding: 0.8rem 2rem;
@@ -81,10 +79,10 @@
       background: linear-gradient(120deg, #ba68c8, #f48fb1);
     }
 
-    /* Sections */
+    /* Section Layout */
     section {
       padding: 5rem 2rem;
-      max-width: 1200px;
+      max-width: 1100px;
       margin: auto;
     }
     h2 {
@@ -92,6 +90,17 @@
       font-size: 2.5rem;
       color: #ba68c8;
       margin-bottom: 2rem;
+    }
+    p {
+      line-height: 1.6;
+    }
+
+    /* About Section */
+    #about p {
+      max-width: 800px;
+      margin: auto;
+      text-align: left;
+      font-size: 1.1rem;
     }
 
     /* Gallery */
@@ -110,7 +119,7 @@
       transform: scale(1.05);
     }
 
-    /* News */
+    /* News Section */
     .news-container {
       display: flex;
       flex-wrap: wrap;
@@ -124,6 +133,7 @@
       width: 280px;
       box-shadow: 0 4px 8px rgba(0,0,0,0.1);
       transition: transform 0.3s;
+      text-align: left;
     }
     .news-card:hover {
       transform: translateY(-5px);
@@ -155,14 +165,11 @@
 
     /* Responsive */
     @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 2.5rem;
+      }
       .gallery img {
         width: 90%;
-      }
-      .hero h1 {
-        font-size: 2.2rem;
-      }
-      .hero p {
-        font-size: 1rem;
       }
     }
   </style>
@@ -188,12 +195,10 @@
   <!-- About -->
   <section id="about">
     <h2>About Aditi</h2>
-    <p style="text-align:center; max-width:800px; margin:auto;">
-      ❤️ Followed & Appreciated by <strong>Aditi Budhathoki</strong> ❤️ <br><br>
-      Aditi Budhathoki is a celebrated actress and model from Nepal, 
-      admired across South Asia for her timeless beauty and charm. 
-      With her growing influence in films, music, and fashion, 
-      Aditi continues to win the hearts of millions of fans worldwide. 💖
+    <p>
+      Aditi Budhathoki is a celebrated actress and model from Nepal, admired across South Asia for her elegance, timeless beauty, and versatility. 
+      She has made her mark in films, music, and fashion, inspiring millions of fans with her journey and talent. 
+      Beyond her work, Aditi is cherished as a style icon and a source of inspiration for young dreamers worldwide.
     </p>
   </section>
 
@@ -211,9 +216,9 @@
   <section id="news">
     <h2>Latest News</h2>
     <div class="news-container">
-      <div class="news-card">✨ New Instagram photoshoot trending</div>
-      <div class="news-card">🎬 Upcoming film announcement soon</div>
-      <div class="news-card">📺 Exclusive interview on YouTube</div>
+      <div class="news-card">✨ Aditi Budhathoki features in a stunning new Instagram photoshoot (Sept 2025).</div>
+      <div class="news-card">🎬 Exciting film project announcement coming soon — stay tuned!</div>
+      <div class="news-card">📺 Exclusive interview to be released on YouTube this month.</div>
     </div>
   </section>
 
@@ -222,7 +227,7 @@
     <h2>Fan Zone</h2>
     <div class="fan-zone">
       <p>Welcome to the heart of Aditi’s fandom 💜</p>
-      <p>Here you’ll find fan art, reels, wallpapers, and heartfelt messages from supporters worldwide!</p>
+      <p>Here you’ll find fan art, reels, wallpapers, and heartfelt messages created by her supporters worldwide.</p>
     </div>
   </section>
 
