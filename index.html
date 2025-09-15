@@ -46,9 +46,7 @@
     /* Hero Section */
     .hero {
       height: 100vh;
-      background: 
-        linear-gradient(rgba(255, 182, 193, 0.6), rgba(186, 104, 200, 0.6)),
-        url("images/IMG_0483.jpeg") center/cover no-repeat;
+      background: url("images/IMG_0483.jpeg") center/cover no-repeat;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -61,11 +59,13 @@
       font-size: 3.5rem;
       margin: 0;
       animation: fadeIn 2s ease-in-out;
+      text-shadow: 2px 2px 8px rgba(0,0,0,0.6); /* makes text readable */
     }
     .hero p {
       font-size: 1.5rem;
       margin: 1rem 0;
       animation: fadeIn 3s ease-in-out;
+      text-shadow: 1px 1px 6px rgba(0,0,0,0.5);
     }
     .hero a {
       padding: 0.8rem 2rem;
