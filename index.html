@@ -3,8 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Aditilicious ✨</title>
+  <title>Aditi Budhathoki ✨ Official Fanpage</title>
   
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Aditi Budhathoki ✨ Official Fanpage - Photos, news, and fan love dedicated to the Nepali actress and model.">
+  <meta name="keywords" content="Aditi Budhathoki, Aditi Budhathoki fanpage, Nepali actress, Aditi Budhathoki Instagram, Aditi Budhathoki photos, Aditi Budhathoki news">
+  <meta name="author" content="Aditi Budhathoki Fans">
+
+  <!-- Open Graph (for social sharing) -->
+  <meta property="og:title" content="Aditi Budhathoki ✨ Official Fanpage">
+  <meta property="og:description" content="The ultimate fanpage dedicated to Aditi Budhathoki ❤️ Photos, news, and fan love.">
+  <meta property="og:image" content="images/IMG_0483.jpeg">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://yourfanpage.github.io">
+
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
   
@@ -26,7 +38,7 @@
       position: fixed;
       top: 0;
       width: 100%;
-      background: rgba(50, 0, 70, 0.95);
+      background: rgba(50, 0, 70, 0.9);
       padding: 1rem;
       text-align: center;
       z-index: 1000;
@@ -53,7 +65,7 @@
       flex-direction: column;
       text-align: center;
       color: white;
-      padding: 0 1rem;
+      padding-top: 60px;
     }
     .hero h1 {
       font-size: 4rem;
@@ -79,10 +91,10 @@
       background: linear-gradient(120deg, #ba68c8, #f48fb1);
     }
 
-    /* Section Layout */
+    /* Sections */
     section {
       padding: 5rem 2rem;
-      max-width: 1100px;
+      max-width: 1200px;
       margin: auto;
     }
     h2 {
@@ -90,17 +102,6 @@
       font-size: 2.5rem;
       color: #ba68c8;
       margin-bottom: 2rem;
-    }
-    p {
-      line-height: 1.6;
-    }
-
-    /* About Section */
-    #about p {
-      max-width: 800px;
-      margin: auto;
-      text-align: left;
-      font-size: 1.1rem;
     }
 
     /* Gallery */
@@ -113,13 +114,14 @@
     .gallery img {
       width: 30%;
       border-radius: 10px;
-      transition: transform 0.3s;
+      transition: transform 0.3s, box-shadow 0.3s;
     }
     .gallery img:hover {
       transform: scale(1.05);
+      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
     }
 
-    /* News Section */
+    /* News */
     .news-container {
       display: flex;
       flex-wrap: wrap;
@@ -133,7 +135,6 @@
       width: 280px;
       box-shadow: 0 4px 8px rgba(0,0,0,0.1);
       transition: transform 0.3s;
-      text-align: left;
     }
     .news-card:hover {
       transform: translateY(-5px);
@@ -146,6 +147,36 @@
       background: #f9f3ff;
       padding: 3rem;
       border-radius: 12px;
+    }
+
+    /* Contact */
+    .contact-form {
+      max-width: 600px;
+      margin: auto;
+      background: #fef6ff;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    .contact-form input, .contact-form textarea {
+      width: 100%;
+      padding: 1rem;
+      margin: 0.5rem 0;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-family: 'Poppins', sans-serif;
+    }
+    .contact-form button {
+      padding: 0.8rem 2rem;
+      background: #ba68c8;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    .contact-form button:hover {
+      background: #9c27b0;
     }
 
     /* Footer */
@@ -165,9 +196,6 @@
 
     /* Responsive */
     @media (max-width: 768px) {
-      .hero h1 {
-        font-size: 2.5rem;
-      }
       .gallery img {
         width: 90%;
       }
@@ -175,7 +203,6 @@
   </style>
 </head>
 <body>
-  
   <!-- Navbar -->
   <nav>
     <a href="#about">About</a>
@@ -195,10 +222,8 @@
   <!-- About -->
   <section id="about">
     <h2>About Aditi</h2>
-    <p>
-      Aditi Budhathoki is a celebrated actress and model from Nepal, admired across South Asia for her elegance, timeless beauty, and versatility. 
-      She has made her mark in films, music, and fashion, inspiring millions of fans with her journey and talent. 
-      Beyond her work, Aditi is cherished as a style icon and a source of inspiration for young dreamers worldwide.
+    <p style="text-align:center; max-width:800px; margin:auto;">
+      Aditi Budhathoki is a celebrated actress and model from Nepal, admired across South Asia for her timeless beauty, elegance, and charm. With her growing influence in films, music, and fashion, Aditi continues to win the hearts of millions of fans worldwide. 💖
     </p>
   </section>
 
@@ -206,9 +231,12 @@
   <section id="gallery">
     <h2>Gallery</h2>
     <div class="gallery">
-      <img src="images/IMG_0473.jpeg" alt="Aditi">
-      <img src="images/IMG_0467.jpeg" alt="Aditi">
       <img src="images/IMG_0483.jpeg" alt="Aditi">
+      <img src="images/IMG_0467.jpeg" alt="Aditi">
+      <img src="images/IMG_0473.jpeg" alt="Aditi">
+      <img src="images/IMG_0469.jpeg" alt="Aditi">
+      <img src="images/IMG_0471.jpeg" alt="Aditi">
+      <img src="images/IMG_0472.jpeg" alt="Aditi">
     </div>
   </section>
 
@@ -216,9 +244,10 @@
   <section id="news">
     <h2>Latest News</h2>
     <div class="news-container">
-      <div class="news-card">✨ Aditi Budhathoki features in a stunning new Instagram photoshoot (Sept 2025).</div>
-      <div class="news-card">🎬 Exciting film project announcement coming soon — stay tuned!</div>
-      <div class="news-card">📺 Exclusive interview to be released on YouTube this month.</div>
+      <div class="news-card">✨ New Instagram photoshoot is trending</div>
+      <div class="news-card">🎬 Upcoming movie project rumored soon</div>
+      <div class="news-card">📺 Exclusive interview on YouTube released</div>
+      <div class="news-card">💃 Fashion feature in a top magazine</div>
     </div>
   </section>
 
@@ -227,23 +256,24 @@
     <h2>Fan Zone</h2>
     <div class="fan-zone">
       <p>Welcome to the heart of Aditi’s fandom 💜</p>
-      <p>Here you’ll find fan art, reels, wallpapers, and heartfelt messages created by her supporters worldwide.</p>
+      <p>Here you’ll find fan art, reels, wallpapers, and heartfelt messages from supporters worldwide!</p>
     </div>
   </section>
 
   <!-- Contact -->
   <section id="contact">
-    <h2>Follow Aditi</h2>
-    <p style="text-align:center;">
-      👉 <a href="https://www.instagram.com/aditi_budhathoki" target="_blank">Instagram</a><br>
-      👉 <a href="https://twitter.com/aditi_budhathoki" target="_blank">Twitter</a>
-    </p>
+    <h2>Contact</h2>
+    <form class="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+      <input type="text" name="name" placeholder="Your Name" required>
+      <input type="email" name="_replyto" placeholder="Your Email" required>
+      <textarea name="message" rows="5" placeholder="Your Message for Aditi" required></textarea>
+      <button type="submit">Send Message</button>
+    </form>
   </section>
 
   <!-- Footer -->
   <footer>
-    <p>Aditilicious Fanpage ❤️ | Made with love by fans | Not official</p>
+    <p>Aditi Budhathoki Fanpage ❤️ | Made with love by fans | Not official</p>
   </footer>
-
 </body>
 </html>
