@@ -103,22 +103,21 @@
       color: #ba68c8;
       margin-bottom: 2rem;
     }
-
     /* Gallery */
     .gallery {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 15px;
     }
-    .gallery img {
-      width: 30%;
-      border-radius: 10px;
-      transition: transform 0.3s, box-shadow 0.3s;
+   .gallery img {
+     width: 100%;
+     height: 300px; /* uniform height */
+     object-fit: cover; /* keeps images neat without stretching */
+     border-radius: 12px;
+     transition: transform 0.3s ease;
     }
-    .gallery img:hover {
-      transform: scale(1.05);
-      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+   .gallery img:hover {
+     transform: scale(1.05);
     }
 
     /* News */
