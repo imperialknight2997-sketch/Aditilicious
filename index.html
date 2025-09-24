@@ -3,270 +3,349 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Aditi Budhathoki ✨ — Fanpage</title>
+  <title>Aditi Budhathoki ✨ — Premium Fanpage</title>
 
-  <!-- Primary SEO -->
-  <meta name="description" content="Aditi Budhathoki — curated fanpage: photos, news, and fan zone celebrating the Nepali actress and model." />
-  <meta name="keywords" content="Aditi Budhathoki, Aditilicious, Aditi fanpage, Nepali actress, Aditi photos" />
-  <meta name="author" content="Aditi Fans" />
-
-  <!-- Open Graph / Social -->
-  <meta property="og:type" content="website" />
-  <meta property="og:title" content="Aditi Budhathoki ✨ — Fanpage" />
-  <meta property="og:description" content="Photos, latest news and fan creations dedicated to Aditi Budhathoki." />
+  <!-- SEO & Social -->
+  <meta name="description" content="Aditi Budhathoki — premium fanpage: gallery, news, fan zone and exclusive content." />
+  <meta name="keywords" content="Aditi Budhathoki, Aditi, fanpage, gallery, photos, Nepali actress" />
+  <meta property="og:title" content="Aditi Budhathoki ✨ — Premium Fanpage" />
+  <meta property="og:description" content="A premium fan-made tribute: photos, updates, and fan creations celebrating Aditi Budhathoki." />
   <meta property="og:image" content="images/IMG_0483.jpeg" />
+  <meta property="og:type" content="website" />
   <meta property="og:url" content="https://your-username.github.io/your-repo" />
-
-  <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Aditi Budhathoki ✨ — Fanpage" />
-  <meta name="twitter:description" content="Photos, latest news and fan creations dedicated to Aditi Budhathoki." />
-  <meta name="twitter:image" content="images/IMG_0483.jpeg" />
 
   <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 
   <style>
-    :root{
-      --bg:#fff;
-      --muted:#6b7280;
-      --accent:#ba68c8;     /* lavender */
-      --accent-2:#f48fb1;   /* soft pink */
-      --glass: rgba(255,255,255,0.65);
-      --maxw:1100px;
-    }
+  /* -------------------------
+     Variables & Base
+     ------------------------- */
+  :root{
+    --bg:#fbf7ff;
+    --card:#fff;
+    --muted:#6b6b7a;
+    --accent:#ba68c8;     /* lavender */
+    --accent-2:#f48fb1;   /* pink */
+    --glass: rgba(255,255,255,0.55);
+    --maxw:1200px;
+    --radius:14px;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;
+    font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;
+    background: radial-gradient(1200px 600px at 10% 20%, rgba(186,104,200,0.06), transparent 10%),
+                linear-gradient(180deg,#fff,#fbf7ff 120px);
+    color:#161616;
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+    line-height:1.6;
+  }
+  h1,h2{font-family:'Playfair Display',serif;color:var(--accent);margin:0}
+  a{color:inherit}
 
-    /* Reset & base */
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
-    body{
-      margin:0;
-      font-family:'Poppins',sans-serif;
-      background:var(--bg);
-      color:#222;
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
-      line-height:1.6;
-    }
-    h1,h2{font-family:'Playfair Display',serif;margin:0;color:var(--accent)}
-    p{margin:0 0 1rem 0;color:#333}
+  /* -------------------------
+     Top Navigation (glass)
+     ------------------------- */
+  .nav {
+    position:fixed; top:18px; left:50%; transform:translateX(-50%);
+    width:calc(100% - 48px); max-width:var(--maxw);
+    display:flex; align-items:center; justify-content:space-between;
+    padding:10px 18px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.42), rgba(255,255,255,0.32));
+    border-radius:999px;
+    backdrop-filter: blur(8px) saturate(1.05);
+    box-shadow: 0 12px 40px rgba(16,8,32,0.09);
+    z-index:1200;
+  }
+  .brand {
+    display:flex; align-items:center; gap:12px;
+    font-weight:600; font-size:1.05rem;
+    letter-spacing:0.2px;
+    background:linear-gradient(90deg,var(--accent-2),var(--accent));
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+  }
+  .nav-links{
+    display:flex; gap:12px; align-items:center;
+  }
+  .nav-links a{
+    padding:8px 12px; border-radius:10px; text-decoration:none;
+    color:rgba(16,10,28,0.95); font-weight:600; font-size:0.95rem;
+    transition: all .16s ease;
+  }
+  .nav-links a:hover{
+    transform:translateY(-3px);
+    color:var(--accent-2);
+    box-shadow: 0 8px 20px rgba(186,104,200,0.12);
+  }
 
-    /* NAV bar */
-    header.site-nav{
-      position:fixed; inset:0 0 auto 0;
-      height:72px;
-      display:flex; align-items:center; justify-content:center;
-      background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
-      backdrop-filter: blur(6px);
-      z-index:1200;
-      box-shadow:0 6px 24px rgba(10,6,20,0.06);
-    }
-    .nav-inner{
-      width:100%; max-width:var(--maxw); display:flex; align-items:center; justify-content:space-between; padding:0 16px;
-    }
-    .brand{color:#fff; font-weight:600; font-size:1.05rem; letter-spacing:0.4px; background:linear-gradient(90deg,var(--accent-2),var(--accent)); -webkit-background-clip:text; background-clip:text; color:transparent}
-    nav.primary a{ color:rgba(255,255,255,0.95); text-decoration:none; margin-left:18px; font-weight:600; padding:8px 10px; border-radius:8px; transition:all .18s; }
-    nav.primary a:hover{ background: rgba(255,255,255,0.06); color:var(--accent-2) }
+  /* Floating heart CTA */
+  .floating-heart {
+    position:fixed; right:22px; bottom:22px; z-index:1300;
+    width:64px; height:64px; border-radius:50%;
+    background:linear-gradient(90deg,var(--accent-2),var(--accent));
+    display:flex;align-items:center;justify-content:center;color:#fff;font-size:26px;
+    box-shadow:0 12px 30px rgba(181,88,144,0.18); cursor:pointer;
+    animation: floaty 3s ease-in-out infinite;
+  }
+  @keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
 
-    /* HERO */
-    .hero{
-      min-height: calc(100vh - 72px);
-      margin-top:72px;
-      background: url('images/IMG_0483.jpeg') center/cover no-repeat;
-      position:relative;
-      display:flex; align-items:center; justify-content:center; text-align:center; color:white;
-    }
-    .hero::after{
-      content:""; position:absolute; inset:0;
-      background: linear-gradient(180deg, rgba(5,10,20,0.18), rgba(5,10,20,0.36));
-      pointer-events:none;
-    }
-    .hero-inner{ position:relative; z-index:2; padding:4rem 1rem; max-width:900px; }
-    .hero h1{ font-size:3.4rem; color:#fff; text-shadow:0 10px 30px rgba(0,0,0,0.5); margin-bottom:0.25rem }
-    .hero p{ font-size:1.05rem; color:#fff; opacity:0.95; text-shadow:0 6px 20px rgba(0,0,0,0.35) }
-    .cta{ display:inline-block; margin-top:1.4rem; padding:0.8rem 1.6rem; border-radius:28px; background:linear-gradient(90deg,var(--accent-2),var(--accent)); color:white; text-decoration:none; font-weight:700; box-shadow:0 10px 30px rgba(181,88,144,0.14); transition:transform .15s, box-shadow .15s }
-    .cta:hover{ transform:translateY(-3px); box-shadow:0 20px 40px rgba(181,88,144,0.2) }
+  /* -------------------------
+     Hero (wow factor)
+     ------------------------- */
+  .hero {
+    min-height:calc(100vh - 48px);
+    display:flex; align-items:center; justify-content:center; text-align:center;
+    padding:72px 18px 96px; position:relative; overflow:hidden;
+    background: url('images/IMG_0483.jpeg') center/cover no-repeat;
+  }
+  /* soft animated pastel glow behind hero */
+  .hero::before{
+    content:""; position:absolute; inset:-20% -10% auto -10%;
+    height:380px;
+    background: radial-gradient(600px 300px at 10% 20%, rgba(244,143,177,0.10), transparent 20%),
+                radial-gradient(600px 300px at 90% 80%, rgba(186,104,200,0.10), transparent 20%);
+    filter: blur(80px); pointer-events:none; z-index:0;
+    animation: slowShift 18s linear infinite;
+  }
+  @keyframes slowShift{0%{transform:translateX(0)}50%{transform:translateX(6%)}100%{transform:translateX(0)}}
 
-    /* Main wrapper */
-    main{ max-width:var(--maxw); margin:3rem auto; padding:0 16px }
+  .hero-overlay {
+    position:absolute; inset:0; background: linear-gradient(180deg, rgba(0,0,0,0.18), rgba(0,0,0,0.36)); z-index:1;
+  }
+  .hero-inner {
+    position:relative; z-index:2; max-width:900px; color:white;
+    padding:40px;
+    transform: translateY(18px);
+    animation: heroIn .9s cubic-bezier(.2,.9,.3,1) .08s both;
+  }
+  @keyframes heroIn{from{opacity:0; transform:translateY(28px)} to{opacity:1; transform:translateY(0)}}
+  .hero h1{font-size:3.4rem; line-height:1; text-shadow:0 18px 40px rgba(0,0,0,0.5)}
+  .hero p{font-size:1.1rem; margin-top:12px; opacity:0.95; text-shadow:0 10px 30px rgba(0,0,0,0.4)}
+  .hero .cta {
+    display:inline-block; margin-top:20px; padding:12px 20px; border-radius:999px;
+    background:linear-gradient(90deg,var(--accent-2),var(--accent)); color:white; font-weight:700;
+    text-decoration:none; box-shadow:0 16px 42px rgba(181,88,144,0.16);
+  }
+  .hero .scroll-hint{ display:block; margin-top:26px; opacity:0.9; font-size:0.95rem; color:rgba(255,255,255,0.9) }
 
-    /* ABOUT - two column */
-    .about-grid{ display:grid; grid-template-columns: 1fr 420px; gap:28px; align-items:center }
-    .about-card{ background:linear-gradient(180deg, rgba(250,245,255,1), rgba(250,245,255,0.9)); padding:2rem; border-radius:12px; box-shadow:0 8px 30px rgba(21,12,40,0.04) }
-    .about-photo{ width:100%; border-radius:12px; height:340px; object-fit:cover; box-shadow:0 12px 36px rgba(18,10,40,0.06) }
+  /* -------------------------
+     Main layout
+     ------------------------- */
+  main{ max-width:var(--maxw); margin:48px auto; padding:0 18px 80px; }
 
-    /* GALLERY - grid uniform thumbnails */
-    .gallery{
-      display:grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap:18px;
-      margin-top:1rem;
-    }
-    .gallery img{
-      width:100%;
-      height:300px;
-      object-fit:cover;
-      border-radius:12px;
-      cursor:pointer;
-      transition: transform .22s ease, box-shadow .22s;
-      box-shadow:0 8px 28px rgba(18,10,40,0.06);
-    }
-    .gallery img:hover{ transform:translateY(-6px) scale(1.02); box-shadow:0 18px 44px rgba(18,10,40,0.08) }
+  /* Section title */
+  .section-head { text-align:center; margin-bottom:18px }
+  .section-head h2{ font-size:2.0rem; color:var(--accent); margin-bottom:6px }
+  .section-head p { color:var(--muted); margin:0 auto; max-width:820px }
 
-    /* NEWS - magazine cards */
-    .news-grid{
-      display:grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap:18px;
-    }
-    .news-card{
-      border-radius:12px; overflow:hidden; background:linear-gradient(180deg,#fff,#fff); box-shadow:0 12px 36px rgba(18,10,40,0.04);
-      display:flex; flex-direction:column;
-    }
-    .news-card img{ width:100%; height:160px; object-fit:cover }
-    .news-card .news-body{ padding:16px }
-    .news-card h3{ margin:0 0 8px 0; font-size:1.05rem; color:var(--accent) }
-    .news-card p{ margin:0; color:var(--muted); font-size:0.95rem }
+  /* ABOUT (two-column) */
+  .about {
+    display:grid; grid-template-columns: 1fr 420px; gap:28px; align-items:center;
+    margin-top:6px;
+  }
+  .about .text-card{
+    background:linear-gradient(180deg, rgba(255,255,255,0.95), rgba(250,245,255,0.98));
+    padding:26px; border-radius:12px; box-shadow:0 12px 40px rgba(12,6,30,0.04);
+  }
+  .about img{
+    width:100%; border-radius:12px; height:360px; object-fit:cover; box-shadow:0 18px 44px rgba(12,6,30,0.06)
+  }
 
-    /* FAN ZONE / CONTACT - glass card */
-    .fan-grid{ display:grid; grid-template-columns: 1fr 420px; gap:28px; align-items:start; margin-top:1rem }
-    .fan-cta{ background:linear-gradient(180deg,#fff,#fff); padding:1.6rem; border-radius:12px; box-shadow:0 10px 30px rgba(18,10,40,0.04) }
-    .contact-glass{
-      background: rgba(255,255,255,0.6);
-      border-radius:12px; padding:1.2rem;
-      backdrop-filter: blur(8px);
-      box-shadow:0 10px 30px rgba(20,10,50,0.06);
-    }
-    .contact-glass input,.contact-glass textarea{
-      width:100%; padding:12px; border-radius:10px; border:1px solid #ddd; margin-bottom:10px; font-family:'Poppins',sans-serif;
-    }
-    .contact-glass button{
-      padding:10px 18px; border-radius:10px; border:none; background:linear-gradient(90deg,var(--accent-2),var(--accent)); color:white; font-weight:700; cursor:pointer;
-    }
+  /* GALLERY (uniform premium + masonry feel) */
+  .gallery-wrap{ margin-top:8px }
+  .gallery-grid{
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap:18px;
+  }
+  /* responsive columns */
+  @media (max-width:1000px){ .gallery-grid{ grid-template-columns: repeat(2,1fr) } }
+  @media (max-width:600px){ .gallery-grid{ grid-template-columns: 1fr } }
 
-    /* FOOTER */
-    footer{ margin-top:3rem; background:#2c003e; color:#fff; text-align:center; padding:1.6rem; border-radius:8px; margin-bottom:40px }
+  .card {
+    background: linear-gradient(180deg, rgba(255,255,255,0.55), rgba(255,255,255,0.38));
+    border-radius:12px; padding:10px; backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow:0 14px 40px rgba(18,8,40,0.06);
+    transition: transform .28s ease, box-shadow .28s ease;
+    overflow:hidden;
+  }
+  .card:hover{ transform: translateY(-6px); box-shadow:0 30px 70px rgba(18,8,40,0.12) }
 
-    /* Lightbox (blurred frosted) */
-    .lb-overlay{
-      position:fixed; inset:0; display:none; align-items:center; justify-content:center; z-index:2200;
-      background: rgba(255,255,255,0.06); backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      padding:24px;
-    }
-    .lb-overlay.open{ display:flex }
-    .lb-inner{ max-width:92%; max-height:90%; border-radius:10px; overflow:hidden; box-shadow:0 30px 80px rgba(10,6,40,0.6) }
-    .lb-inner img{ display:block; width:100%; height:auto; max-height:90vh; object-fit:contain; background:#111 }
-    .lb-close{ position:absolute; top:28px; right:28px; font-size:34px; color:#fff; cursor:pointer; }
-    .lb-nav{ position:absolute; top:50%; transform:translateY(-50%); font-size:48px; color:#fff; padding:12px; cursor:pointer; user-select:none }
-    .lb-prev{ left:16px } .lb-next{ right:16px }
+  .card img{
+    width:100%; height:320px; object-fit:cover; display:block; border-radius:8px;
+    transition: transform .28s ease;
+  }
+  .card:hover img{ transform: scale(1.03) }
 
-    /* Responsive tweaks */
-    @media (max-width:1000px){
-      .about-grid, .fan-grid{ grid-template-columns: 1fr }
-      .about-photo, .contact-glass{ height:300px }
-    }
-    @media (max-width:600px){
-      .hero h1{ font-size:1.9rem }
-      .hero p{ font-size:0.95rem }
-      .gallery img{ height:220px }
-    }
+  /* NEWS CARDS */
+  .news-grid{ display:grid; grid-template-columns: repeat(3,1fr); gap:18px; margin-top:8px }
+  @media (max-width:1000px){ .news-grid{ grid-template-columns:repeat(2,1fr) } }
+  @media (max-width:700px){ .news-grid{ grid-template-columns:1fr } }
+  .news-card{
+    background:linear-gradient(180deg,#fff,#fff); border-radius:12px; overflow:hidden; box-shadow:0 16px 40px rgba(12,6,30,0.04);
+  }
+  .news-card img{ width:100%; height:160px; object-fit:cover }
+  .news-body{ padding:14px 16px }
+  .news-body h3{ margin:0 0 8px 0; color:var(--accent); font-size:1.05rem }
+  .news-body p{ margin:0; color:var(--muted); font-size:0.95rem }
+
+  /* FAN ZONE & CONTACT (glass form) */
+  .fan-grid{ display:grid; grid-template-columns: 1fr 420px; gap:24px; margin-top:12px; align-items:start }
+  @media (max-width:1000px){ .fan-grid{ grid-template-columns:1fr } }
+  .fan-box{ padding:18px; border-radius:12px; background:linear-gradient(180deg,#fff,#fff); box-shadow:0 12px 36px rgba(12,6,30,0.04) }
+  .contact-glass{
+    background: linear-gradient(180deg, rgba(255,255,255,0.62), rgba(255,255,255,0.55));
+    border-radius:12px; padding:18px; backdrop-filter: blur(8px);
+  }
+  .contact-glass label{ display:block; font-weight:600; margin-top:10px; font-size:0.95rem }
+  .contact-glass input, .contact-glass textarea {
+    width:100%; padding:12px; margin-top:8px; border-radius:8px; border:1px solid #eee; font-size:0.95rem;
+  }
+  .contact-glass button{
+    margin-top:12px; padding:12px 18px; border-radius:999px; border:none;
+    background:linear-gradient(90deg,var(--accent-2),var(--accent)); color:#fff; font-weight:700; cursor:pointer;
+    box-shadow:0 14px 34px rgba(181,88,144,0.14);
+  }
+
+  /* FOOTER */
+  footer{
+    margin-top:36px; padding:28px 18px; text-align:center; border-radius:18px; background:linear-gradient(90deg,var(--accent-2),var(--accent)); color:#fff;
+  }
+
+  /* LIGHTBOX overlay (blurred) */
+  .lb{
+    position:fixed; inset:0; display:none; align-items:center; justify-content:center; z-index:2200;
+    background: rgba(255,255,255,0.06); backdrop-filter: blur(16px);
+  }
+  .lb.open{ display:flex }
+  .lb-inner{ max-width:92%; max-height:92%; border-radius:12px; overflow:hidden; box-shadow:0 30px 80px rgba(10,6,40,0.6); position:relative }
+  .lb-inner img{ display:block; width:100%; height:auto; max-height:90vh; object-fit:contain; background:#000 }
+  .lb-close{ position:absolute; top:14px; right:14px; font-size:28px; color:#fff; cursor:pointer; padding:8px }
+  .lb-nav{ position:absolute; top:50%; transform:translateY(-50%); color:#fff; font-size:44px; padding:12px; cursor:pointer; user-select:none }
+  .lb-prev{ left:14px } .lb-next{ right:14px }
+
+  /* small helpers */
+  .muted{ color:var(--muted) }
+  .center{ text-align:center }
+
+  /* responsive font scaling */
+  @media (max-width:520px){
+    .hero h1{ font-size:1.8rem }
+    .card img{ height:240px }
+  }
   </style>
 </head>
 <body>
 
   <!-- NAV -->
-  <header class="site-nav" role="banner" aria-label="Main navigation">
-    <div class="nav-inner">
-      <div class="brand">Aditilicious</div>
-      <nav class="primary" aria-label="Primary">
-        <a href="#about">About</a>
-        <a href="#gallery">Gallery</a>
-        <a href="#news">News</a>
-        <a href="#fan">Fan Zone</a>
-        <a href="#contact">Contact</a>
-      </nav>
-    </div>
-  </header>
+  <div class="nav" role="banner" aria-label="Primary navigation">
+    <div class="brand">Aditilicious</div>
+    <nav class="nav-links" aria-label="Main">
+      <a href="#about">About</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#news">News</a>
+      <a href="#fan">Fan Zone</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+
+  <!-- Floating heart CTA -->
+  <button class="floating-heart" aria-label="Go to Fan Zone" onclick="document.getElementById('fan').scrollIntoView({behavior:'smooth'})">❤️</button>
 
   <!-- HERO -->
-  <section class="hero" role="main" aria-label="Hero">
+  <header class="hero" role="img" aria-label="Aditi hero image">
+    <div class="hero-overlay" aria-hidden="true"></div>
     <div class="hero-inner">
       <h1>Aditi Budhathoki</h1>
       <p>Beauty · Elegance · Inspiration</p>
-      <a class="cta" href="#about">Discover More</a>
+      <a class="cta" href="#gallery">View Gallery</a>
+      <div class="center" style="margin-top:14px"><span class="scroll-hint muted">Scroll down to explore</span></div>
     </div>
-  </section>
+  </header>
 
   <!-- MAIN -->
   <main>
 
     <!-- ABOUT -->
     <section id="about" aria-labelledby="about-title">
-      <h2 id="about-title">About Aditi</h2>
-      <div class="about-grid" style="margin-top:1rem">
-        <div class="about-card">
-          <p style="font-size:1.05rem; color:#333;">
-            Aditi Budhathoki is a Nepali actress and model known for her elegant presence, memorable performances, and growing influence in film and fashion.
-            This fanpage collects photos, news, and creative works from fans who celebrate her talent and style.
+      <div class="section-head">
+        <h2 id="about-title">About Aditi</h2>
+        <p class="muted">A curated fan tribute celebrating Aditi’s work, style and inspiration.</p>
+      </div>
+      <div class="about" style="margin-top:12px">
+        <div class="text-card about-card">
+          <p style="font-size:1.05rem; color:#222;">
+            Aditi Budhathoki is a Nepali actress and model admired for her elegance and on-screen charisma.
+            This fanpage highlights high-quality photos, latest updates, and fan creations in a refined, respectful space.
           </p>
-          <p style="color:var(--muted); font-size:0.95rem; margin-top:10px;">Fan-curated content. Not official.</p>
+          <p class="muted" style="margin-top:12px">Fan-curated collection — not official.</p>
         </div>
-        <img class="about-photo" src="images/IMG_0473.jpeg" alt="Aditi portrait" loading="lazy">
+        <img src="images/IMG_0473.jpeg" alt="Aditi portrait" loading="lazy">
       </div>
     </section>
 
     <!-- GALLERY -->
     <section id="gallery" aria-labelledby="gallery-title">
-      <h2 id="gallery-title">Gallery</h2>
-      <div class="gallery" aria-live="polite">
-        <!-- Thumbnails: use your actual filenames in images/ folder -->
-        <img src="images/IMG_0483.jpeg" alt="Aditi portrait 1" data-caption="Aditi portrait" loading="lazy">
-        <img src="images/IMG_0473.jpeg" alt="Aditi photoshoot" data-caption="Photoshoot still" loading="lazy">
-        <img src="images/IMG_0464.jpeg" alt="Aditi candid" data-caption="Candid moment" loading="lazy">
-        <img src="images/IMG_0473.jpeg" alt="Aditi extra 1" data-caption="Fan edit" loading="lazy">
-        <img src="images/IMG_0483.jpeg" alt="Aditi extra 2" data-caption="Backstage shot" loading="lazy">
-        <img src="images/IMG_0456.jpeg" alt="Aditi extra 3" data-caption="Magazine look" loading="lazy">
+      <div class="section-head">
+        <h2 id="gallery-title">Gallery</h2>
+        <p class="muted">Click any image to open the full view. High-resolution images optimized for web.</p>
+      </div>
+
+      <div class="gallery-wrap">
+        <div class="gallery-grid">
+          <!-- Use your uploaded images here (the exact list you supplied) -->
+          <div class="card"><img src="images/IMG_0483.jpeg" alt="Aditi 1" loading="lazy"></div>
+          <div class="card"><img src="images/IMG_0467.jpeg" alt="Aditi 2" loading="lazy"></div>
+          <div class="card"><img src="images/IMG_0473.jpeg" alt="Aditi 3" loading="lazy"></div>
+          <div class="card"><img src="images/IMG_0469.jpeg" alt="Aditi 4" loading="lazy"></div>
+          <div class="card"><img src="images/IMG_0466.jpeg" alt="Aditi 5" loading="lazy"></div>
+          <div class="card"><img src="images/IMG_0456.jpeg" alt="Aditi 6" loading="lazy"></div>
+          <div class="card"><img src="images/IMG_0457.jpeg" alt="Aditi 7" loading="lazy"></div>
+          <div class="card"><img src="images/IMG_0465.jpeg" alt="Aditi 8" loading="lazy"></div>
+          <div class="card"><img src="images/IMG_0464.jpeg" alt="Aditi 9" loading="lazy"></div>
+          <div class="card"><img src="images/IMG_0471.jpeg" alt="Aditi 10" loading="lazy"></div>
+          <div class="card"><img src="images/IMG_0472.jpeg" alt="Aditi 11" loading="lazy"></div>
+        </div>
       </div>
     </section>
 
     <!-- NEWS -->
     <section id="news" aria-labelledby="news-title">
-      <h2 id="news-title">Latest News</h2>
-      <div class="news-grid" style="margin-top:1rem">
+      <div class="section-head">
+        <h2 id="news-title">Latest News</h2>
+        <p class="muted">Curated updates related to Aditi’s public appearances and projects.</p>
+      </div>
+
+      <div class="news-grid">
         <article class="news-card">
-          <img src="images/IMG_0473.jpeg" alt="news image 1" loading="lazy">
+          <img src="images/IMG_0473.jpeg" alt="news 1" loading="lazy">
           <div class="news-body">
             <h3>New Photoshoot Released</h3>
-            <p>Stunning new photos from Aditi’s latest session have been posted on her official accounts. Check the gallery for highlights.</p>
-            <p style="font-size:0.85rem; color:var(--muted); margin-top:8px;">Sept 2025</p>
+            <p>Stunning images from Aditi's recent editorial are circulating on social platforms. See gallery highlights.</p>
+            <p class="muted" style="margin-top:8px;font-size:0.85rem">Sept 2025</p>
           </div>
         </article>
 
         <article class="news-card">
-          <img src="images/IMG_0467.jpeg" alt="news image 2" loading="lazy">
+          <img src="images/IMG_0467.jpeg" alt="news 2" loading="lazy">
           <div class="news-body">
-            <h3>Upcoming Project</h3>
-            <p>Industry sources hint at a new film collaboration. We’ll publish confirmed details once they are announced.</p>
-            <p style="font-size:0.85rem; color:var(--muted); margin-top:8px;">Aug 2025</p>
+            <h3>Upcoming Collaboration</h3>
+            <p>Industry reports suggest an upcoming creative collaboration — we’ll update when official details drop.</p>
+            <p class="muted" style="margin-top:8px;font-size:0.85rem">Aug 2025</p>
           </div>
         </article>
 
         <article class="news-card">
-          <img src="images/sample1.jpeg" alt="news image 3" loading="lazy">
+          <img src="images/IMG_0469.jpeg" alt="news 3" loading="lazy">
           <div class="news-body">
-            <h3>Exclusive Interview</h3>
-            <p>Aditi is scheduled for an exclusive interview where she discusses her work and inspirations. Link will be posted here.</p>
-            <p style="font-size:0.85rem; color:var(--muted); margin-top:8px;">Jul 2025</p>
-          </div>
-        </article>
-
-        <article class="news-card">
-          <img src="images/sample2.jpeg" alt="news image 4" loading="lazy">
-          <div class="news-body">
-            <h3>Fashion Feature</h3>
-            <p>Aditi is featured in a seasonal fashion spread — a beautiful shoot highlighting modern Nepali designers.</p>
-            <p style="font-size:0.85rem; color:var(--muted); margin-top:8px;">Jun 2025</p>
+            <h3>Interview & Feature</h3>
+            <p>Aditi is scheduled for an exclusive interview in the coming weeks — highlights will be posted here.</p>
+            <p class="muted" style="margin-top:8px;font-size:0.85rem">Jul 2025</p>
           </div>
         </article>
       </div>
@@ -274,116 +353,135 @@
 
     <!-- FAN ZONE & CONTACT -->
     <section id="fan" aria-labelledby="fan-title">
-      <h2 id="fan-title">Fan Zone & Contact</h2>
-      <div class="fan-grid" style="margin-top:1rem">
-        <div class="fan-cta">
-          <p style="font-size:1.05rem; margin-bottom:0.6rem;">Welcome to the fan hub — share your art, wallpapers, and messages. Selected fan work will be featured.</p>
-          <ul style="color:var(--muted); margin-top:8px;">
-            <li>Tag your posts with <strong>#Aditilicious</strong> on Instagram for a chance to be featured.</li>
-            <li>Send high-resolution fan art via the contact form below with credits.</li>
+      <div class="section-head">
+        <h2 id="fan-title">Fan Zone</h2>
+        <p class="muted">Share art, wallpapers, and messages. Selected works will be featured (with credit).</p>
+      </div>
+
+      <div class="fan-grid">
+        <div class="fan-box">
+          <p style="font-size:1.03rem;">Want your fan art featured? Tag your posts with <strong>#Aditilicious</strong> or contact the page admin through the form. Be sure to include credits.</p>
+          <ul style="margin-top:10px;color:var(--muted)">
+            <li>High-res fan art preferred (3000px on longest side).</li>
+            <li>Include your social handle for credit.</li>
+            <li>Only non-offensive, respectful content will be featured.</li>
           </ul>
         </div>
 
-        <div class="contact-glass" aria-label="Contact form">
-          <!-- Replace YOUR_FORM_ID with your Formspree ID -->
-          <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST" id="contactForm">
-            <label for="name" style="font-weight:600">Name</label>
-            <input id="name" name="name" type="text" placeholder="Your name" required>
+        <div class="contact-glass" id="contact">
+          <!-- FORMSPREE: replace YOUR_FORM_ID -->
+          <form action="https://formspree.io/f/mvgbnrgg" method="POST">
+            <label for="name">Name</label>
+            <input id="name" name="name" type="text" required placeholder="Your name">
 
-            <label for="email" style="font-weight:600">Email</label>
-            <input id="email" name="_replyto" type="email" placeholder="your@email.com" required>
+            <label for="email">Email</label>
+            <input id="email" name="_replyto" type="email" required placeholder="your@email.com">
 
-            <label for="message" style="font-weight:600">Message</label>
-            <textarea id="message" name="message" rows="5" placeholder="Your message to the fanpage admin" required></textarea>
+            <label for="message">Message / Submission notes</label>
+            <textarea id="message" name="message" rows="5" placeholder="Tell us about your submission or message"></textarea>
 
             <button type="submit">Send Message</button>
           </form>
         </div>
-
       </div>
     </section>
 
-    <!-- CONTACT / FOLLOW (extra) -->
-    <section id="contact" aria-labelledby="contact-title" style="margin-top:2rem">
-      <h2 id="contact-title">Follow Aditi</h2>
-      <p style="text-align:center; max-width:800px; margin:auto;">
-        Official channels: <a href="https://www.instagram.com/aditi_budhathoki" target="_blank" rel="noopener" style="color:var(--accent)">Instagram</a> ·
-        <a href="https://twitter.com/aditi_budhathoki" target="_blank" rel="noopener" style="color:var(--accent)">Twitter</a>
-      </p>
+    <!-- QUICK FOLLOW -->
+    <section aria-labelledby="follow" style="margin-top:28px; text-align:center">
+      <p class="muted">Follow Aditi: <a href="https://www.instagram.com/aditi_budhathoki" target="_blank" rel="noopener" style="color:var(--accent)">Instagram</a></p>
     </section>
 
   </main>
 
   <!-- FOOTER -->
   <footer>
-    <p>Aditilicious • Fan-made tribute • All images belong to their owners. © <span id="year"></span></p>
+    <div style="max-width:var(--maxw); margin:0 auto; padding:0 18px">
+      <p style="margin-bottom:8px">Aditilicious — Fan-made tribute · Not official</p>
+      <p style="opacity:0.9; font-size:0.9rem">© <span id="year"></span> All rights reserved.</p>
+    </div>
   </footer>
 
-  <!-- LIGHTBOX (blur backdrop) -->
-  <div id="lb" class="lb-overlay" role="dialog" aria-hidden="true" aria-label="Image preview">
-    <div class="lb-inner">
+  <!-- LIGHTBOX -->
+  <div id="lightbox" class="lb" aria-hidden="true" aria-label="Image preview">
+    <div class="lb-inner" role="dialog" aria-modal="true">
       <img id="lb-img" src="" alt="">
     </div>
-    <div class="lb-close" role="button" aria-label="Close">✕</div>
-    <div class="lb-nav lb-prev" role="button" aria-label="Previous">‹</div>
-    <div class="lb-nav lb-next" role="button" aria-label="Next">›</div>
+    <div class="lb-close" aria-hidden="false" role="button" title="Close">✕</div>
+    <div class="lb-nav lb-prev" role="button" title="Previous">‹</div>
+    <div class="lb-nav lb-next" role="button" title="Next">›</div>
   </div>
 
   <script>
-    // fill year in footer
-    document.getElementById('year').textContent = new Date().getFullYear();
+  // Set current year
+  document.getElementById('year').textContent = new Date().getFullYear();
 
-    // LIGHTBOX logic (blurred background)
-    (function(){
-      const thumbs = Array.from(document.querySelectorAll('.gallery img'));
-      const lb = document.getElementById('lb');
-      const lbImg = document.getElementById('lb-img');
-      const closeBtn = document.querySelector('.lb-close');
-      const prevBtn = document.querySelector('.lb-prev');
-      const nextBtn = document.querySelector('.lb-next');
-      let idx = 0;
+  // LIGHTBOX: blurred backdrop + navigation
+  (function(){
+    const cards = Array.from(document.querySelectorAll('.gallery-grid .card img'));
+    const lb = document.getElementById('lightbox');
+    const lbImg = document.getElementById('lb-img');
+    const closeBtn = document.querySelector('.lb-close');
+    const prevBtn = document.querySelector('.lb-prev');
+    const nextBtn = document.querySelector('.lb-next');
+    let idx = 0;
 
-      function openLightbox(i){
-        idx = i;
-        lbImg.src = thumbs[i].src;
-        lbImg.alt = thumbs[i].alt || 'Aditi photo';
-        lb.classList.add('open');
-        lb.setAttribute('aria-hidden','false');
-        document.body.style.overflow = 'hidden';
-      }
-      function closeLightbox(){
-        lb.classList.remove('open');
-        lb.setAttribute('aria-hidden','true');
-        lbImg.src = '';
-        document.body.style.overflow = '';
-      }
-      function prev(){ idx = (idx - 1 + thumbs.length) % thumbs.length; lbImg.src = thumbs[idx].src }
-      function next(){ idx = (idx + 1) % thumbs.length; lbImg.src = thumbs[idx].src }
+    function open(i){
+      idx = i;
+      lbImg.src = cards[i].src;
+      lbImg.alt = cards[i].alt || 'Aditi';
+      lb.classList.add('open');
+      lb.setAttribute('aria-hidden','false');
+      document.documentElement.style.scrollBehavior = 'auto';
+      document.body.style.overflow = 'hidden';
+    }
+    function close(){
+      lb.classList.remove('open');
+      lb.setAttribute('aria-hidden','true');
+      lbImg.src = '';
+      document.body.style.overflow = '';
+      document.documentElement.style.scrollBehavior = '';
+    }
+    function prev(){ idx = (idx - 1 + cards.length) % cards.length; lbImg.src = cards[idx].src }
+    function next(){ idx = (idx + 1) % cards.length; lbImg.src = cards[idx].src }
 
-      thumbs.forEach((t,i)=> t.addEventListener('click',()=> openLightbox(i)));
-      closeBtn.addEventListener('click', closeLightbox);
-      prevBtn.addEventListener('click', prev);
-      nextBtn.addEventListener('click', next);
+    cards.forEach((img,i)=> img.addEventListener('click', ()=> open(i)));
 
-      // keyboard nav
-      document.addEventListener('keydown', (e)=>{
-        if(lb.classList.contains('open')){
-          if(e.key === 'Escape') closeLightbox();
-          if(e.key === 'ArrowLeft') prev();
-          if(e.key === 'ArrowRight') next();
-        }
-      });
+    closeBtn.addEventListener('click', close);
+    prevBtn.addEventListener('click', prev);
+    nextBtn.addEventListener('click', next);
 
-      // click outside to close
-      lb.addEventListener('click', (e)=>{
-        if(e.target === lb) closeLightbox();
-      });
-    })();
+    // keyboard support
+    document.addEventListener('keydown', (e)=>{
+      if(!lb.classList.contains('open')) return;
+      if(e.key === 'Escape') close();
+      if(e.key === 'ArrowLeft') prev();
+      if(e.key === 'ArrowRight') next();
+    });
 
-    // Optional: replace this minimal submit handler if you want custom UX after Formspree submit
-    // document.getElementById('contactForm').addEventListener('submit', function(e){
-    //   // you can show a "thanks" message here
-    // });
+    // close if clicked outside image
+    lb.addEventListener('click', (e)=>{
+      if(e.target === lb) close();
+    });
+  })();
+
+  // Smooth open-to-section offset to avoid nav overlap
+  document.querySelectorAll('.nav-links a').forEach(a=>{
+    a.addEventListener('click', (e)=>{
+      // let browser handle anchor but offset by 68px
+      const href = a.getAttribute('href');
+      if(!href.startsWith('#')) return;
+      e.preventDefault();
+      const el = document.querySelector(href);
+      if(!el) return;
+      const top = el.getBoundingClientRect().top + window.scrollY - 80;
+      window.scrollTo({ top, behavior: 'smooth' });
+    });
+  });
+
+  // small accessibility focus style for dynamic nav
+  document.addEventListener('keyup', (e)=>{
+    if(e.key === 'Tab') document.body.classList.add('show-focus');
+  });
   </script>
 </body>
 </html>
