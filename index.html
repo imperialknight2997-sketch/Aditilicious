@@ -1,259 +1,389 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Aditi Budhathoki Fanpage</title>
-  <meta name="description" content="A premium fan website dedicated to Aditi Budhathoki – beauty, elegance, and inspiration. Discover exclusive gallery, news, and more.">
-  <meta name="keywords" content="Aditi Budhathoki, Fanpage, Actress, Model, Gallery, News">
-  <meta name="author" content="Your Name">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Aditi Budhathoki ✨ — Fanpage</title>
+
+  <!-- Primary SEO -->
+  <meta name="description" content="Aditi Budhathoki — curated fanpage: photos, news, and fan zone celebrating the Nepali actress and model." />
+  <meta name="keywords" content="Aditi Budhathoki, Aditilicious, Aditi fanpage, Nepali actress, Aditi photos" />
+  <meta name="author" content="Aditi Fans" />
+
+  <!-- Open Graph / Social -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Aditi Budhathoki ✨ — Fanpage" />
+  <meta property="og:description" content="Photos, latest news and fan creations dedicated to Aditi Budhathoki." />
+  <meta property="og:image" content="images/IMG_0483.jpeg" />
+  <meta property="og:url" content="https://your-username.github.io/your-repo" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Aditi Budhathoki ✨ — Fanpage" />
+  <meta name="twitter:description" content="Photos, latest news and fan creations dedicated to Aditi Budhathoki." />
+  <meta name="twitter:image" content="images/IMG_0483.jpeg" />
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
   <style>
-    /* Reset */
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: #f9f6ff; /* soft pastel */
-      color: #333;
-      line-height: 1.6;
+    :root{
+      --bg:#fff;
+      --muted:#6b7280;
+      --accent:#ba68c8;     /* lavender */
+      --accent-2:#f48fb1;   /* soft pink */
+      --glass: rgba(255,255,255,0.65);
+      --maxw:1100px;
     }
 
-    /* Navbar */
-    header {
-      position: fixed;
-      top: 0; left: 0; width: 100%;
-      background: rgba(255, 255, 255, 0.9);
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-      z-index: 1000;
+    /* Reset & base */
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:'Poppins',sans-serif;
+      background:var(--bg);
+      color:#222;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.6;
     }
-    nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1rem 2rem;
+    h1,h2{font-family:'Playfair Display',serif;margin:0;color:var(--accent)}
+    p{margin:0 0 1rem 0;color:#333}
+
+    /* NAV bar */
+    header.site-nav{
+      position:fixed; inset:0 0 auto 0;
+      height:72px;
+      display:flex; align-items:center; justify-content:center;
+      background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+      backdrop-filter: blur(6px);
+      z-index:1200;
+      box-shadow:0 6px 24px rgba(10,6,20,0.06);
     }
-    nav a {
-      text-decoration: none;
-      color: #444;
-      margin-left: 20px;
-      font-weight: 500;
-      transition: color 0.3s ease;
+    .nav-inner{
+      width:100%; max-width:var(--maxw); display:flex; align-items:center; justify-content:space-between; padding:0 16px;
     }
-    nav a:hover {
-      color: #a46edb;
+    .brand{color:#fff; font-weight:600; font-size:1.05rem; letter-spacing:0.4px; background:linear-gradient(90deg,var(--accent-2),var(--accent)); -webkit-background-clip:text; background-clip:text; color:transparent}
+    nav.primary a{ color:rgba(255,255,255,0.95); text-decoration:none; margin-left:18px; font-weight:600; padding:8px 10px; border-radius:8px; transition:all .18s; }
+    nav.primary a:hover{ background: rgba(255,255,255,0.06); color:var(--accent-2) }
+
+    /* HERO */
+    .hero{
+      min-height: calc(100vh - 72px);
+      margin-top:72px;
+      background: url('images/IMG_0483.jpeg') center/cover no-repeat;
+      position:relative;
+      display:flex; align-items:center; justify-content:center; text-align:center; color:white;
+    }
+    .hero::after{
+      content:""; position:absolute; inset:0;
+      background: linear-gradient(180deg, rgba(5,10,20,0.18), rgba(5,10,20,0.36));
+      pointer-events:none;
+    }
+    .hero-inner{ position:relative; z-index:2; padding:4rem 1rem; max-width:900px; }
+    .hero h1{ font-size:3.4rem; color:#fff; text-shadow:0 10px 30px rgba(0,0,0,0.5); margin-bottom:0.25rem }
+    .hero p{ font-size:1.05rem; color:#fff; opacity:0.95; text-shadow:0 6px 20px rgba(0,0,0,0.35) }
+    .cta{ display:inline-block; margin-top:1.4rem; padding:0.8rem 1.6rem; border-radius:28px; background:linear-gradient(90deg,var(--accent-2),var(--accent)); color:white; text-decoration:none; font-weight:700; box-shadow:0 10px 30px rgba(181,88,144,0.14); transition:transform .15s, box-shadow .15s }
+    .cta:hover{ transform:translateY(-3px); box-shadow:0 20px 40px rgba(181,88,144,0.2) }
+
+    /* Main wrapper */
+    main{ max-width:var(--maxw); margin:3rem auto; padding:0 16px }
+
+    /* ABOUT - two column */
+    .about-grid{ display:grid; grid-template-columns: 1fr 420px; gap:28px; align-items:center }
+    .about-card{ background:linear-gradient(180deg, rgba(250,245,255,1), rgba(250,245,255,0.9)); padding:2rem; border-radius:12px; box-shadow:0 8px 30px rgba(21,12,40,0.04) }
+    .about-photo{ width:100%; border-radius:12px; height:340px; object-fit:cover; box-shadow:0 12px 36px rgba(18,10,40,0.06) }
+
+    /* GALLERY - grid uniform thumbnails */
+    .gallery{
+      display:grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap:18px;
+      margin-top:1rem;
+    }
+    .gallery img{
+      width:100%;
+      height:300px;
+      object-fit:cover;
+      border-radius:12px;
+      cursor:pointer;
+      transition: transform .22s ease, box-shadow .22s;
+      box-shadow:0 8px 28px rgba(18,10,40,0.06);
+    }
+    .gallery img:hover{ transform:translateY(-6px) scale(1.02); box-shadow:0 18px 44px rgba(18,10,40,0.08) }
+
+    /* NEWS - magazine cards */
+    .news-grid{
+      display:grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap:18px;
+    }
+    .news-card{
+      border-radius:12px; overflow:hidden; background:linear-gradient(180deg,#fff,#fff); box-shadow:0 12px 36px rgba(18,10,40,0.04);
+      display:flex; flex-direction:column;
+    }
+    .news-card img{ width:100%; height:160px; object-fit:cover }
+    .news-card .news-body{ padding:16px }
+    .news-card h3{ margin:0 0 8px 0; font-size:1.05rem; color:var(--accent) }
+    .news-card p{ margin:0; color:var(--muted); font-size:0.95rem }
+
+    /* FAN ZONE / CONTACT - glass card */
+    .fan-grid{ display:grid; grid-template-columns: 1fr 420px; gap:28px; align-items:start; margin-top:1rem }
+    .fan-cta{ background:linear-gradient(180deg,#fff,#fff); padding:1.6rem; border-radius:12px; box-shadow:0 10px 30px rgba(18,10,40,0.04) }
+    .contact-glass{
+      background: rgba(255,255,255,0.6);
+      border-radius:12px; padding:1.2rem;
+      backdrop-filter: blur(8px);
+      box-shadow:0 10px 30px rgba(20,10,50,0.06);
+    }
+    .contact-glass input,.contact-glass textarea{
+      width:100%; padding:12px; border-radius:10px; border:1px solid #ddd; margin-bottom:10px; font-family:'Poppins',sans-serif;
+    }
+    .contact-glass button{
+      padding:10px 18px; border-radius:10px; border:none; background:linear-gradient(90deg,var(--accent-2),var(--accent)); color:white; font-weight:700; cursor:pointer;
     }
 
-    /* Hero */
-    .hero {
-      height: 100vh;
-      background: url("images/IMG_0483.jpeg") center/cover no-repeat;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      color: white;
-      position: relative;
-    }
-    .hero::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: rgba(0,0,0,0.35); /* soft overlay */
-    }
-    .hero-content {
-      position: relative;
-      z-index: 1;
-      max-width: 700px;
-    }
-    .hero h1 {
-      font-size: 3rem;
-      margin-bottom: 1rem;
-    }
-    .hero p {
-      font-size: 1.2rem;
-    }
+    /* FOOTER */
+    footer{ margin-top:3rem; background:#2c003e; color:#fff; text-align:center; padding:1.6rem; border-radius:8px; margin-bottom:40px }
 
-    /* Section base */
-    section {
-      padding: 5rem 2rem;
-      text-align: center;
-    }
-    section h2 {
-      font-size: 2.5rem;
-      margin-bottom: 2rem;
-      color: #a46edb;
-    }
-
-    /* About */
-    .about {
-      background: #f0eaff;
-    }
-    .about p {
-      max-width: 800px;
-      margin: 0 auto;
-      font-size: 1.1rem;
-    }
-
-    /* Gallery */
-    .gallery {
-      background: #fff;
-    }
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
-    }
-    .gallery-card {
-      background: rgba(255, 255, 255, 0.15);
-      border-radius: 15px;
-      padding: 10px;
-      backdrop-filter: blur(12px); /* glass effect */
+    /* Lightbox (blurred frosted) */
+    .lb-overlay{
+      position:fixed; inset:0; display:none; align-items:center; justify-content:center; z-index:2200;
+      background: rgba(255,255,255,0.06); backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      padding:24px;
     }
-    .gallery-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 12px 25px rgba(0,0,0,0.2);
-    }
-    .gallery-card img {
-      width: 100%;
-      border-radius: 10px;
-      object-fit: cover;
-    }
+    .lb-overlay.open{ display:flex }
+    .lb-inner{ max-width:92%; max-height:90%; border-radius:10px; overflow:hidden; box-shadow:0 30px 80px rgba(10,6,40,0.6) }
+    .lb-inner img{ display:block; width:100%; height:auto; max-height:90vh; object-fit:contain; background:#111 }
+    .lb-close{ position:absolute; top:28px; right:28px; font-size:34px; color:#fff; cursor:pointer; }
+    .lb-nav{ position:absolute; top:50%; transform:translateY(-50%); font-size:48px; color:#fff; padding:12px; cursor:pointer; user-select:none }
+    .lb-prev{ left:16px } .lb-next{ right:16px }
 
-    /* News */
-    .news {
-      background: #f0eaff;
+    /* Responsive tweaks */
+    @media (max-width:1000px){
+      .about-grid, .fan-grid{ grid-template-columns: 1fr }
+      .about-photo, .contact-glass{ height:300px }
     }
-    .news p {
-      font-size: 1.1rem;
-    }
-
-    /* Contact */
-    .contact {
-      background: #fff;
-    }
-    .contact form {
-      max-width: 500px;
-      margin: 0 auto;
-      text-align: left;
-    }
-    .contact label {
-      display: block;
-      margin: 10px 0 5px;
-    }
-    .contact input, .contact textarea {
-      width: 100%;
-      padding: 10px;
-      margin-bottom: 15px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-    }
-    .contact button {
-      display: inline-block;
-      background: #a46edb;
-      color: white;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      transition: background 0.3s ease;
-    }
-    .contact button:hover {
-      background: #8a52c4;
-    }
-
-    /* Footer */
-    footer {
-      background: #a46edb;
-      color: white;
-      text-align: center;
-      padding: 1rem;
-      margin-top: 2rem;
-    }
-
-    /* Responsive Hero */
-    @media (max-width: 768px) {
-      .hero h1 { font-size: 2.2rem; }
-      .hero p { font-size: 1rem; }
+    @media (max-width:600px){
+      .hero h1{ font-size:1.9rem }
+      .hero p{ font-size:0.95rem }
+      .gallery img{ height:220px }
     }
   </style>
 </head>
 <body>
 
-  <!-- Navbar -->
-  <header>
-    <nav>
-      <div class="logo">Aditi Budhathoki ✨</div>
-      <div>
+  <!-- NAV -->
+  <header class="site-nav" role="banner" aria-label="Main navigation">
+    <div class="nav-inner">
+      <div class="brand">Aditilicious</div>
+      <nav class="primary" aria-label="Primary">
         <a href="#about">About</a>
         <a href="#gallery">Gallery</a>
         <a href="#news">News</a>
+        <a href="#fan">Fan Zone</a>
         <a href="#contact">Contact</a>
-      </div>
-    </nav>
+      </nav>
+    </div>
   </header>
 
-  <!-- Hero -->
-  <section class="hero">
-    <div class="hero-content">
+  <!-- HERO -->
+  <section class="hero" role="main" aria-label="Hero">
+    <div class="hero-inner">
       <h1>Aditi Budhathoki</h1>
-      <p>Beauty • Elegance • Inspiration</p>
+      <p>Beauty · Elegance · Inspiration</p>
+      <a class="cta" href="#about">Discover More</a>
     </div>
   </section>
 
-  <!-- About -->
-  <section id="about" class="about">
-    <h2>About Aditi</h2>
-    <p>
-      Aditi Budhathoki is a celebrated actress and model known for her elegance and charm. 
-      This fanpage is a tribute to her journey, talent, and the inspiration she brings to millions worldwide.
-    </p>
-  </section>
+  <!-- MAIN -->
+  <main>
 
-  <!-- Gallery -->
-  <section id="gallery" class="gallery">
-    <h2>Gallery</h2>
-    <div class="gallery-grid">
-      <div class="gallery-card"><img src="images/IMG_0483.jpeg" alt="Aditi"></div>
-      <div class="gallery-card"><img src="images/IMG_0467.jpeg" alt="Aditi"></div>
-      <div class="gallery-card"><img src="images/IMG_0473.jpeg" alt="Aditi"></div>
-      <div class="gallery-card"><img src="images/IMG_0469.jpeg" alt="Aditi"></div>
-      <div class="gallery-card"><img src="images/IMG_0466.jpeg" alt="Aditi"></div>
-      <div class="gallery-card"><img src="images/IMG_0456.jpeg" alt="Aditi"></div>
-      <div class="gallery-card"><img src="images/IMG_0457.jpeg" alt="Aditi"></div>
-      <div class="gallery-card"><img src="images/IMG_0465.jpeg" alt="Aditi"></div>
-      <div class="gallery-card"><img src="images/IMG_0464.jpeg" alt="Aditi"></div>
-      <div class="gallery-card"><img src="images/IMG_0471.jpeg" alt="Aditi"></div>
-      <div class="gallery-card"><img src="images/IMG_0472.jpeg" alt="Aditi"></div>
-    </div>
-  </section>
+    <!-- ABOUT -->
+    <section id="about" aria-labelledby="about-title">
+      <h2 id="about-title">About Aditi</h2>
+      <div class="about-grid" style="margin-top:1rem">
+        <div class="about-card">
+          <p style="font-size:1.05rem; color:#333;">
+            Aditi Budhathoki is a Nepali actress and model known for her elegant presence, memorable performances, and growing influence in film and fashion.
+            This fanpage collects photos, news, and creative works from fans who celebrate her talent and style.
+          </p>
+          <p style="color:var(--muted); font-size:0.95rem; margin-top:10px;">Fan-curated content. Not official.</p>
+        </div>
+        <img class="about-photo" src="images/IMG_0473.jpeg" alt="Aditi portrait" loading="lazy">
+      </div>
+    </section>
 
-  <!-- News -->
-  <section id="news" class="news">
-    <h2>Latest News</h2>
-    <p>Stay tuned for the latest updates and stories about Aditi Budhathoki.</p>
-  </section>
+    <!-- GALLERY -->
+    <section id="gallery" aria-labelledby="gallery-title">
+      <h2 id="gallery-title">Gallery</h2>
+      <div class="gallery" aria-live="polite">
+        <!-- Thumbnails: use your actual filenames in images/ folder -->
+        <img src="images/IMG_0483.jpeg" alt="Aditi portrait 1" data-caption="Aditi portrait" loading="lazy">
+        <img src="images/IMG_0473.jpeg" alt="Aditi photoshoot" data-caption="Photoshoot still" loading="lazy">
+        <img src="images/IMG_0464.jpeg" alt="Aditi candid" data-caption="Candid moment" loading="lazy">
+        <img src="images/IMG_0473.jpeg" alt="Aditi extra 1" data-caption="Fan edit" loading="lazy">
+        <img src="images/IMG_0483.jpeg" alt="Aditi extra 2" data-caption="Backstage shot" loading="lazy">
+        <img src="images/IMG_0456.jpeg" alt="Aditi extra 3" data-caption="Magazine look" loading="lazy">
+      </div>
+    </section>
 
-  <!-- Contact -->
-  <section id="contact" class="contact">
-    <h2>Contact</h2>
-    <form>
-      <label for="name">Name</label>
-      <input type="text" id="name" placeholder="Your Name" required>
-      <label for="email">Email</label>
-      <input type="email" id="email" placeholder="Your Email" required>
-      <label for="message">Message</label>
-      <textarea id="message" rows="5" placeholder="Your Message"></textarea>
-      <button type="submit">Send</button>
-    </form>
-  </section>
+    <!-- NEWS -->
+    <section id="news" aria-labelledby="news-title">
+      <h2 id="news-title">Latest News</h2>
+      <div class="news-grid" style="margin-top:1rem">
+        <article class="news-card">
+          <img src="images/IMG_0473.jpeg" alt="news image 1" loading="lazy">
+          <div class="news-body">
+            <h3>New Photoshoot Released</h3>
+            <p>Stunning new photos from Aditi’s latest session have been posted on her official accounts. Check the gallery for highlights.</p>
+            <p style="font-size:0.85rem; color:var(--muted); margin-top:8px;">Sept 2025</p>
+          </div>
+        </article>
 
-  <!-- Footer -->
+        <article class="news-card">
+          <img src="images/IMG_0467.jpeg" alt="news image 2" loading="lazy">
+          <div class="news-body">
+            <h3>Upcoming Project</h3>
+            <p>Industry sources hint at a new film collaboration. We’ll publish confirmed details once they are announced.</p>
+            <p style="font-size:0.85rem; color:var(--muted); margin-top:8px;">Aug 2025</p>
+          </div>
+        </article>
+
+        <article class="news-card">
+          <img src="images/sample1.jpeg" alt="news image 3" loading="lazy">
+          <div class="news-body">
+            <h3>Exclusive Interview</h3>
+            <p>Aditi is scheduled for an exclusive interview where she discusses her work and inspirations. Link will be posted here.</p>
+            <p style="font-size:0.85rem; color:var(--muted); margin-top:8px;">Jul 2025</p>
+          </div>
+        </article>
+
+        <article class="news-card">
+          <img src="images/sample2.jpeg" alt="news image 4" loading="lazy">
+          <div class="news-body">
+            <h3>Fashion Feature</h3>
+            <p>Aditi is featured in a seasonal fashion spread — a beautiful shoot highlighting modern Nepali designers.</p>
+            <p style="font-size:0.85rem; color:var(--muted); margin-top:8px;">Jun 2025</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- FAN ZONE & CONTACT -->
+    <section id="fan" aria-labelledby="fan-title">
+      <h2 id="fan-title">Fan Zone & Contact</h2>
+      <div class="fan-grid" style="margin-top:1rem">
+        <div class="fan-cta">
+          <p style="font-size:1.05rem; margin-bottom:0.6rem;">Welcome to the fan hub — share your art, wallpapers, and messages. Selected fan work will be featured.</p>
+          <ul style="color:var(--muted); margin-top:8px;">
+            <li>Tag your posts with <strong>#Aditilicious</strong> on Instagram for a chance to be featured.</li>
+            <li>Send high-resolution fan art via the contact form below with credits.</li>
+          </ul>
+        </div>
+
+        <div class="contact-glass" aria-label="Contact form">
+          <!-- Replace YOUR_FORM_ID with your Formspree ID -->
+          <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST" id="contactForm">
+            <label for="name" style="font-weight:600">Name</label>
+            <input id="name" name="name" type="text" placeholder="Your name" required>
+
+            <label for="email" style="font-weight:600">Email</label>
+            <input id="email" name="_replyto" type="email" placeholder="your@email.com" required>
+
+            <label for="message" style="font-weight:600">Message</label>
+            <textarea id="message" name="message" rows="5" placeholder="Your message to the fanpage admin" required></textarea>
+
+            <button type="submit">Send Message</button>
+          </form>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- CONTACT / FOLLOW (extra) -->
+    <section id="contact" aria-labelledby="contact-title" style="margin-top:2rem">
+      <h2 id="contact-title">Follow Aditi</h2>
+      <p style="text-align:center; max-width:800px; margin:auto;">
+        Official channels: <a href="https://www.instagram.com/aditi_budhathoki" target="_blank" rel="noopener" style="color:var(--accent)">Instagram</a> ·
+        <a href="https://twitter.com/aditi_budhathoki" target="_blank" rel="noopener" style="color:var(--accent)">Twitter</a>
+      </p>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
   <footer>
-    <p>© 2025 Aditi Budhathoki Fanpage. Made with ❤️ by a true fan.</p>
+    <p>Aditilicious • Fan-made tribute • All images belong to their owners. © <span id="year"></span></p>
   </footer>
 
+  <!-- LIGHTBOX (blur backdrop) -->
+  <div id="lb" class="lb-overlay" role="dialog" aria-hidden="true" aria-label="Image preview">
+    <div class="lb-inner">
+      <img id="lb-img" src="" alt="">
+    </div>
+    <div class="lb-close" role="button" aria-label="Close">✕</div>
+    <div class="lb-nav lb-prev" role="button" aria-label="Previous">‹</div>
+    <div class="lb-nav lb-next" role="button" aria-label="Next">›</div>
+  </div>
+
+  <script>
+    // fill year in footer
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // LIGHTBOX logic (blurred background)
+    (function(){
+      const thumbs = Array.from(document.querySelectorAll('.gallery img'));
+      const lb = document.getElementById('lb');
+      const lbImg = document.getElementById('lb-img');
+      const closeBtn = document.querySelector('.lb-close');
+      const prevBtn = document.querySelector('.lb-prev');
+      const nextBtn = document.querySelector('.lb-next');
+      let idx = 0;
+
+      function openLightbox(i){
+        idx = i;
+        lbImg.src = thumbs[i].src;
+        lbImg.alt = thumbs[i].alt || 'Aditi photo';
+        lb.classList.add('open');
+        lb.setAttribute('aria-hidden','false');
+        document.body.style.overflow = 'hidden';
+      }
+      function closeLightbox(){
+        lb.classList.remove('open');
+        lb.setAttribute('aria-hidden','true');
+        lbImg.src = '';
+        document.body.style.overflow = '';
+      }
+      function prev(){ idx = (idx - 1 + thumbs.length) % thumbs.length; lbImg.src = thumbs[idx].src }
+      function next(){ idx = (idx + 1) % thumbs.length; lbImg.src = thumbs[idx].src }
+
+      thumbs.forEach((t,i)=> t.addEventListener('click',()=> openLightbox(i)));
+      closeBtn.addEventListener('click', closeLightbox);
+      prevBtn.addEventListener('click', prev);
+      nextBtn.addEventListener('click', next);
+
+      // keyboard nav
+      document.addEventListener('keydown', (e)=>{
+        if(lb.classList.contains('open')){
+          if(e.key === 'Escape') closeLightbox();
+          if(e.key === 'ArrowLeft') prev();
+          if(e.key === 'ArrowRight') next();
+        }
+      });
+
+      // click outside to close
+      lb.addEventListener('click', (e)=>{
+        if(e.target === lb) closeLightbox();
+      });
+    })();
+
+    // Optional: replace this minimal submit handler if you want custom UX after Formspree submit
+    // document.getElementById('contactForm').addEventListener('submit', function(e){
+    //   // you can show a "thanks" message here
+    // });
+  </script>
 </body>
 </html>
