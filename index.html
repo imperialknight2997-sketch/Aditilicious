@@ -1,289 +1,493 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Aditilicious</title>
-  
-  <!-- SEO Meta Tags -->
-  <meta name="description" content="Aditi Budhathoki ✨ Official Fanpage - Photos, news, and fan love dedicated to the Nepali actress and model.">
-  <meta name="keywords" content="Aditi Budhathoki, Aditi Budhathoki fanpage, Nepali actress, Aditi Budhathoki Instagram, Aditi Budhathoki photos, Aditi Budhathoki news">
-  <meta name="author" content="Aditi Budhathoki Fans">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Aditi Budhathoki ✨ — Premium Fanpage</title>
 
-  <!-- Open Graph (for social sharing) -->
-  <meta property="og:title" content="Aditi Budhathoki ✨ Official Fanpage">
-  <meta property="og:description" content="The ultimate fanpage dedicated to Aditi Budhathoki ❤️ Photos, news, and fan love.">
-  <meta property="og:image" content="images/IMG_0483.jpeg">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://yourfanpage.github.io">
+  <!-- SEO & Social -->
+  <meta name="description" content="Aditi Budhathoki — premium fanpage: gallery, news, fan zone and exclusive content." />
+  <meta name="keywords" content="Aditi Budhathoki, Aditi, fanpage, gallery, photos, Nepali actress" />
+  <meta property="og:title" content="Aditi Budhathoki ✨ — Premium Fanpage" />
+  <meta property="og:description" content="A premium fan-made tribute: photos, updates, and fan creations celebrating Aditi Budhathoki." />
+  <meta property="og:image" content="images/IMG_0483.jpeg" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://your-username.github.io/your-repo" />
+  <meta name="twitter:card" content="summary_large_image" />
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-  
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
   <style>
-    /* General Styles */
-    body {
-      margin: 0;
-      font-family: 'Poppins', sans-serif;
-      background: #fff;
-      color: #333;
-      scroll-behavior: smooth;
-    }
-    h1, h2 {
-      font-family: 'Playfair Display', serif;
-    }
+  /* -------------------------
+     Variables & Base
+     ------------------------- */
+  :root{
+    --bg:#fbf7ff;
+    --card:#fff;
+    --muted:#6b6b7a;
+    --accent:#ba68c8;     /* lavender */
+    --accent-2:#f48fb1;   /* pink */
+    --glass: rgba(255,255,255,0.55);
+    --maxw:1200px;
+    --radius:14px;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;
+    font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;
+    background: radial-gradient(1200px 600px at 10% 20%, rgba(186,104,200,0.06), transparent 10%),
+                linear-gradient(180deg,#fff,#fbf7ff 120px);
+    color:#161616;
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+    line-height:1.6;
+  }
+  h1,h2{font-family:'Playfair Display',serif;color:var(--accent);margin:0}
+  a{color:inherit}
 
-    /* Navbar */
-    nav {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      background: rgba(50, 0, 70, 0.9);
-      padding: 1rem;
-      text-align: center;
-      z-index: 1000;
-    }
-    nav a {
-      color: white;
-      text-decoration: none;
-      margin: 0 1rem;
-      font-weight: 600;
-      transition: color 0.3s;
-    }
-    nav a:hover {
-      color: #ffb3ec;
-    }
+  /* -------------------------
+     Top Navigation (glass)
+     ------------------------- */
+  .nav {
+    position:fixed; top:18px; left:50%; transform:translateX(-50%);
+    width:calc(100% - 48px); max-width:var(--maxw);
+    display:flex; align-items:center; justify-content:space-between;
+    padding:10px 18px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.42), rgba(255,255,255,0.32));
+    border-radius:999px;
+    backdrop-filter: blur(8px) saturate(1.05);
+    box-shadow: 0 12px 40px rgba(16,8,32,0.09);
+    z-index:1200;
+  }
+  .brand {
+    display:flex; align-items:center; gap:12px;
+    font-weight:600; font-size:1.05rem;
+    letter-spacing:0.2px;
+    background:linear-gradient(90deg,var(--accent-2),var(--accent));
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+  }
+  .nav-links{
+    display:flex; gap:12px; align-items:center;
+  }
+  .nav-links a{
+    padding:8px 12px; border-radius:10px; text-decoration:none;
+    color:rgba(16,10,28,0.95); font-weight:600; font-size:0.95rem;
+    transition: all .16s ease;
+  }
+  .nav-links a:hover{
+    transform:translateY(-3px);
+    color:var(--accent-2);
+    box-shadow: 0 8px 20px rgba(186,104,200,0.12);
+  }
 
-    /* Hero Section */
-    .hero {
-      height: 100vh;
-      background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)),
-                  url('images/IMG_0483.jpeg') center/cover no-repeat;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-      text-align: center;
-      color: white;
-      padding-top: 60px;
-    }
-    .hero h1 {
-      font-size: 4rem;
-      margin: 0;
-      animation: fadeIn 2s ease-in-out;
-    }
-    .hero p {
-      font-size: 1.5rem;
-      margin: 1rem 0;
-      animation: fadeIn 3s ease-in-out;
-    }
-    .hero a {
-      padding: 0.8rem 2rem;
-      background: linear-gradient(120deg, #f48fb1, #ba68c8);
-      color: white;
-      border-radius: 30px;
-      text-decoration: none;
-      font-weight: bold;
-      animation: fadeIn 4s ease-in-out;
-      transition: 0.3s;
-    }
-    .hero a:hover {
-      background: linear-gradient(120deg, #ba68c8, #f48fb1);
-    }
+  /* Floating heart CTA */
+  .floating-heart {
+    position:fixed; right:22px; bottom:22px; z-index:1300;
+    width:64px; height:64px; border-radius:50%;
+    background:linear-gradient(90deg,var(--accent-2),var(--accent));
+    display:flex;align-items:center;justify-content:center;color:#fff;font-size:26px;
+    box-shadow:0 12px 30px rgba(181,88,144,0.18); cursor:pointer;
+    animation: floaty 3s ease-in-out infinite;
+  }
+  @keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
 
-    /* Sections */
-    section {
-      padding: 5rem 2rem;
-      max-width: 1200px;
-      margin: auto;
-    }
-    h2 {
-      text-align: center;
-      font-size: 2.5rem;
-      color: #ba68c8;
-      margin-bottom: 2rem;
-    }
-    /* Gallery */
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 15px;
-    }
-   .gallery img {
-     width: 100%;
-     height: 300px; /* uniform height */
-     object-fit: cover; /* keeps images neat without stretching */
-     border-radius: 12px;
-     transition: transform 0.3s ease;
-    }
-   .gallery img:hover {
-     transform: scale(1.05);
-    }
+  /* -------------------------
+     Hero (wow factor)
+     ------------------------- */
+  .hero {
+    min-height:calc(100vh - 48px);
+    display:flex; align-items:center; justify-content:center; text-align:center;
+    padding:72px 18px 96px; position:relative; overflow:hidden;
+    background: url('images/IMG_0483.jpeg') center/cover no-repeat;
+  }
+  /* soft animated pastel glow behind hero */
+  .hero::before{
+    content:""; position:absolute; inset:-20% -10% auto -10%;
+    height:380px;
+    background: radial-gradient(600px 300px at 10% 20%, rgba(244,143,177,0.10), transparent 20%),
+                radial-gradient(600px 300px at 90% 80%, rgba(186,104,200,0.10), transparent 20%);
+    filter: blur(80px); pointer-events:none; z-index:0;
+    animation: slowShift 18s linear infinite;
+  }
+  @keyframes slowShift{0%{transform:translateX(0)}50%{transform:translateX(6%)}100%{transform:translateX(0)}}
 
-    /* News */
-    .news-container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 20px;
-    }
-    .news-card {
-      background: #fff0f7;
-      padding: 1.5rem;
-      border-radius: 12px;
-      width: 280px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-      transition: transform 0.3s;
-    }
-    .news-card:hover {
-      transform: translateY(-5px);
-    }
+  .hero-overlay {
+    position:absolute; inset:0; background: linear-gradient(180deg, rgba(0,0,0,0.18), rgba(0,0,0,0.36)); z-index:1;
+  }
+  .hero-inner {
+    position:relative; z-index:2; max-width:900px; color:white;
+    padding:40px;
+    transform: translateY(18px);
+    animation: heroIn .9s cubic-bezier(.2,.9,.3,1) .08s both;
+  }
+  @keyframes heroIn{from{opacity:0; transform:translateY(28px)} to{opacity:1; transform:translateY(0)}}
+  .hero h1{font-size:3.4rem; line-height:1; text-shadow:0 18px 40px rgba(0,0,0,0.5)}
+  .hero p{font-size:1.1rem; margin-top:12px; opacity:0.95; text-shadow:0 10px 30px rgba(0,0,0,0.4)}
+  .hero .cta {
+    display:inline-block; margin-top:20px; padding:12px 20px; border-radius:999px;
+    background:linear-gradient(90deg,var(--accent-2),var(--accent)); color:white; font-weight:700;
+    text-decoration:none; box-shadow:0 16px 42px rgba(181,88,144,0.16);
+  }
+  .hero .scroll-hint{ display:block; margin-top:26px; opacity:0.9; font-size:0.95rem; color:rgba(255,255,255,0.9) }
 
-    /* Fan Zone */
-    .fan-zone {
-      text-align: center;
-      font-size: 1.2rem;
-      background: #f9f3ff;
-      padding: 3rem;
-      border-radius: 12px;
-    }
+  /* -------------------------
+     Main layout
+     ------------------------- */
+  main{ max-width:var(--maxw); margin:48px auto; padding:0 18px 80px; }
 
-    /* Contact */
-    .contact-form {
-      max-width: 600px;
-      margin: auto;
-      background: #fef6ff;
-      padding: 2rem;
-      border-radius: 12px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    }
-    .contact-form input, .contact-form textarea {
-      width: 100%;
-      padding: 1rem;
-      margin: 0.5rem 0;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      font-family: 'Poppins', sans-serif;
-    }
-    .contact-form button {
-      padding: 0.8rem 2rem;
-      background: #ba68c8;
-      color: white;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      font-weight: bold;
-    }
-    .contact-form button:hover {
-      background: #9c27b0;
-    }
+  /* Section title */
+  .section-head { text-align:center; margin-bottom:18px }
+  .section-head h2{ font-size:2.0rem; color:var(--accent); margin-bottom:6px }
+  .section-head p { color:var(--muted); margin:0 auto; max-width:820px }
 
-    /* Footer */
-    footer {
-      background: #2c003e;
-      color: white;
-      text-align: center;
-      padding: 1.5rem;
-      margin-top: 2rem;
-    }
+  /* ABOUT (two-column) */
+  .about {
+    display:grid; grid-template-columns: 1fr 420px; gap:28px; align-items:center;
+    margin-top:6px;
+  }
+  .about .text-card{
+    background:linear-gradient(180deg, rgba(255,255,255,0.95), rgba(250,245,255,0.98));
+    padding:26px; border-radius:12px; box-shadow:0 12px 40px rgba(12,6,30,0.04);
+  }
+  .about img{
+    width:100%; border-radius:12px; height:360px; object-fit:cover; box-shadow:0 18px 44px rgba(12,6,30,0.06)
+  }
 
-    /* Animations */
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
+  /* GALLERY (uniform premium + masonry feel) */
+  .gallery-wrap{ margin-top:8px }
+  .gallery-grid{
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap:18px;
+  }
+  /* responsive columns */
+  @media (max-width:1000px){ .gallery-grid{ grid-template-columns: repeat(2,1fr) } }
+  @media (max-width:600px){ .gallery-grid{ grid-template-columns: 1fr } }
 
-    /* Responsive */
-    @media (max-width: 768px) {
-      .gallery img {
-        width: 90%;
-      }
-    }
+  .card {
+    background: linear-gradient(180deg, rgba(255,255,255,0.55), rgba(255,255,255,0.38));
+    border-radius:12px; padding:10px; backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow:0 14px 40px rgba(18,8,40,0.06);
+    transition: transform .28s ease, box-shadow .28s ease;
+    overflow:hidden;
+  }
+  .card:hover{ transform: translateY(-6px); box-shadow:0 30px 70px rgba(18,8,40,0.12) }
+
+  .card img{
+    width:100%; height:320px; object-fit:cover; display:block; border-radius:8px;
+    transition: transform .28s ease;
+  }
+  .card:hover img{ transform: scale(1.03) }
+
+  /* NEWS CARDS */
+  .news-grid{ display:grid; grid-template-columns: repeat(3,1fr); gap:18px; margin-top:8px }
+  @media (max-width:1000px){ .news-grid{ grid-template-columns:repeat(2,1fr) } }
+  @media (max-width:700px){ .news-grid{ grid-template-columns:1fr } }
+  .news-card{
+    background:linear-gradient(180deg,#fff,#fff); border-radius:12px; overflow:hidden; box-shadow:0 16px 40px rgba(12,6,30,0.04);
+  }
+  .news-card img{ width:100%; height:160px; object-fit:cover }
+  .news-body{ padding:14px 16px }
+  .news-body h3{ margin:0 0 8px 0; color:var(--accent); font-size:1.05rem }
+  .news-body p{ margin:0; color:var(--muted); font-size:0.95rem }
+
+  /* FAN ZONE & CONTACT (glass form) */
+  .fan-grid{ display:grid; grid-template-columns: 1fr 420px; gap:24px; margin-top:12px; align-items:start }
+  @media (max-width:1000px){ .fan-grid{ grid-template-columns:1fr } }
+  .fan-box{ padding:18px; border-radius:12px; background:linear-gradient(180deg,#fff,#fff); box-shadow:0 12px 36px rgba(12,6,30,0.04) }
+  .contact-glass{
+    background: linear-gradient(180deg, rgba(255,255,255,0.62), rgba(255,255,255,0.55));
+    border-radius:12px; padding:18px; backdrop-filter: blur(8px);
+  }
+  .contact-glass label{ display:block; font-weight:600; margin-top:10px; font-size:0.95rem }
+  .contact-glass input, .contact-glass textarea {
+    width:100%; padding:12px; margin-top:8px; border-radius:8px; border:1px solid #eee; font-size:0.95rem;
+  }
+  .contact-glass button{
+    margin-top:12px; padding:12px 18px; border-radius:999px; border:none;
+    background:linear-gradient(90deg,var(--accent-2),var(--accent)); color:#fff; font-weight:700; cursor:pointer;
+    box-shadow:0 14px 34px rgba(181,88,144,0.14);
+  }
+
+  /* FOOTER */
+  footer{
+    margin-top:36px; padding:28px 18px; text-align:center; border-radius:18px; background:linear-gradient(90deg,var(--accent-2),var(--accent)); color:#fff;
+  }
+
+  /* LIGHTBOX overlay (blurred) */
+  .lb{
+    position:fixed; inset:0; display:none; align-items:center; justify-content:center; z-index:2200;
+    background: rgba(255,255,255,0.06); backdrop-filter: blur(16px);
+  }
+  .lb.open{ display:flex }
+  .lb-inner{ max-width:92%; max-height:92%; border-radius:12px; overflow:hidden; box-shadow:0 30px 80px rgba(10,6,40,0.6); position:relative }
+  .lb-inner img{ display:block; width:100%; height:auto; max-height:90vh; object-fit:contain; background:#000 }
+  .lb-close{ position:absolute; top:14px; right:14px; font-size:28px; color:#fff; cursor:pointer; padding:8px }
+  .lb-nav{ position:absolute; top:50%; transform:translateY(-50%); color:#fff; font-size:44px; padding:12px; cursor:pointer; user-select:none }
+  .lb-prev{ left:14px } .lb-next{ right:14px }
+
+  /* small helpers */
+  .muted{ color:var(--muted) }
+  .center{ text-align:center }
+
+  /* responsive font scaling */
+  @media (max-width:520px){
+    .hero h1{ font-size:1.8rem }
+    .card img{ height:240px }
+  }
   </style>
 </head>
 <body>
-  <!-- Navbar -->
-  <nav>
-    <a href="#about">About</a>
-    <a href="#gallery">Gallery</a>
-    <a href="#news">News</a>
-    <a href="#fan">Fan Zone</a>
-    <a href="#contact">Contact</a>
-  </nav>
 
-  <!-- Hero -->
-  <div class="hero">
-    <h1>Aditi Budhathoki ✨</h1>
-    <p>Beauty • Elegance • Inspiration</p>
-    <a href="#about">Discover More</a>
+  <!-- NAV -->
+  <div class="nav" role="banner" aria-label="Primary navigation">
+    <div class="brand">Aditilicious</div>
+    <nav class="nav-links" aria-label="Main">
+      <a href="#about">About</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#news">News</a>
+      <a href="#fan">Fan Zone</a>
+      <a href="#contact">Contact</a>
+    </nav>
   </div>
 
-  <!-- About -->
-  <section id="about">
-    <h2>About Aditi</h2>
-    <p style="text-align:center; max-width:800px; margin:auto;">
-      Aditi Budhathoki is a celebrated actress and model from Nepal, admired across South Asia for her timeless beauty, elegance, and charm. With her growing influence in films, music, and fashion, Aditi continues to win the hearts of millions of fans worldwide. 💖
-    </p>
-  </section>
+  <!-- Floating heart CTA -->
+  <button class="floating-heart" aria-label="Go to Fan Zone" onclick="document.getElementById('fan').scrollIntoView({behavior:'smooth'})">❤️</button>
 
-  <!-- Gallery -->
-  <section id="gallery">
-    <h2>Gallery</h2>
-    <div class="gallery">
-      <img src="images/IMG_0483.jpeg" alt="Aditi">
-      <img src="images/IMG_0467.jpeg" alt="Aditi">
-      <img src="images/IMG_0473.jpeg" alt="Aditi">
-      <img src="images/IMG_0469.jpeg" alt="Aditi">
-      <img src="images/IMG_0466.jpeg" alt="Aditi">
-      <img src="images/IMG_0456.jpeg" alt="Aditi">
-      <img src="images/IMG_0457.jpeg" alt="Aditi">
-      <img src="images/IMG_0465.jpeg" alt="Aditi">
-      <img src="images/IMG_0464.jpeg" alt="Aditi">
-      <img src="images/IMG_0471.jpeg" alt="Aditi">
-      <img src="images/IMG_0515.jpeg" alt="Aditi">
-      <img src="images/IMG_0516.jpeg" alt="Aditi">
-      <img src="images/IMG_0517.jpeg" alt="Aditi">
-      <img src="images/IMG_0518.jpeg" alt="Aditi">
-      <img src="images/IMG_0519.jpeg" alt="Aditi">
-      <img src="images/IMG_0520.jpeg" alt="Aditi">
-      <img src="images/IMG_0472.jpeg" alt="Aditi">
+  <!-- HERO -->
+  <header class="hero" role="img" aria-label="Aditi hero image">
+    <div class="hero-overlay" aria-hidden="true"></div>
+    <div class="hero-inner">
+      <h1>Aditi Budhathoki</h1>
+      <p>Beauty · Elegance · Inspiration</p>
+      <a class="cta" href="#gallery">View Gallery</a>
+      <div class="center" style="margin-top:14px"><span class="scroll-hint muted">Scroll down to explore</span></div>
     </div>
-  </section>
+  </header>
 
-  <!-- News -->
-  <section id="news">
-    <h2>Latest News</h2>
-    <div class="news-container">
-      <div class="news-card">✨ New Instagram photoshoot is trending</div>
-      <div class="news-card">🎬 Upcoming movie project rumored soon</div>
-      <div class="news-card">📺 Exclusive interview on YouTube released</div>
-      <div class="news-card">💃 Fashion feature in a top magazine</div>
-    </div>
-  </section>
+  <!-- MAIN -->
+  <main>
 
-  <!-- Fan Zone -->
-  <section id="fan">
-    <h2>Fan Zone</h2>
-    <div class="fan-zone">
-      <p>Welcome to the heart of Aditi’s fandom 💜</p>
-      <p>Here you’ll find fan art, reels, wallpapers, and heartfelt messages from supporters worldwide!</p>
-    </div>
-  </section>
+    <!-- ABOUT -->
+    <section id="about" aria-labelledby="about-title">
+      <div class="section-head">
+        <h2 id="about-title">About Aditi</h2>
+        <p class="muted">A curated fan tribute celebrating Aditi’s work, style and inspiration.</p>
+      </div>
+      <div class="about" style="margin-top:12px">
+        <div class="text-card about-card">
+          <p style="font-size:1.05rem; color:#222;">
+            Aditi Budhathoki is a Nepali actress and model admired for her elegance and on-screen charisma.
+            This fanpage highlights high-quality photos, latest updates, and fan creations in a refined, respectful space.
+          </p>
+          <p class="muted" style="margin-top:12px">Fan-curated collection — not official.</p>
+        </div>
+        <img src="images/IMG_0473.jpeg" alt="Aditi portrait" loading="lazy">
+      </div>
+    </section>
 
-  <!-- Contact -->
-  <section id="contact">
-    <h2>Contact</h2>
-    <form class="contact-form" action="https://formspree.io/f/mvgbnrgg" method="POST">
-      <input type="text" name="name" placeholder="Your Name" required>
-      <input type="email" name="_replyto" placeholder="Your Email" required>
-      <textarea name="message" rows="5" placeholder="Your Message for Aditi" required></textarea>
-      <button type="submit">Send Message</button>
-    </form>
-  </section>
+    <!-- GALLERY -->
+    <section id="gallery" aria-labelledby="gallery-title">
+      <div class="section-head">
+        <h2 id="gallery-title">Gallery</h2>
+        <p class="muted">Click any image to open the full view. High-resolution images optimized for web.</p>
+      </div>
 
-  <!-- Footer -->
+      <div class="gallery-wrap">
+        <div class="gallery-grid">
+          <!-- Use your uploaded images here (the exact list you supplied) -->
+          <div class="card"><img src="images/IMG_0483.jpeg" alt="Aditi 1" loading="lazy"></div>
+          <div class="card"><img src="images/IMG_0467.jpeg" alt="Aditi 2" loading="lazy"></div>
+          <div class="card"><img src="images/IMG_0473.jpeg" alt="Aditi 3" loading="lazy"></div>
+          <div class="card"><img src="images/IMG_0469.jpeg" alt="Aditi 4" loading="lazy"></div>
+          <div class="card"><img src="images/IMG_0466.jpeg" alt="Aditi 5" loading="lazy"></div>
+          <div class="card"><img src="images/IMG_0456.jpeg" alt="Aditi 6" loading="lazy"></div>
+          <div class="card"><img src="images/IMG_0457.jpeg" alt="Aditi 7" loading="lazy"></div>
+          <div class="card"><img src="images/IMG_0465.jpeg" alt="Aditi 8" loading="lazy"></div>
+          <div class="card"><img src="images/IMG_0464.jpeg" alt="Aditi 9" loading="lazy"></div>
+          <div class="card"><img src="images/IMG_0471.jpeg" alt="Aditi 10" loading="lazy"></div>
+          <div class="card"><img src="images/IMG_0515.jpeg" alt="Aditi 11" loading="lazy"></div>
+          <div class="card"><img src="images/IMG_0516.jpeg" alt="Aditi 11" loading="lazy"></div>
+          <div class="card"><img src="images/IMG_0517.jpeg" alt="Aditi 12" loading="lazy"></div>
+          <div class="card"><img src="images/IMG_0518.jpeg" alt="Aditi 13" loading="lazy"></div>
+          <div class="card"><img src="images/IMG_0519.jpeg" alt="Aditi 14" loading="lazy"></div>
+          <div class="card"><img src="images/IMG_0520.jpeg" alt="Aditi 15" loading="lazy"></div>
+          <div class="card"><img src="images/IMG_0472.jpeg" alt="Aditi 16" loading="lazy"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- NEWS -->
+    <section id="news" aria-labelledby="news-title">
+      <div class="section-head">
+        <h2 id="news-title">Latest News</h2>
+        <p class="muted">Curated updates related to Aditi’s public appearances and projects.</p>
+      </div>
+
+      <div class="news-grid">
+        <article class="news-card">
+          <img src="images/IMG_0473.jpeg" alt="news 1" loading="lazy">
+          <div class="news-body">
+            <h3>New Photoshoot Released</h3>
+            <p>Stunning images from Aditi's recent editorial are circulating on social platforms. See gallery highlights.</p>
+            <p class="muted" style="margin-top:8px;font-size:0.85rem">Sept 2025</p>
+          </div>
+        </article>
+
+        <article class="news-card">
+          <img src="images/IMG_0467.jpeg" alt="news 2" loading="lazy">
+          <div class="news-body">
+            <h3>Upcoming Collaboration</h3>
+            <p>Industry reports suggest an upcoming creative collaboration — we’ll update when official details drop.</p>
+            <p class="muted" style="margin-top:8px;font-size:0.85rem">Aug 2025</p>
+          </div>
+        </article>
+
+        <article class="news-card">
+          <img src="images/IMG_0469.jpeg" alt="news 3" loading="lazy">
+          <div class="news-body">
+            <h3>Interview & Feature</h3>
+            <p>Aditi is scheduled for an exclusive interview in the coming weeks — highlights will be posted here.</p>
+            <p class="muted" style="margin-top:8px;font-size:0.85rem">Jul 2025</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- FAN ZONE & CONTACT -->
+    <section id="fan" aria-labelledby="fan-title">
+      <div class="section-head">
+        <h2 id="fan-title">Fan Zone</h2>
+        <p class="muted">Share art, wallpapers, and messages. Selected works will be featured (with credit).</p>
+      </div>
+
+      <div class="fan-grid">
+        <div class="fan-box">
+          <p style="font-size:1.03rem;">Want your fan art featured? Tag your posts with <strong>#Aditilicious</strong> or contact the page admin through the form. Be sure to include credits.</p>
+          <ul style="margin-top:10px;color:var(--muted)">
+            <li>High-res fan art preferred (3000px on longest side).</li>
+            <li>Include your social handle for credit.</li>
+            <li>Only non-offensive, respectful content will be featured.</li>
+          </ul>
+        </div>
+
+        <div class="contact-glass" id="contact">
+          <!-- FORMSPREE: replace YOUR_FORM_ID -->
+          <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+            <label for="name">Name</label>
+            <input id="name" name="name" type="text" required placeholder="Your name">
+
+            <label for="email">Email</label>
+            <input id="email" name="_replyto" type="email" required placeholder="your@email.com">
+
+            <label for="message">Message / Submission notes</label>
+            <textarea id="message" name="message" rows="5" placeholder="Tell us about your submission or message"></textarea>
+
+            <button type="submit">Send Message</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- QUICK FOLLOW -->
+    <section aria-labelledby="follow" style="margin-top:28px; text-align:center">
+      <p class="muted">Follow Aditi: <a href="https://www.instagram.com/aditi_budhathoki" target="_blank" rel="noopener" style="color:var(--accent)">Instagram</a></p>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
   <footer>
-    <p>Aditi Budhathoki Fanpage ❤️ | Made with love by fans | Not official</p>
+    <div style="max-width:var(--maxw); margin:0 auto; padding:0 18px">
+      <p style="margin-bottom:8px">Aditilicious — Fan-made tribute · Not official</p>
+      <p style="opacity:0.9; font-size:0.9rem">© <span id="year"></span> All rights reserved.</p>
+    </div>
   </footer>
+
+  <!-- LIGHTBOX -->
+  <div id="lightbox" class="lb" aria-hidden="true" aria-label="Image preview">
+    <div class="lb-inner" role="dialog" aria-modal="true">
+      <img id="lb-img" src="" alt="">
+    </div>
+    <div class="lb-close" aria-hidden="false" role="button" title="Close">✕</div>
+    <div class="lb-nav lb-prev" role="button" title="Previous">‹</div>
+    <div class="lb-nav lb-next" role="button" title="Next">›</div>
+  </div>
+
+  <script>
+  // Set current year
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // LIGHTBOX: blurred backdrop + navigation
+  (function(){
+    const cards = Array.from(document.querySelectorAll('.gallery-grid .card img'));
+    const lb = document.getElementById('lightbox');
+    const lbImg = document.getElementById('lb-img');
+    const closeBtn = document.querySelector('.lb-close');
+    const prevBtn = document.querySelector('.lb-prev');
+    const nextBtn = document.querySelector('.lb-next');
+    let idx = 0;
+
+    function open(i){
+      idx = i;
+      lbImg.src = cards[i].src;
+      lbImg.alt = cards[i].alt || 'Aditi';
+      lb.classList.add('open');
+      lb.setAttribute('aria-hidden','false');
+      document.documentElement.style.scrollBehavior = 'auto';
+      document.body.style.overflow = 'hidden';
+    }
+    function close(){
+      lb.classList.remove('open');
+      lb.setAttribute('aria-hidden','true');
+      lbImg.src = '';
+      document.body.style.overflow = '';
+      document.documentElement.style.scrollBehavior = '';
+    }
+    function prev(){ idx = (idx - 1 + cards.length) % cards.length; lbImg.src = cards[idx].src }
+    function next(){ idx = (idx + 1) % cards.length; lbImg.src = cards[idx].src }
+
+    cards.forEach((img,i)=> img.addEventListener('click', ()=> open(i)));
+
+    closeBtn.addEventListener('click', close);
+    prevBtn.addEventListener('click', prev);
+    nextBtn.addEventListener('click', next);
+
+    // keyboard support
+    document.addEventListener('keydown', (e)=>{
+      if(!lb.classList.contains('open')) return;
+      if(e.key === 'Escape') close();
+      if(e.key === 'ArrowLeft') prev();
+      if(e.key === 'ArrowRight') next();
+    });
+
+    // close if clicked outside image
+    lb.addEventListener('click', (e)=>{
+      if(e.target === lb) close();
+    });
+  })();
+
+  // Smooth open-to-section offset to avoid nav overlap
+  document.querySelectorAll('.nav-links a').forEach(a=>{
+    a.addEventListener('click', (e)=>{
+      // let browser handle anchor but offset by 68px
+      const href = a.getAttribute('href');
+      if(!href.startsWith('#')) return;
+      e.preventDefault();
+      const el = document.querySelector(href);
+      if(!el) return;
+      const top = el.getBoundingClientRect().top + window.scrollY - 80;
+      window.scrollTo({ top, behavior: 'smooth' });
+    });
+  });
+
+  // small accessibility focus style for dynamic nav
+  document.addEventListener('keyup', (e)=>{
+    if(e.key === 'Tab') document.body.classList.add('show-focus');
+  });
+  </script>
 </body>
 </html>
