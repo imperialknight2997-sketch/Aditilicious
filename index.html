@@ -30,20 +30,19 @@
     --glass: rgba(255,255,255,0.55);
     --maxw:1200px;
     --radius:14px;
-    --nav-height: 80px; /* New variable for scroll offset */
+    --nav-height: 80px;
   }
   *{box-sizing:border-box}
   html{scroll-behavior:smooth}
   body{
     margin:0;
     font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;
-    /* Hero Glow now handled by JS for dynamic effect */
     background: linear-gradient(180deg,#fff,#fbf7ff 120px);
     color:#161616;
     -webkit-font-smoothing:antialiased;
     -moz-osx-font-smoothing:grayscale;
     line-height:1.6;
-    padding-top: var(--nav-height); /* Ensure content isn't hidden by fixed nav */
+    padding-top: var(--nav-height);
   }
   h1,h2{font-family:'Playfair Display',serif;color:var(--accent);margin:0}
   a{color:inherit}
@@ -62,6 +61,12 @@
     backdrop-filter: blur(8px) saturate(1.05);
     box-shadow: 0 12px 40px rgba(16,8,32,0.09);
     z-index:1200;
+    transition: all 0.3s ease;
+  }
+  .nav.scrolled {
+    top: 8px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.85), rgba(255,255,255,0.75));
+    box-shadow: 0 8px 30px rgba(16,8,32,0.12);
   }
   .brand {
     display:flex; align-items:center; gap:12px;
@@ -77,13 +82,28 @@
     padding:8px 12px; border-radius:10px; text-decoration:none;
     color:rgba(16,10,28,0.95); font-weight:600; font-size:0.95rem;
     transition: all .16s ease;
+    position: relative;
+  }
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg,var(--accent-2),var(--accent));
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+  }
+  .nav-links a:hover::after,
+  .nav-links a.active-link::after {
+    width: 80%;
   }
   .nav-links a:hover{
     transform:translateY(-3px);
     color:var(--accent-2);
     box-shadow: 0 8px 20px rgba(186,104,200,0.12);
   }
-  /* Active link style for scroll-spy */
   .nav-links a.active-link {
     color: var(--accent);
     background: rgba(255, 255, 255, 0.7); 
@@ -103,6 +123,7 @@
     box-shadow:0 12px 30px rgba(181,88,144,0.18); cursor:pointer;
     animation: floaty 3s ease-in-out infinite;
     transition: transform 0.3s cubic-bezier(.2,.9,.3,1), box-shadow 0.3s ease; 
+    border: none;
   }
   @keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
   .floating-heart:hover {
@@ -122,15 +143,15 @@
     display:flex; align-items:center; justify-content:center; text-align:center;
     padding:72px 18px 96px; position:relative; overflow:hidden;
     background: url('images/IMG_0483.jpeg') center/cover no-repeat;
-    perspective: 1px; /* Enable 3D context for parallax */
+    perspective: 1px;
   }
   /* Dynamic Background Glow Layer (controlled by JS) */
   .hero-glow{
     position:absolute; inset:-20% -10% auto -10%;
     height:380px;
     filter: blur(80px); pointer-events:none; z-index:0;
-    transform: translateZ(-1px) scale(2); /* Parallax Effect */
-    transition: background 0.1s linear; /* Smooth mouse tracking */
+    transform: translateZ(-1px) scale(2);
+    transition: background 0.1s linear;
   }
 
   /* Cinematic Gradient Overlay */
@@ -155,6 +176,26 @@
     display:inline-block; margin-top:20px; padding:12px 20px; border-radius:999px;
     background:linear-gradient(90deg,var(--accent-2),var(--accent)); color:white; font-weight:700;
     text-decoration:none; box-shadow:0 16px 42px rgba(181,88,144,0.16);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero .cta::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    transition: left 0.5s;
+  }
+  .hero .cta:hover::before {
+    left: 100%;
+  }
+  .hero .cta:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 20px 50px rgba(181,88,144,0.3);
   }
   .hero .scroll-hint{ display:block; margin-top:26px; opacity:0.9; font-size:0.95rem; color:rgba(255,255,255,0.9) }
 
@@ -179,9 +220,17 @@
   .about .text-card{
     background:linear-gradient(180deg, rgba(255,255,255,0.95), rgba(250,245,255,0.98));
     padding:26px; border-radius:12px; box-shadow:0 12px 40px rgba(12,6,30,0.04);
+    transition: transform 0.3s ease;
+  }
+  .about .text-card:hover {
+    transform: translateY(-5px);
   }
   .about img{
-    width:100%; border-radius:12px; height:360px; object-fit:cover; box-shadow:0 18px 44px rgba(12,6,30,0.06)
+    width:100%; border-radius:12px; height:360px; object-fit:cover; box-shadow:0 18px 44px rgba(12,6,30,0.06);
+    transition: transform 0.5s ease;
+  }
+  .about img:hover {
+    transform: scale(1.02);
   }
 
   /* GALLERY */
@@ -196,6 +245,7 @@
     box-shadow:0 14px 40px rgba(18,8,40,0.06);
     transition: transform .28s cubic-bezier(.2,.9,.3,1), box-shadow .28s ease;
     overflow:hidden;
+    position: relative;
   }
   .card:hover{ transform: translateY(-6px); box-shadow:0 30px 70px rgba(18,8,40,0.12) }
   .card img{
@@ -203,22 +253,42 @@
     transition: transform .28s ease;
   }
   .card:hover img{ transform: scale(1.03) }
+  
+  /* Gallery filter buttons */
+  .gallery-filters {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+  }
+  .filter-btn {
+    padding: 8px 16px;
+    border: none;
+    background: rgba(255,255,255,0.7);
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 600;
+    color: var(--muted);
+  }
+  .filter-btn.active, .filter-btn:hover {
+    background: linear-gradient(90deg,var(--accent-2),var(--accent));
+    color: white;
+  }
 
   /* NEWS CARDS: Professional 3D Tilt */
   .news-grid{ 
     display:grid; grid-template-columns: repeat(3,1fr); gap:18px; margin-top:8px; 
-    /* NEW: For 3D perspective */
     perspective: 1000px;
   }
   .news-card{
     background:linear-gradient(180deg,#fff,#fff); border-radius:12px; overflow:hidden; 
     box-shadow:0 16px 40px rgba(12,6,30,0.04);
-    /* NEW: 3D Transform properties */
     transform-style: preserve-3d;
     transition: transform 0.5s cubic-bezier(.2,.9,.3,1), box-shadow 0.5s ease;
     will-change: transform;
   }
-  /* Tilt card on hover */
   .news-card:hover {
     transform: rotateY(2deg) rotateX(1deg) scale(1.02);
     box-shadow: 0 25px 50px rgba(12,6,30,0.1);
@@ -239,6 +309,27 @@
     box-shadow: 0 20px 50px rgba(18,8,40,0.1);
     transition: all 0.4s cubic-bezier(.2,.9,.3,1); 
     overflow: hidden;
+    position: relative;
+  }
+  .exclusive-box::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+    transform: rotate(45deg);
+    transition: all 0.6s;
+    opacity: 0;
+  }
+  .exclusive-box:hover::before {
+    opacity: 1;
+    animation: shine 1.5s;
+  }
+  @keyframes shine {
+    0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+    100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
   }
   .exclusive-box:hover {
     box-shadow: 0 25px 60px rgba(181,88,144,0.25);
@@ -260,6 +351,8 @@
     display:inline-block; padding:10px 24px; border-radius:999px; font-weight:700;
     background:var(--accent); color:#fff; text-decoration:none;
     transition:background .2s ease;
+    position: relative;
+    z-index: 1;
   }
   .exclusive-box a:hover { background:var(--accent-2); }
 
@@ -274,11 +367,22 @@
   .contact-glass label{ display:block; font-weight:600; margin-top:10px; font-size:0.95rem }
   .contact-glass input, .contact-glass textarea {
     width:100%; padding:12px; margin-top:8px; border-radius:8px; border:1px solid #eee; font-size:0.95rem;
+    transition: all 0.3s ease;
+  }
+  .contact-glass input:focus, .contact-glass textarea:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 2px rgba(186,104,200,0.2);
   }
   .contact-glass button{
     margin-top:12px; padding:12px 18px; border-radius:999px; border:none;
     background:linear-gradient(90deg,var(--accent-2),var(--accent)); color:#fff; font-weight:700; cursor:pointer;
     box-shadow:0 14px 34px rgba(181,88,144,0.14);
+    transition: all 0.3s ease;
+  }
+  .contact-glass button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 18px 40px rgba(181,88,144,0.25);
   }
 
   /* =====================================
@@ -293,13 +397,61 @@
   .lb{
     position:fixed; inset:0; display:none; align-items:center; justify-content:center; z-index:2200;
     background: rgba(255,255,255,0.06); backdrop-filter: blur(16px);
+    opacity: 0;
+    transition: opacity 0.3s ease;
   }
-  .lb.open{ display:flex }
-  .lb-inner{ max-width:92%; max-height:92%; border-radius:12px; overflow:hidden; box-shadow:0 30px 80px rgba(10,6,40,0.6); position:relative }
+  .lb.open{ 
+    display:flex;
+    opacity: 1;
+  }
+  .lb-inner{ 
+    max-width:92%; max-height:92%; border-radius:12px; overflow:hidden; 
+    box-shadow:0 30px 80px rgba(10,6,40,0.6); position:relative;
+    transform: scale(0.9);
+    transition: transform 0.3s ease;
+  }
+  .lb.open .lb-inner {
+    transform: scale(1);
+  }
   .lb-inner img{ display:block; width:100%; height:auto; max-height:90vh; object-fit:contain; background:#000 }
-  .lb-close{ position:absolute; top:14px; right:14px; font-size:28px; color:#fff; cursor:pointer; padding:8px }
-  .lb-nav{ position:absolute; top:50%; transform:translateY(-50%); color:#fff; font-size:44px; padding:12px; cursor:pointer; user-select:none }
+  .lb-close{ 
+    position:absolute; top:14px; right:14px; font-size:28px; color:#fff; cursor:pointer; padding:8px;
+    transition: transform 0.3s ease;
+  }
+  .lb-close:hover {
+    transform: scale(1.1);
+  }
+  .lb-nav{ 
+    position:absolute; top:50%; transform:translateY(-50%); color:#fff; font-size:44px; padding:12px; cursor:pointer; user-select:none;
+    transition: all 0.3s ease;
+    opacity: 0.7;
+  }
+  .lb-nav:hover {
+    opacity: 1;
+    transform: translateY(-50%) scale(1.1);
+  }
   .lb-prev{ left:14px } .lb-next{ right:14px }
+
+  /* Loading animation for images */
+  .card img {
+    background: #f0f0f0;
+    position: relative;
+    overflow: hidden;
+  }
+  .card img::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+    animation: loading 1.5s infinite;
+  }
+  @keyframes loading {
+    0% { left: -100%; }
+    100% { left: 100%; }
+  }
 
   /* small helpers */
   .muted{ color:var(--muted) }
@@ -310,9 +462,20 @@
     .gallery-grid{ grid-template-columns: repeat(2,1fr) } 
     .news-grid{ grid-template-columns:repeat(2,1fr) }
     .fan-grid{ grid-template-columns:1fr } 
+    .about { grid-template-columns: 1fr; }
+    .about img { order: -1; }
   }
-  @media (max-width:700px){ .news-grid{ grid-template-columns:1fr } }
-  @media (max-width:600px){ .gallery-grid{ grid-template-columns: 1fr } }
+  @media (max-width:700px){ 
+    .news-grid{ grid-template-columns:1fr } 
+    .nav-links {
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+  }
+  @media (max-width:600px){ 
+    .gallery-grid{ grid-template-columns: 1fr } 
+    .hero h1 { font-size: 2.5rem; }
+  }
   @media (max-width:520px){
     .hero h1{ font-size:1.8rem }
     .card img{ height:240px }
@@ -351,7 +514,7 @@
     <section id="about" aria-labelledby="about-title">
       <div class="section-head">
         <h2 id="about-title">About Aditi</h2>
-        <p class="muted">A curated fan tribute celebrating Aditi’s work, style and inspiration.</p>
+        <p class="muted">A curated fan tribute celebrating Aditi's work, style and inspiration.</p>
       </div>
       <div class="about" style="margin-top:12px">
         <div class="text-card about-card">
@@ -371,35 +534,44 @@
         <p class="muted">Click any image to open the full view. High-resolution images optimized for web.</p>
       </div>
 
+      <!-- Gallery Filter Buttons -->
+      <div class="gallery-filters">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="portrait">Portraits</button>
+        <button class="filter-btn" data-filter="event">Events</button>
+        <button class="filter-btn" data-filter="casual">Casual</button>
+      </div>
+
       <div class="gallery-wrap">
         <div class="gallery-grid">
-          <div class="card"><img src="images/IMG_0483.jpeg" alt="Aditi 1" loading="lazy"></div>
-          <div class="card"><img src="images/IMG_0467.jpeg" alt="Aditi 2" loading="lazy"></div>
-          <div class="card"><img src="images/IMG_0473.jpeg" alt="Aditi 3" loading="lazy"></div>
-          <div class="card"><img src="images/IMG_0469.jpeg" alt="Aditi 4" loading="lazy"></div>
-          <div class="card"><img src="images/IMG_0505.jpeg" alt="Aditi 18" loading="lazy"></div>
-          <div class="card"><img src="images/IMG_0506.jpeg" alt="Aditi 19" loading="lazy"></div>
-          <div class="card"><img src="images/IMG_0507.jpeg" alt="Aditi 20" loading="lazy"></div>
-          <div class="card"><img src="images/IMG_0508.jpeg" alt="Aditi 21" loading="lazy"></div>
-          <div class="card"><img src="images/IMG_0509.jpeg" alt="Aditi 22" loading="lazy"></div>
-          <div class="card"><img src="images/IMG_0510.jpeg" alt="Aditi 23" loading="lazy"></div>
-          <div class="card"><img src="images/IMG_0511.jpeg" alt="Aditi 24" loading="lazy"></div>
-          <div class="card"><img src="images/IMG_0512.jpeg" alt="Aditi 25" loading="lazy"></div>
-          <div class="card"><img src="images/IMG_0513.jpeg" alt="Aditi 26" loading="lazy"></div>
-          <div class="card"><img src="images/IMG_0514.jpeg" alt="Aditi 27" loading="lazy"></div>
-          <div class="card"><img src="images/IMG_0466.jpeg" alt="Aditi 28" loading="lazy"></div>
-          <div class="card"><img src="images/IMG_0456.jpeg" alt="Aditi 6" loading="lazy"></div>
-          <div class="card"><img src="images/IMG_0457.jpeg" alt="Aditi 7" loading="lazy"></div>
-          <div class="card"><img src="images/IMG_0465.jpeg" alt="Aditi 8" loading="lazy"></div>
-          <div class="card"><img src="images/IMG_0464.jpeg" alt="Aditi 9" loading="lazy"></div>
-          <div class="card"><img src="images/IMG_0471.jpeg" alt="Aditi 10" loading="lazy"></div>
-          <div class="card"><img src="images/IMG_0470.jpeg" alt="Aditi 11" loading="lazy"></div>
-          <div class="card"><img src="images/IMG_0515.jpeg" alt="Aditi 12" loading="lazy"></div>
-          <div class="card"><img src="images/IMG_0517.jpeg" alt="Aditi 14" loading="lazy"></div>
-          <div class="card"><img src="images/IMG_0518.jpeg" alt="Aditi 15" loading="lazy"></div>
-          <div class="card"><img src="images/IMG_0519.jpeg" alt="Aditi 16" loading="lazy"></div>
-          <div class="card"><img src="images/IMG_0520.jpeg" alt="Aditi 17" loading="lazy"></div>
-          <div class="card"><img src="images/IMG_0472.jpeg" alt="Aditi 18" loading="lazy"></div>
+          <!-- Images with data-category attributes for filtering -->
+          <div class="card" data-category="portrait"><img src="images/IMG_0483.jpeg" alt="Aditi portrait" loading="lazy"></div>
+          <div class="card" data-category="event"><img src="images/IMG_0467.jpeg" alt="Aditi at event" loading="lazy"></div>
+          <div class="card" data-category="portrait"><img src="images/IMG_0473.jpeg" alt="Aditi portrait" loading="lazy"></div>
+          <div class="card" data-category="casual"><img src="images/IMG_0469.jpeg" alt="Aditi casual" loading="lazy"></div>
+          <div class="card" data-category="portrait"><img src="images/IMG_0505.jpeg" alt="Aditi portrait" loading="lazy"></div>
+          <div class="card" data-category="event"><img src="images/IMG_0506.jpeg" alt="Aditi at event" loading="lazy"></div>
+          <div class="card" data-category="casual"><img src="images/IMG_0507.jpeg" alt="Aditi casual" loading="lazy"></div>
+          <div class="card" data-category="portrait"><img src="images/IMG_0508.jpeg" alt="Aditi portrait" loading="lazy"></div>
+          <div class="card" data-category="event"><img src="images/IMG_0509.jpeg" alt="Aditi at event" loading="lazy"></div>
+          <div class="card" data-category="casual"><img src="images/IMG_0510.jpeg" alt="Aditi casual" loading="lazy"></div>
+          <div class="card" data-category="portrait"><img src="images/IMG_0511.jpeg" alt="Aditi portrait" loading="lazy"></div>
+          <div class="card" data-category="event"><img src="images/IMG_0512.jpeg" alt="Aditi at event" loading="lazy"></div>
+          <div class="card" data-category="casual"><img src="images/IMG_0513.jpeg" alt="Aditi casual" loading="lazy"></div>
+          <div class="card" data-category="portrait"><img src="images/IMG_0514.jpeg" alt="Aditi portrait" loading="lazy"></div>
+          <div class="card" data-category="event"><img src="images/IMG_0466.jpeg" alt="Aditi at event" loading="lazy"></div>
+          <div class="card" data-category="casual"><img src="images/IMG_0456.jpeg" alt="Aditi casual" loading="lazy"></div>
+          <div class="card" data-category="portrait"><img src="images/IMG_0457.jpeg" alt="Aditi portrait" loading="lazy"></div>
+          <div class="card" data-category="event"><img src="images/IMG_0465.jpeg" alt="Aditi at event" loading="lazy"></div>
+          <div class="card" data-category="casual"><img src="images/IMG_0464.jpeg" alt="Aditi casual" loading="lazy"></div>
+          <div class="card" data-category="portrait"><img src="images/IMG_0471.jpeg" alt="Aditi portrait" loading="lazy"></div>
+          <div class="card" data-category="event"><img src="images/IMG_0470.jpeg" alt="Aditi at event" loading="lazy"></div>
+          <div class="card" data-category="casual"><img src="images/IMG_0515.jpeg" alt="Aditi casual" loading="lazy"></div>
+          <div class="card" data-category="portrait"><img src="images/IMG_0517.jpeg" alt="Aditi portrait" loading="lazy"></div>
+          <div class="card" data-category="event"><img src="images/IMG_0518.jpeg" alt="Aditi at event" loading="lazy"></div>
+          <div class="card" data-category="casual"><img src="images/IMG_0519.jpeg" alt="Aditi casual" loading="lazy"></div>
+          <div class="card" data-category="portrait"><img src="images/IMG_0520.jpeg" alt="Aditi portrait" loading="lazy"></div>
+          <div class="card" data-category="event"><img src="images/IMG_0472.jpeg" alt="Aditi at event" loading="lazy"></div>
         </div>
       </div>
     </section>
@@ -407,7 +579,7 @@
     <section id="news" aria-labelledby="news-title">
       <div class="section-head">
         <h2 id="news-title">Latest News</h2>
-        <p class="muted">Curated updates related to Aditi’s public appearances and projects.</p>
+        <p class="muted">Curated updates related to Aditi's public appearances and projects.</p>
       </div>
 
       <div class="news-grid">
@@ -424,7 +596,7 @@
           <img src="images/IMG_0467.jpeg" alt="news 2" loading="lazy">
           <div class="news-body">
             <h3>Upcoming Collaboration</h3>
-            <p>Industry reports suggest an upcoming creative collaboration — we’ll update when official details drop.</p>
+            <p>Industry reports suggest an upcoming creative collaboration — we'll update when official details drop.</p>
             <p class="muted" style="margin-top:8px;font-size:0.85rem">Aug 2025</p>
           </div>
         </article>
@@ -538,6 +710,17 @@
     });
   })();
 
+  // --- Nav scroll effect ---
+  (function() {
+    const nav = document.querySelector('.nav');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        nav.classList.add('scrolled');
+      } else {
+        nav.classList.remove('scrolled');
+      }
+    });
+  })();
 
   // --- Scroll Spy Logic to highlight active nav link ---
   (function() {
@@ -587,6 +770,40 @@
     });
   });
 
+  // --- Gallery Filter Functionality ---
+  (function() {
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const galleryItems = document.querySelectorAll('.gallery-grid .card');
+    
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        // Remove active class from all buttons
+        filterBtns.forEach(b => b.classList.remove('active'));
+        // Add active class to clicked button
+        btn.classList.add('active');
+        
+        const filter = btn.getAttribute('data-filter');
+        
+        galleryItems.forEach(item => {
+          if (filter === 'all' || item.getAttribute('data-category') === filter) {
+            item.style.display = 'block';
+            // Add fade in animation
+            setTimeout(() => {
+              item.style.opacity = '1';
+              item.style.transform = 'translateY(0)';
+            }, 50);
+          } else {
+            item.style.opacity = '0';
+            item.style.transform = 'translateY(20px)';
+            setTimeout(() => {
+              item.style.display = 'none';
+            }, 300);
+          }
+        });
+      });
+    });
+  })();
+
   // --- LIGHTBOX: blurred backdrop + navigation ---
   (function(){
     const cards = Array.from(document.querySelectorAll('.gallery-grid .card img'));
@@ -632,6 +849,21 @@
     // close if clicked outside image
     lb.addEventListener('click', (e)=>{
       if(e.target === lb) close();
+    });
+  })();
+
+  // --- Image loading optimization ---
+  (function() {
+    // Remove loading animation once images are loaded
+    const images = document.querySelectorAll('img');
+    images.forEach(img => {
+      if (img.complete) {
+        img.style.background = 'none';
+      } else {
+        img.addEventListener('load', function() {
+          this.style.background = 'none';
+        });
+      }
     });
   })();
 
