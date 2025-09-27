@@ -3,222 +3,233 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Aditi – Fan Page</title>
+  <title>Aditilicious</title>
   
-  <!-- SEO -->
-  <meta name="description" content="A beautifully designed premium fan page dedicated to Aditi. Explore her gallery, know more about her, and get in touch.">
-  <meta name="keywords" content="Aditi, Fan Page, Gallery, Photos, Support">
-  <meta name="author" content="Aditi Fans">
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Aditi Budhathoki ✨ Official Fanpage - Photos, news, and fan love dedicated to the Nepali actress and model.">
+  <meta name="keywords" content="Aditi Budhathoki, Aditi Budhathoki fanpage, Nepali actress, Aditi Budhathoki Instagram, Aditi Budhathoki photos, Aditi Budhathoki news">
+  <meta name="author" content="Aditi Budhathoki Fans">
+
+  <!-- Open Graph (for social sharing) -->
+  <meta property="og:title" content="Aditi Budhathoki ✨ Official Fanpage">
+  <meta property="og:description" content="The ultimate fanpage dedicated to Aditi Budhathoki ❤️ Photos, news, and fan love.">
+  <meta property="og:image" content="images/IMG_0483.jpeg">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://yourfanpage.github.io">
 
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-
-  <!-- Styles -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Poppins', sans-serif;
-    }
-
+    /* General Styles */
     body {
-      background: #fdfdfd;
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: #fff;
       color: #333;
-      line-height: 1.6;
+      scroll-behavior: smooth;
+    }
+    h1, h2 {
+      font-family: 'Playfair Display', serif;
     }
 
-    header {
-      position: relative;
+    /* Navbar */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(50, 0, 70, 0.9);
+      padding: 1rem;
+      text-align: center;
+      z-index: 1000;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 1rem;
+      font-weight: 600;
+      transition: color 0.3s;
+    }
+    nav a:hover {
+      color: #ffb3ec;
+    }
+
+    /* Hero Section */
+    .hero {
       height: 100vh;
+      background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)),
+                  url('images/IMG_0483.jpeg') center/cover no-repeat;
       display: flex;
-      align-items: center;
       justify-content: center;
+      align-items: center;
+      flex-direction: column;
       text-align: center;
       color: white;
-      overflow: hidden;
+      padding-top: 60px;
+    }
+    .hero h1 {
+      font-size: 4rem;
+      margin: 0;
+      animation: fadeIn 2s ease-in-out;
+    }
+    .hero p {
+      font-size: 1.5rem;
+      margin: 1rem 0;
+      animation: fadeIn 3s ease-in-out;
+    }
+    .hero a {
+      padding: 0.8rem 2rem;
+      background: linear-gradient(120deg, #f48fb1, #ba68c8);
+      color: white;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: bold;
+      animation: fadeIn 4s ease-in-out;
+      transition: 0.3s;
+    }
+    .hero a:hover {
+      background: linear-gradient(120deg, #ba68c8, #f48fb1);
     }
 
-    header::before {
-      content: "";
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: url('images/IMG_0483.jpeg') center/cover no-repeat;
-      filter: blur(10px) brightness(0.7);
-      z-index: -1;
-    }
-
-    header h1 {
-      font-size: 3rem;
-      font-weight: 600;
-    }
-
-    header p {
-      margin-top: 10px;
-      font-size: 1.2rem;
-    }
-
+    /* Sections */
     section {
-      padding: 60px 20px;
+      padding: 5rem 2rem;
       max-width: 1200px;
       margin: auto;
     }
-
     h2 {
       text-align: center;
-      font-size: 2rem;
-      margin-bottom: 30px;
-      color: #444;
+      font-size: 2.5rem;
+      color: #ba68c8;
+      margin-bottom: 2rem;
     }
-
-    /* About */
-    .about {
-      text-align: center;
-    }
-
-    .about p {
-      max-width: 800px;
-      margin: auto;
-      font-size: 1.1rem;
-    }
-
     /* Gallery */
-    .gallery-grid {
+    .gallery {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 15px;
     }
+   .gallery img {
+     width: 100%;
+     height: 300px; /* uniform height */
+     object-fit: cover; /* keeps images neat without stretching */
+     border-radius: 12px;
+     transition: transform 0.3s ease;
+    }
+   .gallery img:hover {
+     transform: scale(1.05);
+    }
 
-    .gallery-grid img {
-      width: 100%;
-      border-radius: 10px;
-      cursor: pointer;
+    /* News */
+    .news-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+    .news-card {
+      background: #fff0f7;
+      padding: 1.5rem;
+      border-radius: 12px;
+      width: 280px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
       transition: transform 0.3s;
     }
-
-    .gallery-grid img:hover {
-      transform: scale(1.05);
+    .news-card:hover {
+      transform: translateY(-5px);
     }
 
-    /* Lightbox */
-    .lightbox {
-      display: none;
-      position: fixed;
-      z-index: 1000;
-      top: 0; left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0,0,0,0.9);
-      display: flex;
-      align-items: center;
-      justify-content: center;
+    /* Fan Zone */
+    .fan-zone {
+      text-align: center;
+      font-size: 1.2rem;
+      background: #f9f3ff;
+      padding: 3rem;
+      border-radius: 12px;
     }
 
-    .lightbox img {
-      max-width: 90%;
-      max-height: 80%;
-      border-radius: 10px;
-    }
-
-    .lightbox .close {
-      position: absolute;
-      top: 20px;
-      right: 30px;
-      font-size: 40px;
-      color: white;
-      cursor: pointer;
-    }
-
-    .lightbox-controls {
-      position: absolute;
-      top: 50%;
-      width: 100%;
-      display: flex;
-      justify-content: space-between;
-      transform: translateY(-50%);
-    }
-
-    .lightbox-controls span {
-      cursor: pointer;
-      font-size: 50px;
-      padding: 20px;
-      color: white;
-      user-select: none;
-    }
-
-    /* Contact Form */
-    .contact form {
+    /* Contact */
+    .contact-form {
       max-width: 600px;
       margin: auto;
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
+      background: #fef6ff;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     }
-
-    .contact input, .contact textarea {
-      padding: 12px;
+    .contact-form input, .contact-form textarea {
+      width: 100%;
+      padding: 1rem;
+      margin: 0.5rem 0;
       border: 1px solid #ccc;
-      border-radius: 6px;
-      font-size: 1rem;
+      border-radius: 8px;
+      font-family: 'Poppins', sans-serif;
     }
-
-    .contact button {
-      background: #7d5fff;
+    .contact-form button {
+      padding: 0.8rem 2rem;
+      background: #ba68c8;
       color: white;
       border: none;
-      padding: 12px;
-      border-radius: 6px;
+      border-radius: 8px;
       cursor: pointer;
-      transition: 0.3s;
+      font-weight: bold;
+    }
+    .contact-form button:hover {
+      background: #9c27b0;
     }
 
-    .contact button:hover {
-      background: #5a3ee6;
-    }
-
+    /* Footer */
     footer {
+      background: #2c003e;
+      color: white;
       text-align: center;
-      padding: 20px;
-      background: #f0f0f0;
-      margin-top: 40px;
-      font-size: 0.9rem;
+      padding: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     /* Responsive */
-    @media(max-width: 768px) {
-      header h1 {
-        font-size: 2rem;
-      }
-      header p {
-        font-size: 1rem;
+    @media (max-width: 768px) {
+      .gallery img {
+        width: 90%;
       }
     }
   </style>
 </head>
 <body>
+  <!-- Navbar -->
+  <nav>
+    <a href="#about">About</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#news">News</a>
+    <a href="#fan">Fan Zone</a>
+    <a href="#contact">Contact</a>
+  </nav>
 
-  <!-- HERO -->
-  <header>
-    <div>
-      <h1>Welcome to Aditi’s Fan Page</h1>
-      <p>A premium gallery and tribute</p>
-    </div>
-  </header>
+  <!-- Hero -->
+  <div class="hero">
+    <h1>Aditi Budhathoki ✨</h1>
+    <p>Beauty • Elegance • Inspiration</p>
+    <a href="#about">Discover More</a>
+  </div>
 
-  <!-- ABOUT -->
-  <section class="about">
+  <!-- About -->
+  <section id="about">
     <h2>About Aditi</h2>
-    <p>
-      This fan page is a heartfelt tribute to Aditi. Explore the gallery, celebrate her journey, and stay connected through this special space.
+    <p style="text-align:center; max-width:800px; margin:auto;">
+      Aditi Budhathoki is a celebrated actress and model from Nepal, admired across South Asia for her timeless beauty, elegance, and charm. With her growing influence in films, music, and fashion, Aditi continues to win the hearts of millions of fans worldwide. 💖
     </p>
   </section>
 
-  <!-- GALLERY -->
+  <!-- Gallery -->
   <section id="gallery">
     <h2>Gallery</h2>
-    <div class="gallery-grid">
-      <!-- Existing images -->
+    <div class="gallery">
       <img src="images/IMG_0483.jpeg" alt="Aditi">
       <img src="images/IMG_0467.jpeg" alt="Aditi">
       <img src="images/IMG_0473.jpeg" alt="Aditi">
@@ -229,112 +240,50 @@
       <img src="images/IMG_0465.jpeg" alt="Aditi">
       <img src="images/IMG_0464.jpeg" alt="Aditi">
       <img src="images/IMG_0471.jpeg" alt="Aditi">
-      <img src="images/IMG_0472.jpeg" alt="Aditi">
-
-      <!-- New images (IMG_0505 - IMG_0520) -->
-      <img src="images/IMG_0505.jpeg" alt="Aditi">
-      <img src="images/IMG_0506.jpeg" alt="Aditi">
-      <img src="images/IMG_0507.jpeg" alt="Aditi">
-      <img src="images/IMG_0508.jpeg" alt="Aditi">
-      <img src="images/IMG_0509.jpeg" alt="Aditi">
-      <img src="images/IMG_0510.jpeg" alt="Aditi">
-      <img src="images/IMG_0511.jpeg" alt="Aditi">
-      <img src="images/IMG_0512.jpeg" alt="Aditi">
-      <img src="images/IMG_0513.jpeg" alt="Aditi">
-      <img src="images/IMG_0514.jpeg" alt="Aditi">
       <img src="images/IMG_0515.jpeg" alt="Aditi">
       <img src="images/IMG_0516.jpeg" alt="Aditi">
       <img src="images/IMG_0517.jpeg" alt="Aditi">
       <img src="images/IMG_0518.jpeg" alt="Aditi">
       <img src="images/IMG_0519.jpeg" alt="Aditi">
       <img src="images/IMG_0520.jpeg" alt="Aditi">
+      <img src="images/IMG_0472.jpeg" alt="Aditi">
     </div>
   </section>
 
-  <!-- LIGHTBOX -->
-  <div id="lightbox" class="lightbox">
-    <span class="close">&times;</span>
-    <img class="lightbox-content" id="lightbox-img">
-    <div class="lightbox-controls">
-      <span class="prev">&#10094;</span>
-      <span class="next">&#10095;</span>
+  <!-- News -->
+  <section id="news">
+    <h2>Latest News</h2>
+    <div class="news-container">
+      <div class="news-card">✨ New Instagram photoshoot is trending</div>
+      <div class="news-card">🎬 Upcoming movie project rumored soon</div>
+      <div class="news-card">📺 Exclusive interview on YouTube released</div>
+      <div class="news-card">💃 Fashion feature in a top magazine</div>
     </div>
-  </div>
+  </section>
 
-  <!-- CONTACT -->
-  <section class="contact">
+  <!-- Fan Zone -->
+  <section id="fan">
+    <h2>Fan Zone</h2>
+    <div class="fan-zone">
+      <p>Welcome to the heart of Aditi’s fandom 💜</p>
+      <p>Here you’ll find fan art, reels, wallpapers, and heartfelt messages from supporters worldwide!</p>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact">
     <h2>Contact</h2>
-    <form>
-      <input type="text" placeholder="Your Name" required>
-      <input type="email" placeholder="Your Email" required>
-      <textarea placeholder="Your Message" rows="5" required></textarea>
+    <form class="contact-form" action="https://formspree.io/f/mvgbnrgg" method="POST">
+      <input type="text" name="name" placeholder="Your Name" required>
+      <input type="email" name="_replyto" placeholder="Your Email" required>
+      <textarea name="message" rows="5" placeholder="Your Message for Aditi" required></textarea>
       <button type="submit">Send Message</button>
     </form>
   </section>
 
-  <!-- FOOTER -->
+  <!-- Footer -->
   <footer>
-    <p>&copy; 2025 Aditi Fan Page. All rights reserved.</p>
+    <p>Aditi Budhathoki Fanpage ❤️ | Made with love by fans | Not official</p>
   </footer>
-
-  <!-- SCRIPTS -->
-  <script>
-    const galleryImages = document.querySelectorAll('.gallery-grid img');
-    const lightbox = document.getElementById('lightbox');
-    const lightboxImg = document.getElementById('lightbox-img');
-    const closeBtn = document.querySelector('.lightbox .close');
-    const prevBtn = document.querySelector('.lightbox .prev');
-    const nextBtn = document.querySelector('.lightbox .next');
-
-    let currentIndex = 0;
-
-    function showImage(index) {
-      lightbox.style.display = 'flex';
-      lightboxImg.src = galleryImages[index].src;
-      currentIndex = index;
-    }
-
-    galleryImages.forEach((img, index) => {
-      img.addEventListener('click', () => showImage(index));
-    });
-
-    closeBtn.addEventListener('click', () => {
-      lightbox.style.display = 'none';
-    });
-
-    prevBtn.addEventListener('click', () => {
-      currentIndex = (currentIndex - 1 + galleryImages.length) % galleryImages.length;
-      showImage(currentIndex);
-    });
-
-    nextBtn.addEventListener('click', () => {
-      currentIndex = (currentIndex + 1) % galleryImages.length;
-      showImage(currentIndex);
-    });
-
-    // Close when clicking outside
-    lightbox.addEventListener('click', (e) => {
-      if (e.target === lightbox) lightbox.style.display = 'none';
-    });
-
-    // Swipe support
-    let startX = 0;
-    let endX = 0;
-
-    lightboxImg.addEventListener("touchstart", (e) => {
-      startX = e.touches[0].clientX;
-    });
-
-    lightboxImg.addEventListener("touchend", (e) => {
-      endX = e.changedTouches[0].clientX;
-      if (endX < startX - 50) {
-        currentIndex = (currentIndex + 1) % galleryImages.length;
-        showImage(currentIndex);
-      } else if (endX > startX + 50) {
-        currentIndex = (currentIndex - 1 + galleryImages.length) % galleryImages.length;
-        showImage(currentIndex);
-      }
-    });
-  </script>
 </body>
 </html>
