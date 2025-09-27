@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Aditi Budhathoki ✨ — Premium Fanpage</title>
 
-  <!-- SEO & Social -->
   <meta name="description" content="Aditi Budhathoki — premium fanpage: gallery, news, fan zone and exclusive content." />
   <meta name="keywords" content="Aditi Budhathoki, Aditi, fanpage, gallery, photos, Nepali actress" />
   <meta property="og:title" content="Aditi Budhathoki ✨ — Premium Fanpage" />
@@ -15,7 +14,6 @@
   <meta property="og:url" content="https://your-username.github.io/your-repo" />
   <meta name="twitter:card" content="summary_large_image" />
 
-  <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 
   <style>
@@ -135,7 +133,12 @@
   /* -------------------------
      Main layout
      ------------------------- */
-  main{ max-width:var(--maxw); margin:48px auto; padding:0 18px 80px; }
+  main{
+    max-width:var(--maxw); margin:48px auto; padding:0 18px 80px;
+    /* subtle texture added */
+    background: url("data:image/svg+xml,%3Csvg width='6' height='6' viewBox='0 0 6 6' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%236b6b7a' fill-opacity='0.03' fill-rule='evenodd'%3E%3Ccircle cx='3' cy='3' r='3'/%3E%3C/g%3E%3C/svg%3E");
+    border-radius:var(--radius);
+  }
 
   /* Section title */
   .section-head { text-align:center; margin-bottom:18px }
@@ -194,6 +197,28 @@
   .news-body h3{ margin:0 0 8px 0; color:var(--accent); font-size:1.05rem }
   .news-body p{ margin:0; color:var(--muted); font-size:0.95rem }
 
+  /* EXCLUSIVE CONTENT BOX */
+  .exclusive-box {
+    text-align:center; padding:30px 20px; margin:40px auto; max-width:600px;
+    border-radius:var(--radius);
+    /* subtle floating effect */
+    background: linear-gradient(180deg, rgba(255,255,255,0.9), rgba(250,245,255,0.95));
+    border: 2px solid;
+    border-image: linear-gradient(45deg, var(--accent-2), var(--accent)) 1;
+    box-shadow: 0 20px 50px rgba(18,8,40,0.1);
+  }
+  .exclusive-box h3 { color:var(--accent-2); font-size:1.6rem; margin:0 0 10px 0; }
+  .exclusive-box p { color:#333; margin-bottom:18px; }
+  .exclusive-box .lock { font-size:32px; color:var(--accent); margin-bottom:12px; display:inline-block }
+  .exclusive-box a {
+    display:inline-block; padding:10px 24px; border-radius:999px; font-weight:700;
+    background:var(--accent); color:#fff; text-decoration:none;
+    transition:background .2s ease;
+  }
+  .exclusive-box a:hover { background:var(--accent-2); }
+  /* -------------------------------- */
+
+
   /* FAN ZONE & CONTACT (glass form) */
   .fan-grid{ display:grid; grid-template-columns: 1fr 420px; gap:24px; margin-top:12px; align-items:start }
   @media (max-width:1000px){ .fan-grid{ grid-template-columns:1fr } }
@@ -242,22 +267,19 @@
 </head>
 <body>
 
-  <!-- NAV -->
   <div class="nav" role="banner" aria-label="Primary navigation">
     <div class="brand">Aditilicious</div>
     <nav class="nav-links" aria-label="Main">
       <a href="#about">About</a>
       <a href="#gallery">Gallery</a>
       <a href="#news">News</a>
-      <a href="#fan">Fan Zone</a>
+      <a href="#exclusive">Exclusive</a> <a href="#fan">Fan Zone</a>
       <a href="#contact">Contact</a>
     </nav>
   </div>
 
-  <!-- Floating heart CTA -->
   <button class="floating-heart" aria-label="Go to Fan Zone" onclick="document.getElementById('fan').scrollIntoView({behavior:'smooth'})">❤️</button>
 
-  <!-- HERO -->
   <header class="hero" role="img" aria-label="Aditi hero image">
     <div class="hero-overlay" aria-hidden="true"></div>
     <div class="hero-inner">
@@ -268,10 +290,8 @@
     </div>
   </header>
 
-  <!-- MAIN -->
   <main>
 
-    <!-- ABOUT -->
     <section id="about" aria-labelledby="about-title">
       <div class="section-head">
         <h2 id="about-title">About Aditi</h2>
@@ -289,7 +309,6 @@
       </div>
     </section>
 
-    <!-- GALLERY -->
     <section id="gallery" aria-labelledby="gallery-title">
       <div class="section-head">
         <h2 id="gallery-title">Gallery</h2>
@@ -298,7 +317,6 @@
 
       <div class="gallery-wrap">
         <div class="gallery-grid">
-          <!-- Use your uploaded images here (the exact list you supplied) -->
           <div class="card"><img src="images/IMG_0483.jpeg" alt="Aditi 1" loading="lazy"></div>
           <div class="card"><img src="images/IMG_0467.jpeg" alt="Aditi 2" loading="lazy"></div>
           <div class="card"><img src="images/IMG_0473.jpeg" alt="Aditi 3" loading="lazy"></div>
@@ -311,16 +329,16 @@
           <div class="card"><img src="images/IMG_0471.jpeg" alt="Aditi 10" loading="lazy"></div>
           <div class="card"><img src="images/IMG_0470.jpeg" alt="Aditi 11" loading="lazy"></div>
           <div class="card"><img src="images/IMG_0515.jpeg" alt="Aditi 12" loading="lazy"></div>
-          <div class="card"><img src="images/IMG_0517.jpeg" alt="Aditi 13" loading="lazy"></div>
-          <div class="card"><img src="images/IMG_0518.jpeg" alt="Aditi 14" loading="lazy"></div>
-          <div class="card"><img src="images/IMG_0519.jpeg" alt="Aditi 15" loading="lazy"></div>
-          <div class="card"><img src="images/IMG_0520.jpeg" alt="Aditi 16" loading="lazy"></div>
-          <div class="card"><img src="images/IMG_0472.jpeg" alt="Aditi 17" loading="lazy"></div>
+          <div class="card"><img src="images/IMG_0516.jpeg" alt="Aditi 13" loading="lazy"></div>
+          <div class="card"><img src="images/IMG_0517.jpeg" alt="Aditi 14" loading="lazy"></div>
+          <div class="card"><img src="images/IMG_0518.jpeg" alt="Aditi 15" loading="lazy"></div>
+          <div class="card"><img src="images/IMG_0519.jpeg" alt="Aditi 16" loading="lazy"></div>
+          <div class="card"><img src="images/IMG_0520.jpeg" alt="Aditi 17" loading="lazy"></div>
+          <div class="card"><img src="images/IMG_0472.jpeg" alt="Aditi 18" loading="lazy"></div>
         </div>
       </div>
     </section>
 
-    <!-- NEWS -->
     <section id="news" aria-labelledby="news-title">
       <div class="section-head">
         <h2 id="news-title">Latest News</h2>
@@ -356,8 +374,16 @@
         </article>
       </div>
     </section>
+    
+    <section id="exclusive" aria-labelledby="exclusive-title">
+        <div class="exclusive-box">
+            <div class="lock">🔒</div>
+            <h3 id="exclusive-title">Unlock Exclusive Content</h3>
+            <p>Access high-resolution desktop wallpapers, behind-the-scenes clips, and early access photos.</p>
+            <a href="#contact" class="cta-exclusive">Sign Up for Access</a>
+        </div>
+    </section>
 
-    <!-- FAN ZONE & CONTACT -->
     <section id="fan" aria-labelledby="fan-title">
       <div class="section-head">
         <h2 id="fan-title">Fan Zone</h2>
@@ -375,7 +401,6 @@
         </div>
 
         <div class="contact-glass" id="contact">
-          <!-- FORMSPREE: replace YOUR_FORM_ID -->
           <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
             <label for="name">Name</label>
             <input id="name" name="name" type="text" required placeholder="Your name">
@@ -392,14 +417,12 @@
       </div>
     </section>
 
-    <!-- QUICK FOLLOW -->
     <section aria-labelledby="follow" style="margin-top:28px; text-align:center">
       <p class="muted">Follow Aditi: <a href="https://www.instagram.com/aditi_budhathoki" target="_blank" rel="noopener" style="color:var(--accent)">Instagram</a></p>
     </section>
 
   </main>
 
-  <!-- FOOTER -->
   <footer>
     <div style="max-width:var(--maxw); margin:0 auto; padding:0 18px">
       <p style="margin-bottom:8px">Aditilicious — Fan-made tribute · Not official</p>
@@ -407,7 +430,6 @@
     </div>
   </footer>
 
-  <!-- LIGHTBOX -->
   <div id="lightbox" class="lb" aria-hidden="true" aria-label="Image preview">
     <div class="lb-inner" role="dialog" aria-modal="true">
       <img id="lb-img" src="" alt="">
@@ -491,3 +513,4 @@
   </script>
 </body>
 </html>
+
