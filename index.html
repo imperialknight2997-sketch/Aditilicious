@@ -79,6 +79,16 @@
     color:var(--accent-2);
     box-shadow: 0 8px 20px rgba(186,104,200,0.12);
   }
+  /* NEW: Active link style for scroll-spy */
+  .nav-links a.active-link {
+    color: var(--accent);
+    background: rgba(255, 255, 255, 0.7); 
+    box-shadow: 0 4px 12px rgba(186,104,200,0.1);
+    transform: none;
+  }
+  .nav-links a.active-link:hover {
+    transform: translateY(-3px);
+  }
 
   /* Floating heart CTA */
   .floating-heart {
@@ -88,8 +98,18 @@
     display:flex;align-items:center;justify-content:center;color:#fff;font-size:26px;
     box-shadow:0 12px 30px rgba(181,88,144,0.18); cursor:pointer;
     animation: floaty 3s ease-in-out infinite;
+    transition: transform 0.3s ease-out, box-shadow 0.3s ease; /* NEW: Transition */
   }
   @keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+
+  /* NEW: Hover/Active styles for premium interaction */
+  .floating-heart:hover {
+    transform: scale(1.1) translateY(-8px); 
+    box-shadow: 0 18px 40px rgba(181,88,144,0.3);
+  }
+  .floating-heart:active {
+    transform: scale(0.95);
+  }
 
   /* -------------------------
      Hero (wow factor)
@@ -99,6 +119,7 @@
     display:flex; align-items:center; justify-content:center; text-align:center;
     padding:72px 18px 96px; position:relative; overflow:hidden;
     background: url('images/IMG_0483.jpeg') center/cover no-repeat;
+    perspective: 1px; /* NEW: Enable 3D context for parallax */
   }
   /* soft animated pastel glow behind hero */
   .hero::before{
@@ -107,12 +128,17 @@
     background: radial-gradient(600px 300px at 10% 20%, rgba(244,143,177,0.10), transparent 20%),
                 radial-gradient(600px 300px at 90% 80%, rgba(186,104,200,0.10), transparent 20%);
     filter: blur(80px); pointer-events:none; z-index:0;
-    animation: slowShift 18s linear infinite;
+    /* NEW: Parallax transform */
+    transform: translateZ(-1px) scale(2); 
+    animation: none; /* Removed slowShift to enable static parallax */
   }
-  @keyframes slowShift{0%{transform:translateX(0)}50%{transform:translateX(6%)}100%{transform:translateX(0)}}
-
+  
+  /* NEW: Cinematic Gradient Overlay */
   .hero-overlay {
-    position:absolute; inset:0; background: linear-gradient(180deg, rgba(0,0,0,0.18), rgba(0,0,0,0.36)); z-index:1;
+    position:absolute; inset:0; 
+    background: linear-gradient(180deg, rgba(0,0,0,0.18), rgba(0,0,0,0.36)),
+                linear-gradient(45deg, rgba(244, 143, 177, 0.4), rgba(186, 104, 200, 0.5)); 
+    z-index:1;
   }
   .hero-inner {
     position:relative; z-index:2; max-width:900px; color:white;
@@ -121,7 +147,11 @@
     animation: heroIn .9s cubic-bezier(.2,.9,.3,1) .08s both;
   }
   @keyframes heroIn{from{opacity:0; transform:translateY(28px)} to{opacity:1; transform:translateY(0)}}
-  .hero h1{font-size:3.4rem; line-height:1; text-shadow:0 18px 40px rgba(0,0,0,0.5)}
+  .hero h1{
+    font-size:3.4rem; line-height:1; 
+    /* NEW: Subtle light shadow */
+    text-shadow: 0 0 10px rgba(255,255,255,0.4), 0 18px 40px rgba(0,0,0,0.5);
+  }
   .hero p{font-size:1.1rem; margin-top:12px; opacity:0.95; text-shadow:0 10px 30px rgba(0,0,0,0.4)}
   .hero .cta {
     display:inline-block; margin-top:20px; padding:12px 20px; border-radius:999px;
@@ -135,7 +165,7 @@
      ------------------------- */
   main{
     max-width:var(--maxw); margin:48px auto; padding:0 18px 80px;
-    /* subtle texture added */
+    /* NEW: Subtle texture added */
     background: url("data:image/svg+xml,%3Csvg width='6' height='6' viewBox='0 0 6 6' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%236b6b7a' fill-opacity='0.03' fill-rule='evenodd'%3E%3Ccircle cx='3' cy='3' r='3'/%3E%3C/g%3E%3C/svg%3E");
     border-radius:var(--radius);
   }
@@ -201,15 +231,29 @@
   .exclusive-box {
     text-align:center; padding:30px 20px; margin:40px auto; max-width:600px;
     border-radius:var(--radius);
-    /* subtle floating effect */
     background: linear-gradient(180deg, rgba(255,255,255,0.9), rgba(250,245,255,0.95));
     border: 2px solid;
     border-image: linear-gradient(45deg, var(--accent-2), var(--accent)) 1;
     box-shadow: 0 20px 50px rgba(18,8,40,0.1);
+    transition: all 0.4s cubic-bezier(.2,.9,.3,1); /* NEW: Smoother transition */
+    overflow: hidden;
+  }
+  .exclusive-box:hover {
+    box-shadow: 0 25px 60px rgba(181,88,144,0.25);
+    transform: translateY(-5px); /* NEW: Lift on hover */
   }
   .exclusive-box h3 { color:var(--accent-2); font-size:1.6rem; margin:0 0 10px 0; }
   .exclusive-box p { color:#333; margin-bottom:18px; }
-  .exclusive-box .lock { font-size:32px; color:var(--accent); margin-bottom:12px; display:inline-block }
+  .exclusive-box .lock { 
+    font-size:32px; color:var(--accent); margin-bottom:12px; display:inline-block;
+    animation: lockShake 1.5s ease infinite; /* NEW: Animation */
+  }
+  @keyframes lockShake {
+    0%, 100% { transform: rotate(0deg); }
+    10% { transform: rotate(-5deg); }
+    20% { transform: rotate(5deg); }
+    30% { transform: rotate(-3deg); }
+  }
   .exclusive-box a {
     display:inline-block; padding:10px 24px; border-radius:999px; font-weight:700;
     background:var(--accent); color:#fff; text-decoration:none;
@@ -273,7 +317,8 @@
       <a href="#about">About</a>
       <a href="#gallery">Gallery</a>
       <a href="#news">News</a>
-      <a href="#exclusive">Exclusive</a> <a href="#fan">Fan Zone</a>
+      <a href="#exclusive">Exclusive</a>
+      <a href="#fan">Fan Zone</a>
       <a href="#contact">Contact</a>
     </nav>
   </div>
@@ -329,11 +374,11 @@
           <div class="card"><img src="images/IMG_0471.jpeg" alt="Aditi 10" loading="lazy"></div>
           <div class="card"><img src="images/IMG_0470.jpeg" alt="Aditi 11" loading="lazy"></div>
           <div class="card"><img src="images/IMG_0515.jpeg" alt="Aditi 12" loading="lazy"></div>
-          <div class="card"><img src="images/IMG_0517.jpeg" alt="Aditi 13" loading="lazy"></div>
-          <div class="card"><img src="images/IMG_0518.jpeg" alt="Aditi 14" loading="lazy"></div>
-          <div class="card"><img src="images/IMG_0519.jpeg" alt="Aditi 15" loading="lazy"></div>
-          <div class="card"><img src="images/IMG_0520.jpeg" alt="Aditi 16" loading="lazy"></div>
-          <div class="card"><img src="images/IMG_0472.jpeg" alt="Aditi 17" loading="lazy"></div>
+          <div class="card"><img src="images/IMG_0517.jpeg" alt="Aditi 14" loading="lazy"></div>
+          <div class="card"><img src="images/IMG_0518.jpeg" alt="Aditi 15" loading="lazy"></div>
+          <div class="card"><img src="images/IMG_0519.jpeg" alt="Aditi 16" loading="lazy"></div>
+          <div class="card"><img src="images/IMG_0520.jpeg" alt="Aditi 17" loading="lazy"></div>
+          <div class="card"><img src="images/IMG_0472.jpeg" alt="Aditi 18" loading="lazy"></div>
         </div>
       </div>
     </section>
@@ -490,16 +535,46 @@
       if(e.target === lb) close();
     });
   })();
+  
+  // NEW: Scroll Spy Logic to highlight active nav link
+  (function() {
+    const sections = document.querySelectorAll('main section');
+    const navLinks = document.querySelectorAll('.nav-links a');
+
+    function updateActiveLink() {
+        let current = '';
+
+        sections.forEach(section => {
+            // Adjust offset to compensate for the fixed navigation bar's height (~80px)
+            const sectionTop = section.offsetTop - 100; 
+            const sectionHeight = section.clientHeight;
+            if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
+                current = section.getAttribute('id');
+            }
+        });
+
+        navLinks.forEach(a => {
+            a.classList.remove('active-link');
+            // The anchor tag contains the full href, we check against the section ID
+            if (a.getAttribute('href').substring(1) === current) {
+                a.classList.add('active-link');
+            }
+        });
+    }
+
+    window.addEventListener('scroll', updateActiveLink);
+    updateActiveLink(); // Initial call to set active link on load
+  })();
 
   // Smooth open-to-section offset to avoid nav overlap
   document.querySelectorAll('.nav-links a').forEach(a=>{
     a.addEventListener('click', (e)=>{
-      // let browser handle anchor but offset by 68px
       const href = a.getAttribute('href');
       if(!href.startsWith('#')) return;
       e.preventDefault();
       const el = document.querySelector(href);
       if(!el) return;
+      // Offset by ~80px (nav height + margin)
       const top = el.getBoundingClientRect().top + window.scrollY - 80;
       window.scrollTo({ top, behavior: 'smooth' });
     });
@@ -512,4 +587,5 @@
   </script>
 </body>
 </html>
+
 
