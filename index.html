@@ -861,7 +861,7 @@
     }
   }
 
-  /* Mobile Styles - FIXED HAMBURGER MENU */
+  /* Mobile Styles */
   @media (max-width: 768px) {
     body {
         padding-top: 70px;
@@ -871,26 +871,20 @@
         top: 12px;
         width: calc(100% - 32px);
         padding: 10px 16px;
-        left: 16px;
-        transform: none;
-        margin: 0 auto;
-        max-width: calc(100% - 32px);
     }
 
     .hamburger {
         display: flex;
     }
 
-    /* FIXED: Hamburger menu now covers entire screen including left edge */
     .nav-links {
         position: fixed;
         top: 0;
         left: 0;
-        width: 100vw; /* Use viewport width to cover entire screen */
-        height: 100vh; /* Use viewport height to cover entire screen */
+        width: 100%;
+        height: 100vh;
         background: linear-gradient(135deg, rgba(255,255,255,0.98), rgba(250,245,255,0.99));
         backdrop-filter: blur(30px);
-        -webkit-backdrop-filter: blur(30px); /* Safari support */
         flex-direction: column;
         justify-content: flex-start;
         align-items: center;
@@ -899,9 +893,6 @@
         transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         z-index: 999;
         padding-top: 100px;
-        margin: 0; /* Remove any margins */
-        border: none; /* Remove any borders */
-        overflow: hidden; /* Prevent any content overflow */
     }
 
     [data-theme="dark"] .nav-links {
@@ -937,58 +928,30 @@
         min-height: 44px;
     }
 
-    /* Mobile menu close button - positioned properly */
+    /* Mobile menu close button */
     .nav-links::before {
         content: '✕';
         position: absolute;
-        top: 25px; /* Adjusted for better positioning */
-        right: 25px; /* Adjusted for better positioning */
+        top: 30px;
+        right: 30px;
         font-size: 28px;
         color: var(--text-primary);
         cursor: pointer;
         z-index: 1000;
-        background: rgba(0,0,0,0.1);
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        backdrop-filter: blur(10px);
-        border: 1px solid rgba(255,255,255,0.2);
-    }
-
-    /* Prevent body scroll when menu is open */
-    body.menu-open {
-        overflow: hidden;
-        position: fixed;
-        width: 100%;
-        height: 100%;
-    }
-    
-    /* Main content adjustments */
-    main {
-        padding: 0 16px 60px;
-        max-width: 100%;
-        margin: 48px auto;
     }
     
     .hero {
         min-height: calc(100vh - 60px);
         padding: 60px 16px 80px;
-        margin: 0;
-        width: 100%;
     }
     
     .hero-inner {
         padding: 30px 20px;
-        width: 100%;
     }
     
     .gallery-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 12px;
-        width: 100%;
     }
     
     .card img {
@@ -998,13 +961,11 @@
     .news-grid {
         grid-template-columns: 1fr;
         gap: 16px;
-        width: 100%;
     }
     
     .pagination {
         flex-wrap: wrap;
         gap: 8px;
-        width: 100%;
     }
     
     .pagination-numbers {
@@ -1017,7 +978,6 @@
     .exclusive-box {
         margin: 30px auto;
         padding: 25px 16px;
-        width: calc(100% - 32px);
     }
     
     .floating-heart {
@@ -1036,14 +996,13 @@
         padding: 12px;
     }
     
-    .lb-prev { left: 16px; }
-    .lb-next { right: 16px; }
+    .lb-prev { left: 15px; }
+    .lb-next { right: 15px; }
     
     .lb-close {
         width: 35px;
         height: 35px;
         font-size: 24px;
-        right: 16px;
     }
 
     /* Performance optimizations for mobile */
@@ -1055,6 +1014,7 @@
         animation: none;
     }
     
+    /* Reduce blur effects on mobile */
     .nav,
     .card,
     .contact-glass {
@@ -1063,21 +1023,6 @@
   }
 
   @media (max-width: 480px) {
-    /* Ensure consistent spacing on very small screens */
-    .nav {
-        width: calc(100% - 32px);
-        left: 16px;
-        padding: 10px 16px;
-    }
-
-    main {
-        padding: 0 16px 60px;
-    }
-
-    .hero {
-        padding: 60px 16px 80px;
-    }
-    
     .gallery-grid {
         grid-template-columns: 1fr;
         gap: 12px;
@@ -1089,7 +1034,6 @@
     
     .gallery-filters {
         gap: 8px;
-        padding: 0 8px; /* Small padding for very small screens */
     }
     
     .filter-btn {
@@ -1105,38 +1049,24 @@
     
     .about img {
         height: 250px;
-        width: 100%; /* Ensure full width */
     }
     
     .about .text-card {
         padding: 20px;
-        width: 100%; /* Ensure full width */
     }
     
     .contact-glass {
         padding: 16px;
-        width: 100%; /* Ensure full width */
     }
     
     footer {
-        padding: 24px 16px; /* Consistent 16px padding */
+        padding: 24px 16px;
         margin-top: 30px;
-        width: 100%; /* Ensure full width */
-        border-radius: 0; /* Remove border radius for full width */
-        margin-left: 0;
-        margin-right: 0;
     }
 
     .pagination-btn,
     .page-number {
         min-height: 44px;
-    }
-
-    /* Fix any remaining edge cases */
-    .exclusive-box {
-        margin: 30px 0; /* Remove auto margin for full width */
-        width: 100%; /* Full width */
-        border-radius: 0; /* Remove border radius for full width */
     }
   }
 
@@ -1417,7 +1347,7 @@
         if (navLinks.classList.contains('active') && !e.target.closest('.nav')) {
             hamburger.classList.remove('active');
             navLinks.classList.remove('active');
-            document.body.classList.remove('menu-open');
+            document.body.style.overflow = '';
         }
     });
   })();
@@ -1432,7 +1362,7 @@
         hamburger.addEventListener('click', function() {
             this.classList.toggle('active');
             navLinks.classList.toggle('active');
-            body.classList.toggle('menu-open');
+            body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : '';
         });
 
         // Close menu when clicking on links
@@ -1440,17 +1370,8 @@
             link.addEventListener('click', () => {
                 hamburger.classList.remove('active');
                 navLinks.classList.remove('active');
-                body.classList.remove('menu-open');
+                body.style.overflow = '';
             });
-        });
-
-        // Close menu when clicking on close button
-        navLinks.addEventListener('click', (e) => {
-            if (e.target === navLinks || e.target.classList.contains('nav-links')) {
-                hamburger.classList.remove('active');
-                navLinks.classList.remove('active');
-                body.classList.remove('menu-open');
-            }
         });
 
         // Close menu when clicking outside
@@ -1458,16 +1379,7 @@
             if (!e.target.closest('.nav') && navLinks.classList.contains('active')) {
                 hamburger.classList.remove('active');
                 navLinks.classList.remove('active');
-                body.classList.remove('menu-open');
-            }
-        });
-
-        // Close menu with escape key
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && navLinks.classList.contains('active')) {
-                hamburger.classList.remove('active');
-                navLinks.classList.remove('active');
-                body.classList.remove('menu-open');
+                body.style.overflow = '';
             }
         });
     }
