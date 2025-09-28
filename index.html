@@ -813,8 +813,7 @@
   /* small helpers */
   .muted{ color:var(--muted) }
   .center{ text-align:center }
-
-  /* =====================================
+/* =====================================
   6. ENHANCED RESPONSIVE DESIGN
   ===================================== */
 
@@ -861,16 +860,28 @@
     }
   }
 
-  /* Mobile Styles */
+  /* Mobile Styles - FIXED LEFT GAP */
   @media (max-width: 768px) {
     body {
         padding-top: 70px;
     }
     
+    /* Fix navigation left gap */
     .nav {
         top: 12px;
         width: calc(100% - 32px);
         padding: 10px 16px;
+        left: 16px; /* Changed from 50% transform */
+        transform: none; /* Remove transform that was causing misalignment */
+        margin: 0 auto; /* Center while maintaining proper edges */
+        max-width: calc(100% - 32px); /* Ensure it doesn't exceed screen */
+    }
+
+    /* Fix main content left gap */
+    main {
+        padding: 0 16px 60px; /* Consistent 16px padding on both sides */
+        max-width: 100%; /* Allow full width */
+        margin: 48px auto;
     }
 
     .hamburger {
@@ -942,16 +953,20 @@
     
     .hero {
         min-height: calc(100vh - 60px);
-        padding: 60px 16px 80px;
+        padding: 60px 16px 80px; /* Consistent 16px padding */
+        margin: 0; /* Remove any default margins */
+        width: 100%; /* Ensure full width */
     }
     
     .hero-inner {
         padding: 30px 20px;
+        width: 100%; /* Ensure full width */
     }
     
     .gallery-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 12px;
+        width: 100%; /* Ensure full width */
     }
     
     .card img {
@@ -961,11 +976,13 @@
     .news-grid {
         grid-template-columns: 1fr;
         gap: 16px;
+        width: 100%; /* Ensure full width */
     }
     
     .pagination {
         flex-wrap: wrap;
         gap: 8px;
+        width: 100%; /* Ensure full width */
     }
     
     .pagination-numbers {
@@ -977,15 +994,35 @@
     
     .exclusive-box {
         margin: 30px auto;
-        padding: 25px 16px;
+        padding: 25px 16px; /* Consistent 16px padding */
+        width: calc(100% - 32px); /* Account for padding */
     }
     
     .floating-heart {
         width: 56px;
         height: 56px;
         font-size: 22px;
-        right: 16px;
+        right: 16px; /* Consistent 16px spacing */
         bottom: 16px;
+    }
+
+    /* Fix section heads and other elements */
+    .section-head {
+        padding: 0; /* Remove any padding */
+        width: 100%; /* Ensure full width */
+    }
+
+    .gallery-filters {
+        padding: 0; /* Remove any padding */
+        width: 100%; /* Ensure full width */
+    }
+
+    .fan-box, 
+    .contact-glass,
+    .about .text-card {
+        width: 100%; /* Ensure full width */
+        margin-left: 0;
+        margin-right: 0;
     }
 
     /* Lightbox responsive */
@@ -996,13 +1033,14 @@
         padding: 12px;
     }
     
-    .lb-prev { left: 15px; }
-    .lb-next { right: 15px; }
+    .lb-prev { left: 16px; } /* Consistent 16px spacing */
+    .lb-next { right: 16px; } /* Consistent 16px spacing */
     
     .lb-close {
         width: 35px;
         height: 35px;
         font-size: 24px;
+        right: 16px; /* Consistent 16px spacing */
     }
 
     /* Performance optimizations for mobile */
@@ -1023,6 +1061,21 @@
   }
 
   @media (max-width: 480px) {
+    /* Ensure consistent spacing on very small screens */
+    .nav {
+        width: calc(100% - 32px);
+        left: 16px;
+        padding: 10px 16px;
+    }
+
+    main {
+        padding: 0 16px 60px;
+    }
+
+    .hero {
+        padding: 60px 16px 80px;
+    }
+    
     .gallery-grid {
         grid-template-columns: 1fr;
         gap: 12px;
@@ -1034,6 +1087,7 @@
     
     .gallery-filters {
         gap: 8px;
+        padding: 0 8px; /* Small padding for very small screens */
     }
     
     .filter-btn {
@@ -1049,27 +1103,41 @@
     
     .about img {
         height: 250px;
+        width: 100%; /* Ensure full width */
     }
     
     .about .text-card {
         padding: 20px;
+        width: 100%; /* Ensure full width */
     }
     
     .contact-glass {
         padding: 16px;
+        width: 100%; /* Ensure full width */
     }
     
     footer {
-        padding: 24px 16px;
+        padding: 24px 16px; /* Consistent 16px padding */
         margin-top: 30px;
+        width: 100%; /* Ensure full width */
+        border-radius: 0; /* Remove border radius for full width */
+        margin-left: 0;
+        margin-right: 0;
     }
 
     .pagination-btn,
     .page-number {
         min-height: 44px;
     }
-  }
 
+    /* Fix any remaining edge cases */
+    .exclusive-box {
+        margin: 30px 0; /* Remove auto margin for full width */
+        width: 100%; /* Full width */
+        border-radius: 0; /* Remove border radius for full width */
+    }
+  }
+  
   /* Touch-friendly improvements */
   @media (hover: none) and (pointer: coarse) {
     .card:hover {
