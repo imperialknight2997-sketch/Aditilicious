@@ -355,6 +355,11 @@
   .gallery-wrap{ margin-top:8px }
   .gallery-grid{
     display:grid; grid-template-columns: repeat(3, 1fr); gap:18px;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+  }
+  .gallery-grid.loading {
+    opacity: 0.5;
   }
   .card {
     background: linear-gradient(180deg, rgba(255,255,255,0.85), rgba(255,255,255,0.75));
@@ -365,6 +370,12 @@
     overflow:hidden;
     position: relative;
     border: 1px solid rgba(255,255,255,0.5);
+    animation: fadeIn 0.5s ease;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
   }
 
   [data-theme="dark"] .card {
@@ -408,6 +419,89 @@
   .filter-btn.active, .filter-btn:hover {
     background: linear-gradient(90deg,var(--accent-2),var(--accent));
     color: white;
+  }
+
+  /* Pagination Styles */
+  .pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 40px;
+    gap: 10px;
+  }
+
+  .pagination-btn {
+    background: rgba(255,255,255,0.7);
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 8px;
+    padding: 10px 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 600;
+    color: var(--muted);
+    backdrop-filter: blur(10px);
+  }
+
+  [data-theme="dark"] .pagination-btn {
+    background: rgba(26,26,46,0.7);
+    border: 1px solid rgba(255,255,255,0.1);
+  }
+
+  .pagination-btn:hover:not(.disabled) {
+    background: linear-gradient(90deg,var(--accent-2),var(--accent));
+    color: white;
+    transform: translateY(-2px);
+  }
+
+  .pagination-btn.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  .pagination-numbers {
+    display: flex;
+    gap: 6px;
+  }
+
+  .page-number {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 600;
+    background: rgba(255,255,255,0.7);
+    border: 1px solid rgba(255,255,255,0.3);
+    color: var(--muted);
+  }
+
+  [data-theme="dark"] .page-number {
+    background: rgba(26,26,46,0.7);
+    border: 1px solid rgba(255,255,255,0.1);
+  }
+
+  .page-number.active {
+    background: linear-gradient(90deg,var(--accent-2),var(--accent));
+    color: white;
+  }
+
+  .page-number:hover:not(.active) {
+    background: rgba(255,255,255,0.9);
+    transform: translateY(-2px);
+  }
+
+  [data-theme="dark"] .page-number:hover:not(.active) {
+    background: rgba(255,255,255,0.1);
+  }
+
+  .pagination-info {
+    margin-top: 10px;
+    text-align: center;
+    color: var(--muted);
+    font-size: 0.9rem;
   }
 
   /* NEWS CARDS: Professional 3D Tilt */
@@ -655,6 +749,9 @@
       flex-wrap: wrap;
       justify-content: center;
     }
+    .pagination {
+      flex-wrap: wrap;
+    }
   }
   @media (max-width:600px){ 
     .gallery-grid{ grid-template-columns: 1fr } 
@@ -730,39 +827,27 @@
       </div>
 
       <div class="gallery-wrap">
-        <div class="gallery-grid">
-          <!-- Images with data-category attributes for filtering -->
-          <div class="card" data-category="portrait"><img src="images/IMG_0483.jpeg" alt="Aditi portrait" loading="lazy"></div>
-          <div class="card" data-category="event"><img src="images/IMG_0467.jpeg" alt="Aditi at event" loading="lazy"></div>
-          <div class="card" data-category="portrait"><img src="images/IMG_0473.jpeg" alt="Aditi portrait" loading="lazy"></div>
-          <div class="card" data-category="casual"><img src="images/IMG_0469.jpeg" alt="Aditi casual" loading="lazy"></div>
-          <div class="card" data-category="casual"><img src="images/IMG_0531.jpeg" alt="Aditi casual" loading="lazy"></div>
-          <div class="card" data-category="casual"><img src="images/IMG_0532.jpeg" alt="Aditi casual" loading="lazy"></div>
-          <div class="card" data-category="casual"><img src="images/IMG_0533.jpeg" alt="Aditi casual" loading="lazy"></div>
-          <div class="card" data-category="casual"><img src="images/IMG_0534.jpeg" alt="Aditi casual" loading="lazy"></div>
-          <div class="card" data-category="portrait"><img src="images/IMG_0505.jpeg" alt="Aditi portrait" loading="lazy"></div>
-          <div class="card" data-category="event"><img src="images/IMG_0506.jpeg" alt="Aditi at event" loading="lazy"></div>
-          <div class="card" data-category="casual"><img src="images/IMG_0507.jpeg" alt="Aditi casual" loading="lazy"></div>
-          <div class="card" data-category="portrait"><img src="images/IMG_0508.jpeg" alt="Aditi portrait" loading="lazy"></div>
-          <div class="card" data-category="event"><img src="images/IMG_0509.jpeg" alt="Aditi at event" loading="lazy"></div>
-          <div class="card" data-category="casual"><img src="images/IMG_0510.jpeg" alt="Aditi casual" loading="lazy"></div>
-          <div class="card" data-category="portrait"><img src="images/IMG_0511.jpeg" alt="Aditi portrait" loading="lazy"></div>
-          <div class="card" data-category="event"><img src="images/IMG_0512.jpeg" alt="Aditi at event" loading="lazy"></div>
-          <div class="card" data-category="casual"><img src="images/IMG_0513.jpeg" alt="Aditi casual" loading="lazy"></div>
-          <div class="card" data-category="portrait"><img src="images/IMG_0514.jpeg" alt="Aditi portrait" loading="lazy"></div>
-          <div class="card" data-category="event"><img src="images/IMG_0466.jpeg" alt="Aditi at event" loading="lazy"></div>
-          <div class="card" data-category="casual"><img src="images/IMG_0456.jpeg" alt="Aditi casual" loading="lazy"></div>
-          <div class="card" data-category="portrait"><img src="images/IMG_0457.jpeg" alt="Aditi portrait" loading="lazy"></div>
-          <div class="card" data-category="event"><img src="images/IMG_0465.jpeg" alt="Aditi at event" loading="lazy"></div>
-          <div class="card" data-category="casual"><img src="images/IMG_0464.jpeg" alt="Aditi casual" loading="lazy"></div>
-          <div class="card" data-category="portrait"><img src="images/IMG_0471.jpeg" alt="Aditi portrait" loading="lazy"></div>
-          <div class="card" data-category="event"><img src="images/IMG_0470.jpeg" alt="Aditi at event" loading="lazy"></div>
-          <div class="card" data-category="casual"><img src="images/IMG_0515.jpeg" alt="Aditi casual" loading="lazy"></div>
-          <div class="card" data-category="portrait"><img src="images/IMG_0517.jpeg" alt="Aditi portrait" loading="lazy"></div>
-          <div class="card" data-category="event"><img src="images/IMG_0518.jpeg" alt="Aditi at event" loading="lazy"></div>
-          <div class="card" data-category="casual"><img src="images/IMG_0519.jpeg" alt="Aditi casual" loading="lazy"></div>
-          <div class="card" data-category="portrait"><img src="images/IMG_0520.jpeg" alt="Aditi portrait" loading="lazy"></div>
-          <div class="card" data-category="event"><img src="images/IMG_0472.jpeg" alt="Aditi at event" loading="lazy"></div>
+        <div class="gallery-grid" id="gallery-grid">
+          <!-- Images will be dynamically loaded here -->
+        </div>
+
+        <!-- Pagination Controls -->
+        <div class="pagination" id="pagination">
+          <button class="pagination-btn" id="prev-btn" disabled>
+            <i class="fas fa-chevron-left"></i> Previous
+          </button>
+          
+          <div class="pagination-numbers" id="pagination-numbers">
+            <!-- Page numbers will be dynamically generated here -->
+          </div>
+          
+          <button class="pagination-btn" id="next-btn">
+            Next <i class="fas fa-chevron-right"></i>
+          </button>
+        </div>
+        
+        <div class="pagination-info" id="pagination-info">
+          <!-- Page info will be dynamically updated here -->
         </div>
       </div>
     </section>
@@ -878,6 +963,222 @@
   6. JavaScript Enhancements
   ===================================== 
   */
+
+  // --- Gallery Pagination System ---
+  (function() {
+    // Gallery data - all your images
+    const galleryData = [
+      { src: 'images/IMG_0483.jpeg', alt: 'Aditi portrait', category: 'portrait' },
+      { src: 'images/IMG_0467.jpeg', alt: 'Aditi at event', category: 'event' },
+      { src: 'images/IMG_0473.jpeg', alt: 'Aditi portrait', category: 'portrait' },
+      { src: 'images/IMG_0469.jpeg', alt: 'Aditi casual', category: 'casual' },
+      { src: 'images/IMG_0505.jpeg', alt: 'Aditi portrait', category: 'portrait' },
+      { src: 'images/IMG_0506.jpeg', alt: 'Aditi at event', category: 'event' },
+      { src: 'images/IMG_0507.jpeg', alt: 'Aditi casual', category: 'casual' },
+      { src: 'images/IMG_0508.jpeg', alt: 'Aditi portrait', category: 'portrait' },
+      { src: 'images/IMG_0509.jpeg', alt: 'Aditi at event', category: 'event' },
+      { src: 'images/IMG_0510.jpeg', alt: 'Aditi casual', category: 'casual' },
+      { src: 'images/IMG_0511.jpeg', alt: 'Aditi portrait', category: 'portrait' },
+      { src: 'images/IMG_0512.jpeg', alt: 'Aditi at event', category: 'event' },
+      { src: 'images/IMG_0513.jpeg', alt: 'Aditi casual', category: 'casual' },
+      { src: 'images/IMG_0514.jpeg', alt: 'Aditi portrait', category: 'portrait' },
+      { src: 'images/IMG_0466.jpeg', alt: 'Aditi at event', category: 'event' },
+      { src: 'images/IMG_0456.jpeg', alt: 'Aditi casual', category: 'casual' },
+      { src: 'images/IMG_0457.jpeg', alt: 'Aditi portrait', category: 'portrait' },
+      { src: 'images/IMG_0465.jpeg', alt: 'Aditi at event', category: 'event' },
+      { src: 'images/IMG_0464.jpeg', alt: 'Aditi casual', category: 'casual' },
+      { src: 'images/IMG_0471.jpeg', alt: 'Aditi portrait', category: 'portrait' },
+      { src: 'images/IMG_0470.jpeg', alt: 'Aditi at event', category: 'event' },
+      { src: 'images/IMG_0515.jpeg', alt: 'Aditi casual', category: 'casual' },
+      { src: 'images/IMG_0517.jpeg', alt: 'Aditi portrait', category: 'portrait' },
+      { src: 'images/IMG_0518.jpeg', alt: 'Aditi at event', category: 'event' },
+      { src: 'images/IMG_0519.jpeg', alt: 'Aditi casual', category: 'casual' },
+      { src: 'images/IMG_0520.jpeg', alt: 'Aditi portrait', category: 'portrait' },
+      { src: 'images/IMG_0472.jpeg', alt: 'Aditi at event', category: 'event' },
+      // Add more images here as needed
+    ];
+
+    // Pagination settings
+    const itemsPerPage = 9; // 3x3 grid
+    let currentPage = 1;
+    let currentFilter = 'all';
+    let filteredData = [...galleryData];
+
+    // DOM Elements
+    const galleryGrid = document.getElementById('gallery-grid');
+    const pagination = document.getElementById('pagination');
+    const paginationNumbers = document.getElementById('pagination-numbers');
+    const prevBtn = document.getElementById('prev-btn');
+    const nextBtn = document.getElementById('next-btn');
+    const paginationInfo = document.getElementById('pagination-info');
+    const filterBtns = document.querySelectorAll('.filter-btn');
+
+    // Initialize gallery
+    function initGallery() {
+      updateFilteredData();
+      renderGallery();
+      setupPagination();
+      updatePaginationInfo();
+    }
+
+    // Filter gallery data
+    function updateFilteredData() {
+      if (currentFilter === 'all') {
+        filteredData = [...galleryData];
+      } else {
+        filteredData = galleryData.filter(item => item.category === currentFilter);
+      }
+      currentPage = 1; // Reset to first page when filter changes
+    }
+
+    // Render gallery items for current page
+    function renderGallery() {
+      galleryGrid.classList.add('loading');
+      
+      // Calculate start and end indices
+      const startIndex = (currentPage - 1) * itemsPerPage;
+      const endIndex = startIndex + itemsPerPage;
+      const pageData = filteredData.slice(startIndex, endIndex);
+      
+      // Clear current gallery
+      galleryGrid.innerHTML = '';
+      
+      // Add loading delay for smooth transition
+      setTimeout(() => {
+        // Add items to gallery
+        pageData.forEach(item => {
+          const card = document.createElement('div');
+          card.className = 'card';
+          card.setAttribute('data-category', item.category);
+          
+          const img = document.createElement('img');
+          img.src = item.src;
+          img.alt = item.alt;
+          img.loading = 'lazy';
+          
+          card.appendChild(img);
+          galleryGrid.appendChild(card);
+        });
+        
+        galleryGrid.classList.remove('loading');
+        
+        // Re-initialize lightbox for new images
+        initLightbox();
+      }, 300);
+    }
+
+    // Setup pagination controls
+    function setupPagination() {
+      const totalPages = Math.ceil(filteredData.length / itemsPerPage);
+      
+      // Clear current pagination numbers
+      paginationNumbers.innerHTML = '';
+      
+      // Determine which page numbers to show
+      let startPage = Math.max(1, currentPage - 2);
+      let endPage = Math.min(totalPages, currentPage + 2);
+      
+      // Adjust if we're at the beginning
+      if (currentPage <= 3) {
+        endPage = Math.min(totalPages, 5);
+      }
+      
+      // Adjust if we're at the end
+      if (currentPage >= totalPages - 2) {
+        startPage = Math.max(1, totalPages - 4);
+      }
+      
+      // Add page number buttons
+      for (let i = startPage; i <= endPage; i++) {
+        const pageBtn = document.createElement('div');
+        pageBtn.className = `page-number ${i === currentPage ? 'active' : ''}`;
+        pageBtn.textContent = i;
+        pageBtn.addEventListener('click', () => goToPage(i));
+        paginationNumbers.appendChild(pageBtn);
+      }
+      
+      // Update button states
+      prevBtn.disabled = currentPage === 1;
+      nextBtn.disabled = currentPage === totalPages;
+      
+      if (prevBtn.disabled) {
+        prevBtn.classList.add('disabled');
+      } else {
+        prevBtn.classList.remove('disabled');
+      }
+      
+      if (nextBtn.disabled) {
+        nextBtn.classList.add('disabled');
+      } else {
+        nextBtn.classList.remove('disabled');
+      }
+      
+      // Show/hide pagination based on page count
+      if (totalPages <= 1) {
+        pagination.style.display = 'none';
+      } else {
+        pagination.style.display = 'flex';
+      }
+    }
+
+    // Update pagination info text
+    function updatePaginationInfo() {
+      const totalItems = filteredData.length;
+      const startIndex = (currentPage - 1) * itemsPerPage + 1;
+      const endIndex = Math.min(currentPage * itemsPerPage, totalItems);
+      
+      if (totalItems === 0) {
+        paginationInfo.textContent = 'No images found';
+      } else {
+        paginationInfo.textContent = `Showing ${startIndex}-${endIndex} of ${totalItems} images`;
+      }
+    }
+
+    // Navigate to specific page
+    function goToPage(page) {
+      currentPage = page;
+      renderGallery();
+      setupPagination();
+      updatePaginationInfo();
+      
+      // Scroll to gallery section
+      document.getElementById('gallery').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // Event listeners for pagination buttons
+    prevBtn.addEventListener('click', () => {
+      if (currentPage > 1) {
+        goToPage(currentPage - 1);
+      }
+    });
+
+    nextBtn.addEventListener('click', () => {
+      const totalPages = Math.ceil(filteredData.length / itemsPerPage);
+      if (currentPage < totalPages) {
+        goToPage(currentPage + 1);
+      }
+    });
+
+    // Event listeners for filter buttons
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        // Remove active class from all buttons
+        filterBtns.forEach(b => b.classList.remove('active'));
+        // Add active class to clicked button
+        btn.classList.add('active');
+        
+        // Update filter and re-render
+        currentFilter = btn.getAttribute('data-filter');
+        updateFilteredData();
+        renderGallery();
+        setupPagination();
+        updatePaginationInfo();
+      });
+    });
+
+    // Initialize the gallery
+    initGallery();
+  })();
 
   // --- Theme Toggle Functionality ---
   (function() {
@@ -999,42 +1300,8 @@
     });
   });
 
-  // --- Gallery Filter Functionality ---
-  (function() {
-    const filterBtns = document.querySelectorAll('.filter-btn');
-    const galleryItems = document.querySelectorAll('.gallery-grid .card');
-    
-    filterBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        // Remove active class from all buttons
-        filterBtns.forEach(b => b.classList.remove('active'));
-        // Add active class to clicked button
-        btn.classList.add('active');
-        
-        const filter = btn.getAttribute('data-filter');
-        
-        galleryItems.forEach(item => {
-          if (filter === 'all' || item.getAttribute('data-category') === filter) {
-            item.style.display = 'block';
-            // Add fade in animation
-            setTimeout(() => {
-              item.style.opacity = '1';
-              item.style.transform = 'translateY(0)';
-            }, 50);
-          } else {
-            item.style.opacity = '0';
-            item.style.transform = 'translateY(20px)';
-            setTimeout(() => {
-              item.style.display = 'none';
-            }, 300);
-          }
-        });
-      });
-    });
-  })();
-
   // --- LIGHTBOX: blurred backdrop + navigation ---
-  (function(){
+  function initLightbox() {
     const cards = Array.from(document.querySelectorAll('.gallery-grid .card img'));
     const lb = document.getElementById('lightbox');
     const lbImg = document.getElementById('lb-img');
@@ -1079,7 +1346,10 @@
     lb.addEventListener('click', (e)=>{
       if(e.target === lb) close();
     });
-  })();
+  }
+
+  // Initialize lightbox for initial page load
+  initLightbox();
 
   // --- Image loading optimization ---
   (function() {
