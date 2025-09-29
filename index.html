@@ -1,3 +1,4 @@
+<!-- Full premium single-file site for "Aditilicious" -->
 <!doctype html>
 <html lang="en">
 <head>
@@ -5,9 +6,9 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Aditi Budhathoki ✨ — Aditilicious (Premium Fanpage)</title>
 
-  <!-- Basic SEO / Social -->
+  <!-- SEO / Social -->
   <meta name="description" content="Aditilicious — premium fan-made tribute to Aditi Budhathoki. Gallery, news, fan zone, and exclusive content." />
-  <meta name="keywords" content="Aditi Budhathoki, fanpage, gallery, photos, Nepal, actress" />
+  <meta name="keywords" content="Aditi Budhathoki, fanpage, gallery, photos, Nepali actress, fan site" />
   <meta property="og:title" content="Aditilicious ✨ — Premium Fanpage" />
   <meta property="og:description" content="Premium fan-made tribute: photos, updates, and fan creations celebrating Aditi Budhathoki." />
   <meta property="og:image" content="images/IMG_0483.jpeg" />
@@ -15,213 +16,238 @@
   <meta name="twitter:card" content="summary_large_image" />
 
   <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 
-  <!-- Font Awesome for icons -->
+  <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <style>
-  /* ===========================
-     VARIABLES & BASE
-     =========================== */
-  :root{
-    --maxw:1200px;
-    --nav-height:80px;
-    --accent:#ba68c8;
-    --accent-2:#f48fb1;
-    --bg-start:#FFD6FF; /* you mentioned this */
-    --bg-end:#FFEDD8;
-    --glass-bg: rgba(255,255,255,0.14);
-    --glass-border: rgba(255,255,255,0.28);
-    --glass-blur: 18px;
-    --text: #161616;
-    --muted: #6b6b7a;
-    --radius:14px;
-    --transition: 0.32s cubic-bezier(.2,.9,.3,1);
-  }
-  *{box-sizing:border-box}
-  html{scroll-behavior:smooth}
-  body{
-    margin:0;
-    font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;
-    color:var(--text);
-    background: linear-gradient(180deg,var(--bg-start),var(--bg-end) 140px);
-    -webkit-font-smoothing:antialiased;
-    -moz-osx-font-smoothing:grayscale;
-    padding-top: var(--nav-height);
-    line-height:1.6;
-  }
+    /* =============================
+       VARIABLES & BASE STYLES
+       ============================= */
+    :root{
+      --maxw:1200px;
+      --nav-height:82px;
+      --accent:#ba68c8;      /* lavender */
+      --accent-2:#f48fb1;    /* pink */
+      --bg-1:#FFD6FF;        /* pastel start */
+      --bg-2:#FFEDD8;        /* pastel end */
+      --glass-bg: rgba(255,255,255,0.14);
+      --glass-border: rgba(255,255,255,0.28);
+      --glass-blur: 18px;
+      --text:#111;
+      --muted:#6b6b7a;
+      --radius:14px;
+      --transition: 0.34s cubic-bezier(.2,.9,.3,1);
+      --hero-overlay-dark: rgba(0,0,0,0.18);
+      --hero-overlay-light: rgba(255,255,255,0.06);
+      --card-shadow: 0 12px 40px rgba(12,6,30,0.06);
+    }
 
-  /* Universal glass utility (applied to containers only) */
-  .glass {
-    background: var(--glass-bg);
-    backdrop-filter: blur(var(--glass-blur)) saturate(140%);
-    -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(140%);
-    border-radius: var(--radius);
-    border: 1px solid var(--glass-border);
-    box-shadow: 0 12px 40px rgba(12,6,30,0.06);
-    transition: box-shadow var(--transition), transform var(--transition);
-  }
-  /* keep text background clean */
-  .no-glass-bg { background: transparent !important; border: none !important; backdrop-filter: none !important; -webkit-backdrop-filter: none !important; }
+    [data-theme="dark"]{
+      --glass-bg: rgba(12,12,18,0.46);
+      --glass-border: rgba(255,255,255,0.06);
+      --text: #eaeaf0;
+      --muted: #b3b3bf;
+      --card-shadow: 0 16px 60px rgba(0,0,0,0.6);
+      --hero-overlay-dark: rgba(0,0,0,0.35);
+    }
 
-  a{ color: inherit; text-decoration:none; }
-  h1,h2{ font-family:'Playfair Display', serif; color:var(--accent); margin:0 }
-  p{ margin:0 0 1rem 0; color:var(--text) }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      color:var(--text);
+      background: linear-gradient(180deg,var(--bg-1),var(--bg-2) 160px);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      padding-top: var(--nav-height);
+      line-height:1.6;
+      overflow-x:hidden;
+    }
 
-  /* ===========================
-     NAVIGATION
-     =========================== */
-  .nav {
-    position: fixed;
-    top: 18px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: calc(100% - 48px);
-    max-width: var(--maxw);
-    z-index: 1200;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    gap:12px;
-    padding:10px 18px;
-    border-radius:999px;
-  }
-  .brand { font-weight:700; font-size:1.05rem; display:flex; align-items:center; gap:10px;
-    background: linear-gradient(90deg,var(--accent-2),var(--accent));
-    -webkit-background-clip:text; background-clip:text; color:transparent;
-  }
-  .nav .nav-links{ display:flex; gap:12px; align-items:center }
-  .nav .nav-links a{
-    padding:8px 12px; border-radius:10px; font-weight:600; color:var(--text); transition:var(--transition);
-    position:relative;
-  }
-  .nav .nav-links a::after{
-    content:''; position:absolute; left:50%; bottom:6px; width:0; height:2px; background:linear-gradient(90deg,var(--accent-2),var(--accent)); transform:translateX(-50%); transition:width .25s;
-  }
-  .nav .nav-links a:hover::after, .nav .nav-links a.active-link::after { width:70% }
-  .nav.scrolled { box-shadow:0 18px 36px rgba(12,6,30,0.08) }
+    /* Universal glass utility for containers */
+    .glass {
+      background: var(--glass-bg);
+      backdrop-filter: blur(var(--glass-blur)) saturate(140%);
+      -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(140%);
+      border-radius: var(--radius);
+      border: 1px solid var(--glass-border);
+      box-shadow: var(--card-shadow);
+      transition: box-shadow var(--transition), transform var(--transition);
+    }
 
-  .hamburger { display:none; border:none; background:transparent; gap:4px; padding:6px }
-  .hamburger span{ display:block; width:20px; height:2px; background:var(--text); border-radius:2px; transition:all .25s }
+    a{ color:inherit; text-decoration:none }
+    img{ max-width:100%; display:block; }
 
-  .theme-toggle{ background:transparent; border:none; cursor:pointer; padding:8px; border-radius:10px; font-size:16px }
+    h1,h2,h3{ font-family:'Playfair Display', serif; margin:0 }
+    h1{ font-weight:600 }
+    h2{ font-weight:600 }
 
-  /* Floating CTA */
-  .floating-heart {
-    position: fixed; right:22px; bottom:22px; z-index:1300;
-    width:62px;height:62px;border-radius:50%;
-    display:flex;align-items:center;justify-content:center;color:white;font-size:26px;
-    background: linear-gradient(90deg,var(--accent-2),var(--accent));
-    box-shadow:0 14px 38px rgba(181,88,144,0.16);
-    cursor:pointer; transition: transform .25s;
-  }
-  .floating-heart:hover{ transform: translateY(-6px) }
+    .muted{ color:var(--muted) }
+    .center{ text-align:center }
 
-  /* ===========================
-     HERO
-     =========================== */
-  .hero {
-    min-height: calc(100vh - var(--nav-height));
-    display:flex; align-items:center; justify-content:center; text-align:center;
-    position:relative; overflow:hidden; padding: 72px 18px 96px;
-    background: url('images/IMG_0483.jpeg') center/cover no-repeat;
-  }
-  /* glow layer under content (subtle) */
-  .hero-glow{
-    position:absolute; inset:-20% -10% auto -10%; height:420px; filter:blur(80px); z-index:0; pointer-events:none; transform: translateZ(-1px) scale(2);
-  }
-  .hero-overlay{ position:absolute; inset:0; background: linear-gradient(180deg, rgba(0,0,0,0.08), rgba(0,0,0,0.18)); z-index:1 }
-  .hero-inner{ position:relative; z-index:2; color:white; max-width:900px; padding:40px; transform:translateY(12px) }
-  .hero-inner h1{ font-size: clamp(2rem,6vw,3.6rem); text-shadow: 0 10px 40px rgba(0,0,0,0.45) }
-  .hero-inner p{ font-size:1.05rem; margin-top:14px; text-shadow: 0 6px 20px rgba(0,0,0,0.35) }
-  .hero .cta{ display:inline-block; margin-top:20px; padding:12px 22px; border-radius:999px; background:linear-gradient(90deg,var(--accent-2),var(--accent)); color:white; font-weight:700; text-decoration:none; box-shadow:0 16px 42px rgba(181,88,144,0.16); transition:var(--transition) }
-  .hero .cta:hover{ transform: translateY(-4px) }
+    /* Small helpers */
+    .container { max-width:var(--maxw); margin:0 auto; padding:0 18px; }
+    .btn {
+      display:inline-block; padding:10px 18px; border-radius:999px;
+      background:linear-gradient(90deg,var(--accent-2),var(--accent)); color:white; font-weight:700;
+      box-shadow:0 14px 38px rgba(181,88,144,0.12); border:none; cursor:pointer;
+      transition: transform .22s ease, box-shadow .22s ease;
+    }
+    .btn:hover { transform: translateY(-4px); box-shadow:0 22px 60px rgba(181,88,144,0.18) }
 
-  /* ===========================
-     MAIN S E C T I O N S
-     =========================== */
-  main { max-width:var(--maxw); margin:48px auto; padding:0 18px 80px; }
-  .section-head { text-align:center; margin-bottom:18px }
-  .section-head h2{ font-size: clamp(1.6rem,4vw,2.2rem); color:var(--accent); margin-bottom:8px }
-  .section-head p{ color:var(--muted) }
+    /* =============================
+       NAVIGATION
+       ============================= */
+    .nav {
+      position:fixed; top:16px; left:50%; transform:translateX(-50%);
+      width:calc(100% - 48px); max-width:var(--maxw);
+      display:flex; align-items:center; justify-content:space-between;
+      padding:10px 18px; z-index:1300; gap:12px; border-radius:999px;
+      transition: all .28s ease;
+    }
+    .brand {
+      display:flex; align-items:center; gap:12px;
+      font-weight:700; font-size:1.08rem;
+      background: linear-gradient(90deg,var(--accent-2),var(--accent));
+      -webkit-background-clip:text; background-clip:text; color:transparent;
+    }
+    .nav-links { display:flex; gap:12px; align-items:center; }
+    .nav-links a{
+      padding:8px 12px; border-radius:10px; font-weight:600; color:var(--text); transition:var(--transition);
+      position:relative;
+    }
+    .nav-links a::after{
+      content:''; position:absolute; left:50%; bottom:6px; transform:translateX(-50%); width:0; height:2px; background: linear-gradient(90deg,var(--accent-2),var(--accent)); transition:width .22s;
+    }
+    .nav-links a:hover::after, .nav-links a.active-link::after { width:70% }
 
-  /* ABOUT */
-  .about{ display:grid; grid-template-columns: 1fr 420px; gap:28px; align-items:center; margin-top:6px }
-  .about .text-card{ padding:26px; border-radius:12px; background: linear-gradient(180deg, rgba(255,255,255,0.95), rgba(250,245,255,0.98)); box-shadow:0 12px 40px rgba(12,6,30,0.04); color:var(--text) }
-  .about img{ width:100%; border-radius:12px; height:360px; object-fit:cover; box-shadow:0 18px 44px rgba(12,6,30,0.06) }
+    .nav.glass { background: var(--glass-bg); border:1px solid var(--glass-border); backdrop-filter: blur(var(--glass-blur)); -webkit-backdrop-filter: blur(var(--glass-blur)); }
 
-  /* GALLERY */
-  .gallery-wrap { margin-top:8px }
-  .gallery-grid{
-    display:grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap:18px;
-  }
-  .card { position:relative; overflow:hidden; border-radius:12px; }
-  .card img{ width:100%; height:320px; object-fit:cover; display:block; border-radius:8px; transition: transform .28s ease, box-shadow .28s ease; }
-  .card:hover img{ transform: scale(1.03); box-shadow: 0 18px 48px rgba(12,6,30,0.12) }
+    /* Hamburger for mobile */
+    .hamburger { display:none; background:transparent; border:none; gap:6px; padding:8px; cursor:pointer; }
+    .hamburger span{ display:block; width:22px; height:2px; background:var(--text); border-radius:2px; transition:all .23s ease }
 
-  /* Gallery filters + pagination */
-  .gallery-filters{ display:flex; justify-content:center; gap:10px; margin-bottom:20px; flex-wrap:wrap }
-  .filter-btn{ padding:8px 16px; border-radius:20px; cursor:pointer; font-weight:600; border:1px solid rgba(255,255,255,0.32); background: rgba(255,255,255,0.6); color:var(--muted) }
-  .filter-btn.active{ background: linear-gradient(90deg,var(--accent-2),var(--accent)); color:white; box-shadow:0 10px 30px rgba(181,88,144,0.12) }
+    /* Floating heart CTA */
+    .floating-heart {
+      position:fixed; right:22px; bottom:22px; z-index:1400; width:64px; height:64px; border-radius:50%;
+      display:flex; align-items:center; justify-content:center; color:white; font-size:26px;
+      background: linear-gradient(90deg,var(--accent-2),var(--accent));
+      box-shadow:0 18px 44px rgba(181,88,144,0.18); cursor:pointer;
+    }
+    .floating-heart:hover { transform: translateY(-6px) }
 
-  .pagination{ display:flex; justify-content:center; gap:12px; margin-top:24px; align-items:center }
-  .pagination-btn{ padding:10px 16px; border-radius:8px; cursor:pointer; background:rgba(255,255,255,0.7); border:1px solid rgba(255,255,255,0.28); font-weight:700; color:var(--muted) }
-  .pagination-btn.disabled{ opacity:0.5; cursor:not-allowed }
-  .page-number{ padding:8px 12px; border-radius:8px; cursor:pointer; background:rgba(255,255,255,0.7); border:1px solid rgba(255,255,255,0.28); font-weight:700; color:var(--muted) }
-  .page-number.active{ background: linear-gradient(90deg,var(--accent-2),var(--accent)); color:white }
+    /* =============================
+       HERO
+       (KEEPING IMAGE EXACTLY AS-IS)
+       ============================= */
+    .hero {
+      min-height: calc(100vh - var(--nav-height));
+      display:flex; align-items:center; justify-content:center; text-align:center;
+      padding:72px 18px 96px; position:relative; overflow:hidden;
+      background: url('images/IMG_0483.jpeg') center/cover no-repeat;
+      -webkit-background-size:cover; background-size:cover;
+    }
 
-  /* NEWS */
-  .news-grid{ display:grid; grid-template-columns: repeat(3,1fr); gap:18px; margin-top:8px; }
-  .news-card{ padding:0; border-radius:12px; overflow:hidden; background: linear-gradient(180deg,#fff,#fff); box-shadow:0 16px 40px rgba(12,6,30,0.04) }
-  .news-card img{ width:100%; height:160px; object-fit:cover }
-  .news-body{ padding:14px 16px }
-  .news-body h3{ color:var(--accent); margin-bottom:8px }
+    /* soft dynamic glow (subtle): non-obstructive on image */
+    .hero-glow{ position:absolute; inset:-20% -10% auto -10%; height:420px; filter: blur(90px); pointer-events:none; z-index:0; transform: translateZ(-1px) scale(2); transition: background .12s linear; }
+    .hero-overlay{ position:absolute; inset:0; background: linear-gradient(180deg, rgba(0,0,0,0.06), rgba(0,0,0,0.16)); z-index:1 }
+    .hero-inner{ position:relative; z-index:2; max-width:900px; color:white; padding:40px; transform:translateY(12px) }
+    .hero-inner h1{ font-size: clamp(2rem, 7vw, 3.8rem); line-height:1; text-shadow: 0 12px 40px rgba(0,0,0,0.45) }
+    .hero-inner p{ font-size:1.05rem; margin-top:12px; text-shadow: 0 8px 28px rgba(0,0,0,0.32) }
+    .hero .cta{ display:inline-block; margin-top:20px; padding:12px 24px; border-radius:999px; background:linear-gradient(90deg,var(--accent-2),var(--accent)); color:white; font-weight:700; text-decoration:none; box-shadow:0 16px 42px rgba(181,88,144,0.14); transition:var(--transition) }
+    .hero .cta:hover{ transform: translateY(-4px) }
 
-  /* EXCLUSIVE */
-  .exclusive-box{ text-align:center; padding:30px 20px; margin:40px auto; max-width:600px; border-radius:var(--radius); background: linear-gradient(180deg, rgba(255,255,255,0.92), rgba(250,245,255,0.95)); border:2px solid; border-image: linear-gradient(45deg,var(--accent-2),var(--accent)) 1; box-shadow:0 20px 50px rgba(18,8,40,0.1) }
-  .exclusive-box h3{ color:var(--accent-2); margin-bottom:10px }
+    /* =============================
+       MAIN LAYOUT & SECTIONS
+       ============================= */
+    main{ max-width:var(--maxw); margin:48px auto; padding:0 18px 80px; }
+    .section-head{ text-align:center; margin-bottom:18px }
+    .section-head h2{ font-size: clamp(1.6rem, 4vw, 2.3rem); color:var(--accent); margin-bottom:8px }
+    .section-head p{ color:var(--muted) }
 
-  /* FAN & CONTACT */
-  .fan-grid{ display:grid; grid-template-columns: 1fr 420px; gap:24px; margin-top:12px; align-items:start }
-  .fan-box{ padding:18px; border-radius:12px; background: linear-gradient(180deg,#fff,#fff); box-shadow:0 12px 36px rgba(12,6,30,0.04) }
-  .contact-glass{ padding:18px; border-radius:12px; background: linear-gradient(180deg, rgba(255,255,255,0.75), rgba(255,255,255,0.65)); backdrop-filter: blur(10px); }
+    /* ABOUT */
+    .about{ display:grid; grid-template-columns: 1fr 420px; gap:28px; align-items:center }
+    .text-card{ padding:26px; border-radius:12px; background: linear-gradient(180deg, rgba(255,255,255,0.95), rgba(250,245,255,0.98)); box-shadow: var(--card-shadow); color:var(--text) }
 
-  .contact-glass label{ display:block; font-weight:600; margin-top:10px }
-  .contact-glass input, .contact-glass textarea{ width:100%; padding:12px; margin-top:8px; border-radius:8px; border:1px solid #eee; font-size:0.95rem }
+    /* GALLERY */
+    .gallery-wrap{ margin-top:8px }
+    .gallery-grid{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:18px;
+    }
+    .card{ background: linear-gradient(180deg, rgba(255,255,255,0.75), rgba(255,255,255,0.7)); border-radius:12px; padding:10px; box-shadow:var(--card-shadow); transition: transform .28s ease, box-shadow .28s; overflow:hidden; position:relative; }
+    .card img{ width:100%; height:320px; object-fit:cover; display:block; border-radius:8px; transition: transform .28s ease, filter .28s ease; }
+    .card:hover{ transform: translateY(-6px); box-shadow:0 30px 70px rgba(18,8,40,0.12) }
+    .card:hover img{ transform: scale(1.04) }
 
-  .contact-glass button{ margin-top:12px; padding:12px 18px; border-radius:999px; border:none; background:linear-gradient(90deg,var(--accent-2),var(--accent)); color:white; font-weight:700; cursor:pointer }
+    /* Gallery filter buttons */
+    .gallery-filters{ display:flex; justify-content:center; gap:10px; margin-bottom:20px; flex-wrap:wrap }
+    .filter-btn{ padding:8px 16px; border-radius:20px; cursor:pointer; font-weight:600; border:1px solid rgba(255,255,255,0.36); background: rgba(255,255,255,0.6); color:var(--muted) }
+    .filter-btn.active{ background: linear-gradient(90deg,var(--accent-2),var(--accent)); color:white; box-shadow:0 10px 30px rgba(181,88,144,0.12) }
 
-  /* LIGHTBOX */
-  .lb{ position:fixed; inset:0; display:none; align-items:center; justify-content:center; z-index:2200; background: rgba(0,0,0,0.55); backdrop-filter: blur(10px); }
-  .lb.open{ display:flex }
-  .lb-inner{ max-width:92%; max-height:92%; border-radius:12px; overflow:hidden; box-shadow:0 30px 80px rgba(10,6,40,0.6); position:relative }
-  .lb-inner img{ display:block; width:100%; height:auto; max-height:90vh; object-fit:contain; background:#000 }
-  .lb-close{ position:absolute; top:14px; right:14px; font-size:28px; color:white; cursor:pointer; padding:8px; background: rgba(0,0,0,0.45); border-radius:50%; }
-  .lb-nav{ position:absolute; top:50%; transform:translateY(-50%); color:white; font-size:44px; padding:12px; cursor:pointer; user-select:none; }
-  .lb-prev{ left:18px } .lb-next{ right:18px }
+    /* Pagination */
+    .pagination{ display:flex; justify-content:center; gap:12px; margin-top:24px; align-items:center }
+    .pagination-btn{ padding:10px 16px; border-radius:8px; cursor:pointer; background:rgba(255,255,255,0.7); border:1px solid rgba(255,255,255,0.28); font-weight:700; color:var(--muted) }
+    .pagination-btn.disabled{ opacity:0.5; cursor:not-allowed }
+    .page-number{ padding:8px 12px; border-radius:8px; cursor:pointer; background:rgba(255,255,255,0.7); border:1px solid rgba(255,255,255,0.28); font-weight:700; color:var(--muted) }
+    .page-number.active{ background: linear-gradient(90deg,var(--accent-2),var(--accent)); color:white }
 
-  /* Footer */
-  footer{ margin-top:36px; padding:28px 18px; text-align:center; border-radius:18px; background:linear-gradient(90deg,var(--accent-2),var(--accent)); color:#fff; }
+    /* NEWS */
+    .news-grid{ display:grid; grid-template-columns: repeat(3,1fr); gap:18px; margin-top:8px; perspective:1000px }
+    .news-card{ background:linear-gradient(180deg,#fff,#fff); border-radius:12px; overflow:hidden; box-shadow:var(--card-shadow); transition: transform .35s, box-shadow .35s }
+    .news-card:hover{ transform: translateY(-6px) rotateX(0.5deg) }
+    .news-card img{ width:100%; height:160px; object-fit:cover }
+    .news-body{ padding:14px 16px }
 
-  /* ANIMATIONS */
-  @keyframes fadeInUp { from { opacity:0; transform: translateY(12px) } to { opacity:1; transform:translateY(0) } }
-  .reveal{ animation: fadeInUp .7s ease both }
+    /* EXCLUSIVE */
+    .exclusive-box{ text-align:center; padding:30px 20px; margin:40px auto; max-width:600px; border-radius:var(--radius); background: linear-gradient(180deg, rgba(255,255,255,0.92), rgba(250,245,255,0.95)); border:2px solid; border-image: linear-gradient(45deg,var(--accent-2),var(--accent)) 1; box-shadow:0 20px 50px rgba(18,8,40,0.1) }
 
-  /* RESPONSIVE */
-  @media (max-width:1000px){
-    .about, .fan-grid{ grid-template-columns:1fr }
-    .gallery-grid{ grid-template-columns: repeat(2,1fr) }
-    .news-grid{ grid-template-columns: repeat(2,1fr) }
-  }
-  @media (max-width:700px){
-    .gallery-grid{ grid-template-columns: 1fr }
-    .hero-inner{ padding: 18px }
-    .nav .nav-links{ display:none }
-    .hamburger { display:block }
-  }
+    /* FAN */
+    .fan-grid{ display:grid; grid-template-columns: 1fr 420px; gap:24px; margin-top:12px; align-items:start }
+    .fan-box{ padding:18px; border-radius:12px; background: linear-gradient(180deg,#fff,#fff); box-shadow:var(--card-shadow) }
+    .contact-glass{ padding:18px; border-radius:12px; background: linear-gradient(180deg, rgba(255,255,255,0.82), rgba(255,255,255,0.7)); backdrop-filter: blur(10px); }
+
+    .contact-glass label{ display:block; font-weight:600; margin-top:10px }
+    .contact-glass input, .contact-glass textarea{ width:100%; padding:12px; margin-top:8px; border-radius:8px; border:1px solid #eee; font-size:0.95rem }
+
+    /* LIGHTBOX */
+    .lb{ position:fixed; inset:0; display:none; align-items:center; justify-content:center; z-index:2200; background: rgba(0,0,0,0.6); backdrop-filter: blur(16px); }
+    .lb.open{ display:flex }
+    .lb-inner{ max-width:92%; max-height:92%; border-radius:12px; overflow:hidden; box-shadow:0 30px 80px rgba(10,6,40,0.6); position:relative }
+    .lb-inner img{ display:block; width:100%; height:auto; max-height:90vh; object-fit:contain; background:#000 }
+    .lb-close{ position:absolute; top:14px; right:14px; font-size:28px; color:#fff; cursor:pointer; padding:8px; background: rgba(0,0,0,0.45); border-radius:50%; }
+    .lb-nav{ position:absolute; top:50%; transform:translateY(-50%); color:#fff; font-size:44px; padding:12px; cursor:pointer; user-select:none; }
+    .lb-prev{ left:18px } .lb-next{ right:18px }
+
+    /* FOOTER */
+    footer{ margin-top:36px; padding:28px 18px; text-align:center; border-radius:18px; background:linear-gradient(90deg,var(--accent-2),var(--accent)); color:#fff; }
+
+    /* Animations */
+    @keyframes fadeInUp { from { opacity:0; transform: translateY(12px) } to { opacity:1; transform:translateY(0) } }
+    .reveal{ animation: fadeInUp .7s ease both }
+    .reveal-delayed{ animation: fadeInUp .85s ease both }
+
+    /* Responsive tweaks */
+    @media (max-width:1000px){
+      .about, .fan-grid { grid-template-columns: 1fr }
+      .gallery-grid { grid-template-columns: repeat(2,1fr) }
+      .news-grid { grid-template-columns: repeat(2,1fr) }
+      .nav-links{ display:none } /* mobile will use hamburger */
+      .hamburger{ display:block }
+    }
+    @media (max-width:700px){
+      .gallery-grid { grid-template-columns: 1fr; }
+      .card img{ height: 260px }
+      .hero-inner{ padding:18px }
+      .floating-heart{ width:56px; height:56px; font-size:22px }
+    }
+
+    /* Accessible focus outlines */
+    :focus { outline: 3px solid rgba(186,104,200,0.18); outline-offset: 3px; }
   </style>
 </head>
 <body>
@@ -240,14 +266,15 @@
     </nav>
 
     <div style="display:flex; gap:8px; align-items:center;">
-      <button class="theme-toggle" aria-label="Toggle dark mode"><i class="fas fa-moon"></i></button>
-      <button class="hamburger" aria-label="Toggle menu" style="display:none">
+      <button class="theme-toggle" aria-label="Toggle dark mode" title="Toggle theme"><i class="fas fa-moon"></i></button>
+      <button class="hamburger" aria-label="Toggle menu" title="Open menu" style="display:none">
         <span></span><span></span><span></span>
       </button>
     </div>
   </div>
 
-  <button class="floating-heart" aria-label="Go to Fan Zone" onclick="document.getElementById('fan').scrollIntoView({behavior:'smooth'})">❤️</button>
+  <!-- Floating CTA -->
+  <button class="floating-heart" aria-label="Go to Fan Zone" title="Fan Zone" onclick="document.getElementById('fan').scrollIntoView({behavior:'smooth'})">❤️</button>
 
   <!-- HERO -->
   <header class="hero" role="img" aria-label="Aditi hero image">
@@ -261,8 +288,7 @@
     </div>
   </header>
 
-  <!-- MAIN -->
-  <main>
+  <main class="container">
 
     <!-- ABOUT -->
     <section id="about" class="reveal" aria-labelledby="about-title">
@@ -284,37 +310,38 @@
     </section>
 
     <!-- GALLERY -->
-    <section id="gallery" aria-labelledby="gallery-title">
+    <section id="gallery" aria-labelledby="gallery-title" class="reveal-delayed">
       <div class="section-head">
         <h2 id="gallery-title">Gallery</h2>
         <p class="muted">Click any image to open the full view. High-resolution images optimized for web.</p>
       </div>
 
       <!-- Filters -->
-      <div class="gallery-filters">
-        <button class="filter-btn active" data-filter="all">All</button>
+      <div class="gallery-filters" role="toolbar" aria-label="Gallery filters">
+        <button class="filter-btn active" data-filter="all" aria-pressed="true">All</button>
         <button class="filter-btn" data-filter="portrait">Portraits</button>
         <button class="filter-btn" data-filter="event">Events</button>
         <button class="filter-btn" data-filter="casual">Casual</button>
       </div>
 
       <div class="gallery-wrap">
-        <div class="gallery-grid" id="gallery-grid">
-          <!-- dynamically inserted -->
+        <div class="gallery-grid" id="gallery-grid" aria-live="polite" aria-busy="false">
+          <!-- images inserted dynamically -->
         </div>
 
-        <div class="pagination" id="pagination" aria-hidden="true">
-          <button class="pagination-btn" id="prev-btn" disabled><i class="fas fa-chevron-left"></i>&nbsp;Previous</button>
-          <div class="pagination-numbers" id="pagination-numbers"></div>
+        <!-- Pagination Controls -->
+        <div class="pagination" id="pagination" aria-hidden="true" role="navigation" aria-label="Gallery pagination">
+          <button class="pagination-btn" id="prev-btn" disabled aria-disabled="true"><i class="fas fa-chevron-left"></i>&nbsp;Previous</button>
+          <div class="pagination-numbers" id="pagination-numbers" aria-hidden="false" role="group" aria-label="Page numbers"></div>
           <button class="pagination-btn" id="next-btn">Next&nbsp;<i class="fas fa-chevron-right"></i></button>
         </div>
 
-        <div class="pagination-info center muted" id="pagination-info" style="margin-top:12px"></div>
+        <div class="pagination-info center muted" id="pagination-info" style="margin-top:12px" aria-live="polite"></div>
       </div>
     </section>
 
     <!-- NEWS -->
-    <section id="news" aria-labelledby="news-title">
+    <section id="news" aria-labelledby="news-title" class="reveal">
       <div class="section-head">
         <h2 id="news-title">Latest News</h2>
         <p class="muted">Curated updates related to Aditi’s public appearances and projects.</p>
@@ -351,24 +378,24 @@
     </section>
 
     <!-- EXCLUSIVE -->
-    <section id="exclusive" aria-labelledby="exclusive-title">
-      <div class="exclusive-box glass reveal">
+    <section id="exclusive" aria-labelledby="exclusive-title" class="reveal">
+      <div class="exclusive-box glass">
         <div class="lock" style="font-size:36px">🔒</div>
         <h3 id="exclusive-title">Unlock Exclusive Content</h3>
         <p>Access high-resolution desktop wallpapers, behind-the-scenes clips, and early access photos.</p>
-        <a href="#contact" class="cta-exclusive" style="display:inline-block;margin-top:12px;padding:10px 22px;border-radius:999px;background:var(--accent);color:white;font-weight:700">Sign Up for Access</a>
+        <a href="#contact" class="btn" style="margin-top:12px; display:inline-block">Sign Up for Access</a>
       </div>
     </section>
 
     <!-- FAN ZONE -->
-    <section id="fan" aria-labelledby="fan-title">
+    <section id="fan" aria-labelledby="fan-title" class="reveal-delayed">
       <div class="section-head">
         <h2 id="fan-title">Fan Zone</h2>
         <p class="muted">Share art, wallpapers, and messages. Selected works will be featured (with credit).</p>
       </div>
 
       <div class="fan-grid">
-        <div class="fan-box glass reveal">
+        <div class="fan-box glass">
           <p style="font-size:1.03rem;">Want your fan art featured? Tag your posts with <strong>#Aditilicious</strong> or contact the page admin through the form. Be sure to include credits.</p>
           <ul style="margin-top:10px;color:var(--muted)">
             <li>High-res fan art preferred (3000px on longest side).</li>
@@ -377,10 +404,11 @@
           </ul>
         </div>
 
-        <div class="contact-glass glass" id="contact">
+        <div class="contact-glass glass" id="contact" aria-labelledby="contact-title">
+          <h3 id="contact-title" style="margin-top:0; margin-bottom:6px;">Contact / Submissions</h3>
           <form action="https://formspree.io/f/mvgbnrgg" method="POST">
             <label for="name">Name</label>
-            <input id="name" name="name" type="text" required placeholder="Your name">
+            <input id="name" name="name" type="text" required placeholder="Your name" aria-required="true">
 
             <label for="email">Email</label>
             <input id="email" name="_replyto" type="email" required placeholder="your@email.com">
@@ -388,7 +416,7 @@
             <label for="message">Message / Submission notes</label>
             <textarea id="message" name="message" rows="5" placeholder="Tell us about your submission or message"></textarea>
 
-            <button type="submit" style="display:inline-block;margin-top:12px;padding:12px 18px;border-radius:999px;border:none;background:linear-gradient(90deg,var(--accent-2),var(--accent));color:white;font-weight:700;cursor:pointer">Send Message</button>
+            <button type="submit" class="btn" style="width:100%; margin-top:12px">Send Message</button>
           </form>
         </div>
       </div>
@@ -413,78 +441,86 @@
     <div class="lb-inner" role="dialog" aria-modal="true">
       <img id="lb-img" src="" alt="">
     </div>
-    <div class="lb-close" role="button" title="Close">✕</div>
-    <div class="lb-nav lb-prev" role="button" title="Previous">‹</div>
-    <div class="lb-nav lb-next" role="button" title="Next">›</div>
+    <div class="lb-close" role="button" title="Close" aria-label="Close">✕</div>
+    <div class="lb-nav lb-prev" role="button" title="Previous" aria-label="Previous">‹</div>
+    <div class="lb-nav lb-next" role="button" title="Next" aria-label="Next">›</div>
   </div>
 
   <script>
-  // ------------------------
-  // small helpers
-  // ------------------------
+  /* =============================
+     Utilities / Initial Setup
+     ============================= */
   document.getElementById('year').textContent = new Date().getFullYear();
 
-  // ------------------------
-  // Hero glow (mouse-follow subtle)
-  // ------------------------
+  // Small helper: throttled resize
+  function throttle(fn, wait){ let t; return function(){ if(t) return; t=setTimeout(()=>{ fn(); t=null }, wait) } }
+
+  /* =============================
+     HERO GLOW (mouse-follow subtle)
+     ============================= */
   (function(){
     const heroGlow = document.getElementById('hero-glow');
     if(!heroGlow) return;
-    const color1 = 'rgba(244,143,177,0.18)';
-    const color2 = 'rgba(186,104,200,0.14)';
+    const c1 = 'rgba(244,143,177,0.18)';
+    const c2 = 'rgba(186,104,200,0.14)';
     document.addEventListener('mousemove', (e) => {
       const x = (e.clientX / window.innerWidth) * 100;
       const y = (e.clientY / window.innerHeight) * 100;
-      const gradient = `
-        radial-gradient(600px 300px at ${x}% ${y}%, ${color1}, transparent 30%),
-        radial-gradient(600px 300px at ${100-x}% ${100-y}%, ${color2}, transparent 30%)
+      const g = `
+        radial-gradient(700px 380px at ${x}% ${y}%, ${c1}, transparent 28%),
+        radial-gradient(700px 380px at ${100-x}% ${100-y}%, ${c2}, transparent 28%)
       `;
-      heroGlow.style.background = gradient;
+      heroGlow.style.background = g;
     });
   })();
 
-  // ------------------------
-  // Theme toggle
-  // ------------------------
-  (function() {
+  /* =============================
+     THEME TOGGLE
+     ============================= */
+  (function(){
     const tbtn = document.querySelector('.theme-toggle');
+    if(!tbtn) return;
     const icon = tbtn.querySelector('i');
-    const saved = localStorage.getItem('theme');
-    if(saved === 'dark'){ document.documentElement.setAttribute('data-theme','dark'); icon.classList.remove('fa-moon'); icon.classList.add('fa-sun'); }
+    const stored = localStorage.getItem('theme');
+    if(stored === 'dark'){ document.documentElement.setAttribute('data-theme','dark'); icon.classList.remove('fa-moon'); icon.classList.add('fa-sun'); }
     tbtn.addEventListener('click', ()=>{
-      const cur = document.documentElement.getAttribute('data-theme');
-      if(cur === 'dark'){ document.documentElement.setAttribute('data-theme','light'); localStorage.setItem('theme','light'); icon.classList.remove('fa-sun'); icon.classList.add('fa-moon'); }
+      const now = document.documentElement.getAttribute('data-theme');
+      if(now === 'dark'){ document.documentElement.setAttribute('data-theme',''); localStorage.setItem('theme','light'); icon.classList.remove('fa-sun'); icon.classList.add('fa-moon'); }
       else { document.documentElement.setAttribute('data-theme','dark'); localStorage.setItem('theme','dark'); icon.classList.remove('fa-moon'); icon.classList.add('fa-sun'); }
     });
   })();
 
-  // ------------------------
-  // Scroll nav effect & scroll-spy
-  // ------------------------
+  /* =============================
+     NAV SCROLL BEHAVIOR & SCROLL-SPY
+     ============================= */
   (function(){
     const nav = document.querySelector('.nav');
     const links = document.querySelectorAll('.nav-links a');
-    window.addEventListener('scroll', ()=> {
-      if(window.scrollY > 50) nav.classList.add('scrolled'); else nav.classList.remove('scrolled');
-      // scroll-spy:
-      document.querySelectorAll('main section[id]').forEach(section=>{
+
+    function onScroll(){
+      if(window.scrollY > 40) nav.classList.add('scrolled'); else nav.classList.remove('scrolled');
+
+      // scroll spy
+      const sections = document.querySelectorAll('main section[id]');
+      sections.forEach(section => {
         const top = section.offsetTop - 120;
         const bottom = top + section.offsetHeight;
         const id = section.getAttribute('id');
         if(window.scrollY >= top && window.scrollY < bottom){
-          links.forEach(a=> a.classList.remove('active-link'));
-          const match = document.querySelector('.nav-links a[href="#'+id+'"]');
+          links.forEach(a => a.classList.remove('active-link'));
+          const match = document.querySelector('.nav-links a[href="#' + id + '"]');
           if(match) match.classList.add('active-link');
         }
       });
-    });
-    // initial
-    window.dispatchEvent(new Event('scroll'));
+    }
+
+    window.addEventListener('scroll', throttle(onScroll, 60));
+    onScroll();
   })();
 
-  // ------------------------
-  // Hamburger for mobile (keeps structure)
-  // ------------------------
+  /* =============================
+     MOBILE HAMBURGER (keeps structure)
+     ============================= */
   (function(){
     const hb = document.querySelector('.hamburger');
     const navlinks = document.querySelector('.nav-links');
@@ -494,48 +530,65 @@
       navlinks.classList.toggle('active');
       document.body.style.overflow = navlinks.classList.contains('active') ? 'hidden' : '';
     });
-    // close on link click
+
     navlinks.querySelectorAll('a').forEach(a => a.addEventListener('click', ()=>{
       hb.classList.remove('active'); navlinks.classList.remove('active'); document.body.style.overflow = '';
     }));
   })();
 
-  // ------------------------
-  // GALLERY: data, filters, pagination, render
-  // ------------------------
+  /* =============================
+     SCROLL REVEAL FOR SECTIONS
+     ============================= */
   (function(){
+    const sections = document.querySelectorAll('main section, header .hero-inner, .reveal, .reveal-delayed');
+    function reveal() {
+      const trigger = window.innerHeight * 0.85;
+      sections.forEach(s => {
+        const top = s.getBoundingClientRect().top;
+        if(top < trigger) s.classList.add('visible');
+      });
+    }
+    window.addEventListener('scroll', throttle(reveal, 80));
+    reveal();
+  })();
+
+  /* =============================
+     GALLERY: DATA, FILTERS, PAGINATION, RENDER
+     ============================= */
+  (function(){
+    // gallery images list
     const galleryData = [
       { src: 'images/IMG_0483.jpeg', alt: 'Aditi portrait', category: 'portrait' },
       { src: 'images/IMG_0467.jpeg', alt: 'Aditi at event', category: 'event' },
       { src: 'images/IMG_0473.jpeg', alt: 'Aditi portrait', category: 'portrait' },
       { src: 'images/IMG_0469.jpeg', alt: 'Aditi casual', category: 'casual' },
-      { src: 'images/IMG_0505.jpeg', alt: 'Aditi 505', category: 'portrait' },
-      { src: 'images/IMG_0506.jpeg', alt: 'Aditi 506', category: 'event' },
-      { src: 'images/IMG_0507.jpeg', alt: 'Aditi 507', category: 'casual' },
-      { src: 'images/IMG_0508.jpeg', alt: 'Aditi 508', category: 'portrait' },
-      { src: 'images/IMG_0509.jpeg', alt: 'Aditi 509', category: 'event' },
-      { src: 'images/IMG_0510.jpeg', alt: 'Aditi 510', category: 'casual' },
-      { src: 'images/IMG_0511.jpeg', alt: 'Aditi 511', category: 'portrait' },
-      { src: 'images/IMG_0512.jpeg', alt: 'Aditi 512', category: 'event' },
-      { src: 'images/IMG_0513.jpeg', alt: 'Aditi 513', category: 'casual' },
-      { src: 'images/IMG_0514.jpeg', alt: 'Aditi 514', category: 'portrait' },
-      { src: 'images/IMG_0466.jpeg', alt: 'Aditi 466', category: 'event' },
-      { src: 'images/IMG_0456.jpeg', alt: 'Aditi 456', category: 'casual' },
-      { src: 'images/IMG_0457.jpeg', alt: 'Aditi 457', category: 'portrait' },
-      { src: 'images/IMG_0465.jpeg', alt: 'Aditi 465', category: 'event' },
-      { src: 'images/IMG_0464.jpeg', alt: 'Aditi 464', category: 'casual' },
-      { src: 'images/IMG_0471.jpeg', alt: 'Aditi 471', category: 'portrait' },
-      { src: 'images/IMG_0470.jpeg', alt: 'Aditi 470', category: 'event' },
-      { src: 'images/IMG_0515.jpeg', alt: 'Aditi 515', category: 'casual' },
-      { src: 'images/IMG_0517.jpeg', alt: 'Aditi 517', category: 'portrait' },
-      { src: 'images/IMG_0518.jpeg', alt: 'Aditi 518', category: 'event' },
-      { src: 'images/IMG_0519.jpeg', alt: 'Aditi 519', category: 'casual' },
-      { src: 'images/IMG_0520.jpeg', alt: 'Aditi 520', category: 'portrait' },
-      { src: 'images/IMG_0535.jpeg', alt: 'Aditi 535', category: 'portrait' },
-      { src: 'images/IMG_0536.jpeg', alt: 'Aditi 536', category: 'portrait' },
-      { src: 'images/IMG_0537.jpeg', alt: 'Aditi 537', category: 'portrait' },
-      { src: 'images/IMG_0538.jpeg', alt: 'Aditi 538', category: 'portrait' },
-      { src: 'images/IMG_0472.jpeg', alt: 'Aditi 472', category: 'event' },
+      { src: 'images/IMG_0505.jpeg', alt: 'IMG_0505', category: 'portrait' },
+      { src: 'images/IMG_0506.jpeg', alt: 'IMG_0506', category: 'event' },
+      { src: 'images/IMG_0507.jpeg', alt: 'IMG_0507', category: 'casual' },
+      { src: 'images/IMG_0508.jpeg', alt: 'IMG_0508', category: 'portrait' },
+      { src: 'images/IMG_0509.jpeg', alt: 'IMG_0509', category: 'event' },
+      { src: 'images/IMG_0510.jpeg', alt: 'IMG_0510', category: 'casual' },
+      { src: 'images/IMG_0511.jpeg', alt: 'IMG_0511', category: 'portrait' },
+      { src: 'images/IMG_0512.jpeg', alt: 'IMG_0512', category: 'event' },
+      { src: 'images/IMG_0513.jpeg', alt: 'IMG_0513', category: 'casual' },
+      { src: 'images/IMG_0514.jpeg', alt: 'IMG_0514', category: 'portrait' },
+      { src: 'images/IMG_0466.jpeg', alt: 'IMG_0466', category: 'event' },
+      { src: 'images/IMG_0456.jpeg', alt: 'IMG_0456', category: 'casual' },
+      { src: 'images/IMG_0457.jpeg', alt: 'IMG_0457', category: 'portrait' },
+      { src: 'images/IMG_0465.jpeg', alt: 'IMG_0465', category: 'event' },
+      { src: 'images/IMG_0464.jpeg', alt: 'IMG_0464', category: 'casual' },
+      { src: 'images/IMG_0471.jpeg', alt: 'IMG_0471', category: 'portrait' },
+      { src: 'images/IMG_0470.jpeg', alt: 'IMG_0470', category: 'event' },
+      { src: 'images/IMG_0515.jpeg', alt: 'IMG_0515', category: 'casual' },
+      { src: 'images/IMG_0517.jpeg', alt: 'IMG_0517', category: 'portrait' },
+      { src: 'images/IMG_0518.jpeg', alt: 'IMG_0518', category: 'event' },
+      { src: 'images/IMG_0519.jpeg', alt: 'IMG_0519', category: 'casual' },
+      { src: 'images/IMG_0520.jpeg', alt: 'IMG_0520', category: 'portrait' },
+      { src: 'images/IMG_0535.jpeg', alt: 'IMG_0535', category: 'portrait' },
+      { src: 'images/IMG_0536.jpeg', alt: 'IMG_0536', category: 'portrait' },
+      { src: 'images/IMG_0537.jpeg', alt: 'IMG_0537', category: 'portrait' },
+      { src: 'images/IMG_0538.jpeg', alt: 'IMG_0538', category: 'portrait' },
+      { src: 'images/IMG_0472.jpeg', alt: 'IMG_0472', category: 'event' }
     ];
 
     // DOM refs
@@ -568,6 +621,7 @@
 
     // render gallery
     function renderGallery(){
+      galleryGrid.setAttribute('aria-busy','true');
       galleryGrid.classList.add('loading');
       const start = (currentPage - 1) * itemsPerPage;
       const end = start + itemsPerPage;
@@ -577,18 +631,37 @@
       setTimeout(()=>{
         pageData.forEach(item => {
           const card = document.createElement('div');
-          card.className = 'card glass reveal';
+          card.className = 'card reveal';
           card.setAttribute('data-category', item.category);
+
           const img = document.createElement('img');
           img.src = item.src;
           img.alt = item.alt;
           img.loading = 'lazy';
+          img.style.borderRadius = '8px';
+          img.style.display = 'block';
+
+          // small caption overlay
+          const cap = document.createElement('div');
+          cap.style.position = 'absolute';
+          cap.style.left = '12px';
+          cap.style.bottom = '12px';
+          cap.style.padding = '6px 10px';
+          cap.style.borderRadius = '999px';
+          cap.style.fontSize = '0.85rem';
+          cap.style.background = 'linear-gradient(90deg, rgba(0,0,0,0.22), rgba(0,0,0,0.12))';
+          cap.style.color = '#fff';
+          cap.textContent = item.category;
+
           card.appendChild(img);
+          card.appendChild(cap);
           galleryGrid.appendChild(card);
         });
+
         galleryGrid.classList.remove('loading');
-        initLightbox();
-      }, 200);
+        galleryGrid.setAttribute('aria-busy','false');
+        initLightbox(); // rewire lightbox
+      }, 220);
     }
 
     // pagination
@@ -606,6 +679,9 @@
         const btn = document.createElement('div');
         btn.className = 'page-number ' + (i===currentPage ? 'active' : '');
         btn.textContent = i;
+        btn.style.display = 'inline-flex';
+        btn.style.alignItems = 'center';
+        btn.style.justifyContent = 'center';
         btn.addEventListener('click', ()=> goToPage(i));
         paginationNumbers.appendChild(btn);
       }
@@ -642,8 +718,8 @@
 
     filterBtns.forEach(btn => {
       btn.addEventListener('click', ()=>{
-        filterBtns.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
+        filterBtns.forEach(b => { b.classList.remove('active'); b.setAttribute('aria-pressed','false') });
+        btn.classList.add('active'); btn.setAttribute('aria-pressed','true');
         currentFilter = btn.getAttribute('data-filter');
         updateFilteredData();
         renderGallery();
@@ -652,21 +728,17 @@
       });
     });
 
-    // react to resize
-    let resizeTimeout;
-    window.addEventListener('resize', ()=> {
-      clearTimeout(resizeTimeout);
-      resizeTimeout = setTimeout(()=> {
-        const newItems = getItemsPerPage();
-        if(newItems !== itemsPerPage) {
-          itemsPerPage = newItems;
-          updateFilteredData();
-          renderGallery();
-          setupPagination();
-          updatePaginationInfo();
-        }
-      }, 220);
-    });
+    // on resize adjust items per page
+    window.addEventListener('resize', throttle(()=>{
+      const newItems = getItemsPerPage();
+      if(newItems !== itemsPerPage){
+        itemsPerPage = newItems;
+        updateFilteredData();
+        renderGallery();
+        setupPagination();
+        updatePaginationInfo();
+      }
+    }, 220));
 
     // initialize
     updateFilteredData();
@@ -674,9 +746,9 @@
     setupPagination();
     updatePaginationInfo();
 
-    // ------------------------
-    // LIGHTBOX
-    // ------------------------
+    /* =============================
+       LIGHTBOX (inside gallery function scope)
+       ============================= */
     function initLightbox(){
       const images = Array.from(document.querySelectorAll('.gallery-grid .card img'));
       const lb = document.getElementById('lightbox');
@@ -687,6 +759,7 @@
       let idx = 0;
 
       function open(i){
+        if(!images[i]) return;
         idx = i;
         lbImg.src = images[i].src;
         lbImg.alt = images[i].alt || 'Aditi';
@@ -703,27 +776,51 @@
       function prev(){ idx = (idx - 1 + images.length) % images.length; lbImg.src = images[idx].src }
       function next(){ idx = (idx + 1) % images.length; lbImg.src = images[idx].src }
 
-      images.forEach((img,i)=> img.onclick = ()=> open(i));
+      // attach events
+      images.forEach((img,i)=> {
+        // keyboard nav + touch support will be global
+        img.onclick = ()=> open(i);
+        // small tilt effect on mobile / hover
+        img.addEventListener('mouseenter', ()=> img.style.transform='scale(1.03)');
+        img.addEventListener('mouseleave', ()=> img.style.transform='');
+      });
+
       closeBtn.onclick = close;
       prevBtn.onclick = prev;
       nextBtn.onclick = next;
 
-      document.onkeydown = function(e){
+      // keyboard support
+      document.addEventListener('keydown', (e)=>{
         if(!lb.classList.contains('open')) return;
         if(e.key === 'Escape') close();
         if(e.key === 'ArrowLeft') prev();
         if(e.key === 'ArrowRight') next();
-      }
-      lb.onclick = function(e){ if(e.target === lb) close(); }
+      });
+
+      // click outside to close
+      lb.onclick = function(e){ if(e.target === lb) close(); };
+
+      // touch swipe support for mobile
+      let touchStartX = 0;
+      let touchEndX = 0;
+      lbImg.addEventListener('touchstart', e => touchStartX = e.changedTouches[0].screenX);
+      lbImg.addEventListener('touchend', e => {
+        touchEndX = e.changedTouches[0].screenX;
+        if(touchEndX + 30 < touchStartX) next();
+        if(touchEndX - 30 > touchStartX) prev();
+      });
     }
 
   })();
 
-  // ------------------------
-  // small accessibility / focus
-  // ------------------------
-  document.addEventListener('keyup', (e)=> { if(e.key === 'Tab') document.body.classList.add('show-focus') });
+  /* =============================
+     Accessibility focus & small polish
+     ============================= */
+  document.addEventListener('keyup', (e)=> {
+    if(e.key === 'Tab') document.body.classList.add('show-focus');
+  });
 
   </script>
+
 </body>
 </html>
