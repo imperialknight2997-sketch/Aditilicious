@@ -446,39 +446,43 @@
     </section>
 
     <!-- FAN ZONE -->
-    <section id="fanzone" class="fanzone-section glass">
-  <div class="container">
-    <h2 class="section-title">🌟 Fan Zone</h2>
-    <p class="section-subtitle">A community space for all Aditi Budhathoki admirers</p>
+    <section id="fan" aria-labelledby="fan-title" class="reveal-delayed">
+  <div class="section-head">
+    <h2 id="fan-title">Fan Zone</h2>
+    <p class="muted">Share art, wallpapers, and messages. Selected works will be featured (with credit).</p>
+  </div>
 
-    <div class="fan-grid">
-      <!-- Fan Messages -->
-      <div class="fan-card glass">
-        <h3>💌 Fan Messages</h3>
-        <p>Share your love for Aditi and read heartfelt notes from fans worldwide.</p>
-        <a href="#" class="btn">View Messages</a>
-      </div>
+  <div class="fan-grid">
+    <div class="fan-box">
+      <p style="font-size:1.03rem;">Want your fan art featured? Tag your posts with <strong>#Aditilicious</strong> or contact the page admin. Be sure to include credits.</p>
+      <ul style="margin-top:10px;color:var(--muted)">
+        <li>High-res fan art preferred (3000px on longest side).</li>
+        <li>Include your social handle for credit.</li>
+        <li>Only non-offensive, respectful content will be featured.</li>
+      </ul>
 
-      <!-- Quiz -->
-      <div class="fan-card glass">
-        <h3>🧩 Aditi Quiz</h3>
-        <p>Test how well you really know Aditi! Fun trivia, leaderboard & prizes.</p>
-        <a href="#" class="btn">Play Quiz</a>
+      <!-- Fan Zone Buttons -->
+      <div class="fan-buttons">
+        <a href="#gallery" class="fan-btn">📸 View Messages</a>
+        <a href="quiz.html" class="fan-btn">🎯 Fan Quiz</a>
+        <a href="https://www.instagram.com/aditi_budhathoki" target="_blank" rel="noopener" class="fan-btn">💖 Join Now</a>
+        <a href="#contact" class="fan-btn">✉️ Contact</a>
       </div>
+    </div>
 
-      <!-- Gallery -->
-      <div class="fan-card glass">
-        <h3>📸 Fan Gallery</h3>
-        <p>Upload and browse creative edits, artworks, and fan clicks of Aditi.</p>
-        <a href="#" class="btn">Explore Gallery</a>
-      </div>
+    <div class="contact-glass" id="contact">
+      <form action="https://formspree.io/f/mvgbnrgg" method="POST">
+        <label for="name">Name</label>
+        <input id="name" name="name" type="text" required placeholder="Your name">
 
-      <!-- Meetups -->
-      <div class="fan-card glass">
-        <h3>🤝 Meet & Connect</h3>
-        <p>Find fellow fans, plan meetups, or join discussions around Aditi’s work.</p>
-        <a href="#" class="btn">Join Now</a>
-      </div>
+        <label for="email">Email</label>
+        <input id="email" name="_replyto" type="email" required placeholder="your@email.com">
+
+        <label for="message">Message / Submission notes</label>
+        <textarea id="message" name="message" rows="5" placeholder="Tell us about your submission or message"></textarea>
+
+        <button type="submit">Send Message</button>
+      </form>
     </div>
   </div>
 </section>
