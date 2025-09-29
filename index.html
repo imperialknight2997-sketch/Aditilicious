@@ -1,1127 +1,235 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Aditi Budhathoki ✨ — Premium Fanpage</title>
+  <title>Aditi Budhathoki ✨ — Aditilicious (Premium Fanpage)</title>
 
-  <meta name="description" content="Aditi Budhathoki — premium fanpage: gallery, news, fan zone and exclusive content." />
-  <meta name="keywords" content="Aditi Budhathoki, Aditi, fanpage, gallery, photos, Nepali actress" />
-  <meta property="og:title" content="Aditi Budhathoki ✨ — Premium Fanpage" />
-  <meta property="og:description" content="A premium fan-made tribute: photos, updates, and fan creations celebrating Aditi Budhathoki." />
+  <!-- Basic SEO / Social -->
+  <meta name="description" content="Aditilicious — premium fan-made tribute to Aditi Budhathoki. Gallery, news, fan zone, and exclusive content." />
+  <meta name="keywords" content="Aditi Budhathoki, fanpage, gallery, photos, Nepal, actress" />
+  <meta property="og:title" content="Aditilicious ✨ — Premium Fanpage" />
+  <meta property="og:description" content="Premium fan-made tribute: photos, updates, and fan creations celebrating Aditi Budhathoki." />
   <meta property="og:image" content="images/IMG_0483.jpeg" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://your-username.github.io/your-repo" />
   <meta name="twitter:card" content="summary_large_image" />
 
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <style>
-  /* =====================================
-  1. Variables & Base Styles
-  ===================================== 
-  */
+  /* ===========================
+     VARIABLES & BASE
+     =========================== */
   :root{
-    --bg:#fbf7ff;
-    --card:#fff;
-    --muted:#6b6b7a;
-    --accent:#ba68c8;     /* lavender */
-    --accent-2:#f48fb1;   /* pink */
-    --glass: rgba(255,255,255,0.55);
     --maxw:1200px;
+    --nav-height:80px;
+    --accent:#ba68c8;
+    --accent-2:#f48fb1;
+    --bg-start:#FFD6FF; /* you mentioned this */
+    --bg-end:#FFEDD8;
+    --glass-bg: rgba(255,255,255,0.14);
+    --glass-border: rgba(255,255,255,0.28);
+    --glass-blur: 18px;
+    --text: #161616;
+    --muted: #6b6b7a;
     --radius:14px;
-    --nav-height: 80px;
-    --text-primary: #161616;
-    --text-secondary: #6b6b7a;
-    --shadow-color: rgba(16,8,32,0.09);
-    --transition: all 0.3s ease;
+    --transition: 0.32s cubic-bezier(.2,.9,.3,1);
   }
-
-  /* Dark Mode Variables */
-  [data-theme="dark"] {
-    --bg: #0f0f1a;
-    --card: #1a1a2e;
-    --muted: #a0a0b0;
-    --accent: #c97bd9;
-    --accent-2: #f48fb1;
-    --glass: rgba(26,26,46,0.7);
-    --text-primary: #e2e8f0;
-    --text-secondary: #a0a0b0;
-    --shadow-color: rgba(0,0,0,0.3);
-  }
-
   *{box-sizing:border-box}
   html{scroll-behavior:smooth}
   body{
     margin:0;
     font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;
-    /* PREMIUM BACKGROUND: Subtle gradient with texture */
-    background: 
-      radial-gradient(circle at 15% 50%, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0) 25%),
-      radial-gradient(circle at 85% 30%, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0) 25%),
-      radial-gradient(circle at 50% 80%, rgba(244, 143, 177, 0.03) 0%, rgba(255, 255, 255, 0) 30%),
-      linear-gradient(135deg, #faf6ff 0%, #f5f1fa 100%);
-    color: var(--text-primary);
+    color:var(--text);
+    background: linear-gradient(180deg,var(--bg-start),var(--bg-end) 140px);
     -webkit-font-smoothing:antialiased;
     -moz-osx-font-smoothing:grayscale;
-    line-height:1.6;
     padding-top: var(--nav-height);
-    position: relative;
-    overflow-x: hidden;
-    transition: var(--transition);
+    line-height:1.6;
   }
 
-  /* Dark mode background */
-  [data-theme="dark"] body {
-    background: 
-      radial-gradient(circle at 15% 50%, rgba(26, 26, 46, 0.3) 0%, rgba(15, 15, 26, 0) 25%),
-      radial-gradient(circle at 85% 30%, rgba(26, 26, 46, 0.3) 0%, rgba(15, 15, 26, 0) 25%),
-      radial-gradient(circle at 50% 80%, rgba(186, 104, 200, 0.1) 0%, rgba(15, 15, 26, 0) 30%),
-      linear-gradient(135deg, #0f0f1a 0%, #1a1a2e 100%);
+  /* Universal glass utility (applied to containers only) */
+  .glass {
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--glass-blur)) saturate(140%);
+    -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(140%);
+    border-radius: var(--radius);
+    border: 1px solid var(--glass-border);
+    box-shadow: 0 12px 40px rgba(12,6,30,0.06);
+    transition: box-shadow var(--transition), transform var(--transition);
   }
+  /* keep text background clean */
+  .no-glass-bg { background: transparent !important; border: none !important; backdrop-filter: none !important; -webkit-backdrop-filter: none !important; }
 
-  /* Add subtle animated particles for extra premium feel */
-  body::before {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: 
-      radial-gradient(1px 1px at 20% 30%, rgba(186, 104, 200, 0.1) 1px, transparent 0),
-      radial-gradient(1px 1px at 40% 70%, rgba(244, 143, 177, 0.1) 1px, transparent 0),
-      radial-gradient(1px 1px at 60% 20%, rgba(186, 104, 200, 0.1) 1px, transparent 0),
-      radial-gradient(1px 1px at 80% 50%, rgba(244, 143, 177, 0.1) 1px, transparent 0),
-      radial-gradient(1px 1px at 30% 80%, rgba(186, 104, 200, 0.1) 1px, transparent 0);
-    background-size: 200px 200px;
-    background-position: 0 0;
-    animation: float 20s infinite linear;
-    z-index: -1;
-    pointer-events: none;
-    transition: var(--transition);
-  }
+  a{ color: inherit; text-decoration:none; }
+  h1,h2{ font-family:'Playfair Display', serif; color:var(--accent); margin:0 }
+  p{ margin:0 0 1rem 0; color:var(--text) }
 
-  [data-theme="dark"] body::before {
-    background-image: 
-      radial-gradient(1px 1px at 20% 30%, rgba(186, 104, 200, 0.2) 1px, transparent 0),
-      radial-gradient(1px 1px at 40% 70%, rgba(244, 143, 177, 0.2) 1px, transparent 0),
-      radial-gradient(1px 1px at 60% 20%, rgba(186, 104, 200, 0.2) 1px, transparent 0),
-      radial-gradient(1px 1px at 80% 50%, rgba(244, 143, 177, 0.2) 1px, transparent 0),
-      radial-gradient(1px 1px at 30% 80%, rgba(186, 104, 200, 0.2) 1px, transparent 0);
-  }
-
-  @keyframes float {
-    100% {
-      background-position: 200px 200px;
-    }
-  }
-
-  /* Responsive Typography */
-  .hero h1 {
-    font-size: clamp(2rem, 8vw, 3.4rem);
-    line-height: 1.1;
-  }
-
-  .section-head h2 {
-    font-size: clamp(1.5rem, 6vw, 2rem);
-  }
-
-  .hero p {
-    font-size: clamp(0.9rem, 3vw, 1.1rem);
-  }
-
-  .about .text-card p {
-    font-size: clamp(0.95rem, 2.5vw, 1.05rem);
-  }
-
-  h1,h2{font-family:'Playfair Display',serif;color:var(--accent);margin:0}
-  a{color:inherit}
-
-  /* =====================================
-  2. Navigation & Sticky Elements
-  ===================================== 
-  */
+  /* ===========================
+     NAVIGATION
+     =========================== */
   .nav {
-    position:fixed; top:18px; left:50%; transform:translateX(-50%);
-    width:calc(100% - 48px); max-width:var(--maxw);
-    display:flex; align-items:center; justify-content:space-between;
+    position: fixed;
+    top: 18px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(100% - 48px);
+    max-width: var(--maxw);
+    z-index: 1200;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:12px;
     padding:10px 18px;
-    background: linear-gradient(180deg, rgba(255,255,255,0.85), rgba(255,255,255,0.75));
     border-radius:999px;
-    backdrop-filter: blur(12px) saturate(1.2);
-    box-shadow: 0 12px 40px var(--shadow-color);
-    z-index:1200;
-    border: 1px solid rgba(255,255,255,0.2);
-    transition: var(--transition);
   }
-
-  [data-theme="dark"] .nav {
-    background: linear-gradient(180deg, rgba(26,26,46,0.85), rgba(26,26,46,0.75));
-    border: 1px solid rgba(255,255,255,0.1);
-  }
-
-  .nav-left {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-  }
-
-  /* Hamburger Menu */
-  .hamburger {
-    display: none;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 24px;
-    height: 18px;
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    padding: 0;
-    z-index: 1000;
-  }
-
-  .hamburger span {
-    display: block;
-    height: 2px;
-    width: 100%;
-    background: var(--text-primary);
-    border-radius: 2px;
-    transition: all 0.3s ease;
-    transform-origin: center;
-  }
-
-  .hamburger.active span:nth-child(1) {
-    transform: rotate(45deg) translate(6px, 6px);
-  }
-
-  .hamburger.active span:nth-child(2) {
-    opacity: 0;
-  }
-
-  .hamburger.active span:nth-child(3) {
-    transform: rotate(-45deg) translate(6px, -6px);
-  }
-
-  .brand {
-    display:flex; align-items:center; gap:12px;
-    font-weight:600; font-size:1.05rem;
-    letter-spacing:0.2px;
-    background:linear-gradient(90deg,var(--accent-2),var(--accent));
+  .brand { font-weight:700; font-size:1.05rem; display:flex; align-items:center; gap:10px;
+    background: linear-gradient(90deg,var(--accent-2),var(--accent));
     -webkit-background-clip:text; background-clip:text; color:transparent;
   }
-  .nav-links{
-    display:flex; gap:12px; align-items:center;
+  .nav .nav-links{ display:flex; gap:12px; align-items:center }
+  .nav .nav-links a{
+    padding:8px 12px; border-radius:10px; font-weight:600; color:var(--text); transition:var(--transition);
+    position:relative;
   }
-  .nav-links a{
-    padding:8px 12px; border-radius:10px; text-decoration:none;
-    color:var(--text-primary); font-weight:600; font-size:0.95rem;
-    transition: var(--transition);
-    position: relative;
+  .nav .nav-links a::after{
+    content:''; position:absolute; left:50%; bottom:6px; width:0; height:2px; background:linear-gradient(90deg,var(--accent-2),var(--accent)); transform:translateX(-50%); transition:width .25s;
   }
-  .nav-links a::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    width: 0;
-    height: 2px;
-    background: linear-gradient(90deg,var(--accent-2),var(--accent));
-    transition: var(--transition);
-    transform: translateX(-50%);
-  }
-  .nav-links a:hover::after,
-  .nav-links a.active-link::after {
-    width: 80%;
-  }
-  .nav-links a:hover{
-    transform:translateY(-3px);
-    color:var(--accent-2);
-    box-shadow: 0 8px 20px rgba(186,104,200,0.12);
-  }
-  .nav-links a.active-link {
-    color: var(--accent);
-    background: rgba(255, 255, 255, 0.7); 
-    box-shadow: 0 4px 12px rgba(186,104,200,0.1);
-    transform: none;
-  }
-  [data-theme="dark"] .nav-links a.active-link {
-    background: rgba(255, 255, 255, 0.1);
-  }
-  .nav-links a.active-link:hover {
-    transform: translateY(-3px);
-  }
+  .nav .nav-links a:hover::after, .nav .nav-links a.active-link::after { width:70% }
+  .nav.scrolled { box-shadow:0 18px 36px rgba(12,6,30,0.08) }
 
-  /* Theme Toggle Button */
-  .theme-toggle {
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: var(--transition);
-    margin-left: 10px;
-    color: var(--text-primary);
-  }
+  .hamburger { display:none; border:none; background:transparent; gap:4px; padding:6px }
+  .hamburger span{ display:block; width:20px; height:2px; background:var(--text); border-radius:2px; transition:all .25s }
 
-  .theme-toggle:hover {
-    background: rgba(255,255,255,0.2);
-    transform: scale(1.1);
-  }
+  .theme-toggle{ background:transparent; border:none; cursor:pointer; padding:8px; border-radius:10px; font-size:16px }
 
-  [data-theme="dark"] .theme-toggle:hover {
-    background: rgba(255,255,255,0.1);
-  }
-
-  .theme-toggle i {
-    font-size: 1.2rem;
-    transition: var(--transition);
-  }
-
-  /* Floating heart CTA */
+  /* Floating CTA */
   .floating-heart {
-    position:fixed; right:22px; bottom:22px; z-index:1300;
-    width:64px; height:64px; border-radius:50%;
-    background:linear-gradient(90deg,var(--accent-2),var(--accent));
-    display:flex;align-items:center;justify-content:center;color:#fff;font-size:26px;
-    box-shadow:0 12px 30px rgba(181,88,144,0.18); cursor:pointer;
-    animation: floaty 3s ease-in-out infinite;
-    transition: transform 0.3s cubic-bezier(.2,.9,.3,1), box-shadow 0.3s ease; 
-    border: none;
-    z-index: 1000;
+    position: fixed; right:22px; bottom:22px; z-index:1300;
+    width:62px;height:62px;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;color:white;font-size:26px;
+    background: linear-gradient(90deg,var(--accent-2),var(--accent));
+    box-shadow:0 14px 38px rgba(181,88,144,0.16);
+    cursor:pointer; transition: transform .25s;
   }
-  @keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
-  .floating-heart:hover {
-    transform: scale(1.1) translateY(-8px); 
-    box-shadow: 0 18px 40px rgba(181,88,144,0.3);
-  }
-  .floating-heart:active {
-    transform: scale(0.95);
-  }
+  .floating-heart:hover{ transform: translateY(-6px) }
 
-  /* =====================================
-  3. Hero Section (Dynamic & Parallax)
-  ===================================== 
-  */
+  /* ===========================
+     HERO
+     =========================== */
   .hero {
-    min-height:calc(100vh - 48px);
+    min-height: calc(100vh - var(--nav-height));
     display:flex; align-items:center; justify-content:center; text-align:center;
-    padding:72px 18px 96px; position:relative; overflow:hidden;
+    position:relative; overflow:hidden; padding: 72px 18px 96px;
     background: url('images/IMG_0483.jpeg') center/cover no-repeat;
-    perspective: 1px;
   }
-  /* Dynamic Background Glow Layer (controlled by JS) */
+  /* glow layer under content (subtle) */
   .hero-glow{
-    position:absolute; inset:-20% -10% auto -10%;
-    height:380px;
-    filter: blur(80px); pointer-events:none; z-index:0;
-    transform: translateZ(-1px) scale(2);
-    transition: background 0.1s linear;
+    position:absolute; inset:-20% -10% auto -10%; height:420px; filter:blur(80px); z-index:0; pointer-events:none; transform: translateZ(-1px) scale(2);
   }
+  .hero-overlay{ position:absolute; inset:0; background: linear-gradient(180deg, rgba(0,0,0,0.08), rgba(0,0,0,0.18)); z-index:1 }
+  .hero-inner{ position:relative; z-index:2; color:white; max-width:900px; padding:40px; transform:translateY(12px) }
+  .hero-inner h1{ font-size: clamp(2rem,6vw,3.6rem); text-shadow: 0 10px 40px rgba(0,0,0,0.45) }
+  .hero-inner p{ font-size:1.05rem; margin-top:14px; text-shadow: 0 6px 20px rgba(0,0,0,0.35) }
+  .hero .cta{ display:inline-block; margin-top:20px; padding:12px 22px; border-radius:999px; background:linear-gradient(90deg,var(--accent-2),var(--accent)); color:white; font-weight:700; text-decoration:none; box-shadow:0 16px 42px rgba(181,88,144,0.16); transition:var(--transition) }
+  .hero .cta:hover{ transform: translateY(-4px) }
 
-  /* Cinematic Gradient Overlay */
- .hero-overlay {
-    position:absolute; inset:0; 
-    background: linear-gradient(180deg, rgba(0,0,0,0.15), rgba(0,0,0,0.35));
-    z-index:1;
-  }
-  .hero-inner {
-    position:relative; z-index:2; max-width:900px; color:white;
-    padding:40px;
-    transform: translateY(18px);
-    animation: heroIn .9s cubic-bezier(.2,.9,.3,1) .08s both;
-  }
-  @keyframes heroIn{from{opacity:0; transform:translateY(28px)} to{opacity:1; transform:translateY(0)}}
-  .hero p{ margin-top:12px; opacity:0.95; text-shadow:0 10px 30px rgba(0,0,0,0.4)}
-  .hero .cta {
-    display:inline-block; margin-top:20px; padding:12px 20px; border-radius:999px;
-    background:linear-gradient(90deg,var(--accent-2),var(--accent)); color:white; font-weight:700;
-    text-decoration:none; box-shadow:0 16px 42px rgba(181,88,144,0.16);
-    transition: all 0.3s ease;
-    position: relative;
-    overflow: hidden;
-  }
-  .hero .cta::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-    transition: left 0.5s;
-  }
-  .hero .cta:hover::before {
-    left: 100%;
-  }
-  .hero .cta:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 20px 50px rgba(181,88,144,0.3);
-  }
-  .hero .scroll-hint{ display:block; margin-top:26px; opacity:0.9; font-size:0.95rem; color:rgba(255,255,255,0.9) }
-
-  /* =====================================
-  4. Main Content Layout
-  ===================================== 
-  */
-  main{
-    max-width:var(--maxw); margin:48px auto; padding:0 18px 80px;
-    border-radius:var(--radius);
-    position: relative;
-    z-index: 1;
-  }
+  /* ===========================
+     MAIN S E C T I O N S
+     =========================== */
+  main { max-width:var(--maxw); margin:48px auto; padding:0 18px 80px; }
   .section-head { text-align:center; margin-bottom:18px }
-  .section-head p { color:var(--muted); margin:0 auto; max-width:820px }
+  .section-head h2{ font-size: clamp(1.6rem,4vw,2.2rem); color:var(--accent); margin-bottom:8px }
+  .section-head p{ color:var(--muted) }
 
   /* ABOUT */
-  .about {
-    display:grid; grid-template-columns: 1fr 420px; gap:28px; align-items:center;
-    margin-top:6px;
-  }
-  .about .text-card{
-    background:linear-gradient(180deg, rgba(255,255,255,0.95), rgba(250,245,255,0.98));
-    padding:26px; border-radius:12px; box-shadow:0 12px 40px rgba(12,6,30,0.04);
-    transition: transform 0.3s ease;
-    border: 1px solid rgba(255,255,255,0.5);
-    color: var(--text-primary);
-  }
-
-  [data-theme="dark"] .about .text-card {
-    background: linear-gradient(180deg, rgba(26,26,46,0.95), rgba(30,30,50,0.98));
-    border: 1px solid rgba(255,255,255,0.1);
-  }
-
-  .about .text-card:hover {
-    transform: translateY(-5px);
-  }
-  .about img{
-    width:100%; border-radius:12px; height:360px; object-fit:cover; box-shadow:0 18px 44px rgba(12,6,30,0.06);
-    transition: transform 0.5s ease;
-  }
-  .about img:hover {
-    transform: scale(1.02);
-  }
+  .about{ display:grid; grid-template-columns: 1fr 420px; gap:28px; align-items:center; margin-top:6px }
+  .about .text-card{ padding:26px; border-radius:12px; background: linear-gradient(180deg, rgba(255,255,255,0.95), rgba(250,245,255,0.98)); box-shadow:0 12px 40px rgba(12,6,30,0.04); color:var(--text) }
+  .about img{ width:100%; border-radius:12px; height:360px; object-fit:cover; box-shadow:0 18px 44px rgba(12,6,30,0.06) }
 
   /* GALLERY */
-  .gallery-wrap{ margin-top:8px }
+  .gallery-wrap { margin-top:8px }
   .gallery-grid{
-    display:grid; grid-template-columns: repeat(3, 1fr); gap:18px;
-    opacity: 1;
-    transition: opacity 0.3s ease;
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap:18px;
   }
-  .gallery-grid.loading {
-    opacity: 0.5;
-  }
-  .card {
-    background: linear-gradient(180deg, rgba(255,255,255,0.85), rgba(255,255,255,0.75));
-    border-radius:12px; padding:10px; backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    box-shadow:0 14px 40px rgba(18,8,40,0.06);
-    transition: transform .28s cubic-bezier(.2,.9,.3,1), box-shadow .28s ease;
-    overflow:hidden;
-    position: relative;
-    border: 1px solid rgba(255,255,255,0.5);
-    animation: fadeIn 0.5s ease;
-  }
+  .card { position:relative; overflow:hidden; border-radius:12px; }
+  .card img{ width:100%; height:320px; object-fit:cover; display:block; border-radius:8px; transition: transform .28s ease, box-shadow .28s ease; }
+  .card:hover img{ transform: scale(1.03); box-shadow: 0 18px 48px rgba(12,6,30,0.12) }
 
-  @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
+  /* Gallery filters + pagination */
+  .gallery-filters{ display:flex; justify-content:center; gap:10px; margin-bottom:20px; flex-wrap:wrap }
+  .filter-btn{ padding:8px 16px; border-radius:20px; cursor:pointer; font-weight:600; border:1px solid rgba(255,255,255,0.32); background: rgba(255,255,255,0.6); color:var(--muted) }
+  .filter-btn.active{ background: linear-gradient(90deg,var(--accent-2),var(--accent)); color:white; box-shadow:0 10px 30px rgba(181,88,144,0.12) }
 
-  [data-theme="dark"] .card {
-    background: linear-gradient(180deg, rgba(26,26,46,0.85), rgba(30,30,50,0.75));
-    border: 1px solid rgba(255,255,255,0.1);
-  }
+  .pagination{ display:flex; justify-content:center; gap:12px; margin-top:24px; align-items:center }
+  .pagination-btn{ padding:10px 16px; border-radius:8px; cursor:pointer; background:rgba(255,255,255,0.7); border:1px solid rgba(255,255,255,0.28); font-weight:700; color:var(--muted) }
+  .pagination-btn.disabled{ opacity:0.5; cursor:not-allowed }
+  .page-number{ padding:8px 12px; border-radius:8px; cursor:pointer; background:rgba(255,255,255,0.7); border:1px solid rgba(255,255,255,0.28); font-weight:700; color:var(--muted) }
+  .page-number.active{ background: linear-gradient(90deg,var(--accent-2),var(--accent)); color:white }
 
-  .card:hover{ transform: translateY(-6px); box-shadow:0 30px 70px rgba(18,8,40,0.12) }
-  .card img{
-    width:100%; height:320px; object-fit:cover; display:block; border-radius:8px;
-    transition: transform .28s ease;
-  }
-  .card:hover img{ transform: scale(1.03) }
-  
-  /* Gallery filter buttons */
-  .gallery-filters {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    margin-bottom: 20px;
-    flex-wrap: wrap;
-  }
-  .filter-btn {
-    padding: 8px 16px;
-    border: none;
-    background: rgba(255,255,255,0.7);
-    border-radius: 20px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    font-weight: 600;
-    color: var(--muted);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255,255,255,0.3);
-  }
-
-  [data-theme="dark"] .filter-btn {
-    background: rgba(26,26,46,0.7);
-    border: 1px solid rgba(255,255,255,0.1);
-  }
-
-  .filter-btn.active, .filter-btn:hover {
-    background: linear-gradient(90deg,var(--accent-2),var(--accent));
-    color: white;
-  }
-
-  /* Pagination Styles */
-  .pagination {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 40px;
-    gap: 10px;
-  }
-
-  .pagination-btn {
-    background: rgba(255,255,255,0.7);
-    border: 1px solid rgba(255,255,255,0.3);
-    border-radius: 8px;
-    padding: 10px 16px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    font-weight: 600;
-    color: var(--muted);
-    backdrop-filter: blur(10px);
-  }
-
-  [data-theme="dark"] .pagination-btn {
-    background: rgba(26,26,46,0.7);
-    border: 1px solid rgba(255,255,255,0.1);
-  }
-
-  .pagination-btn:hover:not(.disabled) {
-    background: linear-gradient(90deg,var(--accent-2),var(--accent));
-    color: white;
-    transform: translateY(-2px);
-  }
-
-  .pagination-btn.disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-  }
-
-  .pagination-numbers {
-    display: flex;
-    gap: 6px;
-  }
-
-  .page-number {
-    width: 40px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    font-weight: 600;
-    background: rgba(255,255,255,0.7);
-    border: 1px solid rgba(255,255,255,0.3);
-    color: var(--muted);
-  }
-
-  [data-theme="dark"] .page-number {
-    background: rgba(26,26,46,0.7);
-    border: 1px solid rgba(255,255,255,0.1);
-  }
-
-  .page-number.active {
-    background: linear-gradient(90deg,var(--accent-2),var(--accent));
-    color: white;
-  }
-
-  .page-number:hover:not(.active) {
-    background: rgba(255,255,255,0.9);
-    transform: translateY(-2px);
-  }
-
-  [data-theme="dark"] .page-number:hover:not(.active) {
-    background: rgba(255,255,255,0.1);
-  }
-
-  .pagination-info {
-    margin-top: 10px;
-    text-align: center;
-    color: var(--muted);
-    font-size: 0.9rem;
-  }
-
-  /* NEWS CARDS: Professional 3D Tilt */
-  .news-grid{ 
-    display:grid; grid-template-columns: repeat(3,1fr); gap:18px; margin-top:8px; 
-    perspective: 1000px;
-  }
-  .news-card{
-    background:linear-gradient(180deg, var(--card), var(--card)); 
-    border-radius:12px; overflow:hidden; 
-    box-shadow:0 16px 40px rgba(12,6,30,0.04);
-    transform-style: preserve-3d;
-    transition: transform 0.5s cubic-bezier(.2,.9,.3,1), box-shadow 0.5s ease;
-    will-change: transform;
-    border: 1px solid rgba(255,255,255,0.5);
-    color: var(--text-primary);
-  }
-
-  [data-theme="dark"] .news-card {
-    border: 1px solid rgba(255,255,255,0.1);
-  }
-
-  .news-card:hover {
-    transform: rotateY(2deg) rotateX(1deg) scale(1.02);
-    box-shadow: 0 25px 50px rgba(12,6,30,0.1);
-  }
-
+  /* NEWS */
+  .news-grid{ display:grid; grid-template-columns: repeat(3,1fr); gap:18px; margin-top:8px; }
+  .news-card{ padding:0; border-radius:12px; overflow:hidden; background: linear-gradient(180deg,#fff,#fff); box-shadow:0 16px 40px rgba(12,6,30,0.04) }
   .news-card img{ width:100%; height:160px; object-fit:cover }
   .news-body{ padding:14px 16px }
-  .news-body h3{ margin:0 0 8px 0; color:var(--accent); font-size:1.05rem }
-  .news-body p{ margin:0; color:var(--muted); font-size:0.95rem }
+  .news-body h3{ color:var(--accent); margin-bottom:8px }
 
-  /* EXCLUSIVE CONTENT BOX */
-  .exclusive-box {
-    text-align:center; padding:30px 20px; margin:40px auto; max-width:600px;
-    border-radius:var(--radius);
-    background: linear-gradient(180deg, rgba(255,255,255,0.9), rgba(250,245,255,0.95));
-    border: 2px solid;
-    border-image: linear-gradient(45deg, var(--accent-2), var(--accent)) 1;
-    box-shadow: 0 20px 50px rgba(18,8,40,0.1);
-    transition: all 0.4s cubic-bezier(.2,.9,.3,1); 
-    overflow: hidden;
-    position: relative;
-    color: var(--text-primary);
-  }
+  /* EXCLUSIVE */
+  .exclusive-box{ text-align:center; padding:30px 20px; margin:40px auto; max-width:600px; border-radius:var(--radius); background: linear-gradient(180deg, rgba(255,255,255,0.92), rgba(250,245,255,0.95)); border:2px solid; border-image: linear-gradient(45deg,var(--accent-2),var(--accent)) 1; box-shadow:0 20px 50px rgba(18,8,40,0.1) }
+  .exclusive-box h3{ color:var(--accent-2); margin-bottom:10px }
 
-  [data-theme="dark"] .exclusive-box {
-    background: linear-gradient(180deg, rgba(26,26,46,0.9), rgba(30,30,50,0.95));
-  }
-
-  .exclusive-box::before {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
-    transform: rotate(45deg);
-    transition: all 0.6s;
-    opacity: 0;
-  }
-  .exclusive-box:hover::before {
-    opacity: 1;
-    animation: shine 1.5s;
-  }
-  @keyframes shine {
-    0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
-    100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
-  }
-  .exclusive-box:hover {
-    box-shadow: 0 25px 60px rgba(181,88,144,0.25);
-    transform: translateY(-5px);
-  }
-  .exclusive-box h3 { color:var(--accent-2); font-size:1.6rem; margin:0 0 10px 0; }
-  .exclusive-box p { margin-bottom:18px; }
-  .exclusive-box .lock { 
-    font-size:32px; color:var(--accent); margin-bottom:12px; display:inline-block;
-    animation: lockShake 1.5s ease infinite; 
-  }
-  @keyframes lockShake {
-    0%, 100% { transform: rotate(0deg); }
-    10% { transform: rotate(-5deg); }
-    20% { transform: rotate(5deg); }
-    30% { transform: rotate(-3deg); }
-  }
-  .exclusive-box a {
-    display:inline-block; padding:10px 24px; border-radius:999px; font-weight:700;
-    background:var(--accent); color:#fff; text-decoration:none;
-    transition:background .2s ease;
-    position: relative;
-    z-index: 1;
-  }
-  .exclusive-box a:hover { background:var(--accent-2); }
-
-  /* FAN ZONE & CONTACT (glass form) */
+  /* FAN & CONTACT */
   .fan-grid{ display:grid; grid-template-columns: 1fr 420px; gap:24px; margin-top:12px; align-items:start }
-  .fan-box{ 
-    padding:18px; border-radius:12px; 
-    background:linear-gradient(180deg, var(--card), var(--card)); 
-    box-shadow:0 12px 36px rgba(12,6,30,0.04);
-    color: var(--text-primary);
-  }
-  .contact-glass{
-    background: linear-gradient(180deg, rgba(255,255,255,0.75), rgba(255,255,255,0.65));
-    border-radius:12px; padding:18px; backdrop-filter: blur(12px);
-    border: 1px solid rgba(255,255,255,0.4);
-  }
+  .fan-box{ padding:18px; border-radius:12px; background: linear-gradient(180deg,#fff,#fff); box-shadow:0 12px 36px rgba(12,6,30,0.04) }
+  .contact-glass{ padding:18px; border-radius:12px; background: linear-gradient(180deg, rgba(255,255,255,0.75), rgba(255,255,255,0.65)); backdrop-filter: blur(10px); }
 
-  [data-theme="dark"] .contact-glass {
-    background: linear-gradient(180deg, rgba(26,26,46,0.75), rgba(30,30,50,0.65));
-    border: 1px solid rgba(255,255,255,0.1);
-  }
+  .contact-glass label{ display:block; font-weight:600; margin-top:10px }
+  .contact-glass input, .contact-glass textarea{ width:100%; padding:12px; margin-top:8px; border-radius:8px; border:1px solid #eee; font-size:0.95rem }
 
-  .contact-glass label{ display:block; font-weight:600; margin-top:10px; font-size:0.95rem; color: var(--text-primary) }
-  .contact-glass input, .contact-glass textarea {
-    width:100%; padding:12px; margin-top:8px; border-radius:8px; border:1px solid rgba(0,0,0,0.1); font-size:0.95rem;
-    transition: all 0.3s ease;
-    background: rgba(255,255,255,0.7);
-    color: var(--text-primary);
-  }
+  .contact-glass button{ margin-top:12px; padding:12px 18px; border-radius:999px; border:none; background:linear-gradient(90deg,var(--accent-2),var(--accent)); color:white; font-weight:700; cursor:pointer }
 
-  [data-theme="dark"] .contact-glass input, 
-  [data-theme="dark"] .contact-glass textarea {
-    background: rgba(255,255,255,0.1);
-    border: 1px solid rgba(255,255,255,0.1);
-  }
-
-  .contact-glass input:focus, .contact-glass textarea:focus {
-    outline: none;
-    border-color: var(--accent);
-    box-shadow: 0 0 0 2px rgba(186,104,200,0.2);
-    background: rgba(255,255,255,0.9);
-  }
-
-  [data-theme="dark"] .contact-glass input:focus, 
-  [data-theme="dark"] .contact-glass textarea:focus {
-    background: rgba(255,255,255,0.2);
-  }
-
-  .contact-glass button{
-    margin-top:12px; padding:12px 18px; border-radius:999px; border:none;
-    background:linear-gradient(90deg,var(--accent-2),var(--accent)); color:#fff; font-weight:700; cursor:pointer;
-    box-shadow:0 14px 34px rgba(181,88,144,0.14);
-    transition: all 0.3s ease;
-  }
-  .contact-glass button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 18px 40px rgba(181,88,144,0.25);
-  }
-
-  /* =====================================
-  5. Utility & Responsiveness
-  ===================================== 
-  */
-  footer{
-    margin-top:36px; padding:28px 18px; text-align:center; border-radius:18px; 
-    background:linear-gradient(90deg,var(--accent-2),var(--accent)); 
-    color:#fff;
-    position: relative;
-    z-index: 1;
-  }
-
-  /* LIGHTBOX overlay (blurred) */
-  .lb{
-    position:fixed; inset:0; display:none; align-items:center; justify-content:center; z-index:2200;
-    background: rgba(255,255,255,0.06); backdrop-filter: blur(16px);
-    opacity: 0;
-    transition: opacity 0.3s ease;
-  }
-
-  [data-theme="dark"] .lb {
-    background: rgba(0,0,0,0.7);
-  }
-
-  .lb.open{ 
-    display:flex;
-    opacity: 1;
-  }
-  .lb-inner{ 
-    max-width:92%; max-height:92%; border-radius:12px; overflow:hidden; 
-    box-shadow:0 30px 80px rgba(10,6,40,0.6); position:relative;
-    transform: scale(0.9);
-    transition: transform 0.3s ease;
-  }
-  .lb.open .lb-inner {
-    transform: scale(1);
-  }
+  /* LIGHTBOX */
+  .lb{ position:fixed; inset:0; display:none; align-items:center; justify-content:center; z-index:2200; background: rgba(0,0,0,0.55); backdrop-filter: blur(10px); }
+  .lb.open{ display:flex }
+  .lb-inner{ max-width:92%; max-height:92%; border-radius:12px; overflow:hidden; box-shadow:0 30px 80px rgba(10,6,40,0.6); position:relative }
   .lb-inner img{ display:block; width:100%; height:auto; max-height:90vh; object-fit:contain; background:#000 }
-  .lb-close{ 
-    position:absolute; top:14px; right:14px; font-size:28px; color:#fff; cursor:pointer; padding:8px;
-    transition: transform 0.3s ease;
-    background: rgba(0,0,0,0.5);
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255,255,255,0.2);
+  .lb-close{ position:absolute; top:14px; right:14px; font-size:28px; color:white; cursor:pointer; padding:8px; background: rgba(0,0,0,0.45); border-radius:50%; }
+  .lb-nav{ position:absolute; top:50%; transform:translateY(-50%); color:white; font-size:44px; padding:12px; cursor:pointer; user-select:none; }
+  .lb-prev{ left:18px } .lb-next{ right:18px }
+
+  /* Footer */
+  footer{ margin-top:36px; padding:28px 18px; text-align:center; border-radius:18px; background:linear-gradient(90deg,var(--accent-2),var(--accent)); color:#fff; }
+
+  /* ANIMATIONS */
+  @keyframes fadeInUp { from { opacity:0; transform: translateY(12px) } to { opacity:1; transform:translateY(0) } }
+  .reveal{ animation: fadeInUp .7s ease both }
+
+  /* RESPONSIVE */
+  @media (max-width:1000px){
+    .about, .fan-grid{ grid-template-columns:1fr }
+    .gallery-grid{ grid-template-columns: repeat(2,1fr) }
+    .news-grid{ grid-template-columns: repeat(2,1fr) }
   }
-  .lb-close:hover {
-    transform: scale(1.1);
-    background: rgba(0,0,0,0.7);
-  }
-
-  /* Improved Lightbox Navigation Arrows - Option 1: Gradient Background */
-  .lb-nav{ 
-    position:absolute; top:50%; transform:translateY(-50%); 
-    color:#fff; font-size:44px; padding:16px; cursor:pointer; user-select:none;
-    transition: all 0.3s ease;
-    background: linear-gradient(135deg, var(--accent-2), var(--accent));
-    border-radius: 50%;
-    width: 60px;
-    height: 60px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 2px solid rgba(255,255,255,0.5);
-    box-shadow: 0 8px 32px rgba(0,0,0,0.4);
-  }
-
-  .lb-nav:hover {
-    background: linear-gradient(135deg, var(--accent), var(--accent-2));
-    transform: translateY(-50%) scale(1.1);
-    box-shadow: 0 12px 40px rgba(0,0,0,0.6);
-  }
-
-  .lb-prev{ left:30px; }
-  .lb-next{ right:30px; }
-
-  /* Loading animation for images */
-  .card img {
-    background: #f0f0f0;
-    position: relative;
-    overflow: hidden;
-  }
-  .card img::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
-    animation: loading 1.5s infinite;
-  }
-  @keyframes loading {
-    0% { left: -100%; }
-    100% { left: 100%; }
-  }
-
-  /* small helpers */
-  .muted{ color:var(--muted) }
-  .center{ text-align:center }
-
-  /* =====================================
-  6. ENHANCED RESPONSIVE DESIGN
-  ===================================== */
-
-  /* Enhanced Responsive Design */
-  @media (max-width: 1200px) {
-    .nav {
-        width: calc(100% - 40px);
-        padding: 12px 20px;
-    }
-    
-    main {
-        padding: 0 20px 60px;
-    }
-  }
-
-  @media (max-width: 1000px) { 
-    .gallery-grid { 
-        grid-template-columns: repeat(2, 1fr);
-        gap: 16px;
-    }
-    
-    .news-grid { 
-        grid-template-columns: repeat(2, 1fr);
-        gap: 16px;
-    }
-    
-    .fan-grid { 
-        grid-template-columns: 1fr;
-        gap: 20px;
-    }
-    
-    .about { 
-        grid-template-columns: 1fr;
-        gap: 24px;
-    }
-    
-    .about img { 
-        order: -1;
-        height: 300px;
-    }
-    
-    .card img {
-        height: 280px;
-    }
-  }
-
-  /* Mobile Styles */
-  @media (max-width: 768px) {
-    body {
-        padding-top: 70px;
-    }
-    
-    .nav {
-        top: 12px;
-        width: calc(100% - 32px);
-        padding: 10px 16px;
-    }
-
-    .hamburger {
-        display: flex;
-    }
-
-    .nav-links {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100vh;
-        background: linear-gradient(135deg, rgba(255,255,255,0.98), rgba(250,245,255,0.99));
-        backdrop-filter: blur(30px);
-        flex-direction: column;
-        justify-content: flex-start;
-        align-items: center;
-        gap: 20px;
-        transform: translateX(-100%);
-        transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        z-index: 999;
-        padding-top: 100px;
-    }
-
-    [data-theme="dark"] .nav-links {
-        background: linear-gradient(135deg, rgba(26,26,46,0.98), rgba(30,30,50,0.99));
-    }
-
-    .nav-links.active {
-        transform: translateX(0);
-    }
-
-    .nav-links a {
-        font-size: 1.3rem;
-        padding: 16px 32px;
-        width: 280px;
-        text-align: center;
-        border-radius: 16px;
-        background: rgba(255,255,255,0.1);
-        backdrop-filter: blur(10px);
-        border: 1px solid rgba(255,255,255,0.2);
-        min-height: 44px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .theme-toggle {
-        margin-left: 0;
-        margin-top: 30px;
-        width: 50px;
-        height: 50px;
-        font-size: 1.4rem;
-        min-width: 44px;
-        min-height: 44px;
-    }
-
-    /* Mobile menu close button */
-    .nav-links::before {
-        content: '✕';
-        position: absolute;
-        top: 30px;
-        right: 30px;
-        font-size: 28px;
-        color: var(--text-primary);
-        cursor: pointer;
-        z-index: 1000;
-    }
-    
-    .hero {
-        min-height: calc(100vh - 60px);
-        padding: 60px 16px 80px;
-    }
-    
-    .hero-inner {
-        padding: 30px 20px;
-    }
-    
-    .gallery-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 12px;
-    }
-    
-    .card img {
-        height: 200px;
-    }
-    
-    .news-grid {
-        grid-template-columns: 1fr;
-        gap: 16px;
-    }
-    
-    .pagination {
-        flex-wrap: wrap;
-        gap: 8px;
-    }
-    
-    .pagination-numbers {
-        order: -1;
-        width: 100%;
-        justify-content: center;
-        margin-bottom: 10px;
-    }
-    
-    .exclusive-box {
-        margin: 30px auto;
-        padding: 25px 16px;
-    }
-    
-    .floating-heart {
-        width: 56px;
-        height: 56px;
-        font-size: 22px;
-        right: 16px;
-        bottom: 16px;
-    }
-
-    /* Lightbox responsive */
-    .lb-nav {
-        width: 50px;
-        height: 50px;
-        font-size: 36px;
-        padding: 12px;
-    }
-    
-    .lb-prev { left: 15px; }
-    .lb-next { right: 15px; }
-    
-    .lb-close {
-        width: 35px;
-        height: 35px;
-        font-size: 24px;
-    }
-
-    /* Performance optimizations for mobile */
-    .hero-glow {
-        display: none;
-    }
-    
-    body::before {
-        animation: none;
-    }
-    
-    /* Reduce blur effects on mobile */
-    .nav,
-    .card,
-    .contact-glass {
-        backdrop-filter: blur(8px);
-    }
-  }
-
-  @media (max-width: 480px) {
-    .gallery-grid {
-        grid-template-columns: 1fr;
-        gap: 12px;
-    }
-    
-    .card img {
-        height: 250px;
-    }
-    
-    .gallery-filters {
-        gap: 8px;
-    }
-    
-    .filter-btn {
-        padding: 6px 12px;
-        font-size: 0.85rem;
-        min-height: 44px;
-    }
-    
-    .hero .cta {
-        padding: 10px 18px;
-        font-size: 0.95rem;
-    }
-    
-    .about img {
-        height: 250px;
-    }
-    
-    .about .text-card {
-        padding: 20px;
-    }
-    
-    .contact-glass {
-        padding: 16px;
-    }
-    
-    footer {
-        padding: 24px 16px;
-        margin-top: 30px;
-    }
-
-    .pagination-btn,
-    .page-number {
-        min-height: 44px;
-    }
-  }
-
-  /* Touch-friendly improvements */
-  @media (hover: none) and (pointer: coarse) {
-    .card:hover {
-        transform: none;
-    }
-    
-    .card:hover img {
-        transform: none;
-    }
-    
-    .nav-links a:hover {
-        transform: none;
-        box-shadow: none;
-    }
-    
-    .news-card:hover {
-        transform: none;
-    }
-    
-    /* Add active states for touch */
-    .card:active {
-        transform: scale(0.98);
-    }
-    
-    .nav-links a:active {
-        background: rgba(255,255,255,0.3);
-        transform: scale(0.95);
-    }
-  }
-
-  /* Progressive enhancement for high-performance devices */
-  @media (min-width: 769px) and (prefers-reduced-motion: no-preference) {
-    .card,
-    .news-card,
-    .exclusive-box {
-        will-change: transform;
-    }
+  @media (max-width:700px){
+    .gallery-grid{ grid-template-columns: 1fr }
+    .hero-inner{ padding: 18px }
+    .nav .nav-links{ display:none }
+    .hamburger { display:block }
   }
   </style>
 </head>
 <body>
 
-  <div class="nav" role="banner" aria-label="Primary navigation">
-    <div class="nav-left">
-      <button class="hamburger" aria-label="Toggle menu" aria-expanded="false">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
-      <div class="brand">Aditilicious</div>
-    </div>
-    
+  <!-- NAV -->
+  <div class="nav glass" role="banner" aria-label="Primary navigation">
+    <div class="brand">Aditilicious</div>
+
     <nav class="nav-links" aria-label="Main">
       <a href="#about">About</a>
       <a href="#gallery">Gallery</a>
@@ -1129,14 +237,19 @@
       <a href="#exclusive">Exclusive</a>
       <a href="#fan">Fan Zone</a>
       <a href="#contact">Contact</a>
-      <button class="theme-toggle" aria-label="Toggle dark mode">
-        <i class="fas fa-moon"></i>
-      </button>
     </nav>
+
+    <div style="display:flex; gap:8px; align-items:center;">
+      <button class="theme-toggle" aria-label="Toggle dark mode"><i class="fas fa-moon"></i></button>
+      <button class="hamburger" aria-label="Toggle menu" style="display:none">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
   </div>
 
   <button class="floating-heart" aria-label="Go to Fan Zone" onclick="document.getElementById('fan').scrollIntoView({behavior:'smooth'})">❤️</button>
 
+  <!-- HERO -->
   <header class="hero" role="img" aria-label="Aditi hero image">
     <div class="hero-glow" id="hero-glow"></div>
     <div class="hero-overlay" aria-hidden="true"></div>
@@ -1144,36 +257,40 @@
       <h1>Aditi Budhathoki</h1>
       <p>Beauty · Elegance · Inspiration</p>
       <a class="cta" href="#gallery">View Gallery</a>
-      <div class="center" style="margin-top:14px"><span class="scroll-hint muted">Scroll down to explore</span></div>
+      <div style="margin-top:14px"><span class="scroll-hint" style="color:rgba(255,255,255,0.95)">Scroll down to explore</span></div>
     </div>
   </header>
 
+  <!-- MAIN -->
   <main>
 
-    <section id="about" aria-labelledby="about-title">
+    <!-- ABOUT -->
+    <section id="about" class="reveal" aria-labelledby="about-title">
       <div class="section-head">
         <h2 id="about-title">About Aditi</h2>
-        <p class="muted">A curated fan tribute celebrating Aditi's work, style and inspiration.</p>
+        <p class="muted">A curated fan tribute celebrating Aditi’s work, style and inspiration.</p>
       </div>
+
       <div class="about" style="margin-top:12px">
-        <div class="text-card about-card">
-          <p style="color:var(--text-primary);">
+        <div class="text-card glass about-card reveal">
+          <p style="font-size:1.05rem; color:var(--text);">
             Aditi Budhathoki is a Nepali actress and model admired for her elegance and on-screen charisma.
             This fanpage highlights high-quality photos, latest updates, and fan creations in a refined, respectful space.
           </p>
           <p class="muted" style="margin-top:12px">Fan-curated collection — not official.</p>
         </div>
-        <img src="images/IMG_0473.jpeg" alt="Aditi portrait" loading="lazy">
+        <img src="images/IMG_0473.jpeg" alt="Aditi portrait" loading="lazy" class="reveal" style="border-radius:12px;"/>
       </div>
     </section>
 
+    <!-- GALLERY -->
     <section id="gallery" aria-labelledby="gallery-title">
       <div class="section-head">
         <h2 id="gallery-title">Gallery</h2>
         <p class="muted">Click any image to open the full view. High-resolution images optimized for web.</p>
       </div>
 
-      <!-- Gallery Filter Buttons -->
+      <!-- Filters -->
       <div class="gallery-filters">
         <button class="filter-btn active" data-filter="all">All</button>
         <button class="filter-btn" data-filter="portrait">Portraits</button>
@@ -1183,38 +300,28 @@
 
       <div class="gallery-wrap">
         <div class="gallery-grid" id="gallery-grid">
-          <!-- Images will be dynamically loaded here -->
+          <!-- dynamically inserted -->
         </div>
 
-        <!-- Pagination Controls -->
-        <div class="pagination" id="pagination">
-          <button class="pagination-btn" id="prev-btn" disabled>
-            <i class="fas fa-chevron-left"></i> Previous
-          </button>
-          
-          <div class="pagination-numbers" id="pagination-numbers">
-            <!-- Page numbers will be dynamically generated here -->
-          </div>
-          
-          <button class="pagination-btn" id="next-btn">
-            Next <i class="fas fa-chevron-right"></i>
-          </button>
+        <div class="pagination" id="pagination" aria-hidden="true">
+          <button class="pagination-btn" id="prev-btn" disabled><i class="fas fa-chevron-left"></i>&nbsp;Previous</button>
+          <div class="pagination-numbers" id="pagination-numbers"></div>
+          <button class="pagination-btn" id="next-btn">Next&nbsp;<i class="fas fa-chevron-right"></i></button>
         </div>
-        
-        <div class="pagination-info" id="pagination-info">
-          <!-- Page info will be dynamically updated here -->
-        </div>
+
+        <div class="pagination-info center muted" id="pagination-info" style="margin-top:12px"></div>
       </div>
     </section>
 
+    <!-- NEWS -->
     <section id="news" aria-labelledby="news-title">
       <div class="section-head">
         <h2 id="news-title">Latest News</h2>
-        <p class="muted">Curated updates related to Aditi's public appearances and projects.</p>
+        <p class="muted">Curated updates related to Aditi’s public appearances and projects.</p>
       </div>
 
       <div class="news-grid">
-        <article class="news-card">
+        <article class="news-card glass reveal">
           <img src="images/IMG_0510.jpeg" alt="news 1" loading="lazy">
           <div class="news-body">
             <h3>New Photoshoot Released</h3>
@@ -1223,16 +330,16 @@
           </div>
         </article>
 
-        <article class="news-card">
+        <article class="news-card glass reveal">
           <img src="images/IMG_0467.jpeg" alt="news 2" loading="lazy">
           <div class="news-body">
             <h3>Upcoming Collaboration</h3>
-            <p>Industry reports suggest an upcoming creative collaboration — we'll update when official details drop.</p>
+            <p>Industry reports suggest an upcoming creative collaboration — we’ll update when official details drop.</p>
             <p class="muted" style="margin-top:8px;font-size:0.85rem">Aug 2025</p>
           </div>
         </article>
 
-        <article class="news-card">
+        <article class="news-card glass reveal">
           <img src="images/IMG_0469.jpeg" alt="news 3" loading="lazy">
           <div class="news-body">
             <h3>Interview & Feature</h3>
@@ -1242,16 +349,18 @@
         </article>
       </div>
     </section>
-    
+
+    <!-- EXCLUSIVE -->
     <section id="exclusive" aria-labelledby="exclusive-title">
-        <div class="exclusive-box">
-            <div class="lock">🔒</div>
-            <h3 id="exclusive-title">Unlock Exclusive Content</h3>
-            <p>Access high-resolution desktop wallpapers, behind-the-scenes clips, and early access photos.</p>
-            <a href="#contact" class="cta-exclusive">Sign Up for Access</a>
-        </div>
+      <div class="exclusive-box glass reveal">
+        <div class="lock" style="font-size:36px">🔒</div>
+        <h3 id="exclusive-title">Unlock Exclusive Content</h3>
+        <p>Access high-resolution desktop wallpapers, behind-the-scenes clips, and early access photos.</p>
+        <a href="#contact" class="cta-exclusive" style="display:inline-block;margin-top:12px;padding:10px 22px;border-radius:999px;background:var(--accent);color:white;font-weight:700">Sign Up for Access</a>
+      </div>
     </section>
 
+    <!-- FAN ZONE -->
     <section id="fan" aria-labelledby="fan-title">
       <div class="section-head">
         <h2 id="fan-title">Fan Zone</h2>
@@ -1259,7 +368,7 @@
       </div>
 
       <div class="fan-grid">
-        <div class="fan-box">
+        <div class="fan-box glass reveal">
           <p style="font-size:1.03rem;">Want your fan art featured? Tag your posts with <strong>#Aditilicious</strong> or contact the page admin through the form. Be sure to include credits.</p>
           <ul style="margin-top:10px;color:var(--muted)">
             <li>High-res fan art preferred (3000px on longest side).</li>
@@ -1268,7 +377,7 @@
           </ul>
         </div>
 
-        <div class="contact-glass" id="contact">
+        <div class="contact-glass glass" id="contact">
           <form action="https://formspree.io/f/mvgbnrgg" method="POST">
             <label for="name">Name</label>
             <input id="name" name="name" type="text" required placeholder="Your name">
@@ -1279,154 +388,170 @@
             <label for="message">Message / Submission notes</label>
             <textarea id="message" name="message" rows="5" placeholder="Tell us about your submission or message"></textarea>
 
-            <button type="submit">Send Message</button>
+            <button type="submit" style="display:inline-block;margin-top:12px;padding:12px 18px;border-radius:999px;border:none;background:linear-gradient(90deg,var(--accent-2),var(--accent));color:white;font-weight:700;cursor:pointer">Send Message</button>
           </form>
         </div>
       </div>
     </section>
 
-    <section aria-labelledby="follow" style="margin-top:28px; text-align:center">
+    <section aria-labelledby="follow" style="margin-top:28px; text-align:center" class="reveal">
       <p class="muted">Follow Aditi: <a href="https://www.instagram.com/aditi_budhathoki" target="_blank" rel="noopener" style="color:var(--accent)">Instagram</a></p>
     </section>
 
   </main>
 
+  <!-- FOOTER -->
   <footer>
     <div style="max-width:var(--maxw); margin:0 auto; padding:0 18px">
       <p style="margin-bottom:8px">Aditilicious — Fan-made tribute · Not official</p>
-      <p style="opacity:0.9; font-size:0.9rem">© <span id="year"></span> All rights reserved.</p>
+      <p style="opacity:0.95; font-size:0.95rem">© <span id="year"></span> All rights reserved.</p>
     </div>
   </footer>
 
+  <!-- LIGHTBOX -->
   <div id="lightbox" class="lb" aria-hidden="true" aria-label="Image preview">
     <div class="lb-inner" role="dialog" aria-modal="true">
       <img id="lb-img" src="" alt="">
     </div>
-    <div class="lb-close" aria-hidden="false" role="button" title="Close">✕</div>
+    <div class="lb-close" role="button" title="Close">✕</div>
     <div class="lb-nav lb-prev" role="button" title="Previous">‹</div>
     <div class="lb-nav lb-next" role="button" title="Next">›</div>
   </div>
 
-  <!-- Font Awesome for icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
   <script>
-  // Set current year
+  // ------------------------
+  // small helpers
+  // ------------------------
   document.getElementById('year').textContent = new Date().getFullYear();
 
-  /* =====================================
-  6. JavaScript Enhancements
-  ===================================== 
-  */
-
-  // --- Enhanced touch handling for mobile ---
-  (function() {
-    // Prevent zoom on double tap (iOS)
-    let lastTouchEnd = 0;
-    document.addEventListener('touchend', function (event) {
-        const now = (new Date()).getTime();
-        if (now - lastTouchEnd <= 300) {
-            event.preventDefault();
-        }
-        lastTouchEnd = now;
-    }, false);
-
-    // Improved hamburger menu touch handling
-    const hamburger = document.querySelector('.hamburger');
-    if (hamburger) {
-        hamburger.addEventListener('touchstart', function(e) {
-            e.preventDefault();
-            this.click();
-        });
-    }
-
-    // Close menu when touching outside on mobile
-    document.addEventListener('touchstart', function(e) {
-        const nav = document.querySelector('.nav');
-        const navLinks = document.querySelector('.nav-links');
-        if (navLinks.classList.contains('active') && !e.target.closest('.nav')) {
-            hamburger.classList.remove('active');
-            navLinks.classList.remove('active');
-            document.body.style.overflow = '';
-        }
+  // ------------------------
+  // Hero glow (mouse-follow subtle)
+  // ------------------------
+  (function(){
+    const heroGlow = document.getElementById('hero-glow');
+    if(!heroGlow) return;
+    const color1 = 'rgba(244,143,177,0.18)';
+    const color2 = 'rgba(186,104,200,0.14)';
+    document.addEventListener('mousemove', (e) => {
+      const x = (e.clientX / window.innerWidth) * 100;
+      const y = (e.clientY / window.innerHeight) * 100;
+      const gradient = `
+        radial-gradient(600px 300px at ${x}% ${y}%, ${color1}, transparent 30%),
+        radial-gradient(600px 300px at ${100-x}% ${100-y}%, ${color2}, transparent 30%)
+      `;
+      heroGlow.style.background = gradient;
     });
   })();
 
-  // --- Hamburger Menu Functionality ---
+  // ------------------------
+  // Theme toggle
+  // ------------------------
   (function() {
-    const hamburger = document.querySelector('.hamburger');
-    const navLinks = document.querySelector('.nav-links');
-    const body = document.body;
-
-    if (hamburger) {
-        hamburger.addEventListener('click', function() {
-            this.classList.toggle('active');
-            navLinks.classList.toggle('active');
-            body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : '';
-        });
-
-        // Close menu when clicking on links
-        navLinks.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                hamburger.classList.remove('active');
-                navLinks.classList.remove('active');
-                body.style.overflow = '';
-            });
-        });
-
-        // Close menu when clicking outside
-        document.addEventListener('click', (e) => {
-            if (!e.target.closest('.nav') && navLinks.classList.contains('active')) {
-                hamburger.classList.remove('active');
-                navLinks.classList.remove('active');
-                body.style.overflow = '';
-            }
-        });
-    }
+    const tbtn = document.querySelector('.theme-toggle');
+    const icon = tbtn.querySelector('i');
+    const saved = localStorage.getItem('theme');
+    if(saved === 'dark'){ document.documentElement.setAttribute('data-theme','dark'); icon.classList.remove('fa-moon'); icon.classList.add('fa-sun'); }
+    tbtn.addEventListener('click', ()=>{
+      const cur = document.documentElement.getAttribute('data-theme');
+      if(cur === 'dark'){ document.documentElement.setAttribute('data-theme','light'); localStorage.setItem('theme','light'); icon.classList.remove('fa-sun'); icon.classList.add('fa-moon'); }
+      else { document.documentElement.setAttribute('data-theme','dark'); localStorage.setItem('theme','dark'); icon.classList.remove('fa-moon'); icon.classList.add('fa-sun'); }
+    });
   })();
 
-  // --- Gallery Pagination System ---
-  (function() {
-    // Gallery data - all your images
+  // ------------------------
+  // Scroll nav effect & scroll-spy
+  // ------------------------
+  (function(){
+    const nav = document.querySelector('.nav');
+    const links = document.querySelectorAll('.nav-links a');
+    window.addEventListener('scroll', ()=> {
+      if(window.scrollY > 50) nav.classList.add('scrolled'); else nav.classList.remove('scrolled');
+      // scroll-spy:
+      document.querySelectorAll('main section[id]').forEach(section=>{
+        const top = section.offsetTop - 120;
+        const bottom = top + section.offsetHeight;
+        const id = section.getAttribute('id');
+        if(window.scrollY >= top && window.scrollY < bottom){
+          links.forEach(a=> a.classList.remove('active-link'));
+          const match = document.querySelector('.nav-links a[href="#'+id+'"]');
+          if(match) match.classList.add('active-link');
+        }
+      });
+    });
+    // initial
+    window.dispatchEvent(new Event('scroll'));
+  })();
+
+  // ------------------------
+  // Hamburger for mobile (keeps structure)
+  // ------------------------
+  (function(){
+    const hb = document.querySelector('.hamburger');
+    const navlinks = document.querySelector('.nav-links');
+    if(!hb) return;
+    hb.addEventListener('click', ()=>{
+      hb.classList.toggle('active');
+      navlinks.classList.toggle('active');
+      document.body.style.overflow = navlinks.classList.contains('active') ? 'hidden' : '';
+    });
+    // close on link click
+    navlinks.querySelectorAll('a').forEach(a => a.addEventListener('click', ()=>{
+      hb.classList.remove('active'); navlinks.classList.remove('active'); document.body.style.overflow = '';
+    }));
+  })();
+
+  // ------------------------
+  // GALLERY: data, filters, pagination, render
+  // ------------------------
+  (function(){
     const galleryData = [
       { src: 'images/IMG_0483.jpeg', alt: 'Aditi portrait', category: 'portrait' },
       { src: 'images/IMG_0467.jpeg', alt: 'Aditi at event', category: 'event' },
       { src: 'images/IMG_0473.jpeg', alt: 'Aditi portrait', category: 'portrait' },
       { src: 'images/IMG_0469.jpeg', alt: 'Aditi casual', category: 'casual' },
-      { src: 'images/IMG_0505.jpeg', alt: 'Aditi portrait', category: 'portrait' },
-      { src: 'images/IMG_0506.jpeg', alt: 'Aditi at event', category: 'event' },
-      { src: 'images/IMG_0507.jpeg', alt: 'Aditi casual', category: 'casual' },
-      { src: 'images/IMG_0508.jpeg', alt: 'Aditi portrait', category: 'portrait' },
-      { src: 'images/IMG_0509.jpeg', alt: 'Aditi at event', category: 'event' },
-      { src: 'images/IMG_0510.jpeg', alt: 'Aditi casual', category: 'casual' },
-      { src: 'images/IMG_0511.jpeg', alt: 'Aditi portrait', category: 'portrait' },
-      { src: 'images/IMG_0512.jpeg', alt: 'Aditi at event', category: 'event' },
-      { src: 'images/IMG_0513.jpeg', alt: 'Aditi casual', category: 'casual' },
-      { src: 'images/IMG_0514.jpeg', alt: 'Aditi portrait', category: 'portrait' },
-      { src: 'images/IMG_0466.jpeg', alt: 'Aditi at event', category: 'event' },
-      { src: 'images/IMG_0456.jpeg', alt: 'Aditi casual', category: 'casual' },
-      { src: 'images/IMG_0457.jpeg', alt: 'Aditi portrait', category: 'portrait' },
-      { src: 'images/IMG_0465.jpeg', alt: 'Aditi at event', category: 'event' },
-      { src: 'images/IMG_0464.jpeg', alt: 'Aditi casual', category: 'casual' },
-      { src: 'images/IMG_0471.jpeg', alt: 'Aditi portrait', category: 'portrait' },
-      { src: 'images/IMG_0470.jpeg', alt: 'Aditi at event', category: 'event' },
-      { src: 'images/IMG_0515.jpeg', alt: 'Aditi casual', category: 'casual' },
-      { src: 'images/IMG_0517.jpeg', alt: 'Aditi portrait', category: 'portrait' },
-      { src: 'images/IMG_0518.jpeg', alt: 'Aditi at event', category: 'event' },
-      { src: 'images/IMG_0519.jpeg', alt: 'Aditi casual', category: 'casual' },
-      { src: 'images/IMG_0520.jpeg', alt: 'Aditi portrait', category: 'portrait' },
-      { src: 'images/IMG_0535.jpeg', alt: 'Aditi portrait', category: 'portrait' },
-      { src: 'images/IMG_0536.jpeg', alt: 'Aditi portrait', category: 'portrait' },
-      { src: 'images/IMG_0537.jpeg', alt: 'Aditi portrait', category: 'portrait' },
-      { src: 'images/IMG_0538.jpeg', alt: 'Aditi portrait', category: 'portrait' },
-      { src: 'images/IMG_0472.jpeg', alt: 'Aditi at event', category: 'event' },
+      { src: 'images/IMG_0505.jpeg', alt: 'Aditi 505', category: 'portrait' },
+      { src: 'images/IMG_0506.jpeg', alt: 'Aditi 506', category: 'event' },
+      { src: 'images/IMG_0507.jpeg', alt: 'Aditi 507', category: 'casual' },
+      { src: 'images/IMG_0508.jpeg', alt: 'Aditi 508', category: 'portrait' },
+      { src: 'images/IMG_0509.jpeg', alt: 'Aditi 509', category: 'event' },
+      { src: 'images/IMG_0510.jpeg', alt: 'Aditi 510', category: 'casual' },
+      { src: 'images/IMG_0511.jpeg', alt: 'Aditi 511', category: 'portrait' },
+      { src: 'images/IMG_0512.jpeg', alt: 'Aditi 512', category: 'event' },
+      { src: 'images/IMG_0513.jpeg', alt: 'Aditi 513', category: 'casual' },
+      { src: 'images/IMG_0514.jpeg', alt: 'Aditi 514', category: 'portrait' },
+      { src: 'images/IMG_0466.jpeg', alt: 'Aditi 466', category: 'event' },
+      { src: 'images/IMG_0456.jpeg', alt: 'Aditi 456', category: 'casual' },
+      { src: 'images/IMG_0457.jpeg', alt: 'Aditi 457', category: 'portrait' },
+      { src: 'images/IMG_0465.jpeg', alt: 'Aditi 465', category: 'event' },
+      { src: 'images/IMG_0464.jpeg', alt: 'Aditi 464', category: 'casual' },
+      { src: 'images/IMG_0471.jpeg', alt: 'Aditi 471', category: 'portrait' },
+      { src: 'images/IMG_0470.jpeg', alt: 'Aditi 470', category: 'event' },
+      { src: 'images/IMG_0515.jpeg', alt: 'Aditi 515', category: 'casual' },
+      { src: 'images/IMG_0517.jpeg', alt: 'Aditi 517', category: 'portrait' },
+      { src: 'images/IMG_0518.jpeg', alt: 'Aditi 518', category: 'event' },
+      { src: 'images/IMG_0519.jpeg', alt: 'Aditi 519', category: 'casual' },
+      { src: 'images/IMG_0520.jpeg', alt: 'Aditi 520', category: 'portrait' },
+      { src: 'images/IMG_0535.jpeg', alt: 'Aditi 535', category: 'portrait' },
+      { src: 'images/IMG_0536.jpeg', alt: 'Aditi 536', category: 'portrait' },
+      { src: 'images/IMG_0537.jpeg', alt: 'Aditi 537', category: 'portrait' },
+      { src: 'images/IMG_0538.jpeg', alt: 'Aditi 538', category: 'portrait' },
+      { src: 'images/IMG_0472.jpeg', alt: 'Aditi 472', category: 'event' },
     ];
 
-    // Adjust items per page based on screen size
-    function getItemsPerPage() {
-        if (window.innerWidth < 480) return 6;  // 1 column
-        if (window.innerWidth < 768) return 8;  // 2 columns
-        return 9; // 3 columns
+    // DOM refs
+    const galleryGrid = document.getElementById('gallery-grid');
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const prevBtn = document.getElementById('prev-btn');
+    const nextBtn = document.getElementById('next-btn');
+    const paginationNumbers = document.getElementById('pagination-numbers');
+    const paginationInfo = document.getElementById('pagination-info');
+    const pagination = document.getElementById('pagination');
+
+    // responsive items per page
+    function getItemsPerPage(){
+      if(window.innerWidth < 480) return 6;
+      if(window.innerWidth < 768) return 8;
+      return 9;
     }
 
     let itemsPerPage = getItemsPerPage();
@@ -1434,170 +559,91 @@
     let currentFilter = 'all';
     let filteredData = [...galleryData];
 
-    // DOM Elements
-    const galleryGrid = document.getElementById('gallery-grid');
-    const pagination = document.getElementById('pagination');
-    const paginationNumbers = document.getElementById('pagination-numbers');
-    const prevBtn = document.getElementById('prev-btn');
-    const nextBtn = document.getElementById('next-btn');
-    const paginationInfo = document.getElementById('pagination-info');
-    const filterBtns = document.querySelectorAll('.filter-btn');
-
-    // Initialize gallery
-    function initGallery() {
-      updateFilteredData();
-      renderGallery();
-      setupPagination();
-      updatePaginationInfo();
+    // update filtered
+    function updateFilteredData(){
+      if(currentFilter === 'all') filteredData = [...galleryData];
+      else filteredData = galleryData.filter(i => i.category === currentFilter);
+      currentPage = 1;
     }
 
-    // Filter gallery data
-    function updateFilteredData() {
-      if (currentFilter === 'all') {
-        filteredData = [...galleryData];
-      } else {
-        filteredData = galleryData.filter(item => item.category === currentFilter);
-      }
-      currentPage = 1; // Reset to first page when filter changes
-    }
-
-    // Render gallery items for current page
-    function renderGallery() {
+    // render gallery
+    function renderGallery(){
       galleryGrid.classList.add('loading');
-      
-      // Calculate start and end indices
-      const startIndex = (currentPage - 1) * itemsPerPage;
-      const endIndex = startIndex + itemsPerPage;
-      const pageData = filteredData.slice(startIndex, endIndex);
-      
-      // Clear current gallery
+      const start = (currentPage - 1) * itemsPerPage;
+      const end = start + itemsPerPage;
+      const pageData = filteredData.slice(start, end);
       galleryGrid.innerHTML = '';
-      
-      // Add loading delay for smooth transition
-      setTimeout(() => {
-        // Add items to gallery
+
+      setTimeout(()=>{
         pageData.forEach(item => {
           const card = document.createElement('div');
-          card.className = 'card';
+          card.className = 'card glass reveal';
           card.setAttribute('data-category', item.category);
-          
           const img = document.createElement('img');
           img.src = item.src;
           img.alt = item.alt;
           img.loading = 'lazy';
-          
           card.appendChild(img);
           galleryGrid.appendChild(card);
         });
-        
         galleryGrid.classList.remove('loading');
-        
-        // Re-initialize lightbox for new images
         initLightbox();
-      }, 300);
+      }, 200);
     }
 
-    // Setup pagination controls
-    function setupPagination() {
-      const totalPages = Math.ceil(filteredData.length / itemsPerPage);
-      
-      // Clear current pagination numbers
+    // pagination
+    function setupPagination(){
+      const totalPages = Math.max(1, Math.ceil(filteredData.length / itemsPerPage));
       paginationNumbers.innerHTML = '';
-      
-      // Determine which page numbers to show
+
       let startPage = Math.max(1, currentPage - 2);
       let endPage = Math.min(totalPages, currentPage + 2);
-      
-      // Adjust if we're at the beginning
-      if (currentPage <= 3) {
-        endPage = Math.min(totalPages, 5);
+
+      if(currentPage <= 3) endPage = Math.min(totalPages, 5);
+      if(currentPage >= totalPages - 2) startPage = Math.max(1, totalPages - 4);
+
+      for(let i=startPage;i<=endPage;i++){
+        const btn = document.createElement('div');
+        btn.className = 'page-number ' + (i===currentPage ? 'active' : '');
+        btn.textContent = i;
+        btn.addEventListener('click', ()=> goToPage(i));
+        paginationNumbers.appendChild(btn);
       }
-      
-      // Adjust if we're at the end
-      if (currentPage >= totalPages - 2) {
-        startPage = Math.max(1, totalPages - 4);
-      }
-      
-      // Add page number buttons
-      for (let i = startPage; i <= endPage; i++) {
-        const pageBtn = document.createElement('div');
-        pageBtn.className = `page-number ${i === currentPage ? 'active' : ''}`;
-        pageBtn.textContent = i;
-        pageBtn.addEventListener('click', () => goToPage(i));
-        paginationNumbers.appendChild(pageBtn);
-      }
-      
-      // Update button states
+
       prevBtn.disabled = currentPage === 1;
       nextBtn.disabled = currentPage === totalPages;
-      
-      if (prevBtn.disabled) {
-        prevBtn.classList.add('disabled');
-      } else {
-        prevBtn.classList.remove('disabled');
-      }
-      
-      if (nextBtn.disabled) {
-        nextBtn.classList.add('disabled');
-      } else {
-        nextBtn.classList.remove('disabled');
-      }
-      
-      // Show/hide pagination based on page count
-      if (totalPages <= 1) {
-        pagination.style.display = 'none';
-      } else {
-        pagination.style.display = 'flex';
+
+      if(prevBtn.disabled) prevBtn.classList.add('disabled'); else prevBtn.classList.remove('disabled');
+      if(nextBtn.disabled) nextBtn.classList.add('disabled'); else nextBtn.classList.remove('disabled');
+
+      if(totalPages <= 1) pagination.style.display = 'none'; else pagination.style.display = 'flex';
+    }
+
+    function updatePaginationInfo(){
+      const total = filteredData.length;
+      if(total === 0) paginationInfo.textContent = 'No images found';
+      else {
+        const startIndex = (currentPage - 1) * itemsPerPage + 1;
+        const endIndex = Math.min(currentPage * itemsPerPage, total);
+        paginationInfo.textContent = `Showing ${startIndex}-${endIndex} of ${total} images`;
       }
     }
 
-    // Update pagination info text
-    function updatePaginationInfo() {
-      const totalItems = filteredData.length;
-      const startIndex = (currentPage - 1) * itemsPerPage + 1;
-      const endIndex = Math.min(currentPage * itemsPerPage, totalItems);
-      
-      if (totalItems === 0) {
-        paginationInfo.textContent = 'No images found';
-      } else {
-        paginationInfo.textContent = `Showing ${startIndex}-${endIndex} of ${totalItems} images`;
-      }
-    }
-
-    // Navigate to specific page
-    function goToPage(page) {
+    function goToPage(page){
       currentPage = page;
       renderGallery();
       setupPagination();
       updatePaginationInfo();
-      
-      // Scroll to gallery section
-      document.getElementById('gallery').scrollIntoView({ behavior: 'smooth' });
+      document.getElementById('gallery').scrollIntoView({behavior:'smooth'});
     }
 
-    // Event listeners for pagination buttons
-    prevBtn.addEventListener('click', () => {
-      if (currentPage > 1) {
-        goToPage(currentPage - 1);
-      }
-    });
+    prevBtn.addEventListener('click', ()=> { if(currentPage>1) goToPage(currentPage-1); });
+    nextBtn.addEventListener('click', ()=> { const totalPages = Math.ceil(filteredData.length/itemsPerPage); if(currentPage < totalPages) goToPage(currentPage+1); });
 
-    nextBtn.addEventListener('click', () => {
-      const totalPages = Math.ceil(filteredData.length / itemsPerPage);
-      if (currentPage < totalPages) {
-        goToPage(currentPage + 1);
-      }
-    });
-
-    // Event listeners for filter buttons
     filterBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        // Remove active class from all buttons
+      btn.addEventListener('click', ()=>{
         filterBtns.forEach(b => b.classList.remove('active'));
-        // Add active class to clicked button
         btn.classList.add('active');
-        
-        // Update filter and re-render
         currentFilter = btn.getAttribute('data-filter');
         updateFilteredData();
         renderGallery();
@@ -1606,213 +652,78 @@
       });
     });
 
-    // Update gallery when screen size changes
+    // react to resize
     let resizeTimeout;
-    window.addEventListener('resize', function() {
+    window.addEventListener('resize', ()=> {
       clearTimeout(resizeTimeout);
-      resizeTimeout = setTimeout(function() {
-        const newItemsPerPage = getItemsPerPage();
-        if (newItemsPerPage !== itemsPerPage) {
-          itemsPerPage = newItemsPerPage;
-          initGallery();
+      resizeTimeout = setTimeout(()=> {
+        const newItems = getItemsPerPage();
+        if(newItems !== itemsPerPage) {
+          itemsPerPage = newItems;
+          updateFilteredData();
+          renderGallery();
+          setupPagination();
+          updatePaginationInfo();
         }
-      }, 250);
+      }, 220);
     });
 
-    // Initialize the gallery
-    initGallery();
-  })();
+    // initialize
+    updateFilteredData();
+    renderGallery();
+    setupPagination();
+    updatePaginationInfo();
 
-  // --- Theme Toggle Functionality ---
-  (function() {
-    const themeToggle = document.querySelector('.theme-toggle');
-    const themeIcon = themeToggle.querySelector('i');
-    
-    // Check for saved theme preference or prefer-color-scheme
-    const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
-    const currentTheme = localStorage.getItem('theme');
-    
-    if (currentTheme === 'dark' || (!currentTheme && prefersDarkScheme.matches)) {
-      document.documentElement.setAttribute('data-theme', 'dark');
-      themeIcon.classList.remove('fa-moon');
-      themeIcon.classList.add('fa-sun');
-    } else {
-      document.documentElement.setAttribute('data-theme', 'light');
-      themeIcon.classList.remove('fa-sun');
-      themeIcon.classList.add('fa-moon');
-    }
-    
-    themeToggle.addEventListener('click', function() {
-      let theme = document.documentElement.getAttribute('data-theme');
-      if (theme === 'light') {
-        document.documentElement.setAttribute('data-theme', 'dark');
-        localStorage.setItem('theme', 'dark');
-        themeIcon.classList.remove('fa-moon');
-        themeIcon.classList.add('fa-sun');
-      } else {
-        document.documentElement.setAttribute('data-theme', 'light');
-        localStorage.setItem('theme', 'light');
-        themeIcon.classList.remove('fa-sun');
-        themeIcon.classList.add('fa-moon');
+    // ------------------------
+    // LIGHTBOX
+    // ------------------------
+    function initLightbox(){
+      const images = Array.from(document.querySelectorAll('.gallery-grid .card img'));
+      const lb = document.getElementById('lightbox');
+      const lbImg = document.getElementById('lb-img');
+      const closeBtn = document.querySelector('.lb-close');
+      const prevBtn = document.querySelector('.lb-prev');
+      const nextBtn = document.querySelector('.lb-next');
+      let idx = 0;
+
+      function open(i){
+        idx = i;
+        lbImg.src = images[i].src;
+        lbImg.alt = images[i].alt || 'Aditi';
+        lb.classList.add('open');
+        lb.setAttribute('aria-hidden','false');
+        document.body.style.overflow = 'hidden';
       }
-    });
-  })();
-
-  // --- Dynamic Hero Glow (Unique Premium Touch) ---
-  (function() {
-    const heroGlow = document.getElementById('hero-glow');
-    if (!heroGlow) return;
-
-    // Define colors for the dynamic gradient
-    const color1 = 'rgba(244, 143, 177, 0.25)'; // Pink
-    const color2 = 'rgba(186, 104, 200, 0.25)'; // Lavender
-    const color3 = 'transparent';
-
-    document.addEventListener('mousemove', (e) => {
-      // Calculate mouse position as a percentage of the viewport
-      const x = (e.clientX / window.innerWidth) * 100;
-      const y = (e.clientY / window.innerHeight) * 100;
-
-      // Create a complex radial gradient centered near the mouse
-      const gradient = `
-        radial-gradient(800px 400px at ${x}% ${y}%, ${color1}, ${color3} 30%),
-        radial-gradient(800px 400px at ${100 - x}% ${100 - y}%, ${color2}, ${color3} 30%)
-      `;
-
-      heroGlow.style.background = gradient;
-    });
-  })();
-
-  // --- Nav scroll effect ---
-  (function() {
-    const nav = document.querySelector('.nav');
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 50) {
-        nav.classList.add('scrolled');
-      } else {
-        nav.classList.remove('scrolled');
+      function close(){
+        lb.classList.remove('open');
+        lb.setAttribute('aria-hidden','true');
+        lbImg.src = '';
+        document.body.style.overflow = '';
       }
-    });
-  })();
+      function prev(){ idx = (idx - 1 + images.length) % images.length; lbImg.src = images[idx].src }
+      function next(){ idx = (idx + 1) % images.length; lbImg.src = images[idx].src }
 
-  // --- Scroll Spy Logic to highlight active nav link ---
-  (function() {
-    const sections = document.querySelectorAll('main section');
-    const navLinks = document.querySelectorAll('.nav-links a');
+      images.forEach((img,i)=> img.onclick = ()=> open(i));
+      closeBtn.onclick = close;
+      prevBtn.onclick = prev;
+      nextBtn.onclick = next;
 
-    function updateActiveLink() {
-        let current = '';
-
-        sections.forEach(section => {
-            // Use a fixed offset based on the nav bar height
-            const sectionTop = section.offsetTop - 100; 
-            const sectionHeight = section.clientHeight;
-            if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
-                current = section.getAttribute('id');
-            }
-        });
-
-        navLinks.forEach(a => {
-            a.classList.remove('active-link');
-            // Check if the anchor's target matches the current section ID
-            if (a.getAttribute('href').substring(1) === current) {
-                a.classList.add('active-link');
-            }
-        });
-    }
-
-    window.addEventListener('scroll', updateActiveLink);
-    updateActiveLink(); // Initial call
-  })();
-
-  // --- Smooth open-to-section offset (Improved) ---
-  document.querySelectorAll('.nav-links a').forEach(a=>{
-    a.addEventListener('click', (e)=>{
-      const href = a.getAttribute('href');
-      if(!href.startsWith('#')) return;
-      
-      e.preventDefault();
-      const el = document.querySelector(href);
-      if(!el) return;
-
-      // Get the calculated offset from the CSS variable
-      const navHeight = parseInt(getComputedStyle(document.body).getPropertyValue('--nav-height'));
-      
-      const top = el.getBoundingClientRect().top + window.scrollY - navHeight;
-      window.scrollTo({ top, behavior: 'smooth' });
-    });
-  });
-
-  // --- LIGHTBOX: blurred backdrop + navigation ---
-  function initLightbox() {
-    const cards = Array.from(document.querySelectorAll('.gallery-grid .card img'));
-    const lb = document.getElementById('lightbox');
-    const lbImg = document.getElementById('lb-img');
-    const closeBtn = document.querySelector('.lb-close');
-    const prevBtn = document.querySelector('.lb-prev');
-    const nextBtn = document.querySelector('.lb-next');
-    let idx = 0;
-
-    function open(i){
-      idx = i;
-      lbImg.src = cards[i].src;
-      lbImg.alt = cards[i].alt || 'Aditi';
-      lb.classList.add('open');
-      lb.setAttribute('aria-hidden','false');
-      document.documentElement.style.scrollBehavior = 'auto';
-      document.body.style.overflow = 'hidden';
-    }
-    function close(){
-      lb.classList.remove('open');
-      lb.setAttribute('aria-hidden','true');
-      lbImg.src = '';
-      document.body.style.overflow = '';
-      document.documentElement.style.scrollBehavior = '';
-    }
-    function prev(){ idx = (idx - 1 + cards.length) % cards.length; lbImg.src = cards[idx].src }
-    function next(){ idx = (idx + 1) % cards.length; lbImg.src = cards[idx].src }
-
-    cards.forEach((img,i)=> img.addEventListener('click', ()=> open(i)));
-    closeBtn.addEventListener('click', close);
-    prevBtn.addEventListener('click', prev);
-    nextBtn.addEventListener('click', next);
-
-    // keyboard support
-    document.addEventListener('keydown', (e)=>{
-      if(!lb.classList.contains('open')) return;
-      if(e.key === 'Escape') close();
-      if(e.key === 'ArrowLeft') prev();
-      if(e.key === 'ArrowRight') next();
-    });
-
-    // close if clicked outside image
-    lb.addEventListener('click', (e)=>{
-      if(e.target === lb) close();
-    });
-  }
-
-  // Initialize lightbox for initial page load
-  initLightbox();
-
-  // --- Image loading optimization ---
-  (function() {
-    // Remove loading animation once images are loaded
-    const images = document.querySelectorAll('img');
-    images.forEach(img => {
-      if (img.complete) {
-        img.style.background = 'none';
-      } else {
-        img.addEventListener('load', function() {
-          this.style.background = 'none';
-        });
+      document.onkeydown = function(e){
+        if(!lb.classList.contains('open')) return;
+        if(e.key === 'Escape') close();
+        if(e.key === 'ArrowLeft') prev();
+        if(e.key === 'ArrowRight') next();
       }
-    });
+      lb.onclick = function(e){ if(e.target === lb) close(); }
+    }
+
   })();
 
-  // small accessibility focus style for dynamic nav
-  document.addEventListener('keyup', (e)=>{
-    if(e.key === 'Tab') document.body.classList.add('show-focus');
-  });
+  // ------------------------
+  // small accessibility / focus
+  // ------------------------
+  document.addEventListener('keyup', (e)=> { if(e.key === 'Tab') document.body.classList.add('show-focus') });
+
   </script>
 </body>
 </html>
