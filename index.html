@@ -356,6 +356,33 @@
 
     /* Accessible focus outlines */
     :focus { outline: 3px solid rgba(186,104,200,0.18); outline-offset: 3px; }
+    /* --- The Aditi Collection --- */
+.video-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 28px;
+  margin-top: 24px;
+}
+
+.video-box {
+  position: relative;
+  overflow: hidden;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.video-box:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 14px 40px rgba(0,0,0,0.35);
+}
+
+.video-box iframe {
+  width: 100%;
+  height: 220px;
+  border: none;
+  border-radius: 20px;
+}
   </style>
 </head>
 <body>
@@ -548,6 +575,34 @@
     </section>
 
   </main>
+  <section id="collection" aria-labelledby="collection-title" class="reveal">
+  <div class="section-head">
+    <h2 id="collection-title">🎥 The Aditi Collection</h2>
+    <p class="muted">Handpicked videos from across YouTube, all in one place</p>
+  </div>
+
+  <div class="video-grid">
+    <div class="video-box">
+      <iframe src="https://www.youtube.com/embed/VIDEO_ID_1" 
+              title="Aditi Video 1" 
+              frameborder="0" 
+              allowfullscreen></iframe>
+    </div>
+    <div class="video-box">
+      <iframe src="https://www.youtube.com/embed/VIDEO_ID_2" 
+              title="Aditi Video 2" 
+              frameborder="0" 
+              allowfullscreen></iframe>
+    </div>
+    <div class="video-box">
+      <iframe src="https://www.youtube.com/embed/VIDEO_ID_3" 
+              title="Aditi Video 3" 
+              frameborder="0" 
+              allowfullscreen></iframe>
+    </div>
+    <!-- Add more as needed -->
+  </div>
+</section>
 
   <!-- FOOTER -->
   <footer>
