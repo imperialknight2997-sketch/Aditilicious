@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aditi Collection 🎬</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Poppins", sans-serif;
+      background: #0f0f0f;
+      color: #fff;
+    }
+
+    header {
+      text-align: center;
+      padding: 30px 20px;
+      background: linear-gradient(135deg, #ff9ff3, #f368e0);
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: white;
+    }
+
+    /* Video Grid */
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 20px;
+      padding: 20px;
+    }
+
+    .video-card {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 12px;
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+    }
+
+    .video-card:hover {
+      transform: translateY(-5px) scale(1.02);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+    }
+
+    .video-thumb {
+      width: 100%;
+      aspect-ratio: 16/9;
+      object-fit: cover;
+      display: block;
+    }
+
+    .video-title {
+      padding: 12px;
+      font-size: 1rem;
+      font-weight: 600;
+      text-align: center;
+      color: #fff;
+    }
+
+    /* Pagination */
+    .pagination {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      padding: 20px;
+      flex-wrap: wrap;
+    }
+
+    .page-btn {
+      background: rgba(255, 255, 255, 0.1);
+      border: none;
+      padding: 10px 16px;
+      border-radius: 8px;
+      color: white;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+    }
+
+    .page-btn.active {
+      background: linear-gradient(135deg, #36d1dc, #5b86e5);
+      font-weight: bold;
+    }
+
+    .page-btn:hover {
+      background: rgba(255, 255, 255, 0.3);
+    }
+
+    @media (max-width: 600px) {
+      .page-btn {
+        flex: 1;
+        text-align: center;
+        min-width: 45px;
+      }
+    }
+
+    /* Video Modal */
+    .video-modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.9);
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    .video-modal iframe {
+      width: 90%;
+      max-width: 900px;
+      aspect-ratio: 16/9;
+      border: none;
+      border-radius: 12px;
+    }
+
+    .video-modal.active {
+      display: flex;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      font-size: 2rem;
+      color: #fff;
+      cursor: pointer;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    🎬 Aditi Collection
+  </header>
+
+  <main>
+    <div id="video-grid" class="video-grid"></div>
+    <div id="pagination" class="pagination"></div>
+  </main>
+
+  <!-- Modal -->
+  <div id="video-modal" class="video-modal">
+    <span class="close-btn">&times;</span>
+    <iframe id="video-frame" allowfullscreen></iframe>
+  </div>
+
+  <script>
+    // ===== VIDEO LIST =====
+    // Add your YouTube video IDs + Titles here
+    const videos = [
+      { id: "dQw4w9WgXcQ", title: "Video Title 1" },
+      { id: "3JZ_D3ELwOQ", title: "Video Title 2" },
+      { id: "tgbNymZ7vqY", title: "Video Title 3" },
+      { id: "ScMzIvxBSi4", title: "Video Title 4" },
+      { id: "2Vv-BfVoq4g", title: "Video Title 5" },
+      { id: "RgKAFK5djSk", title: "Video Title 6" },
+      { id: "9bZkp7q19f0", title: "Video Title 7" },
+      { id: "fRh_vgS2dFE", title: "Video Title 8" },
+      { id: "60ItHLz5WEA", title: "Video Title 9" },
+      { id: "CevxZvSJLk8", title: "Video Title 10" }
+    ];
+
+    // ===== SETTINGS =====
+    const itemsPerPage = 6;
+    let currentPage = 1;
+
+    const grid = document.getElementById("video-grid");
+    const pagination = document.getElementById("pagination");
+    const modal = document.getElementById("video-modal");
+    const frame = document.getElementById("video-frame");
+    const closeBtn = document.querySelector(".close-btn");
+
+    function renderVideos(page) {
+      grid.innerHTML = "";
+      const start = (page - 1) * itemsPerPage;
+      const end = start + itemsPerPage;
+      const pageVideos = videos.slice(start, end);
+
+      pageVideos.forEach(video => {
+        const card = document.createElement("div");
+        card.className = "video-card";
+        card.innerHTML = `
+          <img class="video-thumb" src="https://img.youtube.com/vi/${video.id}/hqdefault.jpg" alt="${video.title}">
+          <div class="video-title">${video.title}</div>
+        `;
+        card.addEventListener("click", () => openVideo(video.id));
+        grid.appendChild(card);
+      });
+    }
+
+    function renderPagination() {
+      pagination.innerHTML = "";
+      const totalPages = Math.ceil(videos.length / itemsPerPage);
+
+      const prevBtn = document.createElement("button");
+      prevBtn.textContent = "⟨ Prev";
+      prevBtn.className = "page-btn";
+      prevBtn.disabled = currentPage === 1;
+      prevBtn.onclick = () => changePage(currentPage - 1);
+      pagination.appendChild(prevBtn);
+
+      for (let i = 1; i <= totalPages; i++) {
+        const btn = document.createElement("button");
+        btn.textContent = i;
+        btn.className = "page-btn" + (i === currentPage ? " active" : "");
+        btn.onclick = () => changePage(i);
+        pagination.appendChild(btn);
+      }
+
+      const nextBtn = document.createElement("button");
+      nextBtn.textContent = "Next ⟩";
+      nextBtn.className = "page-btn";
+      nextBtn.disabled = currentPage === totalPages;
+      nextBtn.onclick = () => changePage(currentPage + 1);
+      pagination.appendChild(nextBtn);
+    }
+
+    function changePage(page) {
+      currentPage = page;
+      renderVideos(page);
+      renderPagination();
+    }
+
+    function openVideo(id) {
+      frame.src = `https://www.youtube.com/embed/${id}?autoplay=1`;
+      modal.classList.add("active");
+    }
+
+    function closeVideo() {
+      modal.classList.remove("active");
+      frame.src = "";
+    }
+
+    closeBtn.addEventListener("click", closeVideo);
+    modal.addEventListener("click", (e) => {
+      if (e.target === modal) closeVideo();
+    });
+
+    // Swipe detection
+    let touchStartX = 0;
+    let touchEndX = 0;
+    document.addEventListener("touchstart", e => touchStartX = e.changedTouches[0].screenX);
+    document.addEventListener("touchend", e => {
+      touchEndX = e.changedTouches[0].screenX;
+      handleSwipe();
+    });
+
+    function handleSwipe() {
+      if (touchEndX < touchStartX - 50 && currentPage < Math.ceil(videos.length / itemsPerPage)) {
+        changePage(currentPage + 1);
+      }
+      if (touchEndX > touchStartX + 50 && currentPage > 1) {
+        changePage(currentPage - 1);
+      }
+    }
+
+    // Initial Render
+    renderVideos(currentPage);
+    renderPagination();
+  </script>
+</body>
+</html>
