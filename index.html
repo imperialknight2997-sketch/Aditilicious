@@ -404,6 +404,7 @@
   border-radius: 12px;
   cursor: pointer;
   transition: 0.3s ease;
+  min-width: 40px;
 }
 
 .pagination button:hover {
@@ -1017,6 +1018,8 @@
   </script>
     <script>
   // --- Video Data (Add as many as you like) ---
+  <script>
+  // --- Aditi’s Video Collection ---
   const videos = [
     { id: "abcd1234", title: "Aditi Video 1" },
     { id: "efgh5678", title: "Aditi Video 2" },
@@ -1026,12 +1029,14 @@
     { id: "uvwx1122", title: "Aditi Video 6" },
     { id: "yzab3344", title: "Aditi Video 7" },
     { id: "cdef5566", title: "Aditi Video 8" },
-    // keep adding old YouTube videos here...
+    // 👉 Keep adding Aditi’s YouTube video IDs here...
   ];
 
-  const itemsPerPage = 6; // Number of videos per page
+  // --- Settings ---
+  const itemsPerPage = 4;  // number of videos per page
   let currentPage = 1;
 
+  // --- Render Videos into Grid ---
   function renderVideos() {
     const videoGrid = document.getElementById("videoGrid");
     videoGrid.innerHTML = "";
@@ -1055,12 +1060,26 @@
     renderPagination();
   }
 
+  // --- Render Pagination Controls ---
   function renderPagination() {
     const pagination = document.getElementById("pagination");
     pagination.innerHTML = "";
 
     const pageCount = Math.ceil(videos.length / itemsPerPage);
 
+    // Prev Button
+    const prevBtn = document.createElement("button");
+    prevBtn.innerHTML = "« Prev";
+    prevBtn.disabled = currentPage === 1;
+    prevBtn.addEventListener("click", () => {
+      if (currentPage > 1) {
+        currentPage--;
+        renderVideos();
+      }
+    });
+    pagination.appendChild(prevBtn);
+
+    // Page Numbers
     for (let i = 1; i <= pageCount; i++) {
       const btn = document.createElement("button");
       btn.innerText = i;
@@ -1071,9 +1090,21 @@
       });
       pagination.appendChild(btn);
     }
+
+    // Next Button
+    const nextBtn = document.createElement("button");
+    nextBtn.innerHTML = "Next »";
+    nextBtn.disabled = currentPage === pageCount;
+    nextBtn.addEventListener("click", () => {
+      if (currentPage < pageCount) {
+        currentPage++;
+        renderVideos();
+      }
+    });
+    pagination.appendChild(nextBtn);
   }
 
-  // Initialize
+  // --- Initialize ---
   renderVideos();
 </script>
 
