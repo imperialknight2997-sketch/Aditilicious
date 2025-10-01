@@ -206,71 +206,106 @@
     /* EXCLUSIVE */
     .exclusive-box{ text-align:center; padding:30px 20px; margin:40px auto; max-width:600px; border-radius:var(--radius); background: linear-gradient(180deg, rgba(255,255,255,0.92), rgba(250,245,255,0.95)); border:2px solid; border-image: linear-gradient(45deg,var(--accent-2),var(--accent)) 1; box-shadow:0 20px 50px rgba(18,8,40,0.1) }
 
-    /* ========== FAN ZONE ========== */
-.fanzone-section {
-  padding: 80px 20px;
-  text-align: center;
-}
-
-.fan-grid {
+    /* FAN ZONE REFINED */
+.fan-wrapper {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 2rem;
-  margin-top: 2.5rem;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  margin-top: 24px;
 }
 
-.fan-card {
-  padding: 2rem;
-  border-radius: 20px;
-  background: rgba(255, 255, 255, 0.15);
+.glass-box {
+  background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(20px) saturate(180%);
   -webkit-backdrop-filter: blur(20px) saturate(180%);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 20px;
+  padding: 28px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
 }
 
-.fan-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
-}
-
-.section-title {
-  font-size: 2.5rem;
-  margin-bottom: 0.5rem;
-}
-
-.section-subtitle {
-  font-size: 1.2rem;
-  opacity: 0.8;
-}
-
-.fan-card h3 {
-  margin-bottom: 1rem;
+/* Text */
+.fan-info h3, .fan-contact h3 {
   font-size: 1.4rem;
+  margin-bottom: 12px;
+  color: var(--accent);
 }
 
-.fan-card p {
-  font-size: 1rem;
-  opacity: 0.9;
-  margin-bottom: 1.2rem;
+.fan-info ul {
+  margin: 12px 0 20px;
+  padding-left: 20px;
+  color: #fff;
 }
 
-.fan-card .btn {
-  display: inline-block;
-  padding: 0.6rem 1.4rem;
+/* Buttons */
+.fan-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.btn-glass {
+  background: linear-gradient(135deg, #ff9ff3, #f368e0);
+  color: #fff;
+  padding: 10px 18px;
   border-radius: 12px;
-  background: #FFD6FF;
-  color: #000;
   font-weight: 600;
-  transition: all 0.25s ease;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.2);
 }
 
-.fan-card .btn:hover {
-  background: #e1b3e8;
+.btn-glass:hover {
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.3);
 }
 
-    .contact-glass label{ display:block; font-weight:600; margin-top:10px }
-    .contact-glass input, .contact-glass textarea{ width:100%; padding:12px; margin-top:8px; border-radius:8px; border:1px solid #eee; font-size:0.95rem }
+/* Form */
+.fan-contact form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.fan-contact input,
+.fan-contact textarea {
+  border-radius: 12px;
+  border: none;
+  padding: 12px 14px;
+  font-size: 1rem;
+  background: rgba(255, 255, 255, 0.8);
+  color: #333;
+  box-shadow: inset 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.fan-contact textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.btn-submit {
+  background: linear-gradient(135deg, #36d1dc, #5b86e5);
+  border: none;
+  color: #fff;
+  padding: 12px 20px;
+  border-radius: 14px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.btn-submit:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .fan-wrapper {
+    grid-template-columns: 1fr;
+  }
+}
 
     /* LIGHTBOX */
     .lb{ position:fixed; inset:0; display:none; align-items:center; justify-content:center; z-index:2200; background: rgba(0,0,0,0.6); backdrop-filter: blur(16px); }
@@ -462,31 +497,49 @@
       </ul>
 
       <!-- Fan Zone Buttons -->
-      <div class="fan-buttons">
-        <a href="messages.html" class="cta" target="_blank">View Messages</a>
-        <a href="quiz.html" class="fan-btn">🎯 Fan Quiz</a>
-        <a href="https://www.instagram.com/aditi_budhathoki" target="_blank" rel="noopener" class="fan-btn">💖 Join Now</a>
-        <a href="#contact" class="fan-btn">✉️ Contact</a>
+      <!-- FAN ZONE -->
+<section id="fan" aria-labelledby="fan-title" class="reveal-delayed">
+  <div class="section-head">
+    <h2 id="fan-title">Fan Zone</h2>
+    <p>Share art, wallpapers, and messages. Selected works will be featured (with credit).</p>
+  </div>
+
+  <div class="fan-wrapper">
+    <!-- Left Column -->
+    <div class="fan-info glass-box">
+      <h3>Want your fan art featured?</h3>
+      <p>Tag your posts with <strong>#Aditilicious</strong> or contact the admin through the form. Be sure to include credits.</p>
+      <ul>
+        <li>📸 High-res fan art preferred (3000px on longest side).</li>
+        <li>✍️ Include your social handle for credit.</li>
+        <li>💖 Only respectful, non-offensive content will be featured.</li>
+      </ul>
+
+      <div class="fan-actions">
+        <a href="#" class="btn-glass">📜 View Messages</a>
+        <a href="#" class="btn-glass">📝 Fan Quiz</a>
+        <a href="#" class="btn-glass">🌟 Join Now</a>
       </div>
     </div>
 
-    <div class="contact-glass" id="contact">
+    <!-- Right Column -->
+    <div class="fan-contact glass-box">
+      <h3>Contact / Submissions</h3>
       <form action="https://formspree.io/f/mvgbnrgg" method="POST">
         <label for="name">Name</label>
-        <input id="name" name="name" type="text" required placeholder="Your name">
-
+        <input type="text" id="name" name="name" placeholder="Your name" required>
+        
         <label for="email">Email</label>
-        <input id="email" name="_replyto" type="email" required placeholder="your@email.com">
-
+        <input type="email" id="email" name="_replyto" placeholder="you@email.com" required>
+        
         <label for="message">Message / Submission notes</label>
-        <textarea id="message" name="message" rows="5" placeholder="Tell us about your submission or message"></textarea>
-
-        <button type="submit">Send Message</button>
+        <textarea id="message" name="message" placeholder="Tell us about your submission..." required></textarea>
+        
+        <button type="submit" class="btn-submit">📩 Send Message</button>
       </form>
     </div>
   </div>
 </section>
-
     <section aria-labelledby="follow" style="margin-top:28px; text-align:center" class="reveal">
       <p class="muted">Follow Aditi: <a href="https://www.instagram.com/aditi_budhathoki" target="_blank" rel="noopener" style="color:var(--accent)">Instagram</a></p>
     </section>
