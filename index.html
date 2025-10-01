@@ -357,6 +357,7 @@
     /* Accessible focus outlines */
     :focus { outline: 3px solid rgba(186,104,200,0.18); outline-offset: 3px; }
     /* --- The Aditi Collection --- */
+    /* --- Video Grid --- */
 .video-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -382,6 +383,38 @@
   height: 220px;
   border: none;
   border-radius: 20px;
+}
+
+/* --- Pagination --- */
+.pagination {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 28px;
+  gap: 10px;
+}
+
+.pagination button {
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.3);
+  backdrop-filter: blur(12px);
+  color: #fff;
+  font-weight: 600;
+  padding: 10px 16px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.pagination button:hover {
+  background: rgba(255,255,255,0.2);
+  transform: translateY(-2px);
+}
+
+.pagination button.active {
+  background: linear-gradient(135deg, #36d1dc, #5b86e5);
+  color: #fff;
+  border: none;
 }
   </style>
 </head>
@@ -574,34 +607,19 @@
       <p class="muted">Follow Aditi: <a href="https://www.instagram.com/aditi_budhathoki" target="_blank" rel="noopener" style="color:var(--accent)">Instagram</a></p>
     </section>
 
-  </main>
   <section id="collection" aria-labelledby="collection-title" class="reveal">
   <div class="section-head">
     <h2 id="collection-title">🎥 The Aditi Collection</h2>
     <p class="muted">Handpicked videos from across YouTube, all in one place</p>
   </div>
 
-  <div class="video-grid">
-    <div class="video-box">
-      <iframe src="https://www.youtube.com/embed/VIDEO_ID_1" 
-              title="Aditi Video 1" 
-              frameborder="0" 
-              allowfullscreen></iframe>
-    </div>
-    <div class="video-box">
-      <iframe src="https://www.youtube.com/embed/VIDEO_ID_2" 
-              title="Aditi Video 2" 
-              frameborder="0" 
-              allowfullscreen></iframe>
-    </div>
-    <div class="video-box">
-      <iframe src="https://www.youtube.com/embed/VIDEO_ID_3" 
-              title="Aditi Video 3" 
-              frameborder="0" 
-              allowfullscreen></iframe>
-    </div>
-    <!-- Add more as needed -->
+  <!-- Video Grid -->
+  <div class="video-grid" id="videoGrid">
+    <!-- Videos will be injected dynamically -->
   </div>
+
+  <!-- Pagination Controls -->
+  <div class="pagination" id="pagination"></div>
 </section>
 
   <!-- FOOTER -->
@@ -997,6 +1015,67 @@
   });
 
   </script>
+    <script>
+  // --- Video Data (Add as many as you like) ---
+  const videos = [
+    { id: "abcd1234", title: "Aditi Video 1" },
+    { id: "efgh5678", title: "Aditi Video 2" },
+    { id: "ijkl9012", title: "Aditi Video 3" },
+    { id: "mnop3456", title: "Aditi Video 4" },
+    { id: "qrst7890", title: "Aditi Video 5" },
+    { id: "uvwx1122", title: "Aditi Video 6" },
+    { id: "yzab3344", title: "Aditi Video 7" },
+    { id: "cdef5566", title: "Aditi Video 8" },
+    // keep adding old YouTube videos here...
+  ];
+
+  const itemsPerPage = 6; // Number of videos per page
+  let currentPage = 1;
+
+  function renderVideos() {
+    const videoGrid = document.getElementById("videoGrid");
+    videoGrid.innerHTML = "";
+
+    const start = (currentPage - 1) * itemsPerPage;
+    const end = start + itemsPerPage;
+    const currentVideos = videos.slice(start, end);
+
+    currentVideos.forEach(video => {
+      const box = document.createElement("div");
+      box.classList.add("video-box");
+      box.innerHTML = `
+        <iframe src="https://www.youtube.com/embed/${video.id}"
+                title="${video.title}"
+                frameborder="0"
+                allowfullscreen></iframe>
+      `;
+      videoGrid.appendChild(box);
+    });
+
+    renderPagination();
+  }
+
+  function renderPagination() {
+    const pagination = document.getElementById("pagination");
+    pagination.innerHTML = "";
+
+    const pageCount = Math.ceil(videos.length / itemsPerPage);
+
+    for (let i = 1; i <= pageCount; i++) {
+      const btn = document.createElement("button");
+      btn.innerText = i;
+      if (i === currentPage) btn.classList.add("active");
+      btn.addEventListener("click", () => {
+        currentPage = i;
+        renderVideos();
+      });
+      pagination.appendChild(btn);
+    }
+  }
+
+  // Initialize
+  renderVideos();
+</script>
 
 </body>
 </html>
