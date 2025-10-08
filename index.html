@@ -1170,109 +1170,111 @@
     { id: "FlSzQjQSsK0", title: "दुई Dhirajमा कसलाई रोजिन् त Aditiले, प्रोड्युसर साब भन्दै जिस्क्याए Aditi Budhathoki लाई |Interview" },
     { id: "d-qzI0tYCfA", title: "Babari Movie Premiere Look | Aditi Budhathoki | Makeup By Lemi" },
     { id: "DtcuNavOPj4", title: "ADITI BUDHATHOKI | Hitesh Kaneria" },
-    { id: "", title: "" },
-    { id: "", title: "" },
-    { id: "", title: "" },
-    { id: "", title: "" },
-    { id: "", title: "" },
     
   ];
 
-  const itemsPerPage = 6;
-  let currentPage = 1;
+  <script>
+const videosPerPage = 6;
+const videos = document.querySelectorAll('.video-card');
+const totalVideos = videos.length;
+const totalPages = Math.ceil(totalVideos / videosPerPage);
+let currentPage = 1;
+let visibleRangeStart = 1;
+const maxVisiblePages = 4;
 
-  const grid = document.getElementById("video-grid");
-  const prevBtn = document.getElementById("video-prev");
-  const nextBtn = document.getElementById("video-next");
-  const pageNumbers = document.getElementById("video-page-numbers");
+const pagination = document.getElementById('pagination');
+const prevBtn = document.createElement('button');
+const nextBtn = document.createElement('button');
+prevBtn.textContent = '‹ Previous';
+nextBtn.textContent = 'Next ›';
+prevBtn.classList.add('page-btn');
+nextBtn.classList.add('page-btn');
+pagination.appendChild(prevBtn);
+updatePaginationButtons();
+pagination.appendChild(nextBtn);
 
-  function renderPage(page) {
-    grid.innerHTML = "";
-    const start = (page - 1) * itemsPerPage;
-    const end = start + itemsPerPage;
-    const pageVideos = videos.slice(start, end);
+function showPage(page, direction = null) {
+  videos.forEach((video, index) => {
+    const inPage = index >= (page - 1) * videosPerPage && index < page * videosPerPage;
+    video.style.display = inPage ? 'block' : 'none';
+    video.style.opacity = '0';
+  });
 
-    pageVideos.forEach(video => {
-      const card = document.createElement("div");
-      card.className = "video-card";
-      card.innerHTML = `
-        <img class="video-thumb" src="https://img.youtube.com/vi/${video.id}/hqdefault.jpg" alt="${video.title}">
-        <div class="video-info">${video.title}</div>
-      `;
-      card.addEventListener("click", () => openLightbox(video.id));
-      grid.appendChild(card);
+  // Slide animation
+  const visibleVideos = [...videos].slice((page - 1) * videosPerPage, page * videosPerPage);
+  visibleVideos.forEach((v, i) => {
+    v.style.transition = 'transform 0.35s ease, opacity 0.35s ease';
+    v.style.transform = direction === 'left' ? 'translateX(50px)' :
+                        direction === 'right' ? 'translateX(-50px)' : 'translateX(0)';
+    setTimeout(() => {
+      v.style.opacity = '1';
+      v.style.transform = 'translateX(0)';
+    }, 30 * i);
+  });
+}
+
+function updatePaginationButtons() {
+  pagination.querySelectorAll('.page-num').forEach(btn => btn.remove());
+  const end = Math.min(visibleRangeStart + maxVisiblePages - 1, totalPages);
+  for (let i = visibleRangeStart; i <= end; i++) {
+    const btn = document.createElement('button');
+    btn.textContent = i;
+    btn.classList.add('page-num');
+    if (i === currentPage) btn.classList.add('active');
+    btn.addEventListener('click', () => {
+      const dir = i > currentPage ? 'left' : 'right';
+      currentPage = i;
+      showPage(currentPage, dir);
+      updatePaginationButtons();
     });
-
-    renderPagination(page);
+    pagination.insertBefore(btn, nextBtn);
   }
+  prevBtn.disabled = currentPage === 1;
+  nextBtn.disabled = currentPage === totalPages;
+}
 
-  function renderPagination(page) {
-    const totalPages = Math.ceil(videos.length / itemsPerPage);
-    pageNumbers.innerHTML = "";
-
-    for (let i = 1; i <= totalPages; i++) {
-      const btn = document.createElement("button");
-      btn.textContent = i;
-      btn.className = "pagination-btn" + (i === page ? " active" : "");
-      btn.addEventListener("click", () => {
-        currentPage = i;
-        renderPage(i);
-      });
-      pageNumbers.appendChild(btn);
-    }
-
-    prevBtn.disabled = page === 1;
-    nextBtn.disabled = page === totalPages;
+prevBtn.addEventListener('click', () => {
+  if (currentPage > 1) {
+    currentPage--;
+    if (currentPage < visibleRangeStart)
+      visibleRangeStart = Math.max(1, visibleRangeStart - maxVisiblePages);
+    showPage(currentPage, 'right');
+    updatePaginationButtons();
   }
+});
 
-  function openLightbox(videoId) {
-    const lb = document.getElementById("video-lightbox");
-    const iframe = document.getElementById("lb-video");
-    iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
-    lb.classList.add("open");
-
-    // Swipe support for mobile
-    let startX = 0;
-    lb.addEventListener("touchstart", e => startX = e.touches[0].clientX);
-    lb.addEventListener("touchend", e => {
-      const endX = e.changedTouches[0].clientX;
-      if (startX - endX > 50) next();
-      if (endX - startX > 50) prev();
-    });
+nextBtn.addEventListener('click', () => {
+  if (currentPage < totalPages) {
+    currentPage++;
+    if (currentPage > visibleRangeStart + maxVisiblePages - 1)
+      visibleRangeStart += maxVisiblePages;
+    showPage(currentPage, 'left');
+    updatePaginationButtons();
   }
+});
 
-  function closeLightbox() {
-    const lb = document.getElementById("video-lightbox");
-    const iframe = document.getElementById("lb-video");
-    iframe.src = "";
-    lb.classList.remove("open");
-  }
-
-  function prev() {
-    if (currentPage > 1) {
-      currentPage--;
-      renderPage(currentPage);
+// Swipe gesture handling
+let touchStartX = 0;
+let touchEndX = 0;
+function handleSwipe() {
+  const swipeDistance = touchEndX - touchStartX;
+  const minSwipeDistance = 60;
+  if (Math.abs(swipeDistance) > minSwipeDistance) {
+    if (swipeDistance > 0 && currentPage > 1) {
+      prevBtn.click(); // swipe right
+    } else if (swipeDistance < 0 && currentPage < totalPages) {
+      nextBtn.click(); // swipe left
     }
   }
+}
+document.addEventListener('touchstart', e => (touchStartX = e.changedTouches[0].screenX));
+document.addEventListener('touchend', e => {
+  touchEndX = e.changedTouches[0].screenX;
+  handleSwipe();
+});
 
-  function next() {
-    const totalPages = Math.ceil(videos.length / itemsPerPage);
-    if (currentPage < totalPages) {
-      currentPage++;
-      renderPage(currentPage);
-    }
-  }
-
-  document.querySelector("#video-lightbox .lb-close").addEventListener("click", closeLightbox);
-  document.querySelector("#video-lightbox .lb-prev").addEventListener("click", prev);
-  document.querySelector("#video-lightbox .lb-next").addEventListener("click", next);
-
-  prevBtn.addEventListener("click", prev);
-  nextBtn.addEventListener("click", next);
-
-  renderPage(currentPage);
-})();
-
-  </script>
+// Initialize
+showPage(currentPage);
+</script>
 </body>
 </html>
