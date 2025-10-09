@@ -1,337 +1,581 @@
-<!DOCTYPE html>
+<!-- Full premium single-file site for "Aditilicious" -->
+<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Aditi Budhathoki ✨ — Premium Fanpage</title>
+  <title>Aditi Budhathoki ✨ — Aditilicious (Premium Fanpage)</title>
 
-  <meta name="description" content="Aditi Budhathoki — premium fanpage: gallery, news, fan zone and exclusive content." />
-  <meta name="keywords" content="Aditi Budhathoki, Aditi, fanpage, gallery, photos, Nepali actress" />
-  <meta property="og:title" content="Aditi Budhathoki ✨ — Premium Fanpage" />
-  <meta property="og:description" content="A premium fan-made tribute: photos, updates, and fan creations celebrating Aditi Budhathoki." />
+  <!-- SEO / Social -->
+  <meta name="description" content="Aditilicious — premium fan-made tribute to Aditi Budhathoki. Gallery, news, fan zone, and exclusive content." />
+  <meta name="keywords" content="Aditi Budhathoki, fanpage, gallery, photos, Nepali actress, fan site" />
+  <meta property="og:title" content="Aditilicious ✨ — Premium Fanpage" />
+  <meta property="og:description" content="Premium fan-made tribute: photos, updates, and fan creations celebrating Aditi Budhathoki." />
   <meta property="og:image" content="images/IMG_0483.jpeg" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://your-username.github.io/your-repo" />
   <meta name="twitter:card" content="summary_large_image" />
 
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <style>
-  /* =====================
-     Variables + Base
-     ===================== */
-  :root{
-    --bg:#fbf7ff;
-    --card:#fff;
-    --muted:#6b6b7a;
-    --accent:#ba68c8;
-    --accent-2:#f48fb1;
-    --glass: rgba(255,255,255,0.5);
-    --maxw:1200px;
-    --radius:14px;
-    --nav-height: 80px;
-    --text-primary:#161616;
-    --transition: all .28s ease;
+    
+    /* 🔽 Paste the pagination CSS here */
+    /* Base pagination buttons */
+    .page-btn,
+    .page-num {
+      background: #222;
+      color: #fff;
+      border: none;
+      padding: 8px 14px;
+      margin: 3px;
+      border-radius: 6px;
+      font-weight: 500;
+      transition: all 0.25s ease;
+      cursor: pointer;
+    }
+
+    .page-num.active {
+      background: #e50914;
+      box-shadow: 0 0 10px #e50914aa;
+      transform: scale(1.05);
+    }
+
+    .page-btn:hover,
+    .page-num:hover {
+      background: #e50914;
+      box-shadow: 0 0 15px #e50914bb;
+      transform: scale(1.08);
+    }
+
+    .page-btn:disabled {
+      background: #555;
+      color: #aaa;
+      box-shadow: none;
+      transform: none;
+      cursor: default;
+      animation: none;
+    }
+
+    @keyframes pulseGlow {
+      0% { box-shadow: 0 0 0px #e50914aa; transform: scale(1); }
+      50% { box-shadow: 0 0 15px #e50914aa; transform: scale(1.08); }
+      100% { box-shadow: 0 0 0px #e50914aa; transform: scale(1); }
+    }
+
+    .page-btn.reactivated {
+      animation: pulseGlow 0.8s ease-in-out;
+    }
+    /* =============================
+       VARIABLES & BASE STYLES
+       ============================= */
+    :root{
+      --maxw:1200px;
+      --nav-height:82px;
+      --accent:#ba68c8;      /* lavender */
+      --accent-2:#f48fb1;    /* pink */
+      --bg-1:#FFD6FF;        /* pastel start */
+      --bg-2:#FFEDD8;        /* pastel end */
+      --glass-bg: rgba(255,255,255,0.14);
+      --glass-border: rgba(255,255,255,0.28);
+      --glass-blur: 18px;
+      --text:#111;
+      --muted:#6b6b7a;
+      --radius:14px;
+      --transition: 0.34s cubic-bezier(.2,.9,.3,1);
+      --hero-overlay-dark: rgba(0,0,0,0.18);
+      --hero-overlay-light: rgba(255,255,255,0.06);
+      --card-shadow: 0 12px 40px rgba(12,6,30,0.06);
+    }
+
+    [data-theme="dark"]{
+      --glass-bg: rgba(12,12,18,0.46);
+      --glass-border: rgba(255,255,255,0.06);
+      --text: #eaeaf0;
+      --muted: #b3b3bf;
+      --card-shadow: 0 16px 60px rgba(0,0,0,0.6);
+      --hero-overlay-dark: rgba(0,0,0,0.35);
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      color:var(--text);
+      background: linear-gradient(180deg,var(--bg-1),var(--bg-2) 160px);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      padding-top: var(--nav-height);
+      line-height:1.6;
+      overflow-x:hidden;
+    }
+
+    /* Universal glass utility for containers */
+    .glass {
+      background: var(--glass-bg);
+      backdrop-filter: blur(var(--glass-blur)) saturate(140%);
+      -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(140%);
+      border-radius: var(--radius);
+      border: 1px solid var(--glass-border);
+      box-shadow: var(--card-shadow);
+      transition: box-shadow var(--transition), transform var(--transition);
+    }
+
+    a{ color:inherit; text-decoration:none }
+    img{ max-width:100%; display:block; }
+
+    h1,h2,h3{ font-family:'Playfair Display', serif; margin:0 }
+    h1{ font-weight:600 }
+    h2{ font-weight:600 }
+
+    .muted{ color:var(--muted) }
+    .center{ text-align:center }
+
+    /* Small helpers */
+    .container { max-width:var(--maxw); margin:0 auto; padding:0 18px; }
+    .btn {
+      display:inline-block; padding:10px 18px; border-radius:999px;
+      background:linear-gradient(90deg,var(--accent-2),var(--accent)); color:white; font-weight:700;
+      box-shadow:0 14px 38px rgba(181,88,144,0.12); border:none; cursor:pointer;
+      transition: transform .22s ease, box-shadow .22s ease;
+    }
+    .btn:hover { transform: translateY(-4px); box-shadow:0 22px 60px rgba(181,88,144,0.18) }
+
+    /* =============================
+       NAVIGATION
+       ============================= */
+    .nav {
+      position:fixed; top:16px; left:50%; transform:translateX(-50%);
+      width:calc(100% - 48px); max-width:var(--maxw);
+      display:flex; align-items:center; justify-content:space-between;
+      padding:10px 18px; z-index:1300; gap:12px; border-radius:999px;
+      transition: all .28s ease;
+    }
+    .brand {
+      display:flex; align-items:center; gap:12px;
+      font-weight:700; font-size:1.08rem;
+      background: linear-gradient(90deg,var(--accent-2),var(--accent));
+      -webkit-background-clip:text; background-clip:text; color:transparent;
+    }
+    .nav-links { display:flex; gap:12px; align-items:center; }
+    .nav-links a{
+      padding:8px 12px; border-radius:10px; font-weight:600; color:var(--text); transition:var(--transition);
+      position:relative;
+    }
+    .nav-links a::after{
+      content:''; position:absolute; left:50%; bottom:6px; transform:translateX(-50%); width:0; height:2px; background: linear-gradient(90deg,var(--accent-2),var(--accent)); transition:width .22s;
+    }
+    .nav-links a:hover::after, .nav-links a.active-link::after { width:70% }
+
+    .nav.glass { background: var(--glass-bg); border:1px solid var(--glass-border); backdrop-filter: blur(var(--glass-blur)); -webkit-backdrop-filter: blur(var(--glass-blur)); }
+
+    /* Hamburger for mobile */
+    .hamburger { display:none; background:transparent; border:none; gap:6px; padding:8px; cursor:pointer; }
+    .hamburger span{ display:block; width:22px; height:2px; background:var(--text); border-radius:2px; transition:all .23s ease }
+
+    /* Floating heart CTA */
+    .floating-heart {
+      position:fixed; right:22px; bottom:22px; z-index:1400; width:64px; height:64px; border-radius:50%;
+      display:flex; align-items:center; justify-content:center; color:white; font-size:26px;
+      background: linear-gradient(90deg,var(--accent-2),var(--accent));
+      box-shadow:0 18px 44px rgba(181,88,144,0.18); cursor:pointer;
+    }
+    .floating-heart:hover { transform: translateY(-6px) }
+
+    /* =============================
+       HERO
+       (KEEPING IMAGE EXACTLY AS-IS)
+       ============================= */
+    .hero {
+      min-height: calc(100vh - var(--nav-height));
+      display:flex; align-items:center; justify-content:center; text-align:center;
+      padding:72px 18px 96px; position:relative; overflow:hidden;
+      background: url('images/IMG_0483.jpeg') center/cover no-repeat;
+      -webkit-background-size:cover; background-size:cover;
+    }
+
+    /* soft dynamic glow (subtle): non-obstructive on image */
+    .hero-glow{ position:absolute; inset:-20% -10% auto -10%; height:420px; filter: blur(90px); pointer-events:none; z-index:0; transform: translateZ(-1px) scale(2); transition: background .12s linear; }
+    .hero-overlay{ position:absolute; inset:0; background: linear-gradient(180deg, rgba(0,0,0,0.06), rgba(0,0,0,0.16)); z-index:1 }
+    .hero-inner{ position:relative; z-index:2; max-width:900px; color:white; padding:40px; transform:translateY(12px) }
+    .hero-inner h1{ font-size: clamp(2rem, 7vw, 3.8rem); line-height:1; text-shadow: 0 12px 40px rgba(0,0,0,0.45) }
+    .hero-inner p{ font-size:1.05rem; margin-top:12px; text-shadow: 0 8px 28px rgba(0,0,0,0.32) }
+    .hero .cta{ display:inline-block; margin-top:20px; padding:12px 24px; border-radius:999px; background:linear-gradient(90deg,var(--accent-2),var(--accent)); color:white; font-weight:700; text-decoration:none; box-shadow:0 16px 42px rgba(181,88,144,0.14); transition:var(--transition) }
+    .hero .cta:hover{ transform: translateY(-4px) }
+
+    /* =============================
+       MAIN LAYOUT & SECTIONS
+       ============================= */
+    main{ max-width:var(--maxw); margin:48px auto; padding:0 18px 80px; }
+    .section-head{ text-align:center; margin-bottom:18px }
+    .section-head h2{ font-size: clamp(1.6rem, 4vw, 2.3rem); color:var(--accent); margin-bottom:8px }
+    .section-head p{ color:var(--muted) }
+
+    /* ABOUT */
+    .about{ display:grid; grid-template-columns: 1fr 420px; gap:28px; align-items:center }
+    .text-card{ padding:26px; border-radius:12px; background: linear-gradient(180deg, rgba(255,255,255,0.95), rgba(250,245,255,0.98)); box-shadow: var(--card-shadow); color:var(--text) }
+
+    /* GALLERY */
+    .gallery-wrap{ margin-top:8px }
+    .gallery-grid{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:18px;
+    }
+    .card{ background: linear-gradient(180deg, rgba(255,255,255,0.75), rgba(255,255,255,0.7)); border-radius:12px; padding:10px; box-shadow:var(--card-shadow); transition: transform .28s ease, box-shadow .28s; overflow:hidden; position:relative; }
+    .card img{ width:100%; height:320px; object-fit:cover; display:block; border-radius:8px; transition: transform .28s ease, filter .28s ease; }
+    .card:hover{ transform: translateY(-6px); box-shadow:0 30px 70px rgba(18,8,40,0.12) }
+    .card:hover img{ transform: scale(1.04) }
+
+    /* Gallery filter buttons */
+    .gallery-filters{ display:flex; justify-content:center; gap:10px; margin-bottom:20px; flex-wrap:wrap }
+    .filter-btn{ padding:8px 16px; border-radius:20px; cursor:pointer; font-weight:600; border:1px solid rgba(255,255,255,0.36); background: rgba(255,255,255,0.6); color:var(--muted) }
+    .filter-btn.active{ background: linear-gradient(90deg,var(--accent-2),var(--accent)); color:white; box-shadow:0 10px 30px rgba(181,88,144,0.12) }
+
+    /* Pagination */
+    .pagination{ display:flex; justify-content:center; gap:12px; margin-top:24px; align-items:center }
+    .pagination-btn{ padding:10px 16px; border-radius:8px; cursor:pointer; background:rgba(255,255,255,0.7); border:1px solid rgba(255,255,255,0.3); font-weight:700; color:var(--muted) }
+    .pagination-btn.disabled{ opacity:0.5; cursor:not-allowed }
+    .page-number{ padding:8px 12px; border-radius:8px; cursor:pointer; background:rgba(255,255,255,0.7); border:1px solid rgba(255,255,255,0.3); font-weight:700; color:var(--muted) }
+    .page-number.active{ background: linear-gradient(90deg,var(--accent-2),var(--accent)); color:white }
+
+    /* NEWS */
+    .news-grid{ display:grid; grid-template-columns: repeat(3,1fr); gap:18px; margin-top:8px; perspective:1000px }
+    .news-card{ background:linear-gradient(180deg,#fff,#fff); border-radius:12px; overflow:hidden; box-shadow:var(--card-shadow); transition: transform .35s, box-shadow .35s }
+    .news-card:hover{ transform: translateY(-6px) rotateX(0.5deg) }
+    .news-card img{ width:100%; height:160px; object-fit:cover }
+    .news-body{ padding:14px 16px }
+
+    /* EXCLUSIVE */
+    .exclusive-box{ text-align:center; padding:30px 20px; margin:40px auto; max-width:600px; border-radius:var(--radius); background: linear-gradient(180deg, rgba(255,255,255,0.92), rgba(250,245,255,0.95)); border:2px solid; border-image: linear-gradient(45deg,var(--accent-2),var(--accent)) 1; box-shadow:0 20px 50px rgba(18,8,40,0.1) }
+
+    /* FAN ZONE REFINED */
+.fan-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  margin-top: 24px;
+}
+
+.glass-box {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(22px) saturate(180%);
+  -webkit-backdrop-filter: blur(22px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 20px;
+  padding: 28px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+}
+
+/* Headings */
+.fan-info h3, .fan-contact h3 {
+  font-size: 1.4rem;
+  margin-bottom: 12px;
+  color: var(--accent);
+}
+
+/* Text styling */
+.fan-info p,
+.fan-info ul {
+  color: #333;
+}
+
+.fan-info ul {
+  margin: 12px 0 20px;
+  padding-left: 20px;
+}
+
+.highlight {
+  color: #333;
+  font-weight: 500;
+}
+
+/* Buttons */
+.fan-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.btn-glass {
+  background: linear-gradient(135deg, #ff9ff3, #f368e0);
+  color: #fff;
+  padding: 10px 18px;
+  border-radius: 12px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+}
+
+.btn-glass:hover {
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+}
+
+/* Form */
+.fan-contact form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.fan-contact label {
+  color: #fff;
+  font-weight: 500;
+}
+
+.fan-contact input,
+.fan-contact textarea {
+  border-radius: 12px;
+  border: none;
+  padding: 12px 14px;
+  font-size: 1rem;
+  background: rgba(255, 255, 255, 0.9);
+  color: #333;
+  box-shadow: inset 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.fan-contact textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.btn-submit {
+  background: linear-gradient(135deg, #36d1dc, #5b86e5);
+  border: none;
+  color: #fff;
+  padding: 12px 20px;
+  border-radius: 14px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.btn-submit:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .fan-wrapper {
+    grid-template-columns: 1fr;
   }
+}
 
-  *{box-sizing:border-box}
-  html{scroll-behavior:smooth}
-  body{
-    margin:0;
-    font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;
-    background: linear-gradient(135deg,#faf6ff 0%, #f5f1fa 100%);
-    color:var(--text-primary);
-    -webkit-font-smoothing:antialiased;
-    -moz-osx-font-smoothing:grayscale;
-    padding-top:var(--nav-height);
-    overflow-x:hidden;
+    /* LIGHTBOX */
+    .lb{ position:fixed; inset:0; display:none; align-items:center; justify-content:center; z-index:2200; background: rgba(0,0,0,0.6); backdrop-filter: blur(16px); }
+    .lb.open{ display:flex }
+    .lb-inner{ max-width:92%; max-height:92%; border-radius:12px; overflow:hidden; box-shadow:0 30px 80px rgba(10,6,40,0.6); position:relative }
+    .lb-inner img{ display:block; width:100%; height:auto; max-height:90vh; object-fit:contain; background:#000 }
+    .lb-close{ position:absolute; top:14px; right:14px; font-size:28px; color:#fff; cursor:pointer; padding:8px; background: rgba(0,0,0,0.45); border-radius:50%; }
+    .lb-nav{ position:absolute; top:50%; transform:translateY(-50%); color:#fff; font-size:44px; padding:12px; cursor:pointer; user-select:none; }
+    .lb-prev{ left:18px } .lb-next{ right:18px }
+
+    /* FOOTER */
+    footer{ margin-top:36px; padding:28px 18px; text-align:center; border-radius:18px; background:linear-gradient(90deg,var(--accent-2),var(--accent)); color:#fff; }
+
+    /* Animations */
+    @keyframes fadeInUp { from { opacity:0; transform: translateY(12px) } to { opacity:1; transform:translateY(0) } }
+    .reveal{ animation: fadeInUp .7s ease both }
+    .reveal-delayed{ animation: fadeInUp .85s ease both }
+
+    /* Responsive tweaks */
+    @media (max-width:1000px){
+      .about, .fan-grid { grid-template-columns: 1fr }
+      .gallery-grid { grid-template-columns: repeat(2,1fr) }
+      .news-grid { grid-template-columns: repeat(2,1fr) }
+      .nav-links{ display:none } /* mobile will use hamburger */
+      .hamburger{ display:block }
+    }
+    @media (max-width:700px){
+      .gallery-grid { grid-template-columns: 1fr; }
+      .card img{ height: 260px }
+      .hero-inner{ padding:18px }
+      .floating-heart{ width:56px; height:56px; font-size:22px }
+    }
+
+    /* Accessible focus outlines */
+    :focus { outline: 3px solid rgba(186,104,200,0.18); outline-offset: 3px; }
+    /* --- The Aditi Collection --- */
+    /* --- Video Grid --- */
+    /* Video Collection */
+.video-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.video-card {
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  overflow: hidden;
+  backdrop-filter: blur(15px) saturate(180%);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+
+.video-card:hover {
+  transform: translateY(-5px);
+}
+
+.video-thumb {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+.video-info {
+  padding: 12px;
+  color: #333;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+/* Video Lightbox */
+#video-lightbox {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.85);
+  backdrop-filter: blur(20px);
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+#video-lightbox.open {
+  display: flex;
+}
+
+#video-lightbox .lb-inner {
+  max-width: 90%;
+  max-height: 80%;
+}
+
+#lb-video {
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .video-grid {
+    grid-template-columns: 1fr;
   }
-
-  /* --- Universal iOS 16/17/26-like glass layer basics (global) --- */
-  .glass {
-    background: linear-gradient(180deg, rgba(255,255,255,0.45), rgba(255,255,255,0.25));
-    backdrop-filter: blur(14px) saturate(140%);
-    -webkit-backdrop-filter: blur(14px) saturate(140%);
-    border: 1px solid rgba(255,255,255,0.35);
-    border-radius: 12px;
-  }
-
-  /* small util */
-  .muted{ color:var(--muted) }
-  .center{ text-align:center }
-
-  h1,h2{ font-family:'Playfair Display',serif; color:var(--accent); margin:0 }
-
-  /* =====================
-     Navigation
-     ===================== */
-  .nav {
-    position:fixed; top:18px; left:50%; transform:translateX(-50%);
-    width:calc(100% - 48px); max-width:var(--maxw);
-    display:flex; align-items:center; justify-content:space-between;
-    padding:10px 18px;
-    border-radius:999px;
-    z-index:1200;
-    box-shadow:0 12px 40px rgba(16,8,32,0.08);
-    transition:var(--transition);
-    background: linear-gradient(180deg, rgba(255,255,255,0.85), rgba(255,255,255,0.75));
-  }
-  .brand { font-weight:700; letter-spacing:0.3px;
-    background:linear-gradient(90deg,var(--accent-2),var(--accent));
-    -webkit-background-clip:text; background-clip:text; color:transparent;
-  }
-  .nav-links { display:flex; gap:12px; align-items:center }
-  .nav-links a {
-    padding:8px 12px; border-radius:10px; text-decoration:none; color:var(--text-primary); font-weight:600;
-    transition:var(--transition); position:relative;
-  }
-  .nav-links a::after { content:''; position:absolute; bottom:6px; left:50%; transform:translateX(-50%); width:0; height:2px;
-    background: linear-gradient(90deg,var(--accent-2),var(--accent)); transition:var(--transition);
-  }
-  .nav-links a:hover::after, .nav-links a.active-link::after { width:70% }
-
-  /* Hamburger for mobile */
-  .hamburger { display:none; background:transparent; border:0; padding:0; cursor:pointer }
-  .hamburger span { display:block; width:22px; height:2px; background:var(--text-primary); margin:4px 0; border-radius:2px; transition:all .25s }
-
-  /* =====================
-     Hero (KEEP ORIGINAL PHOTO)
-     ===================== */
-  .hero {}
-    min-height: calc(100vh - 48px);
-    display:flex; align-items:center; justify-content:center; text-align:center;
-    padding:72px 18px 96px; position:relative; overflow:hidden;
-    background: url('images/IMG_0483.jpeg') center/cover no-repeat;
-    perspective:1px;
-  }
-  .hero-overlay {
-    position:absolute; inset:0; background: linear-gradient(180deg, rgba(0,0,0,0.10), rgba(0,0,0,0.28)); z-index:1;
-  }
-  .hero-inner { position:relative; z-index:2; max-width:900px; color:#fff; padding:40px }
-  .hero h1{ font-size:clamp(2rem,8vw,3.4rem); line-height:1 }
-  .hero p{ margin-top:10px; font-size:clamp(.9rem,3vw,1.1rem) }
-  .cta { display:inline-block; margin-top:18px; padding:12px 20px; border-radius:999px; background:linear-gradient(90deg,var(--accent-2),var(--accent)); color:#fff; font-weight:700; text-decoration:none; box-shadow:0 16px 42px rgba(181,88,144,0.14) }
-
-  /* subtle dynamic glow */
-  .hero-glow{ position:absolute; inset:-30% -10% auto -10%; height:380px; filter: blur(100px); z-index:0; pointer-events:none }
-
-  /* Glass name badge inside hero (keeps original image but with glass text) */
-  .hero-badge {
-    margin-top:18px;
-    display:inline-block;
-    padding:10px 18px;
-    border-radius:999px;
-    background: linear-gradient(180deg, rgba(255,255,255,0.12), rgba(255,255,255,0.06));
-    backdrop-filter: blur(8px) saturate(120%);
-    color:#fff; font-weight:600;
-  }
-
-  /* =====================
-     Main layout & sections
-     ===================== */
-  main{ max-width:var(--maxw); margin:48px auto; padding:0 18px 80px; border-radius:var(--radius) }
-
-  .section-head { text-align:center; margin-bottom:18px }
-  .section-head p { color:var(--muted); margin:0 auto; max-width:820px }
-
-  /* About */
-  .about { display:grid; grid-template-columns:1fr 420px; gap:28px; align-items:center; margin-top:6px }
-  .text-card { padding:26px; border-radius:12px; background: linear-gradient(180deg, rgba(255,255,255,0.95), rgba(250,245,255,0.98)); box-shadow:0 12px 40px rgba(12,6,30,0.04) }
-  .about img{ width:100%; border-radius:12px; height:360px; object-fit:cover; box-shadow:0 18px 44px rgba(12,6,30,0.06) }
-
-  /* =====================
-     Gallery
-     ===================== */
-  .gallery-wrap { margin-top:8px }
-  .gallery-grid{ display:grid; grid-template-columns: repeat(3,1fr); gap:18px }
-  .card { border-radius:12px; overflow:hidden; transition:var(--transition); position:relative; background: linear-gradient(180deg, rgba(255,255,255,0.9), rgba(255,255,255,0.8)); box-shadow:0 14px 40px rgba(18,8,40,0.06) }
-  .card img{ width:100%; height:320px; object-fit:cover; display:block; border-radius:8px; transition:transform .28s }
-  .card:hover{ transform:translateY(-6px) } .card:hover img{ transform:scale(1.03) }
-
-  /* filters */
-  .gallery-filters{ display:flex; justify-content:center; gap:10px; margin-bottom:20px; flex-wrap:wrap }
-  .filter-btn{ padding:8px 16px; border-radius:20px; border:0; cursor:pointer; background:rgba(255,255,255,0.9); font-weight:600; color:var(--muted) }
-  .filter-btn.active, .filter-btn:hover{ background:linear-gradient(90deg,var(--accent-2),var(--accent)); color:#fff }
-
-  /* pagination (images) */
-  .pagination{ display:flex; justify-content:center; gap:10px; align-items:center; margin-top:24px; flex-wrap:wrap }
-  .pagination-btn{ padding:10px 16px; border-radius:8px; border:0; background:rgba(255,255,255,0.9); cursor:pointer; font-weight:600 }
-  .pagination-btn.disabled{ opacity:.5; cursor:not-allowed }
-
-  /* ================
-     News & exclusive
-     ================ */
-  .news-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin-top:8px }
-  .news-card{ border-radius:12px; overflow:hidden; background:#fff; box-shadow:0 16px 40px rgba(12,6,30,0.04) }
-  .news-card img{ width:100%; height:160px; object-fit:cover }
-  .news-body{ padding:14px 16px }
-
-  /* Fan zone refined */
-  .fan-grid{ display:grid; grid-template-columns: 1fr 420px; gap:24px; margin-top:12px; align-items:start }
-  .fan-box, .contact-glass { padding:18px; border-radius:12px; background: linear-gradient(180deg,#fff,#fff); box-shadow:0 12px 36px rgba(12,6,30,0.04) }
-  .contact-glass { background: linear-gradient(180deg, rgba(255,255,255,0.75), rgba(255,255,255,0.65)); backdrop-filter: blur(12px) }
-  .fan-wrapper { display:grid; grid-template-columns:1fr 1fr; gap:32px; margin-top:12px }
-  .glass-box { padding:28px; border-radius:20px; background: rgba(255,255,255,0.12); backdrop-filter: blur(18px) saturate(160%); border:1px solid rgba(255,255,255,0.18) }
-  .fan-actions { display:flex; gap:12px; flex-wrap:wrap }
-  .btn-glass { padding:10px 18px; border-radius:12px; font-weight:600; color:#fff; text-decoration:none; background:linear-gradient(135deg,#ff9ff3,#f368e0); box-shadow:0 6px 20px rgba(0,0,0,0.12) }
-  .btn-submit { padding:12px 20px; border-radius:14px; border:0; color:#fff; background:linear-gradient(135deg,#36d1dc,#5b86e5); font-weight:700 }
-
-  /* =====================
-     Videos / Collection (Netflix vibe thumbnails)
-     ===================== */
-  .video-section { margin-top:24px }
-  .video-grid { display:grid; grid-template-columns: repeat(3,1fr); gap:14px; align-items:start }
-  .video-card { position:relative; border-radius:12px; overflow:hidden; background:#111; color:#fff; cursor:pointer }
-  .video-thumb { display:block; width:100%; height:180px; object-fit:cover; }
-  .video-meta { padding:10px; background:linear-gradient(180deg, rgba(0,0,0,0.05), rgba(0,0,0,0.03)); color:var(--text-primary) }
-  .play-overlay { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; pointer-events:none }
-  .play-btn {
-    pointer-events:auto;
-    width:64px; height:64px; border-radius:50%; background: linear-gradient(135deg,var(--accent-2),var(--accent));
-    display:flex; align-items:center; justify-content:center; color:#fff; font-size:26px; box-shadow:0 12px 30px rgba(16,8,40,0.3);
-    transition:transform .2s ease;
-  }
-  .video-card:hover .play-btn { transform:scale(1.06) }
-
-  /* video pagination (specific IDs) */
-  .video-pagination { display:flex; justify-content:center; gap:10px; margin-top:18px; align-items:center; flex-wrap:wrap }
-
-  /* modal for video */
-  .video-modal { position:fixed; inset:0; display:none; align-items:center; justify-content:center; background: rgba(0,0,0,0.6); z-index:3000; }
-  .video-modal.open { display:flex }
-  .video-modal-inner { width: min(1100px, 95%); background:#000; border-radius:12px; overflow:hidden; position:relative }
-  .video-iframe { width:100%; height:60vh; border:0; display:block; background:#000 }
-  .video-close { position:absolute; top:12px; right:12px; z-index:5; background:rgba(255,255,255,0.08); color:#fff; border-radius:50%; width:40px; height:40px; display:flex; align-items:center; justify-content:center; cursor:pointer }
-
-  /* lightbox for images */
-  .lb { position:fixed; inset:0; display:none; align-items:center; justify-content:center; z-index:2200; background: rgba(0,0,0,0.6); backdrop-filter: blur(8px) }
-  .lb.open { display:flex }
-  .lb-inner { max-width:92%; max-height:92%; border-radius:12px; overflow:hidden; box-shadow:0 30px 80px rgba(10,6,40,0.6); position:relative }
-  .lb-inner img { display:block; width:100%; height:auto; max-height:90vh; object-fit:contain; background:#000 }
-  .lb-close { position:absolute; top:14px; right:14px; font-size:22px; color:#fff; cursor:pointer; padding:8px; background: rgba(0,0,0,0.5); border-radius:50% }
-  .lb-nav { position:absolute; top:50%; transform:translateY(-50%); color:#fff; font-size:40px; padding:10px; cursor:pointer; user-select:none; background: linear-gradient(135deg,var(--accent-2),var(--accent)); border-radius:50%; width:56px; height:56px; display:flex; align-items:center; justify-content:center }
-  .lb-prev{ left:18px } .lb-next{ right:18px }
-
-  /* =====================
-     Footer + responsive tweaks
-     ===================== */
-  footer{ margin-top:36px; padding:28px 18px; text-align:center; border-radius:18px; background:linear-gradient(90deg,var(--accent-2),var(--accent)); color:#fff }
-
-  @media (max-width:1000px){
-    .about{ grid-template-columns:1fr }
-    .gallery-grid{ grid-template-columns: repeat(2,1fr) }
-    .news-grid{ grid-template-columns:repeat(2,1fr) }
-    .fan-grid{ grid-template-columns:1fr }
-    .video-grid{ grid-template-columns: repeat(2,1fr) }
-  }
-  @media (max-width:600px){
-    .gallery-grid{ grid-template-columns:1fr }
-    .video-grid{ grid-template-columns: 1fr }
-    .card img{ height:260px }
-    .video-thumb{ height:200px }
-    .hamburger{ display:block }
-    .nav-links{ display:none }
-    .nav-links.active { display:flex; position:fixed; inset:0; top:70px; background: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(255,255,255,0.96)); flex-direction:column; gap:14px; align-items:center; padding-top:30px; z-index:1300 }
-  }
+}
+ 
   </style>
 </head>
 <body>
 
-  <div class="nav" role="banner" aria-label="Primary navigation">
-    <div style="display:flex; align-items:center; gap:12px">
-      <button class="hamburger" aria-label="Toggle menu" aria-expanded="false">
-        <span></span><span></span><span></span>
-      </button>
-      <div class="brand">Aditilicious</div>
-    </div>
+  <!-- NAV -->
+  <div class="nav glass" role="banner" aria-label="Primary navigation">
+    <div class="brand">Aditilicious</div>
 
     <nav class="nav-links" aria-label="Main">
       <a href="#about">About</a>
       <a href="#gallery">Gallery</a>
+      <a href="videos.html">Videos</a>
       <a href="#news">News</a>
       <a href="#exclusive">Exclusive</a>
-      <a href="#collection">Videos</a>
       <a href="#fan">Fan Zone</a>
-      <a href="#contact">Contact</a>
-      <button class="theme-toggle" aria-label="Toggle theme" style="background:transparent;border:0;margin-left:8px;font-weight:600">🌗</button>
+      <a href="imperialknight2997@gmail.com">Contact</a>
     </nav>
+
+    <div style="display:flex; gap:8px; align-items:center;">
+      <button class="theme-toggle" aria-label="Toggle dark mode" title="Toggle theme"><i class="fas fa-moon"></i></button>
+      <button class="hamburger" aria-label="Toggle menu" title="Open menu" style="display:none">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
   </div>
 
-  <button class="floating-heart" aria-label="Go to Fan Zone" onclick="document.getElementById('fan').scrollIntoView({behavior:'smooth'})" style="position:fixed; right:22px; bottom:22px; z-index:1300; width:64px; height:64px; border-radius:50%; background:linear-gradient(90deg,var(--accent-2),var(--accent)); display:flex; align-items:center; justify-content:center; color:#fff; font-size:26px; box-shadow:0 12px 30px rgba(181,88,144,0.18); border:0">❤️</button>
+  <!-- Floating CTA -->
+  <button class="floating-heart" aria-label="Go to Fan Zone" title="Fan Zone" onclick="document.getElementById('fan').scrollIntoView({behavior:'smooth'})">❤️</button>
 
+  <!-- HERO -->
   <header class="hero" role="img" aria-label="Aditi hero image">
     <div class="hero-glow" id="hero-glow"></div>
     <div class="hero-overlay" aria-hidden="true"></div>
     <div class="hero-inner">
-      <h1>Aditi Budhathoki</h1>
+      <h1>Aditi Budhathoki ✨</h1>
       <p>Beauty · Elegance · Inspiration</p>
-      <span class="hero-badge glass">Premium Fan Curation</span>
-      <div style="margin-top:16px"><a class="cta" href="#gallery">View Gallery</a></div>
-      <div class="center" style="margin-top:14px"><span class="scroll-hint muted">Scroll down to explore</span></div>
+      <a class="cta" href="#gallery">View Gallery</a>
+      <div style="margin-top:14px"><span class="scroll-hint" style="color:(255,255,255,0.9)">Scroll down to explore</span></div>
     </div>
   </header>
 
-  <main>
+  <main class="container">
 
     <!-- ABOUT -->
-    <section id="about" aria-labelledby="about-title">
+    <section id="about" class="reveal" aria-labelledby="about-title">
       <div class="section-head">
         <h2 id="about-title">About Aditi</h2>
-        <p class="muted">A curated fan tribute celebrating Aditi's work, style and inspiration.</p>
+        <p class="muted">A curated fan tribute celebrating Aditi’s work, style and inspiration.</p>
       </div>
+
       <div class="about" style="margin-top:12px">
-        <div class="text-card about-card">
-          <p style="font-size:1.05rem; color:#222;">
+        <div class="text-card glass about-card reveal">
+          <p style="font-size:1.05rem; color:var(--text);">
             Aditi Budhathoki is a Nepali actress and model admired for her elegance and on-screen charisma.
             This fanpage highlights high-quality photos, latest updates, and fan creations in a refined, respectful space.
           </p>
           <p class="muted" style="margin-top:12px">Fan-curated collection — not official.</p>
         </div>
-        <img src="images/IMG_0473.jpeg" alt="Aditi portrait" loading="lazy">
+        <img src="images/IMG_0473.jpeg" alt="Aditi portrait" loading="lazy" class="reveal" style="border-radius:12px;"/>
       </div>
     </section>
 
     <!-- GALLERY -->
-    <section id="gallery" aria-labelledby="gallery-title">
+    <section id="gallery" aria-labelledby="gallery-title" class="reveal-delayed">
       <div class="section-head">
         <h2 id="gallery-title">Gallery</h2>
         <p class="muted">Click any image to open the full view. High-resolution images optimized for web.</p>
       </div>
 
-      <!-- Gallery Filters -->
-      <div class="gallery-filters" id="gallery-filters">
-        <button class="filter-btn active" data-filter="all">All</button>
+      <!-- Filters -->
+      <div class="gallery-filters" role="toolbar" aria-label="Gallery filters">
+        <button class="filter-btn active" data-filter="all" aria-pressed="true">All</button>
         <button class="filter-btn" data-filter="portrait">Portraits</button>
         <button class="filter-btn" data-filter="event">Events</button>
         <button class="filter-btn" data-filter="casual">Casual</button>
       </div>
 
       <div class="gallery-wrap">
-        <div class="gallery-grid" id="gallery-grid">
-          <!-- JS will populate images preserving the exact order you asked -->
+        <div class="gallery-grid" id="gallery-grid" aria-live="polite" aria-busy="false">
+          <!-- images inserted dynamically -->
         </div>
 
-        <!-- Pagination Controls for gallery -->
-        <div class="pagination" id="gallery-pagination" style="display:none">
-          <button class="pagination-btn" id="gallery-prev" disabled><i class="fas fa-chevron-left"></i> Previous</button>
-          <div class="pagination-numbers" id="gallery-page-numbers"></div>
-          <button class="pagination-btn" id="gallery-next">Next <i class="fas fa-chevron-right"></i></button>
+        <!-- Pagination Controls -->
+        <div class="pagination" id="pagination" aria-hidden="true" role="navigation" aria-label="Gallery pagination">
+          <button class="pagination-btn" id="prev-btn" disabled aria-disabled="true"><i class="fas fa-chevron-left"></i>&nbsp;Previous</button>
+          <div class="pagination-numbers" id="pagination-numbers" aria-hidden="false" role="group" aria-label="Page numbers"></div>
+          <button class="pagination-btn" id="next-btn">Next&nbsp;<i class="fas fa-chevron-right"></i></button>
         </div>
 
-        <div class="pagination-info center muted" id="gallery-info" style="margin-top:10px"></div>
+        <div class="pagination-info center muted" id="pagination-info" style="margin-top:12px" aria-live="polite"></div>
       </div>
     </section>
 
     <!-- NEWS -->
-    <section id="news" aria-labelledby="news-title">
+    <section id="news" aria-labelledby="news-title" class="reveal">
       <div class="section-head">
         <h2 id="news-title">Latest News</h2>
-        <p class="muted">Curated updates related to Aditi's public appearances and projects.</p>
+        <p class="muted">Curated updates related to Aditi’s public appearances and projects.</p>
       </div>
 
       <div class="news-grid">
-        <article class="news-card">
+        <article class="news-card glass reveal">
           <img src="images/IMG_0510.jpeg" alt="news 1" loading="lazy">
           <div class="news-body">
             <h3>New Photoshoot Released</h3>
@@ -340,16 +584,16 @@
           </div>
         </article>
 
-        <article class="news-card">
+        <article class="news-card glass reveal">
           <img src="images/IMG_0467.jpeg" alt="news 2" loading="lazy">
           <div class="news-body">
             <h3>Upcoming Collaboration</h3>
-            <p>Industry reports suggest an upcoming creative collaboration — we'll update when official details drop.</p>
+            <p>Industry reports suggest an upcoming creative collaboration — we’ll update when official details drop.</p>
             <p class="muted" style="margin-top:8px;font-size:0.85rem">Aug 2025</p>
           </div>
         </article>
 
-        <article class="news-card">
+        <article class="news-card glass reveal">
           <img src="images/IMG_0469.jpeg" alt="news 3" loading="lazy">
           <div class="news-body">
             <h3>Interview & Feature</h3>
@@ -361,643 +605,995 @@
     </section>
 
     <!-- EXCLUSIVE -->
-    <section id="exclusive" aria-labelledby="exclusive-title">
-        <div class="exclusive-box">
-            <div class="lock">🔒</div>
-            <h3 id="exclusive-title">Unlock Exclusive Content</h3>
-            <p>Access high-resolution desktop wallpapers, behind-the-scenes clips, and early access photos.</p>
-            <a href="#contact" class="cta-exclusive">Sign Up for Access</a>
-        </div>
-    </section>
-
-    <!-- VIDEOS / COLLECTION (thumbnails, netflix vibe) -->
-    <section id="collection" aria-labelledby="collection-title" class="video-section">
-      <div class="section-head">
-        <h2 id="collection-title">🎥 The Aditi Collection</h2>
-        <p class="muted">Handpicked videos from across YouTube, all in one place</p>
-      </div>
-
-      <div class="video-grid" id="video-grid">
-        <!-- JS will populate thumbnails in the exact order provided -->
-      </div>
-
-      <div class="video-pagination" id="video-pagination" style="margin-top:14px;">
-        <button class="pagination-btn" id="video-prev" disabled><i class="fas fa-chevron-left"></i> Previous</button>
-        <div class="pagination-numbers" id="video-page-numbers"></div>
-        <button class="pagination-btn" id="video-next">Next <i class="fas fa-chevron-right"></i></button>
+    <section id="exclusive" aria-labelledby="exclusive-title" class="reveal">
+      <div class="exclusive-box glass">
+        <div class="lock" style="font-size:36px">🔒</div>
+        <h3 id="exclusive-title">Unlock Exclusive Content</h3>
+        <p>Access high-resolution desktop wallpapers, behind-the-scenes clips, and early access photos.</p>
+        <a href="#contact" class="btn" style="margin-top:12px; display:inline-block">Sign Up for Access</a>
       </div>
     </section>
 
     <!-- FAN ZONE -->
-    <section id="fan" aria-labelledby="fan-title">
-      <div class="section-head">
-        <h2 id="fan-title">Fan Zone</h2>
-        <p class="muted">Share art, wallpapers, and messages. Selected works will be featured (with credit).</p>
+    <section id="fan" aria-labelledby="fan-title" class="reveal-delayed">
+  <div class="section-head">
+    <h2 id="fan-title">Fan Zone</h2>
+    <p>Share art, wallpapers, and messages. Selected works will be featured (with credit).</p>
+  </div>
+
+  <div class="fan-wrapper">
+    <!-- Left Column -->
+    <div class="fan-info glass-box">
+      <h3>Want your fan art featured?</h3>
+      <p>Tag your posts with <strong>#Aditilicious</strong> or contact the admin through the form. Be sure to include credits.</p>
+      <ul>
+        <li>📸 <span class="highlight">High-res fan art preferred (3000px on longest side).</span></li>
+        <li>🔖 <span class="highlight">Include your social handle for credit.</span></li>
+        <li>💖 <span class="highlight">Only respectful, non-offensive content will be featured.</span></li>
+      </ul>
+
+      <div class="fan-actions">
+        <a href="messages.html" class="btn-glass">📜 View Messages</a>
+        <a href="#" class="btn-glass">📝 Fan Quiz</a>
+        <a href="https://www.instagram.com/aditilicious?igsh=MW5sMHk3bnE3MmM4Zg%3D%3D&utm_source=qr" 
+   class="btn-glass" 
+   target="_blank" 
+   rel="noopener">
+   📷 Join Now
+</a>
       </div>
+    </div>
 
-      <div class="fan-grid">
-        <div class="fan-box glass-box">
-          <h3 class="muted" style="color:var(--accent)">Fan words showcase</h3>
-          <p style="font-size:1.03rem;">Want your fan art featured? Tag your posts with <strong>#Aditilicious</strong> or contact the page admin through the form. Be sure to include credits.</p>
-          <ul style="margin-top:10px;color:var(--muted)">
-            <li>High-res fan art preferred (3000px on longest side).</li>
-            <li>Include your social handle for credit.</li>
-            <li>Only non-offensive, respectful content will be featured.</li>
-          </ul>
+    <!-- Right Column -->
+    <div class="fan-contact glass-box">
+      <h3>Contact / Submissions</h3>
+      <form action="https://formspree.io/f/mvgbnrgg" method="POST">
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" placeholder="Your name" required>
 
-          <div class="fan-actions" style="margin-top:14px">
-            <a class="btn-glass" id="view-messages-btn" href="#view-messages" onclick="alert('View Messages: feature coming soon — will show fan messages here')">View Messages</a>
-            <a class="btn-glass" id="fan-quiz-btn" href="#fan-quiz" onclick="alert('Fan Quiz: feature coming soon')">Fan Quiz</a>
-            <a class="btn-glass" id="join-me-btn" href="https://www.instagram.com/aditilicious?igsh=MW5sMHk3bnE3MmM4Zg%3D%3D&utm_source=qr" target="_blank" rel="noopener">Join Me (Instagram)</a>
-          </div>
-        </div>
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" placeholder="you@email.com" required>
 
-        <div class="contact-glass" id="contact">
-          <form action="https://formspree.io/f/mvgbnrgg" method="POST" target="_blank">
-            <label for="name">Name</label>
-            <input id="name" name="name" type="text" required placeholder="Your name">
+        <label for="message">Message / Submission notes</label>
+        <textarea id="message" name="message" placeholder="Tell us about your submission..." required></textarea>
 
-            <label for="email">Email</label>
-            <input id="email" name="_replyto" type="email" required placeholder="your@email.com">
-
-            <label for="message">Message / Submission notes</label>
-            <textarea id="message" name="message" rows="5" placeholder="Tell us about your submission or message"></textarea>
-
-            <button type="submit" class="btn-submit">Send Message</button>
-          </form>
-        </div>
-      </div>
-    </section>
-
-    <section aria-labelledby="follow" style="margin-top:28px; text-align:center">
+        <button type="submit" class="btn-submit">📩 Send Message</button>
+      </form>
+    </div>
+  </div>
+</section>
+    <section aria-labelledby="follow" style="margin-top:28px; text-align:center" class="reveal">
       <p class="muted">Follow Aditi: <a href="https://www.instagram.com/aditi_budhathoki" target="_blank" rel="noopener" style="color:var(--accent)">Instagram</a></p>
     </section>
 
-  </main>
+    <!-- Aditi Collection (YouTube Videos) -->
+  <section id="collection" aria-labelledby="collection-title" class="reveal">
+  <div class="section-head">
+    <h2 id="collection-title">🎥 The Aditi Collection</h2>
+    <p class="muted">Handpicked videos from across YouTube, all in one place</p>
+  </div>
+        
+      <!-- Video Grid -->
+      <div class="video-grid" id="video-grid"></div>
 
+      <!-- Pagination -->
+      <div class="pagination" id="video-pagination">
+        <button class="pagination-btn" id="video-prev" disabled>
+          <i class="fas fa-chevron-left"></i> Previous
+        </button>
+        <div class="pagination-numbers" id="video-page-numbers"></div>
+        <button class="pagination-btn" id="video-next">
+          Next <i class="fas fa-chevron-right"></i>
+        </button>
+      </div>
+    </section>
+
+    <!-- Lightbox for Video -->
+    <div id="video-lightbox" class="lb" aria-hidden="true" aria-label="Video preview">
+      <div class="lb-inner" role="dialog" aria-modal="true">
+        <iframe id="lb-video" frameborder="0" allowfullscreen></iframe>
+      </div>
+      <div class="lb-close" role="button" title="Close">✕</div>
+      <div class="lb-nav lb-prev" role="button" title="Previous">‹</div>
+      <div class="lb-nav lb-next" role="button" title="Next">›</div>
+    </div>
+
+
+  <!-- FOOTER -->
   <footer>
     <div style="max-width:var(--maxw); margin:0 auto; padding:0 18px">
       <p style="margin-bottom:8px">Aditilicious — Fan-made tribute · Not official</p>
-      <p style="opacity:0.9; font-size:0.9rem">© <span id="year"></span> All rights reserved.</p>
+      <p style="opacity:0.95; font-size:0.95rem">© <span id="year"></span> All rights reserved.</p>
     </div>
   </footer>
 
-  <!-- IMAGE LIGHTBOX -->
+  <!-- LIGHTBOX -->
   <div id="lightbox" class="lb" aria-hidden="true" aria-label="Image preview">
     <div class="lb-inner" role="dialog" aria-modal="true">
       <img id="lb-img" src="" alt="">
     </div>
-    <div class="lb-close" role="button" title="Close">✕</div>
-    <div class="lb-nav lb-prev" role="button" title="Previous">‹</div>
-    <div class="lb-nav lb-next" role="button" title="Next">›</div>
+    <div class="lb-close" role="button" title="Close" aria-label="Close">✕</div>
+    <div class="lb-nav lb-prev" role="button" title="Previous" aria-label="Previous">‹</div>
+    <div class="lb-nav lb-next" role="button" title="Next" aria-label="Next">›</div>
   </div>
 
-  <!-- VIDEO MODAL -->
-  <div id="video-modal" class="video-modal" aria-hidden="true" aria-label="Video player">
-    <div class="video-modal-inner">
-      <button class="video-close" aria-label="Close video">✕</button>
-      <iframe id="video-iframe" class="video-iframe" src="" title="Aditi video" allow="accelerometer; encrypted-media; picture-in-picture" allowfullscreen></iframe>
+  <script>
+  /* =============================
+     Utilities / Initial Setup
+     ============================= */
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Small helper: throttled resize
+  function throttle(fn, wait){ let t; return function(){ if(t) return; t=setTimeout(()=>{ fn(); t=null }, wait) } }
+
+  /* =============================
+     HERO GLOW (mouse-follow subtle)
+     ============================= */
+  (function(){
+    const heroGlow = document.getElementById('hero-glow');
+    if(!heroGlow) return;
+    const c1 = 'rgba(244,143,177,0.18)';
+    const c2 = 'rgba(186,104,200,0.14)';
+    document.addEventListener('mousemove', (e) => {
+      const x = (e.clientX / window.innerWidth) * 100;
+      const y = (e.clientY / window.innerHeight) * 100;
+      const g = `
+        radial-gradient(700px 380px at ${x}% ${y}%, ${c1}, transparent 28%),
+        radial-gradient(700px 380px at ${100-x}% ${100-y}%, ${c2}, transparent 28%)
+      `;
+      heroGlow.style.background = g;
+    });
+  })();
+
+  /* =============================
+     THEME TOGGLE
+     ============================= */
+  (function(){
+    const tbtn = document.querySelector('.theme-toggle');
+    if(!tbtn) return;
+    const icon = tbtn.querySelector('i');
+    const stored = localStorage.getItem('theme');
+    if(stored === 'dark'){ document.documentElement.setAttribute('data-theme','dark'); icon.classList.remove('fa-moon'); icon.classList.add('fa-sun'); }
+    tbtn.addEventListener('click', ()=>{
+      const now = document.documentElement.getAttribute('data-theme');
+      if(now === 'dark'){ document.documentElement.setAttribute('data-theme',''); localStorage.setItem('theme','light'); icon.classList.remove('fa-sun'); icon.classList.add('fa-moon'); }
+      else { document.documentElement.setAttribute('data-theme','dark'); localStorage.setItem('theme','dark'); icon.classList.remove('fa-moon'); icon.classList.add('fa-sun'); }
+    });
+  })();
+
+  /* =============================
+     NAV SCROLL BEHAVIOR & SCROLL-SPY
+     ============================= */
+  (function(){
+    const nav = document.querySelector('.nav');
+    const links = document.querySelectorAll('.nav-links a');
+
+    function onScroll(){
+      if(window.scrollY > 40) nav.classList.add('scrolled'); else nav.classList.remove('scrolled');
+
+      // scroll spy
+      const sections = document.querySelectorAll('main section[id]');
+      sections.forEach(section => {
+        const top = section.offsetTop - 120;
+        const bottom = top + section.offsetHeight;
+        const id = section.getAttribute('id');
+        if(window.scrollY >= top && window.scrollY < bottom){
+          links.forEach(a => a.classList.remove('active-link'));
+          const match = document.querySelector('.nav-links a[href="#' + id + '"]');
+          if(match) match.classList.add('active-link');
+        }
+      });
+    }
+
+    window.addEventListener('scroll', throttle(onScroll, 60));
+    onScroll();
+  })();
+
+  /* =============================
+     MOBILE HAMBURGER (keeps structure)
+     ============================= */
+  (function(){
+    const hb = document.querySelector('.hamburger');
+    const navlinks = document.querySelector('.nav-links');
+    if(!hb) return;
+    hb.addEventListener('click', ()=>{
+      hb.classList.toggle('active');
+      navlinks.classList.toggle('active');
+      document.body.style.overflow = navlinks.classList.contains('active') ? 'hidden' : '';
+    });
+
+    navlinks.querySelectorAll('a').forEach(a => a.addEventListener('click', ()=>{
+      hb.classList.remove('active'); navlinks.classList.remove('active'); document.body.style.overflow = '';
+    }));
+  })();
+
+  /* =============================
+     SCROLL REVEAL FOR SECTIONS
+     ============================= */
+  (function(){
+    const sections = document.querySelectorAll('main section, header .hero-inner, .reveal, .reveal-delayed');
+    function reveal() {
+      const trigger = window.innerHeight * 0.85;
+      sections.forEach(s => {
+        const top = s.getBoundingClientRect().top;
+        if(top < trigger) s.classList.add('visible');
+      });
+    }
+    window.addEventListener('scroll', throttle(reveal, 80));
+    reveal();
+  })();
+
+  /* =============================
+     GALLERY: DATA, FILTERS, PAGINATION, RENDER
+     ============================= */
+  (function(){
+    // gallery images list
+    const galleryData = [
+      { src: 'images/IMG_0483.jpeg', alt: 'Aditi portrait', category: 'portrait' },
+      { src: 'images/IMG_0467.jpeg', alt: 'Aditi at event', category: 'portrait' },
+      { src: 'images/IMG_0473.jpeg', alt: 'Aditi portrait', category: 'portrait' },
+      { src: 'images/IMG_0469.jpeg', alt: 'Aditi casual', category: 'casual' },
+      { src: 'images/IMG_0505.jpeg', alt: 'IMG_0505', category: 'portrait' },
+      { src: 'images/IMG_0506.jpeg', alt: 'IMG_0506', category: 'portrait' },
+      { src: 'images/IMG_0507.jpeg', alt: 'IMG_0507', category: 'portrait' },
+      { src: 'images/IMG_0508.jpeg', alt: 'IMG_0508', category: 'portrait' },
+      { src: 'images/IMG_0509.jpeg', alt: 'IMG_0509', category: 'portrait' },
+      { src: 'images/IMG_0510.jpeg', alt: 'IMG_0510', category: 'portrait' },
+      { src: 'images/IMG_0511.jpeg', alt: 'IMG_0511', category: 'portrait' },
+      { src: 'images/IMG_0512.jpeg', alt: 'IMG_0512', category: 'portrait' },
+      { src: 'images/IMG_0513.jpeg', alt: 'IMG_0513', category: 'portrait' },
+      { src: 'images/IMG_0514.jpeg', alt: 'IMG_0514', category: 'portrait' },
+      { src: 'images/IMG_0466.jpeg', alt: 'IMG_0466', category: 'portrait' },
+      { src: 'images/IMG_0456.jpeg', alt: 'IMG_0456', category: 'portrait' },
+      { src: 'images/IMG_0457.jpeg', alt: 'IMG_0457', category: 'portrait' },
+      { src: 'images/IMG_0465.jpeg', alt: 'IMG_0465', category: 'portrait' },
+      { src: 'images/IMG_0464.jpeg', alt: 'IMG_0464', category: 'portrait' },
+      { src: 'images/IMG_0471.jpeg', alt: 'IMG_0471', category: 'portrait' },
+      { src: 'images/IMG_0470.jpeg', alt: 'IMG_0470', category: 'portrait' },
+      { src: 'images/IMG_0515.jpeg', alt: 'IMG_0515', category: 'portrait' },
+      { src: 'images/IMG_0517.jpeg', alt: 'IMG_0517', category: 'portrait' },
+      { src: 'images/IMG_0518.jpeg', alt: 'IMG_0518', category: 'casual' },
+      { src: 'images/IMG_0519.jpeg', alt: 'IMG_0519', category: 'casual' },
+      { src: 'images/IMG_0520.jpeg', alt: 'IMG_0520', category: 'portrait' },
+      { src: 'images/IMG_0535.jpeg', alt: 'IMG_0535', category: 'casual' },
+      { src: 'images/IMG_0536.jpeg', alt: 'IMG_0536', category: 'casual' },
+      { src: 'images/IMG_0537.jpeg', alt: 'IMG_0537', category: 'casual' },
+      { src: 'images/IMG_0538.jpeg', alt: 'IMG_0538', category: 'casual' },
+      { src: 'images/IMG_0558.jpeg', alt: 'IMG_0558', category: 'portrait' },
+      { src: 'images/IMG_0556.jpeg', alt: 'IMG_0556', category: 'casual' },
+      { src: 'images/IMG_0560.jpeg', alt: 'IMG_0560', category: 'casual' },
+      { src: 'images/IMG_0561.jpeg', alt: 'IMG_0561', category: 'casual' },
+      { src: 'images/IMG_0557.jpeg', alt: 'IMG_0557', category: 'portrait' },
+      { src: 'images/IMG_0559.jpeg', alt: 'IMG_0559', category: 'portrait' },
+      { src: 'images/IMG_0565.jpeg', alt: 'IMG_0565', category: 'casual' },
+      { src: 'images/IMG_0567.jpeg', alt: 'IMG_0567', category: 'casual' },
+      { src: 'images/IMG_0562.jpeg', alt: 'IMG_0562', category: 'portrait' },
+      { src: 'images/IMG_0563.jpeg', alt: 'IMG_0563', category: 'portrait' },
+      { src: 'images/IMG_0564.jpeg', alt: 'IMG_0564', category: 'portrait' },
+      { src: 'images/IMG_0566.jpeg', alt: 'IMG_0566', category: 'portrait' },
+      { src: 'images/IMG_0568.jpeg', alt: 'IMG_0568', category: 'portrait' },
+      { src: 'images/IMG_0472.jpeg', alt: 'IMG_0472', category: 'portrait' }
+    ];
+
+    // DOM refs
+    const galleryGrid = document.getElementById('gallery-grid');
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const prevBtn = document.getElementById('prev-btn');
+    const nextBtn = document.getElementById('next-btn');
+    const paginationNumbers = document.getElementById('pagination-numbers');
+    const paginationInfo = document.getElementById('pagination-info');
+    const pagination = document.getElementById('pagination');
+
+    // responsive items per page
+    function getItemsPerPage(){
+      if(window.innerWidth < 480) return 6;
+      if(window.innerWidth < 768) return 8;
+      return 9;
+    }
+
+    let itemsPerPage = getItemsPerPage();
+    let currentPage = 1;
+    let currentFilter = 'all';
+    let filteredData = [...galleryData];
+
+    // update filtered
+    function updateFilteredData(){
+      if(currentFilter === 'all') filteredData = [...galleryData];
+      else filteredData = galleryData.filter(i => i.category === currentFilter);
+      currentPage = 1;
+    }
+
+    // render gallery
+    function renderGallery(){
+      galleryGrid.setAttribute('aria-busy','true');
+      galleryGrid.classList.add('loading');
+      const start = (currentPage - 1) * itemsPerPage;
+      const end = start + itemsPerPage;
+      const pageData = filteredData.slice(start, end);
+      galleryGrid.innerHTML = '';
+
+      setTimeout(()=>{
+        pageData.forEach(item => {
+          const card = document.createElement('div');
+          card.className = 'card reveal';
+          card.setAttribute('data-category', item.category);
+
+          const img = document.createElement('img');
+          img.src = item.src;
+          img.alt = item.alt;
+          img.loading = 'lazy';
+          img.style.borderRadius = '8px';
+          img.style.display = 'block';
+
+          // small caption overlay
+          const cap = document.createElement('div');
+          cap.style.position = 'absolute';
+          cap.style.left = '12px';
+          cap.style.bottom = '12px';
+          cap.style.padding = '6px 10px';
+          cap.style.borderRadius = '999px';
+          cap.style.fontSize = '0.85rem';
+          cap.style.background = 'linear-gradient(90deg, rgba(0,0,0,0.22), rgba(0,0,0,0.12))';
+          cap.style.color = '#fff';
+          cap.textContent = item.category;
+
+          card.appendChild(img);
+          card.appendChild(cap);
+          galleryGrid.appendChild(card);
+        });
+
+        galleryGrid.classList.remove('loading');
+        galleryGrid.setAttribute('aria-busy','false');
+        initLightbox(); // rewire lightbox
+      }, 220);
+    }
+
+    // pagination
+    function setupPagination(){
+      const totalPages = Math.max(1, Math.ceil(filteredData.length / itemsPerPage));
+      paginationNumbers.innerHTML = '';
+
+      let startPage = Math.max(1, currentPage - 2);
+      let endPage = Math.min(totalPages, currentPage + 2);
+
+      if(currentPage <= 3) endPage = Math.min(totalPages, 5);
+      if(currentPage >= totalPages - 2) startPage = Math.max(1, totalPages - 4);
+
+      for(let i=startPage;i<=endPage;i++){
+        const btn = document.createElement('div');
+        btn.className = 'page-number ' + (i===currentPage ? 'active' : '');
+        btn.textContent = i;
+        btn.style.display = 'inline-flex';
+        btn.style.alignItems = 'center';
+        btn.style.justifyContent = 'center';
+        btn.addEventListener('click', ()=> goToPage(i));
+        paginationNumbers.appendChild(btn);
+      }
+
+      prevBtn.disabled = currentPage === 1;
+      nextBtn.disabled = currentPage === totalPages;
+
+      if(prevBtn.disabled) prevBtn.classList.add('disabled'); else prevBtn.classList.remove('disabled');
+      if(nextBtn.disabled) nextBtn.classList.add('disabled'); else nextBtn.classList.remove('disabled');
+
+      if(totalPages <= 1) pagination.style.display = 'none'; else pagination.style.display = 'flex';
+    }
+
+    function updatePaginationInfo(){
+      const total = filteredData.length;
+      if(total === 0) paginationInfo.textContent = 'No images found';
+      else {
+        const startIndex = (currentPage - 1) * itemsPerPage + 1;
+        const endIndex = Math.min(currentPage * itemsPerPage, total);
+        paginationInfo.textContent = `Showing ${startIndex}-${endIndex} of ${total} images`;
+      }
+    }
+
+    function goToPage(page){
+      currentPage = page;
+      renderGallery();
+      setupPagination();
+      updatePaginationInfo();
+      document.getElementById('gallery').scrollIntoView({behavior:'smooth'});
+    }
+
+    prevBtn.addEventListener('click', ()=> { if(currentPage>1) goToPage(currentPage-1); });
+    nextBtn.addEventListener('click', ()=> { const totalPages = Math.ceil(filteredData.length/itemsPerPage); if(currentPage < totalPages) goToPage(currentPage+1); });
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', ()=>{
+        filterBtns.forEach(b => { b.classList.remove('active'); b.setAttribute('aria-pressed','false') });
+        btn.classList.add('active'); btn.setAttribute('aria-pressed','true');
+        currentFilter = btn.getAttribute('data-filter');
+        updateFilteredData();
+        renderGallery();
+        setupPagination();
+        updatePaginationInfo();
+      });
+    });
+
+    // on resize adjust items per page
+    window.addEventListener('resize', throttle(()=>{
+      const newItems = getItemsPerPage();
+      if(newItems !== itemsPerPage){
+        itemsPerPage = newItems;
+        updateFilteredData();
+        renderGallery();
+        setupPagination();
+        updatePaginationInfo();
+      }
+    }, 220));
+
+    // initialize
+    updateFilteredData();
+    renderGallery();
+    setupPagination();
+    updatePaginationInfo();
+
+    /* =============================
+       LIGHTBOX (inside gallery function scope)
+       ============================= */
+    function initLightbox(){
+      const images = Array.from(document.querySelectorAll('.gallery-grid .card img'));
+      const lb = document.getElementById('lightbox');
+      const lbImg = document.getElementById('lb-img');
+      const closeBtn = document.querySelector('.lb-close');
+      const prevBtn = document.querySelector('.lb-prev');
+      const nextBtn = document.querySelector('.lb-next');
+      let idx = 0;
+
+      function open(i){
+        if(!images[i]) return;
+        idx = i;
+        lbImg.src = images[i].src;
+        lbImg.alt = images[i].alt || 'Aditi';
+        lb.classList.add('open');
+        lb.setAttribute('aria-hidden','false');
+        document.body.style.overflow = 'hidden';
+      }
+      function close(){
+        lb.classList.remove('open');
+        lb.setAttribute('aria-hidden','true');
+        lbImg.src = '';
+        document.body.style.overflow = '';
+      }
+      function prev(){ idx = (idx - 1 + images.length) % images.length; lbImg.src = images[idx].src }
+      function next(){ idx = (idx + 1) % images.length; lbImg.src = images[idx].src }
+
+      // attach events
+      images.forEach((img,i)=> {
+        // keyboard nav + touch support will be global
+        img.onclick = ()=> open(i);
+        // small tilt effect on mobile / hover
+        img.addEventListener('mouseenter', ()=> img.style.transform='scale(1.03)');
+        img.addEventListener('mouseleave', ()=> img.style.transform='');
+      });
+
+      closeBtn.onclick = close;
+      prevBtn.onclick = prev;
+      nextBtn.onclick = next;
+
+      // keyboard support
+      document.addEventListener('keydown', (e)=>{
+        if(!lb.classList.contains('open')) return;
+        if(e.key === 'Escape') close();
+        if(e.key === 'ArrowLeft') prev();
+        if(e.key === 'ArrowRight') next();
+      });
+
+      // click outside to close
+      lb.onclick = function(e){ if(e.target === lb) close(); };
+
+      // touch swipe support for mobile
+      let touchStartX = 0;
+      let touchEndX = 0;
+      lbImg.addEventListener('touchstart', e => touchStartX = e.changedTouches[0].screenX);
+      lbImg.addEventListener('touchend', e => {
+        touchEndX = e.changedTouches[0].screenX;
+        if(touchEndX + 30 < touchStartX) next();
+        if(touchEndX - 30 > touchStartX) prev();
+      });
+    }
+
+  })();
+
+  /* =============================
+     Accessibility focus & small polish
+     ============================= */
+  document.addEventListener('keyup', (e)=> {
+    if(e.key === 'Tab') document.body.classList.add('show-focus');
+  });
+    // --- Video Collection ---
+    <!-- 🎥 THE ADITI COLLECTION (Netflix-style thumbnails + popup) -->
+<section id="collection" aria-labelledby="collection-title" class="reveal">
+  <div class="section-head">
+    <h2 id="collection-title">🎥 The Aditi Collection</h2>
+    <p class="muted">Handpicked videos from across YouTube, all in one place</p>
+  </div>
+
+  <!-- Video Grid -->
+  <div class="video-grid" id="video-grid" aria-live="polite"></div>
+
+  <!-- Pagination -->
+  <div class="pagination" id="video-pagination" aria-label="Video pagination">
+    <button class="pagination-btn" id="video-prev" aria-label="Previous page" disabled>‹ Prev</button>
+    <div class="pagination-numbers" id="video-page-numbers" role="navigation" aria-label="Page numbers"></div>
+    <button class="pagination-btn" id="video-next" aria-label="Next page">Next ›</button>
+  </div>
+
+  <!-- Popup Player -->
+  <div id="video-popup" class="video-popup" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="popup-backdrop" id="popup-backdrop"></div>
+    <div class="popup-content" role="document">
+      <button id="popup-close" class="popup-close" aria-label="Close video">✕</button>
+      <div class="popup-iframe-wrap">
+        <iframe id="popup-video" src="" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen title="Aditi video player"></iframe>
+      </div>
     </div>
   </div>
 
-<script>
-/* =========================
-   Utility + init
-   ========================= */
-document.getElementById('year').textContent = new Date().getFullYear();
+  <style>
+    /* --- Collection: Netflix Vibe --- */
+    #collection {
+      background: linear-gradient(180deg,#0b0b0b 0%, #141414 100%);
+      padding: 64px 20px;
+      color: #fff;
+    }
+    #collection .section-head h2 {
+      color: #ff3366;
+      font-size: 1.9rem;
+      margin-bottom: 6px;
+    }
+    #collection .section-head p { color: rgba(255,255,255,0.75); margin-top:6px }
 
-/* Simple theme toggle (light/dark quick switch) */
-document.querySelector('.theme-toggle').addEventListener('click', () => {
-  const cur = document.documentElement.getAttribute('data-theme');
-  if (cur === 'dark') {
-    document.documentElement.removeAttribute('data-theme');
-  } else {
-    document.documentElement.setAttribute('data-theme', 'dark');
-  }
-});
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      margin-top: 28px;
+      align-items: start;
+    }
 
-/* hamburger for mobile menu */
-const hamburger = document.querySelector('.hamburger');
-const navLinks = document.querySelector('.nav-links');
-hamburger.addEventListener('click', () => {
-  const expanded = hamburger.getAttribute('aria-expanded') === 'true';
-  hamburger.setAttribute('aria-expanded', String(!expanded));
-  navLinks.classList.toggle('active');
-});
+    .video-card {
+      background: #0f0f0f;
+      border-radius: 10px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform .28s ease, box-shadow .28s ease;
+      box-shadow: 0 6px 24px rgba(0,0,0,0.5);
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      min-height: 260px;
+    }
 
-/* Hero dynamic glow (mouse) */
-(function(){
-  const heroGlow = document.getElementById('hero-glow');
-  if(!heroGlow) return;
-  document.addEventListener('mousemove', (e) => {
-    const x = (e.clientX / window.innerWidth) * 100;
-    const y = (e.clientY / window.innerHeight) * 100;
-    heroGlow.style.background = `
-      radial-gradient(600px 300px at ${x}% ${y}%, rgba(244,143,177,0.18), transparent 30%),
-      radial-gradient(600px 300px at ${100-x}% ${100-y}%, rgba(186,104,200,0.16), transparent 30%)
-    `;
-  });
-})();
+    .video-thumb {
+      width: 100%;
+      height: 140px;
+      object-fit: cover;
+      display:block;
+      background: #111;
+      flex-shrink: 0;
+    }
 
-/* =========================
-   DATA: images (exact order you provided)
-   ========================= */
-const galleryData = [
-  { src: 'images/IMG_0483.jpeg', alt: 'Aditi portrait', category: 'portrait' },
-  { src: 'images/IMG_0467.jpeg', alt: 'Aditi at event', category: 'portrait' },
-  { src: 'images/IMG_0473.jpeg', alt: 'Aditi portrait', category: 'portrait' },
-  { src: 'images/IMG_0469.jpeg', alt: 'Aditi casual', category: 'casual' },
-  { src: 'images/IMG_0505.jpeg', alt: 'IMG_0505', category: 'portrait' },
-  { src: 'images/IMG_0506.jpeg', alt: 'IMG_0506', category: 'portrait' },
-  { src: 'images/IMG_0507.jpeg', alt: 'IMG_0507', category: 'portrait' },
-  { src: 'images/IMG_0508.jpeg', alt: 'IMG_0508', category: 'portrait' },
-  { src: 'images/IMG_0509.jpeg', alt: 'IMG_0509', category: 'portrait' },
-  { src: 'images/IMG_0510.jpeg', alt: 'IMG_0510', category: 'portrait' },
-  { src: 'images/IMG_0511.jpeg', alt: 'IMG_0511', category: 'portrait' },
-  { src: 'images/IMG_0512.jpeg', alt: 'IMG_0512', category: 'portrait' },
-  { src: 'images/IMG_0513.jpeg', alt: 'IMG_0513', category: 'portrait' },
-  { src: 'images/IMG_0514.jpeg', alt: 'IMG_0514', category: 'portrait' },
-  { src: 'images/IMG_0466.jpeg', alt: 'IMG_0466', category: 'portrait' },
-  { src: 'images/IMG_0456.jpeg', alt: 'IMG_0456', category: 'portrait' },
-  { src: 'images/IMG_0457.jpeg', alt: 'IMG_0457', category: 'portrait' },
-  { src: 'images/IMG_0465.jpeg', alt: 'IMG_0465', category: 'portrait' },
-  { src: 'images/IMG_0464.jpeg', alt: 'IMG_0464', category: 'portrait' },
-  { src: 'images/IMG_0471.jpeg', alt: 'IMG_0471', category: 'portrait' },
-  { src: 'images/IMG_0470.jpeg', alt: 'IMG_0470', category: 'portrait' },
-  { src: 'images/IMG_0515.jpeg', alt: 'IMG_0515', category: 'portrait' },
-  { src: 'images/IMG_0517.jpeg', alt: 'IMG_0517', category: 'portrait' },
-  { src: 'images/IMG_0518.jpeg', alt: 'IMG_0518', category: 'casual' },
-  { src: 'images/IMG_0519.jpeg', alt: 'IMG_0519', category: 'casual' },
-  { src: 'images/IMG_0520.jpeg', alt: 'IMG_0520', category: 'portrait' },
-  { src: 'images/IMG_0535.jpeg', alt: 'IMG_0535', category: 'casual' },
-  { src: 'images/IMG_0536.jpeg', alt: 'IMG_0536', category: 'casual' },
-  { src: 'images/IMG_0537.jpeg', alt: 'IMG_0537', category: 'casual' },
-  { src: 'images/IMG_0538.jpeg', alt: 'IMG_0538', category: 'casual' },
-  { src: 'images/IMG_0558.jpeg', alt: 'IMG_0558', category: 'portrait' },
-  { src: 'images/IMG_0556.jpeg', alt: 'IMG_0556', category: 'casual' },
-  { src: 'images/IMG_0560.jpeg', alt: 'IMG_0560', category: 'casual' },
-  { src: 'images/IMG_0561.jpeg', alt: 'IMG_0561', category: 'casual' },
-  { src: 'images/IMG_0557.jpeg', alt: 'IMG_0557', category: 'portrait' },
-  { src: 'images/IMG_0559.jpeg', alt: 'IMG_0559', category: 'portrait' },
-  { src: 'images/IMG_0565.jpeg', alt: 'IMG_0565', category: 'casual' },
-  { src: 'images/IMG_0567.jpeg', alt: 'IMG_0567', category: 'casual' },
-  { src: 'images/IMG_0562.jpeg', alt: 'IMG_0562', category: 'portrait' },
-  { src: 'images/IMG_0563.jpeg', alt: 'IMG_0563', category: 'portrait' },
-  { src: 'images/IMG_0564.jpeg', alt: 'IMG_0564', category: 'portrait' },
-  { src: 'images/IMG_0566.jpeg', alt: 'IMG_0566', category: 'portrait' },
-  { src: 'images/IMG_0568.jpeg', alt: 'IMG_0568', category: 'portrait' },
-  { src: 'images/IMG_0472.jpeg', alt: 'IMG_0472', category: 'portrait' }
-];
+    .video-meta {
+      padding: 12px;
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+      flex:1;
+    }
 
-/* =========================
-   DATA: videos (exact list provided by you)
-   Note: we will use YouTube IDs and titles exactly as given.
-   ========================= */
-const videosData = [
-  { id: "QCXaa1mEUK0", title: "Darshan Raval - Hawa Banke | Official Music Video Ft. Aditi Budhathoki | Nirmaan | Naushad Khan" },
-  { id: "djbTz_ZlQ_c", title: "Chulbul Chulbul - BABARI Song 2022 | Ft. Dhiraj Magar, Aditi Budhathoki & Dhiraj Nadakar" },
-  { id: "F9XbfHNrwxo", title: "Babari Rang - BABARI Song 2022 | Ft. Dhiraj Magar, Aditi Budhathoki & Dhiraj Nadakar" },
-  { id: "n95a7mRXAaQ", title: "Get Picture Perfect: Easy Female Model Poses for Amazing Shoots | Actress Aditi Budhathoki Shoot" },
-  { id: "6GQLxSaI1XE", title: "Jani Najani Maya (Movie Song) KRI | Anmol Kc | Aditi Budhathoki" },
-  { id: "x9AIkheDw9E", title: "Posing Like a Pro: Discover the Tricks behind Actress Aditi Budhathoki's Striking Photoshoots" },
-  { id: "FhkGrNolX3U", title: "Dhuk Dhuki Song 2018| KRI  | Ft. Anmol KC, Aditi Budhathoki" },
-  { id: "ieNIHjUwK_0", title: "MAYAKA RANGHARU- BABARI Song 2022 |Dhiraj Nadkar, Aditi Budhathoki" },
-  { id: "qkIqjh-kCjg", title: "Babari Rang (Reprise Version) - BABARI Song | Dhiraj Magar, Aditi Budhathoki" },
-  { id: "LGeLsM4iTcc", title: "BABARI | New Nepali Movie Official Teaser 2022 | Ft. Dhiraj Magar, Aditi Budhathoki, Dhiraj Nadkar" },
-  { id: "ooSHP6cwnGA", title: "BABARI | New Nepali Movie Official Trailer 2022 | Ft. Dhiraj Magar, Aditi Budhathoki, Dhiraj Nadkar" },
-  { id: "xadyAZep-WU", title: "Fizool Hai - Official Video | Saheal Khan & Aditi Budhathoki | Shameer Tandon |" },
-  { id: "SBWYGGDYmhg", title: "Tu Mera Nahi (Official Video) - Amaal Mallik | Aditi B | Rashmi Virag | Love Song 2020" },
-  { id: "IgdGChX7md8", title: "Meri Hasi - Aakanksha Sharma | Kunwar A, Aditi B | Amjad Nadeem Aamir | Zee Music Originals" },
-  { id: "9kZyeGTpQpM", title: "Apna Banauna Official Video | Karan Sehmbi | Aditi B | Mavi Singh | TRU Makers | Raj Jaiswal" },
-  { id: "9jkkrLY3NDE", title: "Inni Si Gal | Stebin Ben | Karan Kundrra | Aditi Budhathoki | Sanjeev Chaturvedi | Latest Hindi Song" },
-  { id: "V4imnHOV-bI", title: "Imaan Tu (Full Song) GK Music | Paras Kalnawat, Aditi Budhathoki | Ankit Tiwari | Valentine Special" },
-  { id: "GUrn05ipAw8", title: "BRIDAL MAKEUP BY LEMII ft ADITI BUDHATHOKI" },
-  { id: "9ugeqEbmkFk", title: "Brown smokey eyes with Aditi Budhathoki for Babari promotions | makeup by lemi" },
-  { id: "Y7_J16KcfyA", title: "Exclusive Interview with KRI Actress Aditi Budhathoki" },
-  { id: "dED7ZSrxuJ4", title: "अदितीको आरोप- शुटिङमा अनमोलले सुत्न दिएन Anmol KC | Aditi Budathoki | कृ | Kri" },
-  { id: "sQQYrlij79c", title: "यस्तो छ ‘कृ’ को ६ दिने कलेक्सन-बन्दै छ कृ-2 | KRI business report" },
-  { id: "A5p-WUH3GYA", title: "Aditi Budhathoki Sketch : २ धिरजले अदितीको डरलाग्दो😱स्केच कोरे | Dhiraj Magar, Dhiraj Nadkar, Babari" },
-  { id: "TS_zJqRr_0g", title: "Log Peete Hain (Official Video) Master Saleem, Abhishek Thakur | Pratik Sehajpal, Aditi Budhathoki" },
-  { id: "I4sjnbAaM9o", title: "ALI WORA SARANA - BABARI Song 2022 | Ft. Dhiraj Magar, Aditi Budhathoki & Dhiraj" },
-  { id: "iU5MgPQUDUQ", title: "SUMMER COTTON DRESS || AACHHO X ADITI BUDHATHOKI || FT. ADITI BUDHATHOKI" },
-  { id: "_ssF5prHpA0", title: "BLUE BALLOON DRESS || AACHHO X ADITI BUDHATHOKI || FT. ADITI BUDHATHOKI" },
-  { id: "8WHnGp6fcqI", title: "Vintage 90's | ADITI BUDHATHOKI | " },
-  { id: "pjJvwpvsn5A", title: "YELLOW SAREE || AACHHO X ADITI BUDHATHOKI || FT. ADITI BUDHATHOKI" },
-  { id: "1lAMuypKs3I", title: "Amaal Mallik Instagram Live with Aditi Budhathoki | Celebrating 1 Year of Tu Mera Nahi ❤️🎵" },
-  { id: "OE7CrwUXd4k", title: "How Aditi Budhathoki Started Her Career" },
-  { id: "DBwj03uoo0M", title: "WHITE DRESS DESIGN || AACHHO X ADITI BUDHATHOKI || FT. ADITI BUDHATHOKI" },
-  { id: "9QakDUdr7Pw", title: "Met Hrithik Roshan & His Girlfriend In An Elevator | Aditi Budhathoki" },
-  { id: "ylQR9dpYQz0", title: "Why Did Aditi Budhathoki Move To Mumbai?" },
-  { id: "cJsvq6Jf9mc", title: "New Nepali Movie | Anmol KC | Aditi Budhathoki | Anoop Bikram Shahi | " },
-  { id: "lmWT2y-yKBc", title: "Aditi Budhathoki with Amaal Mallik in Tu Mera Nahi | Aditi and Amaal" },
-  { id: "8uSg4B3FlmE", title: "SUMMER SPRING COLLECTION 2021 || AACHHO X ADITI BUDHATHOKI || FT. ADITI BUDHATHOKI" },
-  { id: "6j_7fTTPCyg", title: "PARTY WEAR DRESSES FOR WOMEN || AACHHO X ADITI BUDHATHOKI || ADITI BUDHATHOKI" },
-  { id: "MMeiWwy4vsc", title: "Aditi Budhathoki On Having The Most Instagram Followers in Nepal" },
-  { id: "hdG-X3NZfKQ", title: "Grand Premier Show of BABARI | Dhiraj Magar, Aditi Budhathoki & Dhiraj Nadkar | Jassita Gurung" },
-  { id: "shalsEz0kZA", title: "SIMPLE STYLISH DESIGN || AACHHO X ADITI BUDHATHOKI || FT. ADITI BUDHATHOKI" },
-  { id: "RT5LnER1AOA", title: "BABARI | Trailer Release Event | Dhiraj Magar, Aditi Budhathoki, Dhiraj Nadkar:: The Cinema Times" },
-  { id: "bUKKZWQDloQ", title: "Dhiraj Magar, Aditi Budhathoki & Dhiraj Nadkar | Babari Team with FANS | Lotse Mall" },
-  { id: "aShswPyv-aA", title: "KURTI POSES || AACHHO X ADITI BUDHATHOKI || FT. ADITI BUDHATHOKI" },
-  { id: "ttF7pkXQtPY", title: "Dhiraj Magar & Aditi Budhathoki सुटुक्क, मध्यराती अष्ट्रेलिया उडे || Babari प्रिमियरका लागी उत्साहित" },
-  { id: "88La-u2mtWQ", title: "On Air With Sanjay #201 - Aditi Budhathoki & Dhiraj Magar" },
-  { id: "CfHNpgLzFrU", title: "Dhiraj & Aditi | बाबरी जोडीको प्रेमका कुरा: Jaasita संगको प्रेम र Suhana संग फिल्मबारे धिरज बोले" },
-  { id: "wWSB1cPhwgc", title: "अदिती, धीरज र उनीहरूको 'बाबरी' | Aditi Budhathoki & Dhiraj Magar | G Cafe | Ep- 46" },
-  { id: "a-CSoK_f77Q", title: "Babari Team with Fan | Dhiraj Magar, Aditi Budhathoki & Dhiraj Nadkar | The Cinema Times" },
-  { id: "PP6t9OM2-QE", title: "BABARI Team in COMEDY CLUB WITH CHAMPIONS | Dhiraj Magar, Aditi Budhathoki & Dhiraj Nadakar" },
-  { id: "HV1f2L1UhHM", title: "Aditi Budhathoki | BABARI | Promotional Video :: The Cinema Times" },
-  { id: "LOSBx26ACgw", title: "ORANGE LEHENGA || AACHHO X ADITI BUDHATHOKI || FT. ADITI BUDHATHOKI" },
-  { id: "ry4z0GN1tDA", title: "Funny Talk With Aditi Budhathoki | Nepalese Actress | Medianp.com" },
-  { id: "--TSthLKqsM", title: "Getting To Meet Tiger Sroff In Mumbai - Aditi Budhathoki" },
-  { id: "gddvWxoOFCU", title: "Dhiraj Magar को तारिफमा नथाकेकी Aditi जोडी जमेपछि दंग : धिरजसंग जीवनभरको साथ भन्दै प्रेमबारे खुलिन्" },
-  { id: "4zdApBSICo4", title: "Aditi Budhathoki Talks About Life Among Celebrities In Mumbai." },
-  { id: "AHy6VaRjwsU", title: "Aditi Budhathoki Red Saree Photoshoot " },
-  { id: "zhBhl-dCXUs", title: "Aditi को ४ लाखको ब्याग !! अनि गाडी ? Aditi Budhathoki Plays My Most Expensive | Babari Asoj 14" },
-  { id: "OBZ15oyMDDM", title: "Dhiraj Magar, Aditi Budhathoki & Dhiraj Nadkar अदितीलाई प्रपोज, २ धिरज मध्ये अदिती कस्को ?" },
-  { id: "pR8GIJgCMMM", title: "Aditi Budhathoki Live Fun with Indian Singer Stebin Ben | Rulake gaya ishq tera | Aditi & Stebinben" },
-  { id: "ntYHx4bhQgI", title: "Dhiraj Magar & Aditi Budhathoki : FIRST LOVE || पहिलो प्रेम सम्झिदा लजाए ! Interview Clips | BC TV" },
-  { id: "q0NxrPt_zP4", title: "Aditi Budhathoki Discloses Her First Uncomfortable Film Scene!" },
-  { id: "tY0-jdIUmqI", title: "बाबरीको विवाद के हो, कलाकारहरुले गरे खुलासै खुलासा, हिरो हिरोइनको प्रेम भयो छताछुल्ल" },
-  { id: "5vxQNHSsXZc", title: "अन्तरवार्तामा Anmol ले किस गर्दा रिसाईन अदिती ! Anmol Kc | Aditi Budathoki | Kri" },
-  { id: "T2Zo6LpTdcs", title: "Dhiraj and Aditi गहिरो प्रेममा || जिस्काउँदा हानिन् झापड || Ramailo With Utsav || SE_03 || Epi_14" },
-  { id: "JKmMdx0hvAQ", title: "Aditi र Dhiraj को जोडी निकै रोमान्टिक, Anmol का कुरा निकाल्दै एकअर्काको तारिफ गर्दै दुवै लजाए" },
-  { id: "12BcpSzGK4I", title: "Interview with Aditi Budathoki and Dhiraj Magar | OK Entertainment" },
-  { id: "IoIdecj4vgE", title: "दुई धिरज र अदिति हासेरै सके अन्तर्वार्ता | Guess the Words with Babari Team | Dhiraj Square & Aditi" },
-  { id: "K-N_mA-TBZI", title: "नायिका अदितीकी आमा पुष्पाको नजरमा अनमोल ज्वाई बन्न योग्य ? | Aditi Budhathoki | Anmol KC |" },
-  { id: "T_gF6SXXyIQ", title: "Neetesh Jung Kunwar & Aditi Budhathoki को Relationship के छ ? Ramailo With Utsav@Aloft" },
-  { id: "Q2DcsBL4Rmo", title: "|| KRI || रिलिजपछी पहिलो पटक मिडियासँग कुरा गर्दै || ANMOL KC || & || ADITI BUDHATHOKI || " },
-  { id: "VrSYjgIDp6s", title: "तृप्तीका छोराले जिते अदिति र धिरजको मन : नेपाली बोल्दा रमाईलो झन | Aditi -Dhiraj & Dhiraj Nadkar" },
-  { id: "LfMkR5os49k", title: "BABARI Interview : Dhiraj Magar, Aditi Budhathoki, Dhiraj Nadkar || दुई धिरज र अदितिको पहिलो प्रेम" },
-  { id: "TdKA4bP6J5Q", title: "जस्त क्लोज फ्रेण्ड रे!! The Prakash Subedi Show | Aditi Budhathoki and Dhiraj Magar | EPI 14 | AP1HD" },
-  { id: "iDuHXW-MhZ4", title: "फिल्म 'बाबरी'मा धिरले दयाको कपि गरेकै हुन ? BABARI -Dhiraj Magar, Aditi Budhathoki, Dhiraj Nadkar" },
-  { id: "AJ5KI3w0VHQ", title: "Press Conference of BABARI | Dhiraj Magar & Aditi Budhathoki :: The Cinema Times" },
-  { id: "qmqvjwjPC-8", title: "प्रेम होस्, त यस्तो ! Dhiraj Magar, Aditi budhathoki, Jassita Gurung - Interview | Babari Movie" },
-  { id: "6op1nS2OHtc", title: "अनमोल मेरो जीवन साथी हुन् सक्दैन/अनामोलले धेरै सहयोग गरेको छ NTERVIEW WITH ADITI BUDHATHOKI" },
-  { id: "LKzudb-h6U0", title: "Exclusive : पहिलोभेटमा Dhiraj रAditi को प्रेम र झगडा-मनको मान्छे भन्दै आमा राखेर सुनाए सम्बन्धको कथा" },
-  { id: "PT69gs3yciM", title: "उपराष्ट्रपतिलले बाबरी फिल्म हेरे || Dhiraj Magar And Aditi Budhathoki Interview || Bisalchautari TV" },
-  { id: "QDJvjXiiypA", title: "What's on your phone with Aditi Budhathoki || यसरी साटिन् अनमोलसँगको अनुभव | FilmyNepal" },
-  { id: "ByHPR5AEUPE", title: "Most hilarious interview with team babari.Aditi glittering her way to success :: The Cinema Times" },
-  { id: "AicrzNSOH9s", title: "अदिति लाई थाहा नै छैन रिल काे हिराे/अदिति लाई नेपाली सिनेमा नै कर्म थलाे INTERVIEW WITH ADITI" },
-  { id: "9Kdu6ZnHq0s", title: "Babari Press Meet॥ Dhiraj Magar॥ Aditi Budhathoki || Mero Online TV" },
-  { id: "wuvwUkYR-PA", title: "Aditi Budhathoki - Interview || Movie Kri" },
-  { id: "StvvB7-lQzY", title: "Nepalese Community Taking Over UK And Mumbai | Aditi & Dhiraj" },
-  { id: "0fOw3kBkcNo", title: "Dhiraj Magar, Aditi Budhathoki & Dhiraj Nadkar in in Cineplex w/ Sushma Lama | YOHO TV HD" },
-  { id: "S0rih8_cOLs", title: "अनमोललाई आएन अदीतिलाई प्रपोज गर्ने हिम्मत || Ramailo छ with Utsav Rasaili" },
-  { id: "hggknKiH8Bw", title: "PrimeHD|| २ धिरजका प्रेम प्रस्ताव अदितिलाई || #meroeutasathichha #season03 #ep21" },
-  { id: "TDlZbtRhAds", title: "Dhiraj Magar, Aditi Budhathoki & Dhiraj Nadkar in Celeb Chat | Ranjit Poudel | Global Television HD" },
-  { id: "HaYoFUugQZ0", title: "साम्रागीको ट्याटुमा किन हासे ।। Interview With Anamol Kc & Aditi Budhathoki ।। Nepali Movie KRi !!" },
-  { id: "e1LjuGTs2Ag", title: "EXCLUSIVE Interview with Aditi Budhathoki || Sunny Leone संग कम्पियर नै नगर्नुस् ||" },
-  { id: "ucLVdt9ICf0", title: "रमाइलो भेटघाट : Swastima Khadka, Dhiraj Magar, Aditi budhathoki, Malika Mahat, Miss Nepal | Ananeke" },
-  { id: "LTZua8NbAJo", title: "MM Talk With Aditi Budathoki | Kri" },
-  { id: "chvY8GET9oY", title: "Babari हेरेकी Swastima Khadka को राम्रो प्रतिकृयाले Dhiraj Magar, Aditi Budhathoki, Dhiraj Nadkarदंग" },
-  { id: "BcX_f7-QVrQ", title: "यसकारण अनमोललाई पति बनाउन पाउनु भाग्य | Funny Part of ANMOL and ADITI COUPLE TALK" },
-  { id: "0qx3dAcMWx8", title: "Making of Mayaka Rangaharu | Aditi Budhathoki | Dhiraj" },
-  { id: "0baV9OKwmXY", title: "Hongkong Diaries | Aditi B Travel Vlog| Babari Premiere" },
-  { id: "Hjhj5NnMa54", title: "Embroidered Sarees | Aditi Budhathoki | Indiwear | Bollywood Cafe by Laxmipati" },
-  { id: "CboKys8jQ54", title: "Ok Masti Talk(S-2) with Aditi Budhathoki || 'अनमोल मेरो चकलेट खाएर चकलेटी भाको' - अदिती" },
-  { id: "HV1f2L1UhHM", title: "Aditi Budhathoki | BABARI | Promotional Video :: The Cinema Times" },
-  { id: "N2_BlpTFopA", title: "QnA with Babari Team | डाइहार्ट फ्यानहरु Dhiraj Magarलाई भेट्न बसपार्कमा | Aditi Budhathoki, Dhiraj" },
-  { id: "5e7cpiVShAk", title: "नेपालमा कलाकारले पाउनु पर्ने जति रेस्पेक्ट नपाए झैं लाग्छ: Dhiraj & Aditi | Talk with the top Ep-28" },
-  { id: "GszhU9AGWQY", title: "Babari : Aditi & Dhiraj Most Hilarious Rapid Fire | :: The Cinema Times" },
-  { id: "uuLwZwFOdJg", title: "Babari Housefull : धिरज र अदितीले भने हामि सफल भयौ || Dhiraj Magar & Adhiti Budhathoki Interview" },
-  { id: "ciqctDOoOdc", title: "अदिति बुढाथोकी र नितेश कुँवर बीच के पाक्दैछ ? लकडाउनमा अदितिले खोलिन मनका कुरा Aditi Budhathoki" },
-  { id: "FlSzQjQSsK0", title: "दुई Dhirajमा कसलाई रोजिन् त Aditiले, प्रोड्युसर साब भन्दै जिस्क्याए Aditi Budhathoki लाई |Interview" },
-  { id: "d-qzI0tYCfA", title: "Babari Movie Premiere Look | Aditi Budhathoki | Makeup By Lemi" },
-  { id: "DtcuNavOPj4", title: "ADITI BUDHATHOKI | Hitesh Kaneria" }
-];
+    .video-title {
+      margin: 0;
+      font-size: 0.95rem;
+      color: #fff;
+      line-height: 1.25;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
 
-/* =========================
-   Gallery pagination & filtering logic
-   - preserves original order
-   ========================= */
-(function(){
-  const galleryGrid = document.getElementById('gallery-grid');
-  const filterBtns = document.querySelectorAll('.filter-btn');
-  const prevBtn = document.getElementById('gallery-prev');
-  const nextBtn = document.getElementById('gallery-next');
-  const pageNumbersContainer = document.getElementById('gallery-page-numbers');
-  const galleryPaginationWrap = document.getElementById('gallery-pagination');
-  const galleryInfo = document.getElementById('gallery-info');
+    .video-sub {
+      color: rgba(255,255,255,0.6);
+      font-size: 0.85rem;
+    }
 
-  function getItemsPerPage() {
-    if (window.innerWidth < 480) return 6;
-    if (window.innerWidth < 768) return 8;
-    return 9;
-  }
+    .video-card:hover {
+      transform: translateY(-6px) scale(1.02);
+      box-shadow: 0 20px 48px rgba(255,51,102,0.12);
+    }
 
-  let itemsPerPage = getItemsPerPage();
-  let currentFilter = 'all';
-  let filtered = [...galleryData];
-  let currentPage = 1;
+    /* Pagination */
+    .pagination {
+      margin-top: 32px;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+    .pagination-btn {
+      background:#1a1a1a;
+      color:#fff;
+      padding:8px 14px;
+      border-radius:8px;
+      border:none;
+      cursor:pointer;
+      transition: all .18s ease;
+    }
+    .pagination-btn:disabled { opacity:.45; cursor:not-allowed }
+    .pagination-btn:hover:not(:disabled) { background:#ff3366; }
 
-  function updateFiltered() {
-    filtered = (currentFilter === 'all') ? [...galleryData] : galleryData.filter(i => i.category === currentFilter);
-    currentPage = 1;
-  }
+    .pagination-numbers button {
+      background:#151515;
+      color:#fff;
+      border:none;
+      padding:8px 12px;
+      border-radius:8px;
+      cursor:pointer;
+      margin:0 4px;
+      transition: all .18s ease;
+    }
+    .pagination-numbers button.active { background:#ff3366; font-weight:700 }
 
-  function renderGallery() {
-    galleryGrid.innerHTML = '';
-    const start = (currentPage - 1) * itemsPerPage;
-    const pageItems = filtered.slice(start, start + itemsPerPage);
-    pageItems.forEach(item => {
-      const card = document.createElement('div'); card.className = 'card';
-      const img = document.createElement('img'); img.src = item.src; img.alt = item.alt; img.loading = 'lazy';
+    /* Popup overlay */
+    .video-popup {
+      position: fixed;
+      inset: 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 2200;
+      pointer-events: none;
+    }
+    .video-popup.active {
+      display: flex;
+      pointer-events: auto;
+    }
+
+    .popup-backdrop {
+      position:absolute; inset:0;
+      background: rgba(0,0,0,0.75);
+      backdrop-filter: blur(6px);
+      transition: opacity .18s ease;
+    }
+    .popup-content {
+      position: relative;
+      width: 92%;
+      max-width: 980px;
+      margin: 0 16px;
+      z-index: 2;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 30px 80px rgba(0,0,0,0.6);
+      animation: popupIn .22s cubic-bezier(.2,.9,.3,1);
+    }
+    @keyframes popupIn { from { transform: translateY(8px) scale(.99); opacity:0 } to { transform:none; opacity:1 } }
+
+    .popup-iframe-wrap { background: #000; }
+    #popup-video { width:100%; height:560px; display:block; border:0; background:#000; }
+    .popup-close {
+      position:absolute; top:-18px; right:-18px; background:#111;
+      color:#fff; border: none; width:48px; height:48px; border-radius:50%;
+      font-size:20px; cursor:pointer; box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      #popup-video { height:420px }
+      .video-thumb { height:130px }
+    }
+    @media (max-width: 600px) {
+      #popup-video { height:260px }
+      .video-thumb { height:110px }
+      .video-grid { gap:12px }
+    }
+  </style>
+
+  <script>
+  (function(){
+    /* ===============================
+       Video data (IDs + titles)
+       =============================== */
+    const videoList = [
+    { id: "QCXaa1mEUK0", title: "Darshan Raval - Hawa Banke | Official Music Video Ft. Aditi Budhathoki | Nirmaan | Naushad Khan" },
+    { id: "djbTz_ZlQ_c", title: "Chulbul Chulbul - BABARI Song 2022 | Ft. Dhiraj Magar, Aditi Budhathoki & Dhiraj Nadakar" },
+    { id: "F9XbfHNrwxo", title: "Babari Rang - BABARI Song 2022 | Ft. Dhiraj Magar, Aditi Budhathoki & Dhiraj Nadakar" },
+    { id: "n95a7mRXAaQ", title: "Get Picture Perfect: Easy Female Model Poses for Amazing Shoots | Actress Aditi Budhathoki Shoot" },
+    { id: "6GQLxSaI1XE", title: "Jani Najani Maya (Movie Song) KRI | Anmol Kc | Aditi Budhathoki" },
+    { id: "x9AIkheDw9E", title: "Posing Like a Pro: Discover the Tricks behind Actress Aditi Budhathoki's Striking Photoshoots" },
+    { id: "FhkGrNolX3U", title: "Dhuk Dhuki Song 2018| KRI  | Ft. Anmol KC, Aditi Budhathoki" },
+    { id: "ieNIHjUwK_0", title: "MAYAKA RANGHARU- BABARI Song 2022 |Dhiraj Nadkar, Aditi Budhathoki" },
+    { id: "qkIqjh-kCjg", title: "Babari Rang (Reprise Version) - BABARI Song | Dhiraj Magar, Aditi Budhathoki" },
+    { id: "LGeLsM4iTcc", title: "BABARI | New Nepali Movie Official Teaser 2022 | Ft. Dhiraj Magar, Aditi Budhathoki, Dhiraj Nadkar" },
+    { id: "ooSHP6cwnGA", title: "BABARI | New Nepali Movie Official Trailer 2022 | Ft. Dhiraj Magar, Aditi Budhathoki, Dhiraj Nadkar" },
+    { id: "xadyAZep-WU", title: "Fizool Hai - Official Video | Saheal Khan & Aditi Budhathoki | Shameer Tandon |" },
+    { id: "SBWYGGDYmhg", title: "Tu Mera Nahi (Official Video) - Amaal Mallik | Aditi B | Rashmi Virag | Love Song 2020" },
+    { id: "IgdGChX7md8", title: "Meri Hasi - Aakanksha Sharma | Kunwar A, Aditi B | Amjad Nadeem Aamir | Zee Music Originals" },
+    { id: "9kZyeGTpQpM", title: "Apna Banauna Official Video | Karan Sehmbi | Aditi B | Mavi Singh | TRU Makers | Raj Jaiswal" },
+    { id: "9jkkrLY3NDE", title: "Inni Si Gal | Stebin Ben | Karan Kundrra | Aditi Budhathoki | Sanjeev Chaturvedi | Latest Hindi Song" },
+    { id: "V4imnHOV-bI", title: "Imaan Tu (Full Song) GK Music | Paras Kalnawat, Aditi Budhathoki | Ankit Tiwari | Valentine Special" },
+    { id: "GUrn05ipAw8", title: "BRIDAL MAKEUP BY LEMII ft ADITI BUDHATHOKI" },
+    { id: "9ugeqEbmkFk", title: "Brown smokey eyes with Aditi Budhathoki for Babari promotions | makeup by lemi" },
+    { id: "Y7_J16KcfyA", title: "Exclusive Interview with KRI Actress Aditi Budhathoki" },
+    { id: "dED7ZSrxuJ4", title: "अदितीको आरोप- शुटिङमा अनमोलले सुत्न दिएन Anmol KC | Aditi Budathoki | कृ | Kri" },
+    { id: "sQQYrlij79c", title: "यस्तो छ ‘कृ’ को ६ दिने कलेक्सन-बन्दै छ कृ-2 | KRI business report" },
+    { id: "A5p-WUH3GYA", title: "Aditi Budhathoki Sketch : २ धिरजले अदितीको डरलाग्दो😱स्केच कोरे | Dhiraj Magar, Dhiraj Nadkar, Babari" },
+    { id: "TS_zJqRr_0g", title: "Log Peete Hain (Official Video) Master Saleem, Abhishek Thakur | Pratik Sehajpal, Aditi Budhathoki" },
+    { id: "I4sjnbAaM9o", title: "ALI WORA SARANA - BABARI Song 2022 | Ft. Dhiraj Magar, Aditi Budhathoki & Dhiraj" },
+    { id: "iU5MgPQUDUQ", title: "SUMMER COTTON DRESS || AACHHO X ADITI BUDHATHOKI || FT. ADITI BUDHATHOKI" },
+    { id: "_ssF5prHpA0", title: "BLUE BALLOON DRESS || AACHHO X ADITI BUDHATHOKI || FT. ADITI BUDHATHOKI" },
+    { id: "8WHnGp6fcqI", title: "Vintage 90's | ADITI BUDHATHOKI | " },
+    { id: "pjJvwpvsn5A", title: "YELLOW SAREE || AACHHO X ADITI BUDHATHOKI || FT. ADITI BUDHATHOKI" },
+    { id: "1lAMuypKs3I", title: "Amaal Mallik Instagram Live with Aditi Budhathoki | Celebrating 1 Year of Tu Mera Nahi ❤️🎵" },
+    { id: "OE7CrwUXd4k", title: "How Aditi Budhathoki Started Her Career" },
+    { id: "DBwj03uoo0M", title: "WHITE DRESS DESIGN || AACHHO X ADITI BUDHATHOKI || FT. ADITI BUDHATHOKI" },
+    { id: "9QakDUdr7Pw", title: "Met Hrithik Roshan & His Girlfriend In An Elevator | Aditi Budhathoki" },
+    { id: "ylQR9dpYQz0", title: "Why Did Aditi Budhathoki Move To Mumbai?" },
+    { id: "cJsvq6Jf9mc", title: "New Nepali Movie | Anmol KC | Aditi Budhathoki | Anoop Bikram Shahi | " },
+    { id: "lmWT2y-yKBc", title: "Aditi Budhathoki with Amaal Mallik in Tu Mera Nahi | Aditi and Amaal" },
+    { id: "8uSg4B3FlmE", title: "SUMMER SPRING COLLECTION 2021 || AACHHO X ADITI BUDHATHOKI || FT. ADITI BUDHATHOKI" },
+    { id: "6j_7fTTPCyg", title: "PARTY WEAR DRESSES FOR WOMEN || AACHHO X ADITI BUDHATHOKI || ADITI BUDHATHOKI" },
+    { id: "MMeiWwy4vsc", title: "Aditi Budhathoki On Having The Most Instagram Followers in Nepal" },
+    { id: "hdG-X3NZfKQ", title: "Grand Premier Show of BABARI | Dhiraj Magar, Aditi Budhathoki & Dhiraj Nadkar | Jassita Gurung" },
+    { id: "shalsEz0kZA", title: "SIMPLE STYLISH DESIGN || AACHHO X ADITI BUDHATHOKI || FT. ADITI BUDHATHOKI" },
+    { id: "RT5LnER1AOA", title: "BABARI | Trailer Release Event | Dhiraj Magar, Aditi Budhathoki, Dhiraj Nadkar:: The Cinema Times" },
+    { id: "bUKKZWQDloQ", title: "Dhiraj Magar, Aditi Budhathoki & Dhiraj Nadkar | Babari Team with FANS | Lotse Mall" },
+    { id: "aShswPyv-aA", title: "KURTI POSES || AACHHO X ADITI BUDHATHOKI || FT. ADITI BUDHATHOKI" },
+    { id: "ttF7pkXQtPY", title: "Dhiraj Magar & Aditi Budhathoki सुटुक्क, मध्यराती अष्ट्रेलिया उडे || Babari प्रिमियरका लागी उत्साहित" },
+    { id: "88La-u2mtWQ", title: "On Air With Sanjay #201 - Aditi Budhathoki & Dhiraj Magar" },
+    { id: "CfHNpgLzFrU", title: "Dhiraj & Aditi | बाबरी जोडीको प्रेमका कुरा: Jaasita संगको प्रेम र Suhana संग फिल्मबारे धिरज बोले" },
+    { id: "wWSB1cPhwgc", title: "अदिती, धीरज र उनीहरूको 'बाबरी' | Aditi Budhathoki & Dhiraj Magar | G Cafe | Ep- 46" },
+    { id: "a-CSoK_f77Q", title: "Babari Team with Fan | Dhiraj Magar, Aditi Budhathoki & Dhiraj Nadkar | The Cinema Times" },
+    { id: "PP6t9OM2-QE", title: "BABARI Team in COMEDY CLUB WITH CHAMPIONS | Dhiraj Magar, Aditi Budhathoki & Dhiraj Nadakar" },
+    { id: "HV1f2L1UhHM", title: "Aditi Budhathoki | BABARI | Promotional Video :: The Cinema Times" },
+    { id: "LOSBx26ACgw", title: "ORANGE LEHENGA || AACHHO X ADITI BUDHATHOKI || FT. ADITI BUDHATHOKI" },
+    { id: "ry4z0GN1tDA", title: "Funny Talk With Aditi Budhathoki | Nepalese Actress | Medianp.com" },
+    { id: "--TSthLKqsM", title: "Getting To Meet Tiger Sroff In Mumbai - Aditi Budhathoki" },
+    { id: "gddvWxoOFCU", title: "Dhiraj Magar को तारिफमा नथाकेकी Aditi जोडी जमेपछि दंग : धिरजसंग जीवनभरको साथ भन्दै प्रेमबारे खुलिन्" },
+    { id: "4zdApBSICo4", title: "Aditi Budhathoki Talks About Life Among Celebrities In Mumbai." },
+    { id: "AHy6VaRjwsU", title: "Aditi Budhathoki Red Saree Photoshoot " },
+    { id: "zhBhl-dCXUs", title: "Aditi को ४ लाखको ब्याग !! अनि गाडी ? Aditi Budhathoki Plays My Most Expensive | Babari Asoj 14" },
+    { id: "OBZ15oyMDDM", title: "Dhiraj Magar, Aditi Budhathoki & Dhiraj Nadkar अदितीलाई प्रपोज, २ धिरज मध्ये अदिती कस्को ?" },
+    { id: "pR8GIJgCMMM", title: "Aditi Budhathoki Live Fun with Indian Singer Stebin Ben | Rulake gaya ishq tera | Aditi & Stebinben" },
+    { id: "ntYHx4bhQgI", title: "Dhiraj Magar & Aditi Budhathoki : FIRST LOVE || पहिलो प्रेम सम्झिदा लजाए ! Interview Clips | BC TV" },
+    { id: "A5p-WUH3GYA", title: "Aditi Budhathoki Sketch : २ धिरजले अदितीको डरलाग्दो😱स्केच कोरे | Dhiraj Magar, Dhiraj Nadkar, Babari" },
+    { id: "q0NxrPt_zP4", title: "Aditi Budhathoki Discloses Her First Uncomfortable Film Scene!" },
+    { id: "tY0-jdIUmqI", title: "बाबरीको विवाद के हो, कलाकारहरुले गरे खुलासै खुलासा, हिरो हिरोइनको प्रेम भयो छताछुल्ल" },
+    { id: "5vxQNHSsXZc", title: "अन्तरवार्तामा Anmol ले किस गर्दा रिसाईन अदिती ! Anmol Kc | Aditi Budathoki | Kri" },
+    { id: "T2Zo6LpTdcs", title: "Dhiraj and Aditi गहिरो प्रेममा || जिस्काउँदा हानिन् झापड || Ramailo With Utsav || SE_03 || Epi_14" },
+    { id: "JKmMdx0hvAQ", title: "Aditi र Dhiraj को जोडी निकै रोमान्टिक, Anmol का कुरा निकाल्दै एकअर्काको तारिफ गर्दै दुवै लजाए" },
+    { id: "12BcpSzGK4I", title: "Interview with Aditi Budhathoki and Dhiraj Magar | OK Entertainment" },
+    { id: "IoIdecj4vgE", title: "दुई धिरज र अदिति हासेरै सके अन्तर्वार्ता | Guess the Words with Babari Team | Dhiraj Square & Aditi" },
+    { id: "K-N_mA-TBZI", title: "नायिका अदितीकी आमा पुष्पाको नजरमा अनमोल ज्वाई बन्न योग्य ? | Aditi Budhathoki | Anmol KC |" },
+    { id: "T_gF6SXXyIQ", title: "Neetesh Jung Kunwar & Aditi Budhathoki को Relationship के छ ? Ramailo With Utsav@Aloft" },
+    { id: "Q2DcsBL4Rmo", title: "|| KRI || रिलिजपछी पहिलो पटक मिडियासँग कुरा गर्दै || ANMOL KC || & || ADITI BUDATHOKI || " },
+    { id: "VrSYjgIDp6s", title: "तृप्तीका छोराले जिते अदिति र धिरजको मन : नेपाली बोल्दा रमाईलो झन | Aditi -Dhiraj & Dhiraj Nadkar" },
+    { id: "LfMkR5os49k", title: "BABARI Interview : Dhiraj Magar, Aditi Budhathoki, Dhiraj Nadkar || दुई धिरज र अदितिको पहिलो प्रेम" },
+    { id: "TdKA4bP6J5Q", title: "जस्त क्लोज फ्रेण्ड रे!! The Prakash Subedi Show | Aditi Budhathoki and Dhiraj Magar | EPI 14 | AP1HD" },
+    { id: "iDuHXW-MhZ4", title: "फिल्म 'बाबरी'मा धिरले दयाको कपि गरेकै हुन ? BABARI -Dhiraj Magar, Aditi Budhathoki, Dhiraj Nadkar" },
+    { id: "AJ5KI3w0VHQ", title: "Press Conference of BABARI | Dhiraj Magar & Aditi Budhathoki :: The Cinema Times" },
+    { id: "qmqvjwjPC-8", title: "प्रेम होस्, त यस्तो ! Dhiraj Magar, Aditi budhathoki, Jassita Gurung - Interview | Babari Movie" },
+    { id: "6op1nS2OHtc", title: "अनमोल मेरो जीवन साथी हुन् सक्दैन/अनामोलले धेरै सहयोग गरेको छ NTERVIEW WITH ADITI BUDHATHOKI" },
+    { id: "LKzudb-h6U0", title: "Exclusive : पहिलोभेटमा Dhiraj रAditi को प्रेम र झगडा-मनको मान्छे भन्दै आमा राखेर सुनाए सम्बन्धको कथा" },
+    { id: "PT69gs3yciM", title: "उपराष्ट्रपतिलले बाबरी फिल्म हेरे || Dhiraj Magar And Aditi Budhathoki Interview || Bisalchautari TV" },
+    { id: "QDJvjXiiypA", title: "What's on your phone with Aditi Budhathoki || यसरी साटिन् अनमोलसँगको अनुभव | FilmyNepal" },
+    { id: "ByHPR5AEUPE", title: "Most hilarious interview with team babari.Aditi glittering her way to success :: The Cinema Times" },
+    { id: "AicrzNSOH9s", title: "अदिति लाई थाहा नै छैन रिल काे हिराे/अदिति लाई नेपाली सिनेमा नै कर्म थलाे INTERVIEW WITH ADITI" },
+    { id: "9Kdu6ZnHq0s", title: "Babari Press Meet॥ Dhiraj Magar॥ Aditi Budhathoki || Mero Online TV" },
+    { id: "wuvwUkYR-PA", title: "Aditi Budhathoki - Interview || Movie Kri" },
+    { id: "StvvB7-lQzY", title: "Nepalese Community Taking Over UK And Mumbai | Aditi & Dhiraj" },
+    { id: "0fOw3kBkcNo", title: "Dhiraj Magar, Aditi Budhathoki & Dhiraj Nadkar in in Cineplex w/ Sushma Lama | YOHO TV HD" },
+    { id: "S0rih8_cOLs", title: "अनमोललाई आएन अदीतिलाई प्रपोज गर्ने हिम्मत || Ramailो छ with Utsav Rasaili" },
+    { id: "hggknKiH8Bw", title: "PrimeHD|| २ धिरजका प्रेम प्रस्ताव अदितिलाई || #meroeutasathichha #season03 #ep21" },
+    { id: "TDlZbtRhAds", title: "Dhiraj Magar, Aditi Budhathoki & Dhiraj Nadkar in Celeb Chat | Ranjit Poudel | Global Television HD" },
+    { id: "HaYoFUugQZ0", title: "साम्रागीको ट्याटुमा किन हासे ।। Interview With Anamol Kc & Aditi Budhathoki ।। Nepali Movie KRi !!" },
+    { id: "e1LjuGTs2Ag", title: "EXCLUSIVE Interview with Aditi Budhathoki || Sunny Leone संग कम्पियर नै नगर्नुस् ||" },
+    { id: "ucLVdt9ICf0", title: "रमाइलो भेटघाट : Swastima Khadka, Dhiraj Magar, Aditi budhathoki, Malika Mahat, Miss Nepal | Ananeke" },
+    { id: "LTZua8NbAJo", title: "MM Talk With Aditi Budhathoki | Kri" },
+    { id: "chvY8GET9oY", title: "Babari हेरेकी Swastima Khadka को राम्रो प्रतिकृयाले Dhiraj Magar, Aditi Budhathoki, Dhiraj Nadkarदंग" },
+    { id: "BcX_f7-QVrQ", title: "यसकारण अनमोललाई पति बनाउन पाउनु भाग्य | Funny Part of ANMOL and ADITI COUPLE TALK" },
+    { id: "0qx3dAcMWx8", title: "Making of Mayaka Rangaharu | Aditi Budhathoki | Dhiraj" },
+    { id: "0baV9OKwmXY", title: "Hongkong Diaries | Aditi B Travel Vlog| Babari Premiere" },
+    { id: "Hjhj5NnMa54", title: "Embroidered Sarees | Aditi Budhathoki | Indiwear | Bollywood Cafe by Laxmipati" },
+    { id: "CboKys8jQ54", title: "Ok Masti Talk(S-2) with Aditi Budhathoki || 'अनमोल मेरो चकलेट खाएर चकलेटी भाको' - अदिती" },
+    { id: "HV1f2L1UhHM", title: "Aditi Budhathoki | BABARI | Promotional Video :: The Cinema Times" },
+    { id: "N2_BlpTFopA", title: "QnA with Babari Team | डाइहार्ट फ्यानहरु Dhiraj Magarलाई भेट्न बसपार्कमा | Aditi Budhathoki, Dhiraj" },
+    { id: "5e7cpiVShAk", title: "नेपालमा कलाकारले पाउनु पर्ने जति रेस्पेक्ट नपाए झैं लाग्छ: Dhiraj & Aditi | Talk with the top Ep-28" },
+    { id: "GszhU9AGWQY", title: "Babari : Aditi & Dhiraj Most Hilarious Rapid Fire | :: The Cinema Times" },
+    { id: "uuLwZwFOdJg", title: "Babari Housefull : धिरज र अदितीले भने हामि सफल भयौ || Dhiraj Magar & Adhiti Budhathoki Interview" },
+    { id: "ciqctDOoOdc", title: "अदिति बुढाथोकी र नितेश कुँवर बीच के पाक्दैछ ? लकडाउनमा अदितिले खोलिन मनका कुरा Aditi Budhathoki" },
+    { id: "FlSzQjQSsK0", title: "दुई Dhirajमा कसलाई रोजिन् त Aditiले, प्रोड्युसर साब भन्दै जिस्क्याए Aditi Budhathoki लाई |Interview" },
+    { id: "d-qzI0tYCfA", title: "Babari Movie Premiere Look | Aditi Budhathoki | Makeup By Lemi" },
+    { id: "DtcuNavOPj4", title: "ADITI BUDHATHOKI | Hitesh Kaneria" },
+    ];
+
+    /* ===============================
+       Build grid (thumbnails) dynamically
+       =============================== */
+    const grid = document.getElementById('video-grid');
+    videoList.forEach((v, idx) => {
+      const card = document.createElement('div');
+      card.className = 'video-card';
+      card.tabIndex = 0;
+      card.setAttribute('data-video-id', v.id);
+      card.setAttribute('data-index', idx);
+
+      const img = document.createElement('img');
+      img.className = 'video-thumb';
+      img.alt = v.title;
+      // Thumbnail url — hqdefault (good balance of quality and size)
+      img.src = `https://img.youtube.com/vi/${v.id}/hqdefault.jpg`;
+
+      const meta = document.createElement('div');
+      meta.className = 'video-meta';
+
+      const h4 = document.createElement('h3');
+      h4.className = 'video-title';
+      h4.textContent = v.title;
+
+      const sub = document.createElement('div');
+      sub.className = 'video-sub';
+      sub.textContent = ''; // optional, leave blank or put duration if you add later
+
+      meta.appendChild(h4);
+      meta.appendChild(sub);
+
       card.appendChild(img);
-      galleryGrid.appendChild(card);
-    });
-
-    // Update pagination UI
-    const totalPages = Math.max(1, Math.ceil(filtered.length / itemsPerPage));
-    if (totalPages > 1) galleryPaginationWrap.style.display = 'flex'; else galleryPaginationWrap.style.display = 'none';
-    pageNumbersContainer.innerHTML = '';
-    const startPage = Math.max(1, currentPage - 2);
-    let endPage = Math.min(totalPages, currentPage + 2);
-    if (currentPage <= 3) endPage = Math.min(totalPages, 5);
-    if (currentPage >= totalPages - 2) endPage = Math.max(1, totalPages - 4);
-    for (let i = startPage; i <= endPage; i++) {
-      const btn = document.createElement('div'); btn.className = 'page-number'; btn.textContent = i;
-      if (i === currentPage) btn.style.background = 'linear-gradient(90deg,var(--accent-2),var(--accent))', btn.style.color = '#fff';
-      btn.addEventListener('click', ()=> { currentPage = i; renderGallery(); initLightbox(); updateGalleryInfo(); });
-      pageNumbersContainer.appendChild(btn);
-    }
-    prevBtn.disabled = currentPage === 1;
-    nextBtn.disabled = currentPage === totalPages;
-
-    updateGalleryInfo();
-    initLightbox(); // reattach lightbox handlers to current images
-  }
-
-  function updateGalleryInfo(){
-    const total = filtered.length;
-    if (total === 0) { galleryInfo.textContent = 'No images found'; return; }
-    const start = (currentPage -1)*itemsPerPage + 1;
-    const end = Math.min(currentPage*itemsPerPage, total);
-    galleryInfo.textContent = `Showing ${start}-${end} of ${total} images`;
-  }
-
-  prevBtn.addEventListener('click', ()=> {
-    if (currentPage>1){ currentPage--; renderGallery(); initLightbox(); }
-  });
-  nextBtn.addEventListener('click', ()=> {
-    const totalPages = Math.ceil(filtered.length / itemsPerPage);
-    if (currentPage < totalPages) { currentPage++; renderGallery(); initLightbox(); }
-  });
-
-  filterBtns.forEach(b => b.addEventListener('click', ()=> {
-    filterBtns.forEach(x=>x.classList.remove('active'));
-    b.classList.add('active');
-    currentFilter = b.getAttribute('data-filter');
-    updateFiltered();
-    renderGallery();
-  }));
-
-  // Responsive items per page update
-  let resizeT;
-  window.addEventListener('resize', ()=> {
-    clearTimeout(resizeT);
-    resizeT = setTimeout(()=> {
-      const newCount = getItemsPerPage();
-      if (newCount !== itemsPerPage) {
-        itemsPerPage = newCount;
-        renderGallery();
-      }
-    }, 220);
-  });
-
-  // Initialize
-  updateFiltered();
-  renderGallery();
-})();
-
-/* =========================
-   Lightbox logic (images) - centered overlay, next/prev
-   ========================= */
-function initLightbox(){
-  const cardImgs = Array.from(document.querySelectorAll('.gallery-grid .card img'));
-  const lb = document.getElementById('lightbox');
-  const lbImg = document.getElementById('lb-img');
-  const closeBtn = document.querySelector('.lb-close');
-  const prevBtn = document.querySelector('.lb-prev');
-  const nextBtn = document.querySelector('.lb-next');
-  let idx = 0;
-
-  function open(i){
-    idx = i;
-    lbImg.src = cardImgs[i].src;
-    lbImg.alt = cardImgs[i].alt || 'Aditi';
-    lb.classList.add('open');
-    lb.setAttribute('aria-hidden','false');
-    document.body.style.overflow = 'hidden';
-  }
-  function close(){
-    lb.classList.remove('open');
-    lbImg.src = '';
-    lb.setAttribute('aria-hidden','true');
-    document.body.style.overflow = '';
-  }
-  function prev(){ idx = (idx - 1 + cardImgs.length) % cardImgs.length; lbImg.src = cardImgs[idx].src }
-  function next(){ idx = (idx + 1) % cardImgs.length; lbImg.src = cardImgs[idx].src }
-
-  // detach old to prevent duplicates
-  cardImgs.forEach((img,i) => {
-    img.onclick = ()=> open(i);
-  });
-
-  closeBtn.onclick = close;
-  prevBtn.onclick = prev;
-  nextBtn.onclick = next;
-
-  document.onkeydown = (e) => {
-    if (!lb.classList.contains('open')) return;
-    if (e.key === 'Escape') close();
-    if (e.key === 'ArrowLeft') prev();
-    if (e.key === 'ArrowRight') next();
-  };
-  lb.onclick = (e)=> { if (e.target === lb) close(); };
-}
-initLightbox();
-
-/* =========================
-   Videos: render grid, pagination, modal
-   - thumbnails auto from YouTube id
-   - require click on big play to start (no autoplay)
-   ========================= */
-(function(){
-  const videoGrid = document.getElementById('video-grid');
-  const prevBtn = document.getElementById('video-prev');
-  const nextBtn = document.getElementById('video-next');
-  const pageNums = document.getElementById('video-page-numbers');
-
-  function getVideosPerPage(){
-    if (window.innerWidth < 480) return 4;
-    if (window.innerWidth < 768) return 6;
-    return 9;
-  }
-
-  let perPage = getVideosPerPage();
-  let currentPage = 1;
-  const totalVideos = videosData.length;
-  let totalPages = Math.max(1, Math.ceil(totalVideos / perPage));
-
-  function renderVideos(){
-    videoGrid.innerHTML = '';
-    totalPages = Math.max(1, Math.ceil(totalVideos / perPage));
-    const start = (currentPage - 1) * perPage;
-    const pageItems = videosData.slice(start, start + perPage);
-
-    pageItems.forEach((v, i) => {
-      const card = document.createElement('div'); card.className = 'video-card';
-      // thumbnail (YouTube)
-      const thumb = document.createElement('img'); thumb.className = 'video-thumb';
-      thumb.src = `https://i.ytimg.com/vi/${v.id}/hqdefault.jpg`;
-      thumb.alt = v.title; thumb.loading = 'lazy';
-      // meta
-      const meta = document.createElement('div'); meta.className = 'video-meta';
-      meta.innerHTML = `<strong style="display:block">${v.title}</strong>`;
-      // overlay with play button
-      const overlay = document.createElement('div'); overlay.className = 'play-overlay';
-      const playBtn = document.createElement('div'); playBtn.className = 'play-btn'; playBtn.innerHTML = '<i class="fas fa-play"></i>';
-      overlay.appendChild(playBtn);
-
-      // assemble
-      card.appendChild(thumb);
-      card.appendChild(overlay);
       card.appendChild(meta);
-
-      // clicking thumbnail or play opens modal but does NOT autoplay until user clicks play inside modal
-      card.addEventListener('click', ()=> openVideoModal(v.id, v.title));
-      videoGrid.appendChild(card);
+      grid.appendChild(card);
     });
 
-    // update pagination UI
-    pageNums.innerHTML = '';
-    const maxVisible = 4;
-    let visibleStart = Math.max(1, Math.min(currentPage, totalPages - maxVisible + 1));
-    for (let p = visibleStart; p <= Math.min(totalPages, visibleStart + maxVisible - 1); p++) {
-      const btn = document.createElement('button'); btn.className = 'pagination-btn'; btn.textContent = p;
-      if (p === currentPage) { btn.style.background = 'linear-gradient(90deg,var(--accent-2),var(--accent))'; btn.style.color = '#fff'; }
-      btn.addEventListener('click', ()=> { currentPage = p; renderVideos(); });
-      pageNums.appendChild(btn);
+    /* ===============================
+       Pagination + Popup logic
+       =============================== */
+    const videosPerPage = 6;
+    const totalVideos = videoList.length;
+    const totalPages = Math.ceil(totalVideos / videosPerPage);
+    let currentPage = 1;
+    let visibleRangeStart = 1;
+    const maxVisiblePages = 4;
+
+    const prevBtn = document.getElementById('video-prev');
+    const nextBtn = document.getElementById('video-next');
+    const pageNumbers = document.getElementById('video-page-numbers');
+
+    function getAllCards() {
+      return Array.from(document.querySelectorAll('.video-card'));
     }
-    prevBtn.disabled = currentPage === 1;
-    nextBtn.disabled = currentPage === totalPages;
-  }
 
-  prevBtn.addEventListener('click', ()=> { if (currentPage>1) { currentPage--; renderVideos(); }});
-  nextBtn.addEventListener('click', ()=> { if (currentPage<totalPages) { currentPage++; renderVideos(); }});
+    function renderPage(page, direction = null) {
+      const cards = getAllCards();
+      cards.forEach((card, idx) => {
+        const show = idx >= (page - 1) * videosPerPage && idx < page * videosPerPage;
+        card.style.display = show ? 'flex' : 'none';
+        card.style.opacity = '0';
+        card.style.transform = 'translateX(0)';
+      });
 
-  // touch swipe for video grid
-  let touchStartX=0, touchEndX=0;
-  function handleSwipe() {
-    const dist = touchEndX - touchStartX;
-    if (Math.abs(dist) > 60) {
-      if (dist > 0 && currentPage > 1) { currentPage--; renderVideos(); }
-      if (dist < 0 && currentPage < totalPages) { currentPage++; renderVideos(); }
+      // Animate in visible ones
+      const visibleCards = cards.slice((page - 1) * videosPerPage, page * videosPerPage);
+      visibleCards.forEach((c, i) => {
+        c.style.transition = 'transform .32s ease, opacity .32s ease';
+        c.style.transform = direction === 'left' ? 'translateX(40px)' : direction === 'right' ? 'translateX(-40px)' : 'translateX(0)';
+        setTimeout(() => {
+          c.style.opacity = '1';
+          c.style.transform = 'translateX(0)';
+        }, 40 * i);
+      });
+
+      // update pagination UI
+      updatePaginationUI();
     }
-  }
-  document.addEventListener('touchstart', e => touchStartX = e.changedTouches[0].screenX);
-  document.addEventListener('touchend', e => { touchEndX = e.changedTouches[0].screenX; handleSwipe(); });
 
-  // responsive per-page recalculation
-  let rto;
-  window.addEventListener('resize', ()=> {
-    clearTimeout(rto);
-    rto = setTimeout(()=> {
-      const np = getVideosPerPage();
-      if (np !== perPage) { perPage = np; currentPage = 1; renderVideos(); }
-    }, 200);
-  });
+    function updatePaginationUI() {
+      pageNumbers.innerHTML = '';
+      const end = Math.min(visibleRangeStart + maxVisiblePages - 1, totalPages);
+      for (let i = visibleRangeStart; i <= end; i++) {
+        const btn = document.createElement('button');
+        btn.textContent = i;
+        if (i === currentPage) btn.classList.add('active');
+        btn.addEventListener('click', () => {
+          const dir = i > currentPage ? 'left' : 'right';
+          currentPage = i;
+          renderPage(currentPage, dir);
+          // shift range if needed
+          if (currentPage > visibleRangeStart + maxVisiblePages - 1) visibleRangeStart = currentPage - (maxVisiblePages - 1);
+          if (currentPage < visibleRangeStart) visibleRangeStart = Math.max(1, currentPage);
+          updatePaginationUI();
+        });
+        pageNumbers.appendChild(btn);
+      }
 
-  // VIDEO MODAL (open but NO autoplay until user clicks play)
-  const modal = document.getElementById('video-modal');
-  const iframe = document.getElementById('video-iframe');
-  const modalClose = document.querySelector('.video-close');
-  let currentVideoId = null;
+      prevBtn.disabled = currentPage === 1;
+      nextBtn.disabled = currentPage === totalPages;
+    }
 
-  function openVideoModal(id, title){
-    currentVideoId = id;
-    // set embed WITHOUT autoplay so it doesn't auto-play. We'll add autoplay when user presses the play icon.
-    iframe.src = `https://www.youtube.com/embed/${id}?rel=0&modestbranding=1`;
-    modal.classList.add('open');
-    modal.setAttribute('aria-hidden', 'false');
-    document.body.style.overflow = 'hidden';
-
-    // Add a centered play-overlay inside the modal inner, requiring explicit click to start
-    const inner = modal.querySelector('.video-modal-inner');
-    // remove old play overlay if exists
-    const existing = inner.querySelector('.modal-play-overlay');
-    if (existing) existing.remove();
-    const overlay = document.createElement('div');
-    overlay.className = 'modal-play-overlay';
-    overlay.style.cssText = 'position:absolute; inset:0; display:flex; align-items:center; justify-content:center; z-index:4; pointer-events:none';
-    const play = document.createElement('div');
-    play.className = 'play-btn';
-    play.style.width='84px'; play.style.height='84px'; play.style.fontSize='34px';
-    play.innerHTML = '<i class="fas fa-play"></i>';
-    play.style.pointerEvents='auto';
-    play.addEventListener('click', (e)=>{
-      // actually enable autoplay now
-      iframe.src = `https://www.youtube.com/embed/${currentVideoId}?rel=0&modestbranding=1&autoplay=1`;
-      overlay.remove();
+    prevBtn.addEventListener('click', () => {
+      if (currentPage > 1) {
+        currentPage--;
+        if (currentPage < visibleRangeStart) visibleRangeStart = Math.max(1, visibleRangeStart - maxVisiblePages);
+        renderPage(currentPage, 'right');
+      }
     });
-    overlay.appendChild(play);
-    inner.appendChild(overlay);
-  }
-
-  modalClose.addEventListener('click', closeModal = ()=> {
-    modal.classList.remove('open');
-    iframe.src = '';
-    modal.setAttribute('aria-hidden','true');
-    document.body.style.overflow = '';
-  });
-
-  // close on escape
-  document.addEventListener('keydown', (e)=> {
-    if (e.key === 'Escape' && modal.classList.contains('open')) closeModal();
-  });
-
-  // click outside to close
-  modal.addEventListener('click', (e)=> { if (e.target === modal) closeModal(); });
-
-  // expose open function to other scope
-  window.openVideoModal = openVideoModal;
-
-  // initialize
-  renderVideos();
-
-})();
-
-/* =========================
-   Reattach lightbox on load (in case items already exist)
-   ========================= */
-setTimeout(initLightbox, 400);
-
-/* =========================
-   Accessibility: scroll spy for nav active link
-   ========================= */
-(function(){
-  const sections = document.querySelectorAll('main section');
-  const navLinks = document.querySelectorAll('.nav-links a');
-
-  function updateActive() {
-    let current = '';
-    sections.forEach(sec => {
-      const top = sec.offsetTop - 120;
-      const height = sec.offsetHeight;
-      if (window.scrollY >= top && window.scrollY < top + height) current = sec.id;
+    nextBtn.addEventListener('click', () => {
+      if (currentPage < totalPages) {
+        currentPage++;
+        if (currentPage > visibleRangeStart + maxVisiblePages - 1) visibleRangeStart += maxVisiblePages;
+        renderPage(currentPage, 'left');
+      }
     });
-    navLinks.forEach(a => {
-      a.classList.remove('active-link');
-      if (a.getAttribute('href').substring(1) === current) a.classList.add('active-link');
-    });
-  }
-  window.addEventListener('scroll', updateActive);
-  updateActive();
-})();
 
-/* =========================
-   Small note: "View Messages" & other buttons
-   - We preserved them as non-destructive placeholders; the contact form uses your Formspree action.
-   ========================= */
-</script> 
+    // Swipe gesture
+    let touchStartX = 0, touchEndX = 0;
+    function handleSwipe() {
+      const swipe = touchEndX - touchStartX;
+      if (Math.abs(swipe) > 60) {
+        if (swipe > 0 && currentPage > 1) prevBtn.click();
+        else if (swipe < 0 && currentPage < totalPages) nextBtn.click();
+      }
+    }
+    document.addEventListener('touchstart', e => touchStartX = e.changedTouches[0].screenX);
+    document.addEventListener('touchend', e => {
+      touchEndX = e.changedTouches[0].screenX;
+      handleSwipe();
+    });
+
+    // Popup logic
+    const popup = document.getElementById('video-popup');
+    const popupVideo = document.getElementById('popup-video');
+    const popupClose = document.getElementById('popup-close');
+    const popupBackdrop = document.getElementById('popup-backdrop');
+
+    function openPopupById(videoId) {
+      popupVideo.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`;
+      popup.classList.add('active');
+      popup.setAttribute('aria-hidden','false');
+      document.body.style.overflow = 'hidden';
+    }
+    function closePopup() {
+      popup.classList.remove('active');
+      popup.setAttribute('aria-hidden','true');
+      popupVideo.src = '';
+      document.body.style.overflow = '';
+    }
+
+    // attach click handlers to cards
+    getAllCards().forEach(card => {
+      card.addEventListener('click', () => {
+        const id = card.getAttribute('data-video-id');
+        openPopupById(id);
+      });
+      // keyboard accessibility (Enter)
+      card.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          const id = card.getAttribute('data-video-id');
+          openPopupById(id);
+        }
+      });
+    });
+
+    popupClose.addEventListener('click', closePopup);
+    // Close clicking on backdrop/outside content
+    popup.addEventListener('click', (e) => {
+      if (!e.target.closest('.popup-content')) closePopup();
+    });
+    // ESC to close
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closePopup(); });
+
+    // Initialize first page
+    renderPage(currentPage);
+
+    // ensure pagination UI correct on load
+    updatePaginationUI();
+
+    // Optional: lazy replace thumbnails with higher-res if you want later
+  })();
+  </script>
+</section>
 </body>
 </html>
