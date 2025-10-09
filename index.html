@@ -1222,7 +1222,9 @@
 
   <script>
 const videosPerPage = 6;
-const videos = document.querySelectorAll('.video-card');
+
+// 🎯 Only select video cards inside #video-gallery
+const videos = document.querySelectorAll('#video-gallery .video-card');
 const totalVideos = videos.length;
 const totalPages = Math.ceil(totalVideos / videosPerPage);
 let currentPage = 1;
@@ -1247,7 +1249,7 @@ function showPage(page, direction = null) {
     video.style.opacity = '0';
   });
 
-  // Slide animation
+  // Smooth slide animation
   const visibleVideos = [...videos].slice((page - 1) * videosPerPage, page * videosPerPage);
   visibleVideos.forEach((v, i) => {
     v.style.transition = 'transform 0.35s ease, opacity 0.35s ease';
@@ -1300,7 +1302,7 @@ nextBtn.addEventListener('click', () => {
   }
 });
 
-// Swipe gesture handling
+// Swipe gesture handling (for mobile)
 let touchStartX = 0;
 let touchEndX = 0;
 function handleSwipe() {
@@ -1323,5 +1325,7 @@ document.addEventListener('touchend', e => {
 // Initialize
 showPage(currentPage);
 </script>
+</body>
+</html>
 </body>
 </html>
