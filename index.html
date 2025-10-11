@@ -1101,22 +1101,48 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function renderPagination() {
-    pageNumbersContainer.innerHTML = "";
-    const totalPages = Math.ceil(videos.length / videosPerPage);
+  pageNumbersContainer.innerHTML = "";
+  const totalPages = Math.ceil(videos.length / videosPerPage);
+  const maxVisible = 4; // Only show 4 visible page numbers
 
-    for (let i = 1; i <= totalPages; i++) {
-      const btn = document.createElement("button");
-      btn.textContent = i;
-      btn.className = "pagination-btn" + (i === currentPage ? " active" : "");
-      btn.addEventListener("click", () => {
-        currentPage = i;
-        renderVideos();
-      });
-      pageNumbersContainer.appendChild(btn);
-    }
+  let start = Math.max(1, currentPage - Math.floor(maxVisible / 2));
+  let end = start + maxVisible - 1;
 
-    prevBtn.disabled = currentPage === 1;
-    nextBtn.disabled = currentPage === totalPages;
+  if (end > totalPages) {
+    end = totalPages;
+    start = Math.max(1, end - maxVisible + 1);
+  }
+
+  // Add "..." before the first visible set if needed
+  if (start > 1) {
+    const dots = document.createElement("span");
+    dots.textContent = "...";
+    pageNumbersContainer.appendChild(dots);
+  }
+
+  // Render visible page numbers
+  for (let i = start; i <= end; i++) {
+    const btn = document.createElement("button");
+    btn.textContent = i;
+    btn.className = "pagination-btn" + (i === currentPage ? " active" : "");
+    btn.addEventListener("click", () => {
+      currentPage = i;
+      renderVideos();
+    });
+    pageNumbersContainer.appendChild(btn);
+  }
+
+  // Add "..." after the last visible set if needed
+  if (end < totalPages) {
+    const dots = document.createElement("span");
+    dots.textContent = "...";
+    pageNumbersContainer.appendChild(dots);
+  }
+
+  // Enable/disable navigation buttons
+  prevBtn.disabled = currentPage === 1;
+  nextBtn.disabled = currentPage === totalPages;
+}
   }
 
   prevBtn.addEventListener("click", () => {
