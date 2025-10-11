@@ -482,6 +482,15 @@
     </button>
   </div>
 </section>
+    <!-- Lightbox for Video -->
+    <div id="video-lightbox" class="lb" aria-hidden="true" aria-label="Video preview">
+      <div class="lb-inner" role="dialog" aria-modal="true">
+        <iframe id="lb-video" frameborder="0" allowfullscreen></iframe>
+      </div>
+      <div class="lb-close" role="button" title="Close">✕</div>
+      <div class="lb-nav lb-prev" role="button" title="Previous">‹</div>
+      <div class="lb-nav lb-next" role="button" title="Next">›</div>
+    </div>
     
     <!-- EXCLUSIVE -->
     <section id="exclusive" aria-labelledby="exclusive-title" class="reveal">
@@ -938,6 +947,219 @@
   document.addEventListener('keyup', (e)=> {
     if(e.key === 'Tab') document.body.classList.add('show-focus');
   });
+
+    // --- Video Collection ---
+(function() {
+  const videos = [
+    // Paste your YouTube videos here:
+    { id: "QCXaa1mEUK0", title: "Darshan Raval - Hawa Banke | Official Music Video Ft. Aditi Budhathoki | Nirmaan | Naushad Khan" },
+    { id: "djbTz_ZlQ_c", title: "Chulbul Chulbul - BABARI Song 2022 | Ft. Dhiraj Magar, Aditi Budhathoki & Dhiraj Nadakar" },
+    { id: "F9XbfHNrwxo", title: "Babari Rang - BABARI Song 2022 | Ft. Dhiraj Magar, Aditi Budhathoki & Dhiraj Nadakar" },
+    { id: "n95a7mRXAaQ", title: "Get Picture Perfect: Easy Female Model Poses for Amazing Shoots | Actress Aditi Budhathoki Shoot" },
+    { id: "6GQLxSaI1XE", title: "Jani Najani Maya (Movie Song) KRI | Anmol Kc | Aditi Budhathoki" },
+    { id: "x9AIkheDw9E", title: "Posing Like a Pro: Discover the Tricks behind Actress Aditi Budhathoki's Striking Photoshoots" },
+    { id: "FhkGrNolX3U", title: "Dhuk Dhuki Song 2018| KRI  | Ft. Anmol KC, Aditi Budhathoki" },
+    { id: "ieNIHjUwK_0", title: "MAYAKA RANGHARU- BABARI Song 2022 |Dhiraj Nadkar, Aditi Budhathoki" },
+    { id: "qkIqjh-kCjg", title: "Babari Rang (Reprise Version) - BABARI Song | Dhiraj Magar, Aditi Budhathoki" },
+    { id: "LGeLsM4iTcc", title: "BABARI | New Nepali Movie Official Teaser 2022 | Ft. Dhiraj Magar, Aditi Budhathoki, Dhiraj Nadkar" },
+    { id: "ooSHP6cwnGA", title: "BABARI | New Nepali Movie Official Trailer 2022 | Ft. Dhiraj Magar, Aditi Budhathoki, Dhiraj Nadkar" },
+    { id: "xadyAZep-WU", title: "Fizool Hai - Official Video | Saheal Khan & Aditi Budhathoki | Shameer Tandon |" },
+    { id: "SBWYGGDYmhg", title: "Tu Mera Nahi (Official Video) - Amaal Mallik | Aditi B | Rashmi Virag | Love Song 2020" },
+    { id: "IgdGChX7md8", title: "Meri Hasi - Aakanksha Sharma | Kunwar A, Aditi B | Amjad Nadeem Aamir | Zee Music Originals" },
+    { id: "9kZyeGTpQpM", title: "Apna Banauna Official Video | Karan Sehmbi | Aditi B | Mavi Singh | TRU Makers | Raj Jaiswal" },
+    { id: "9jkkrLY3NDE", title: "Inni Si Gal | Stebin Ben | Karan Kundrra | Aditi Budhathoki | Sanjeev Chaturvedi | Latest Hindi Song" },
+    { id: "V4imnHOV-bI", title: "Imaan Tu (Full Song) GK Music | Paras Kalnawat, Aditi Budhathoki | Ankit Tiwari | Valentine Special" },
+    { id: "GUrn05ipAw8", title: "BRIDAL MAKEUP BY LEMII ft ADITI BUDHATHOKI" },
+    { id: "9ugeqEbmkFk", title: "Brown smokey eyes with Aditi Budhathoki for Babari promotions | makeup by lemi" },
+    { id: "Y7_J16KcfyA", title: "Exclusive Interview with KRI Actress Aditi Budhathoki" },
+    { id: "dED7ZSrxuJ4", title: "अदितीको आरोप- शुटिङमा अनमोलले सुत्न दिएन Anmol KC | Aditi Budathoki | कृ | Kri" },
+    { id: "sQQYrlij79c", title: "यस्तो छ ‘कृ’ को ६ दिने कलेक्सन-बन्दै छ कृ-2 | KRI business report" },
+    { id: "A5p-WUH3GYA", title: "Aditi Budhathoki Sketch : २ धिरजले अदितीको डरलाग्दो😱स्केच कोरे | Dhiraj Magar, Dhiraj Nadkar, Babari" },
+    { id: "TS_zJqRr_0g", title: "Log Peete Hain (Official Video) Master Saleem, Abhishek Thakur | Pratik Sehajpal, Aditi Budhathoki" },
+    { id: "I4sjnbAaM9o", title: "ALI WORA SARANA - BABARI Song 2022 | Ft. Dhiraj Magar, Aditi Budhathoki & Dhiraj" },
+    { id: "iU5MgPQUDUQ", title: "SUMMER COTTON DRESS || AACHHO X ADITI BUDHATHOKI || FT. ADITI BUDHATHOKI" },
+    { id: "_ssF5prHpA0", title: "BLUE BALLOON DRESS || AACHHO X ADITI BUDHATHOKI || FT. ADITI BUDHATHOKI" },
+    { id: "8WHnGp6fcqI", title: "Vintage 90's | ADITI BUDHATHOKI | " },
+    { id: "pjJvwpvsn5A", title: "YELLOW SAREE || AACHHO X ADITI BUDHATHOKI || FT. ADITI BUDHATHOKI" },
+    { id: "1lAMuypKs3I", title: "Amaal Mallik Instagram Live with Aditi Budhathoki | Celebrating 1 Year of Tu Mera Nahi ❤️🎵" },
+    { id: "OE7CrwUXd4k", title: "How Aditi Budhathoki Started Her Career" },
+    { id: "DBwj03uoo0M", title: "WHITE DRESS DESIGN || AACHHO X ADITI BUDHATHOKI || FT. ADITI BUDHATHOKI" },
+    { id: "9QakDUdr7Pw", title: "Met Hrithik Roshan & His Girlfriend In An Elevator | Aditi Budhathoki" },
+    { id: "ylQR9dpYQz0", title: "Why Did Aditi Budhathoki Move To Mumbai?" },
+    { id: "cJsvq6Jf9mc", title: "New Nepali Movie | Anmol KC | Aditi Budhathoki | Anoop Bikram Shahi | " },
+    { id: "lmWT2y-yKBc", title: "Aditi Budhathoki with Amaal Mallik in Tu Mera Nahi | Aditi and Amaal" },
+    { id: "8uSg4B3FlmE", title: "SUMMER SPRING COLLECTION 2021 || AACHHO X ADITI BUDHATHOKI || FT. ADITI BUDHATHOKI" },
+    { id: "6j_7fTTPCyg", title: "PARTY WEAR DRESSES FOR WOMEN || AACHHO X ADITI BUDHATHOKI || ADITI BUDHATHOKI" },
+    { id: "MMeiWwy4vsc", title: "Aditi Budhathoki On Having The Most Instagram Followers in Nepal" },
+    { id: "hdG-X3NZfKQ", title: "Grand Premier Show of BABARI | Dhiraj Magar, Aditi Budhathoki & Dhiraj Nadkar | Jassita Gurung" },
+    { id: "shalsEz0kZA", title: "SIMPLE STYLISH DESIGN || AACHHO X ADITI BUDHATHOKI || FT. ADITI BUDHATHOKI" },
+    { id: "RT5LnER1AOA", title: "BABARI | Trailer Release Event | Dhiraj Magar, Aditi Budhathoki, Dhiraj Nadkar:: The Cinema Times" },
+    { id: "bUKKZWQDloQ", title: "Dhiraj Magar, Aditi Budhathoki & Dhiraj Nadkar | Babari Team with FANS | Lotse Mall" },
+    { id: "aShswPyv-aA", title: "KURTI POSES || AACHHO X ADITI BUDHATHOKI || FT. ADITI BUDHATHOKI" },
+    { id: "ttF7pkXQtPY", title: "Dhiraj Magar & Aditi Budhathoki सुटुक्क, मध्यराती अष्ट्रेलिया उडे || Babari प्रिमियरका लागी उत्साहित" },
+    { id: "88La-u2mtWQ", title: "On Air With Sanjay #201 - Aditi Budhathoki & Dhiraj Magar" },
+    { id: "CfHNpgLzFrU", title: "Dhiraj & Aditi | बाबरी जोडीको प्रेमका कुरा: Jaasita संगको प्रेम र Suhana संग फिल्मबारे धिरज बोले" },
+    { id: "wWSB1cPhwgc", title: "अदिती, धीरज र उनीहरूको 'बाबरी' | Aditi Budhathoki & Dhiraj Magar | G Cafe | Ep- 46" },
+    { id: "a-CSoK_f77Q", title: "Babari Team with Fan | Dhiraj Magar, Aditi Budhathoki & Dhiraj Nadkar | The Cinema Times" },
+    { id: "PP6t9OM2-QE", title: "BABARI Team in COMEDY CLUB WITH CHAMPIONS | Dhiraj Magar, Aditi Budhathoki & Dhiraj Nadakar" },
+    { id: "HV1f2L1UhHM", title: "Aditi Budhathoki | BABARI | Promotional Video :: The Cinema Times" },
+    { id: "LOSBx26ACgw", title: "ORANGE LEHENGA || AACHHO X ADITI BUDHATHOKI || FT. ADITI BUDHATHOKI" },
+    { id: "ry4z0GN1tDA", title: "Funny Talk With Aditi Budhathoki | Nepalese Actress | Medianp.com" },
+    { id: "--TSthLKqsM", title: "Getting To Meet Tiger Sroff In Mumbai - Aditi Budhathoki" },
+    { id: "gddvWxoOFCU", title: "Dhiraj Magar को तारिफमा नथाकेकी Aditi जोडी जमेपछि दंग : धिरजसंग जीवनभरको साथ भन्दै प्रेमबारे खुलिन्" },
+    { id: "4zdApBSICo4", title: "Aditi Budhathoki Talks About Life Among Celebrities In Mumbai." },
+    { id: "AHy6VaRjwsU", title: "Aditi Budhathoki Red Saree Photoshoot " },
+    { id: "zhBhl-dCXUs", title: "Aditi को ४ लाखको ब्याग !! अनि गाडी ? Aditi Budhathoki Plays My Most Expensive | Babari Asoj 14" },
+    { id: "OBZ15oyMDDM", title: "Dhiraj Magar, Aditi Budhathoki & Dhiraj Nadkar अदितीलाई प्रपोज, २ धिरज मध्ये अदिती कस्को ?" },
+    { id: "pR8GIJgCMMM", title: "Aditi Budhathoki Live Fun with Indian Singer Stebin Ben | Rulake gaya ishq tera | Aditi & Stebinben" },
+    { id: "ntYHx4bhQgI", title: "Dhiraj Magar & Aditi Budhathoki : FIRST LOVE || पहिलो प्रेम सम्झिदा लजाए ! Interview Clips | BC TV" },
+    { id: "A5p-WUH3GYA", title: "Aditi Budhathoki Sketch : २ धिरजले अदितीको डरलाग्दो😱स्केच कोरे | Dhiraj Magar, Dhiraj Nadkar, Babari" },
+    { id: "q0NxrPt_zP4", title: "Aditi Budhathoki Discloses Her First Uncomfortable Film Scene!" },
+    { id: "tY0-jdIUmqI", title: "बाबरीको विवाद के हो, कलाकारहरुले गरे खुलासै खुलासा, हिरो हिरोइनको प्रेम भयो छताछुल्ल" },
+    { id: "5vxQNHSsXZc", title: "अन्तरवार्तामा Anmol ले किस गर्दा रिसाईन अदिती ! Anmol Kc | Aditi Budathoki | Kri" },
+    { id: "T2Zo6LpTdcs", title: "Dhiraj and Aditi गहिरो प्रेममा || जिस्काउँदा हानिन् झापड || Ramailo With Utsav || SE_03 || Epi_14" },
+    { id: "JKmMdx0hvAQ", title: "Aditi र Dhiraj को जोडी निकै रोमान्टिक, Anmol का कुरा निकाल्दै एकअर्काको तारिफ गर्दै दुवै लजाए" },
+    { id: "12BcpSzGK4I", title: "Interview with Aditi Budathoki and Dhiraj Magar | OK Entertainment" },
+    { id: "IoIdecj4vgE", title: "दुई धिरज र अदिति हासेरै सके अन्तर्वार्ता | Guess the Words with Babari Team | Dhiraj Square & Aditi" },
+    { id: "K-N_mA-TBZI", title: "नायिका अदितीकी आमा पुष्पाको नजरमा अनमोल ज्वाई बन्न योग्य ? | Aditi Budhathoki | Anmol KC |" },
+    { id: "T_gF6SXXyIQ", title: "Neetesh Jung Kunwar & Aditi Budhathoki को Relationship के छ ? Ramailo With Utsav@Aloft" },
+    { id: "Q2DcsBL4Rmo", title: "|| KRI || रिलिजपछी पहिलो पटक मिडियासँग कुरा गर्दै || ANMOL KC || & || ADITI BUDATHOKI || " },
+    { id: "VrSYjgIDp6s", title: "तृप्तीका छोराले जिते अदिति र धिरजको मन : नेपाली बोल्दा रमाईलो झन | Aditi -Dhiraj & Dhiraj Nadkar" },
+    { id: "LfMkR5os49k", title: "BABARI Interview : Dhiraj Magar, Aditi Budhathoki, Dhiraj Nadkar || दुई धिरज र अदितिको पहिलो प्रेम" },
+    { id: "TdKA4bP6J5Q", title: "जस्त क्लोज फ्रेण्ड रे!! The Prakash Subedi Show | Aditi Budhathoki and Dhiraj Magar | EPI 14 | AP1HD" },
+    { id: "iDuHXW-MhZ4", title: "फिल्म 'बाबरी'मा धिरले दयाको कपि गरेकै हुन ? BABARI -Dhiraj Magar, Aditi Budhathoki, Dhiraj Nadkar" },
+    { id: "AJ5KI3w0VHQ", title: "Press Conference of BABARI | Dhiraj Magar & Aditi Budhathoki :: The Cinema Times" },
+    { id: "qmqvjwjPC-8", title: "प्रेम होस्, त यस्तो ! Dhiraj Magar, Aditi budhathoki, Jassita Gurung - Interview | Babari Movie" },
+    { id: "6op1nS2OHtc", title: "अनमोल मेरो जीवन साथी हुन् सक्दैन/अनामोलले धेरै सहयोग गरेको छ NTERVIEW WITH ADITI BUDHATHOKI" },
+    { id: "LKzudb-h6U0", title: "Exclusive : पहिलोभेटमा Dhiraj रAditi को प्रेम र झगडा-मनको मान्छे भन्दै आमा राखेर सुनाए सम्बन्धको कथा" },
+    { id: "PT69gs3yciM", title: "उपराष्ट्रपतिलले बाबरी फिल्म हेरे || Dhiraj Magar And Aditi Budhathoki Interview || Bisalchautari TV" },
+    { id: "QDJvjXiiypA", title: "What's on your phone with Aditi Budhathoki || यसरी साटिन् अनमोलसँगको अनुभव | FilmyNepal" },
+    { id: "ByHPR5AEUPE", title: "Most hilarious interview with team babari.Aditi glittering her way to success :: The Cinema Times" },
+    { id: "AicrzNSOH9s", title: "अदिति लाई थाहा नै छैन रिल काे हिराे/अदिति लाई नेपाली सिनेमा नै कर्म थलाे INTERVIEW WITH ADITI" },
+    { id: "9Kdu6ZnHq0s", title: "Babari Press Meet॥ Dhiraj Magar॥ Aditi Budhathoki || Mero Online TV" },
+    { id: "wuvwUkYR-PA", title: "Aditi Budhathoki - Interview || Movie Kri" },
+    { id: "StvvB7-lQzY", title: "Nepalese Community Taking Over UK And Mumbai | Aditi & Dhiraj" },
+    { id: "0fOw3kBkcNo", title: "Dhiraj Magar, Aditi Budhathoki & Dhiraj Nadkar in in Cineplex w/ Sushma Lama | YOHO TV HD" },
+    { id: "S0rih8_cOLs", title: "अनमोललाई आएन अदीतिलाई प्रपोज गर्ने हिम्मत || Ramailo छ with Utsav Rasaili" },
+    { id: "hggknKiH8Bw", title: "PrimeHD|| २ धिरजका प्रेम प्रस्ताव अदितिलाई || #meroeutasathichha #season03 #ep21" },
+    { id: "TDlZbtRhAds", title: "Dhiraj Magar, Aditi Budhathoki & Dhiraj Nadkar in Celeb Chat | Ranjit Poudel | Global Television HD" },
+    { id: "HaYoFUugQZ0", title: "साम्रागीको ट्याटुमा किन हासे ।। Interview With Anamol Kc & Aditi Budhathoki ।। Nepali Movie KRi !!" },
+    { id: "e1LjuGTs2Ag", title: "EXCLUSIVE Interview with Aditi Budhathoki || Sunny Leone संग कम्पियर नै नगर्नुस् ||" },
+    { id: "ucLVdt9ICf0", title: "रमाइलो भेटघाट : Swastima Khadka, Dhiraj Magar, Aditi budhathoki, Malika Mahat, Miss Nepal | Ananeke" },
+    { id: "LTZua8NbAJo", title: "MM Talk With Aditi Budathoki | Kri" },
+    { id: "chvY8GET9oY", title: "Babari हेरेकी Swastima Khadka को राम्रो प्रतिकृयाले Dhiraj Magar, Aditi Budhathoki, Dhiraj Nadkarदंग" },
+    { id: "BcX_f7-QVrQ", title: "यसकारण अनमोललाई पति बनाउन पाउनु भाग्य | Funny Part of ANMOL and ADITI COUPLE TALK" },
+    { id: "0qx3dAcMWx8", title: "Making of Mayaka Rangaharu | Aditi Budhathoki | Dhiraj" },
+    { id: "0baV9OKwmXY", title: "Hongkong Diaries | Aditi B Travel Vlog| Babari Premiere" },
+    { id: "Hjhj5NnMa54", title: "Embroidered Sarees | Aditi Budhathoki | Indiwear | Bollywood Cafe by Laxmipati" },
+    { id: "CboKys8jQ54", title: "Ok Masti Talk(S-2) with Aditi Budhathoki || 'अनमोल मेरो चकलेट खाएर चकलेटी भाको' - अदिती" },
+    { id: "HV1f2L1UhHM", title: "Aditi Budhathoki | BABARI | Promotional Video :: The Cinema Times" },
+    { id: "N2_BlpTFopA", title: "QnA with Babari Team | डाइहार्ट फ्यानहरु Dhiraj Magarलाई भेट्न बसपार्कमा | Aditi Budhathoki, Dhiraj" },
+    { id: "5e7cpiVShAk", title: "नेपालमा कलाकारले पाउनु पर्ने जति रेस्पेक्ट नपाए झैं लाग्छ: Dhiraj & Aditi | Talk with the top Ep-28" },
+    { id: "GszhU9AGWQY", title: "Babari : Aditi & Dhiraj Most Hilarious Rapid Fire | :: The Cinema Times" },
+    { id: "uuLwZwFOdJg", title: "Babari Housefull : धिरज र अदितीले भने हामि सफल भयौ || Dhiraj Magar & Adhiti Budhathoki Interview" },
+    { id: "ciqctDOoOdc", title: "अदिति बुढाथोकी र नितेश कुँवर बीच के पाक्दैछ ? लकडाउनमा अदितिले खोलिन मनका कुरा Aditi Budhathoki" },
+    { id: "FlSzQjQSsK0", title: "दुई Dhirajमा कसलाई रोजिन् त Aditiले, प्रोड्युसर साब भन्दै जिस्क्याए Aditi Budhathoki लाई |Interview" },
+    { id: "d-qzI0tYCfA", title: "Babari Movie Premiere Look | Aditi Budhathoki | Makeup By Lemi" },
+    { id: "DtcuNavOPj4", title: "ADITI BUDHATHOKI | Hitesh Kaneria" },
+    
+  ];
+  ];
+
+  const itemsPerPage = 6;
+  let currentPage = 1;
+
+  const grid = document.getElementById("video-grid");
+  const prevBtn = document.getElementById("video-prev");
+  const nextBtn = document.getElementById("video-next");
+  const pageNumbers = document.getElementById("video-page-numbers");
+
+  function renderPage(page) {
+    grid.innerHTML = "";
+    const start = (page - 1) * itemsPerPage;
+    const end = start + itemsPerPage;
+    const pageVideos = videos.slice(start, end);
+
+    pageVideos.forEach(video => {
+      const card = document.createElement("div");
+      card.className = "video-card";
+      card.innerHTML = `
+        <img class="video-thumb" src="https://img.youtube.com/vi/${video.id}/hqdefault.jpg" alt="${video.title}">
+        <div class="video-info">${video.title}</div>
+      `;
+      card.addEventListener("click", () => openLightbox(video.id));
+      grid.appendChild(card);
+    });
+
+    renderPagination(page);
+  }
+
+  function renderPagination(page) {
+    const totalPages = Math.ceil(videos.length / itemsPerPage);
+    pageNumbers.innerHTML = "";
+
+    for (let i = 1; i <= totalPages; i++) {
+      const btn = document.createElement("button");
+      btn.textContent = i;
+      btn.className = "pagination-btn" + (i === page ? " active" : "");
+      btn.addEventListener("click", () => {
+        currentPage = i;
+        renderPage(i);
+      });
+      pageNumbers.appendChild(btn);
+    }
+
+    prevBtn.disabled = page === 1;
+    nextBtn.disabled = page === totalPages;
+  }
+
+  function openLightbox(videoId) {
+    const lb = document.getElementById("video-lightbox");
+    const iframe = document.getElementById("lb-video");
+    iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+    lb.classList.add("open");
+
+    // Swipe support for mobile
+    let startX = 0;
+    lb.addEventListener("touchstart", e => startX = e.touches[0].clientX);
+    lb.addEventListener("touchend", e => {
+      const endX = e.changedTouches[0].clientX;
+      if (startX - endX > 50) next();
+      if (endX - startX > 50) prev();
+    });
+  }
+
+  function closeLightbox() {
+    const lb = document.getElementById("video-lightbox");
+    const iframe = document.getElementById("lb-video");
+    iframe.src = "";
+    lb.classList.remove("open");
+  }
+
+  function prev() {
+    if (currentPage > 1) {
+      currentPage--;
+      renderPage(currentPage);
+    }
+  }
+
+  function next() {
+    const totalPages = Math.ceil(videos.length / itemsPerPage);
+    if (currentPage < totalPages) {
+      currentPage++;
+      renderPage(currentPage);
+    }
+  }
+
+  document.querySelector("#video-lightbox .lb-close").addEventListener("click", closeLightbox);
+  document.querySelector("#video-lightbox .lb-prev").addEventListener("click", prev);
+  document.querySelector("#video-lightbox .lb-next").addEventListener("click", next);
+
+  prevBtn.addEventListener("click", prev);
+  nextBtn.addEventListener("click", next);
+
+  renderPage(currentPage);
+})();
 
   </script>
 
