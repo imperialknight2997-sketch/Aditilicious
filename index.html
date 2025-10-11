@@ -948,7 +948,8 @@
 </script>
 
 <script>
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", () => {
+
   const videos = [
     { id: "QCXaa1mEUK0", title: "Darshan Raval - Hawa Banke | Official Music Video Ft. Aditi Budhathoki | Nirmaan | Naushad Khan" },
     { id: "djbTz_ZlQ_c", title: "Chulbul Chulbul - BABARI Song 2022 | Ft. Dhiraj Magar, Aditi Budhathoki & Dhiraj Nadakar" },
@@ -1059,106 +1060,91 @@ document.addEventListener("DOMContentLoaded", function () {
     { id: "ciqctDOoOdc", title: "अदिति बुढाथोकी र नितेश कुँवर बीच के पाक्दैछ ? लकडाउनमा अदितिले खोलिन मनका कुरा Aditi Budhathoki" },
     { id: "FlSzQjQSsK0", title: "दुई Dhirajमा कसलाई रोजिन् त Aditiले, प्रोड्युसर साब भन्दै जिस्क्याए Aditi Budhathoki लाई |Interview" },
     { id: "d-qzI0tYCfA", title: "Babari Movie Premiere Look | Aditi Budhathoki | Makeup By Lemi" },
-    { id: "DtcuNavOPj4", title: "ADITI BUDHATHOKI | Hitesh Kaneria" }
+    { id: "DtcuNavOPj4", title: "ADITI BUDHATHOKI | Hitesh Kaneria" },
+    
   ];
 
   const videosPerPage = 6;
   let currentPage = 1;
-
-  const videoGrid = document.getElementById("video-grid");
-  const paginationContainer = document.getElementById("video-pagination");
-  const prevBtn = document.getElementById("video-prev");
-  const nextBtn = document.getElementById("video-next");
-  const pageNumbersContainer = document.getElementById("video-page-numbers");
-
-  const lightbox = document.getElementById("video-lightbox");
-  const iframe = document.getElementById("lb-video");
-  const closeBtn = document.querySelector(".lb-close");
+  const totalPages = Math.ceil(videos.length / videosPerPage);
 
   function renderVideos() {
-    videoGrid.innerHTML = "";
+    const grid = document.getElementById('video-grid');
+    grid.innerHTML = '';
+
     const start = (currentPage - 1) * videosPerPage;
     const end = start + videosPerPage;
-    const currentVideos = videos.slice(start, end);
+    const visible = videos.slice(start, end);
 
-    currentVideos.forEach((video) => {
-      const thumb = `https://img.youtube.com/vi/${video.id}/hqdefault.jpg`;
-      const card = document.createElement("div");
-      card.className = "video-card";
+    visible.forEach(video => {
+      const card = document.createElement('div');
+      card.className = 'video-card';
       card.innerHTML = `
-        <img src="${thumb}" alt="${video.title}">
-        <div class="play-btn"><i class="fas fa-play"></i></div>
+        <img src="https://img.youtube.com/vi/${video.id}/hqdefault.jpg" alt="${video.title}">
+        <div class="play-btn" data-id="${video.id}">
+          <i class="fas fa-play"></i>
+        </div>
         <p class="video-title">${video.title}</p>
       `;
-      card.addEventListener("click", () => {
-        iframe.src = `https://www.youtube.com/embed/${video.id}?autoplay=1`;
-        lightbox.classList.add("active");
-      });
-      videoGrid.appendChild(card);
+      grid.appendChild(card);
     });
 
-    renderPagination();
+    updatePagination();
   }
 
-  function renderPagination() {
-    pageNumbersContainer.innerHTML = "";
-    const totalPages = Math.ceil(videos.length / videosPerPage);
+  function updatePagination() {
+    const container = document.getElementById('video-page-numbers');
+    const prevBtn = document.getElementById('video-prev');
+    const nextBtn = document.getElementById('video-next');
+    container.innerHTML = '';
 
-    for (let i = 1; i <= totalPages; i++) {
-      const btn = document.createElement("button");
+    const visiblePages = 4;
+    let startPage = Math.max(1, currentPage - Math.floor(visiblePages / 2));
+    let endPage = Math.min(totalPages, startPage + visiblePages - 1);
+    if (endPage - startPage < visiblePages - 1) startPage = Math.max(1, endPage - visiblePages + 1);
+
+    for (let i = startPage; i <= endPage; i++) {
+      const btn = document.createElement('button');
       btn.textContent = i;
-      btn.className = "pagination-btn" + (i === currentPage ? " active" : "");
-      btn.addEventListener("click", () => {
-        currentPage = i;
-        renderVideos();
-      });
-      pageNumbersContainer.appendChild(btn);
+      if (i === currentPage) btn.classList.add('active');
+      btn.onclick = () => { currentPage = i; renderVideos(); };
+      container.appendChild(btn);
     }
 
     prevBtn.disabled = currentPage === 1;
     nextBtn.disabled = currentPage === totalPages;
   }
 
-  prevBtn.addEventListener("click", () => {
-    if (currentPage > 1) {
-      currentPage--;
-      renderVideos();
-    }
+  document.getElementById('video-prev').onclick = () => {
+    if (currentPage > 1) { currentPage--; renderVideos(); }
+  };
+  document.getElementById('video-next').onclick = () => {
+    if (currentPage < totalPages) { currentPage++; renderVideos(); }
+  };
+
+  // Lightbox
+  document.addEventListener('click', e => {
+    const play = e.target.closest('.play-btn');
+    if (!play) return;
+    const id = play.dataset.id;
+    const lb = document.getElementById('video-lightbox');
+    const frame = document.getElementById('lb-video');
+    frame.src = `https://www.youtube.com/embed/${id}?autoplay=1`;
+    lb.classList.add('active');
   });
 
-  nextBtn.addEventListener("click", () => {
-    const totalPages = Math.ceil(videos.length / videosPerPage);
-    if (currentPage < totalPages) {
-      currentPage++;
-      renderVideos();
-    }
+  document.querySelector('.lb-close').addEventListener('click', () => {
+    const lb = document.getElementById('video-lightbox');
+    const frame = document.getElementById('lb-video');
+    frame.src = '';
+    lb.classList.remove('active');
   });
 
-  // Lightbox close behavior
-  closeBtn.addEventListener("click", () => {
-    iframe.src = "";
-    lightbox.classList.remove("active");
-  });
-
-  lightbox.addEventListener("click", (e) => {
-    if (e.target === lightbox) {
-      iframe.src = "";
-      lightbox.classList.remove("active");
-    }
-  });
-
-  // Initial render
+  // Initialize
   renderVideos();
-});
-</script>
 
-<script>
-  /* =============================
-     Accessibility focus & small polish
-     ============================= */
-  document.addEventListener('keyup', (e)=> {
-    if(e.key === 'Tab') document.body.classList.add('show-focus');
-  });
+}); // end DOMContentLoaded
 </script>
+</section>
 </body>
-</html> 
+</html>
