@@ -298,17 +298,18 @@
   color: #aaa;
   border: 1px solid #eee;
 }
-/* === Video Lightbox - Centered, Fixed, Blur like Gallery === */
+/* === Video Lightbox (Fixed, Centered, Working Clicks) === */
 #video-lightbox {
   display: none;
   position: fixed;
-  top: 0; left: 0;
-  width: 100vw; height: 100vh;
-  background: rgba(255, 255, 255, 0.1);
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(20, 20, 30, 0.55);
   backdrop-filter: blur(20px);
   justify-content: center;
   align-items: center;
-  z-index: 9999;
+  z-index: 9998;
 }
 
 #video-lightbox.active {
@@ -317,6 +318,7 @@
 
 .lb-inner {
   position: relative;
+  z-index: 10000;
   max-width: 960px;
   width: 90%;
   aspect-ratio: 16 / 9;
@@ -324,6 +326,7 @@
   border-radius: 16px;
   overflow: hidden;
   box-shadow: 0 8px 40px rgba(0, 0, 0, 0.35);
+  pointer-events: auto;
 }
 
 .lb-inner iframe {
@@ -333,7 +336,15 @@
   border-radius: 16px;
 }
 
-/* Make the close button fixed to viewport, not inside video */
+/* Make sure the blur background is clickable for closing */
+#video-lightbox.active::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 9999;
+}
+
+/* Close button always visible */
 .lb-close {
   position: fixed;
   top: 30px;
@@ -341,10 +352,10 @@
   color: #fff;
   font-size: 2rem;
   cursor: pointer;
-  background: rgba(0, 0, 0, 0.4);
+  background: rgba(0, 0, 0, 0.45);
   border-radius: 50%;
   padding: 8px 12px;
-  z-index: 10000;
+  z-index: 10001;
   transition: all 0.3s ease;
 }
 
