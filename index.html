@@ -1186,10 +1186,15 @@ document.addEventListener("DOMContentLoaded", () => {
       btn.onclick = () => { currentPage = i; renderVideos(); };
       container.appendChild(btn);
     }
-
     prevBtn.disabled = currentPage === 1;
     nextBtn.disabled = currentPage === totalPages;
   }
+   document.getElementById('video-prev').onclick = () => {
+    if (currentPage > 1) { currentPage--; renderVideos(); }
+  };
+  document.getElementById('video-next').onclick = () => {
+    if (currentPage < totalPages) { currentPage++; renderVideos(); }
+  };
 // Lightbox
   document.addEventListener('click', e => {
     const play = e.target.closest('.play-btn');
@@ -1206,7 +1211,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const frame = document.getElementById('lb-video');
     frame.src = '';
     lb.classList.remove('active');
-  })
+  });
   // Initialize
   renderVideos();
 
