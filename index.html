@@ -254,50 +254,42 @@
   font-weight: 500;
   letter-spacing: 0.3px;
 }
-/* Video Pagination Buttons — Same Style as Gallery */
-#video-pagination {
+/* Pagination styling to match gallery */
+.pagination {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 8px;
-  margin-top: 25px;
-  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 20px;
 }
 
-#video-pagination button {
-  background-color: #fff;
-  border: 1.5px solid #ccc;
-  color: #333;
-  border-radius: 25px; /* Rounded like gallery buttons */
-  padding: 8px 16px;
-  font-size: 15px;
+.pagination button {
+  background: #f9f4ff;
+  color: #444;
+  border: 1px solid #e0d4ff;
+  padding: 6px 14px;
+  border-radius: 20px;
   cursor: pointer;
+  font-size: 0.9rem;
   transition: all 0.3s ease;
-  min-width: 40px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
 }
 
-/* Hover Effect */
-#video-pagination button:hover {
-  background-color: #f3e8ff; /* Light purple hover */
-  border-color: #a259ff;
+.pagination button:hover {
+  background: #f0e5ff;
   color: #000;
-  transform: translateY(-2px);
 }
 
-/* Active Page Button */
-#video-pagination button.active {
-  background-color: #a259ff;
+.pagination button.active {
+  background: #b68cff; /* same purple tone as your gallery */
   color: #fff;
-  border-color: #a259ff;
   font-weight: 600;
-  transform: scale(1.05);
+  border: 1px solid #b68cff;
 }
 
-/* Disabled state */
-#video-pagination button:disabled {
-  opacity: 0.4;
+.pagination button:disabled {
+  opacity: 0.5;
   cursor: not-allowed;
-  transform: none;
 }
 /* Lightbox */
 #video-lightbox {
