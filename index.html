@@ -246,6 +246,14 @@
 .video-card .play-btn:hover {
   background: rgba(255, 0, 100, 0.7);
 }
+    .video-title {
+  text-align: center;
+  color: #eee;
+  font-size: 0.95rem;
+  margin-top: 8px;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+}
 
 /* Lightbox */
 #video-lightbox {
@@ -460,18 +468,16 @@
         </article>
       </div>
     </section>
-<!-- Video Section -->
-    </section>
-    <section id="collection" aria-labelledby="collection-title" class="reveal">
+
+      <!-- VIDEOS -->
+<section id="collection" aria-labelledby="collection-title" class="reveal">
   <div class="section-head">
     <h2 id="collection-title">🎥 The Aditi Collection</h2>
     <p class="muted">Handpicked videos from across YouTube, all in one place</p>
   </div>
 
-  <!-- Video Grid -->
   <div class="video-grid" id="video-grid"></div>
 
-  <!-- Pagination -->
   <div class="pagination" id="video-pagination">
     <button class="pagination-btn" id="video-prev" disabled>
       <i class="fas fa-chevron-left"></i> Previous
@@ -482,15 +488,14 @@
     </button>
   </div>
 </section>
-    <!-- Lightbox for Video -->
-    <div id="video-lightbox" class="lb" aria-hidden="true" aria-label="Video preview">
-      <div class="lb-inner" role="dialog" aria-modal="true">
-        <iframe id="lb-video" frameborder="0" allowfullscreen></iframe>
-      </div>
-      <div class="lb-close" role="button" title="Close">✕</div>
-      <div class="lb-nav lb-prev" role="button" title="Previous">‹</div>
-      <div class="lb-nav lb-next" role="button" title="Next">›</div>
-    </div>
+
+<!-- Lightbox for Video -->
+<div id="video-lightbox" class="lb" aria-hidden="true" aria-label="Video preview">
+  <div class="lb-inner" role="dialog" aria-modal="true">
+    <iframe id="lb-video" frameborder="0" allowfullscreen></iframe>
+  </div>
+  <div class="lb-close" role="button" title="Close">✕</div>
+</div>
     
     <!-- EXCLUSIVE -->
     <section id="exclusive" aria-labelledby="exclusive-title" class="reveal">
@@ -940,15 +945,122 @@
     }
 
   })();
+</script>
 
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const videos = [
+    { id: "LGeLsM4iTcc", title: "Aditi Budhathoki — Glamour Moments" },
+    { id: "q6EoRBvdVPQ", title: "Aditi Behind The Scenes" },
+    { id: "Zi_XLOBDo_Y", title: "Style Feature — Exclusive Clip" },
+    { id: "FTQbiNvZqaY", title: "Red Carpet Highlights" },
+    { id: "ScMzIvxBSi4", title: "Official Music Video" },
+    { id: "9bZkp7q19f0", title: "Magazine Shoot BTS" },
+    { id: "kXYiU_JCYtU", title: "Interview with Aditi" },
+    { id: "RgKAFK5djSk", title: "Vlog — On Set Diaries" },
+    { id: "tAGnKpE4NCI", title: "Makeup & Styling Secrets" },
+    { id: "3JZ_D3ELwOQ", title: "Aditi’s Fitness Routine" },
+    { id: "ktvTqknDobU", title: "Fan Meet Moments" },
+    { id: "hTWKbfoikeg", title: "Photo Shoot Highlights" }
+  ];
+
+  const videosPerPage = 6;
+  let currentPage = 1;
+
+  const videoGrid = document.getElementById("video-grid");
+  const paginationContainer = document.getElementById("video-pagination");
+  const prevBtn = document.getElementById("video-prev");
+  const nextBtn = document.getElementById("video-next");
+  const pageNumbersContainer = document.getElementById("video-page-numbers");
+
+  const lightbox = document.getElementById("video-lightbox");
+  const iframe = document.getElementById("lb-video");
+  const closeBtn = document.querySelector(".lb-close");
+
+  function renderVideos() {
+    videoGrid.innerHTML = "";
+    const start = (currentPage - 1) * videosPerPage;
+    const end = start + videosPerPage;
+    const currentVideos = videos.slice(start, end);
+
+    currentVideos.forEach((video) => {
+      const thumb = `https://img.youtube.com/vi/${video.id}/hqdefault.jpg`;
+      const card = document.createElement("div");
+      card.className = "video-card";
+      card.innerHTML = `
+        <img src="${thumb}" alt="${video.title}">
+        <div class="play-btn"><i class="fas fa-play"></i></div>
+        <p class="video-title">${video.title}</p>
+      `;
+      card.addEventListener("click", () => {
+        iframe.src = `https://www.youtube.com/embed/${video.id}?autoplay=1`;
+        lightbox.classList.add("active");
+      });
+      videoGrid.appendChild(card);
+    });
+
+    renderPagination();
+  }
+
+  function renderPagination() {
+    pageNumbersContainer.innerHTML = "";
+    const totalPages = Math.ceil(videos.length / videosPerPage);
+
+    for (let i = 1; i <= totalPages; i++) {
+      const btn = document.createElement("button");
+      btn.textContent = i;
+      btn.className = "pagination-btn" + (i === currentPage ? " active" : "");
+      btn.addEventListener("click", () => {
+        currentPage = i;
+        renderVideos();
+      });
+      pageNumbersContainer.appendChild(btn);
+    }
+
+    prevBtn.disabled = currentPage === 1;
+    nextBtn.disabled = currentPage === totalPages;
+  }
+
+  prevBtn.addEventListener("click", () => {
+    if (currentPage > 1) {
+      currentPage--;
+      renderVideos();
+    }
+  });
+
+  nextBtn.addEventListener("click", () => {
+    const totalPages = Math.ceil(videos.length / videosPerPage);
+    if (currentPage < totalPages) {
+      currentPage++;
+      renderVideos();
+    }
+  });
+
+  // Lightbox close behavior
+  closeBtn.addEventListener("click", () => {
+    iframe.src = "";
+    lightbox.classList.remove("active");
+  });
+
+  lightbox.addEventListener("click", (e) => {
+    if (e.target === lightbox) {
+      iframe.src = "";
+      lightbox.classList.remove("active");
+    }
+  });
+
+  // Initial render
+  renderVideos();
+});
+</script>
+
+<script>
   /* =============================
      Accessibility focus & small polish
      ============================= */
   document.addEventListener('keyup', (e)=> {
     if(e.key === 'Tab') document.body.classList.add('show-focus');
   });
-
-  </script>
-
+</script>
 </body>
 </html>
