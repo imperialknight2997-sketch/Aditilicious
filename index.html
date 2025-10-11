@@ -254,7 +254,7 @@
   font-weight: 500;
   letter-spacing: 0.3px;
 }
-/* Pagination styling to match gallery */
+/* === Video Pagination (Match Gallery Style) === */
 .pagination {
   display: flex;
   justify-content: center;
@@ -266,30 +266,37 @@
 .pagination button {
   background: #f9f4ff;
   color: #444;
-  border: 1px solid #e0d4ff;
+  border: 1px solid #e4d4ff;
   padding: 6px 14px;
   border-radius: 20px;
   cursor: pointer;
   font-size: 0.9rem;
   transition: all 0.3s ease;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
 }
 
 .pagination button:hover {
-  background: #f0e5ff;
-  color: #000;
+  background: linear-gradient(135deg, #e7cdff, #d3a6ff);
+  color: #222;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(211, 166, 255, 0.4);
 }
 
 .pagination button.active {
-  background: #b68cff; /* same purple tone as your gallery */
+  background: linear-gradient(135deg, #d3a6ff, #c68bff);
   color: #fff;
   font-weight: 600;
-  border: 1px solid #b68cff;
+  border: 1px solid #d3a6ff;
+  box-shadow: 0 4px 10px rgba(211, 166, 255, 0.5);
+  transform: translateY(-1px);
 }
 
 .pagination button:disabled {
   opacity: 0.5;
   cursor: not-allowed;
+  background: #f2f2f2;
+  color: #aaa;
+  border: 1px solid #eee;
 }
 /* Lightbox */
 #video-lightbox {
