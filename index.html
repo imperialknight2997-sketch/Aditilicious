@@ -1137,22 +1137,6 @@ document.addEventListener("DOMContentLoaded", () => {
   document.getElementById('video-next').onclick = () => {
     if (currentPage < totalPages) { currentPage++; renderVideos(); }
   };
-// Lightbox
-  document.addEventListener('click', e => {
-    const play = e.target.closest('.play-btn');
-    if (!play) return;
-    const id = play.dataset.id;
-    const lb = document.getElementById('video-lightbox');
-    const frame = document.getElementById('lb-video');
-    frame.src = `https://www.youtube.com/embed/${id}?autoplay=1`;
-    lb.classList.add('active');
-  });
-
-  document.querySelector('.lb-close').addEventListener('click', () => {
-    const lb = document.getElementById('video-lightbox');
-    const frame = document.getElementById('lb-video');
-    frame.src = '';
-    lb.classList.remove('active');
   });
   // Initialize
   renderVideos();
