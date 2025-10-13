@@ -314,6 +314,72 @@
     .page-number{ padding:8px 12px; border-radius:8px; cursor:pointer; background:rgba(255,255,255,0.7); border:1px solid rgba(255,255,255,0.28); font-weight:700; color:var(--muted) }
     .page-number.active{ background: linear-gradient(90deg,var(--accent-2),var(--accent)); color:white }
 
+    /* Lightbox */
+.lb {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  backdrop-filter: blur(12px);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+  transition: opacity 0.3s ease;
+}
+
+.lb.open {
+  display: flex;
+}
+
+.lb-content {
+  position: relative;
+  max-width: 90%;
+  max-height: 90%;
+}
+
+.lb-content img {
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 10px;
+  box-shadow: 0 0 25px rgba(0,0,0,0.5);
+}
+
+.lb-close,
+.lb-prev,
+.lb-next {
+  position: absolute;
+  background: rgba(255,255,255,0.2);
+  color: white;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+  font-size: 1.5rem;
+  transition: background 0.3s;
+}
+
+.lb-close:hover,
+.lb-prev:hover,
+.lb-next:hover {
+  background: rgba(255,255,255,0.4);
+}
+
+.lb-close {
+  top: 10px;
+  right: 15px;
+}
+
+.lb-prev {
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.lb-next {
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
     /* NEWS */
     .news-grid{ display:grid; grid-template-columns: repeat(3,1fr); gap:18px; margin-top:8px; perspective:1000px }
     .news-card{ background:linear-gradient(180deg,#fff,#fff); border-radius:12px; overflow:hidden; box-shadow:var(--card-shadow); transition: transform .35s, box-shadow .35s }
@@ -732,7 +798,15 @@
   </div>
   <div class="lb-close" title="Close">✕</div>
 </div>
-
+<!-- Image Lightbox -->
+<div id="lightbox" class="lb" aria-hidden="true">
+  <div class="lb-content">
+    <img id="lb-img" src="" alt="">
+    <button class="lb-prev" title="Previous">❮</button>
+    <button class="lb-next" title="Next">❯</button>
+    <div class="lb-close" title="Close">✕</div>
+  </div>
+</div>
     <!-- NEWS -->
     <section id="news" aria-labelledby="news-title" class="reveal">
       <div class="section-head">
