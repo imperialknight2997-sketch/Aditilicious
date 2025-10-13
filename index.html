@@ -169,98 +169,127 @@
     .section-head p{ color:var(--muted) }
 
     /* ABOUT */
-    .about{ display:grid; grid-template-columns: 1fr 420px; gap:28px; align-items:center }
-    .text-card{ padding:26px; border-radius:12px; background: linear-gradient(180deg, rgba(255,255,255,0.95), rgba(250,245,255,0.98)); box-shadow: var(--card-shadow); color:var(--text) }
-    /* ---------- Liquid Glass / Frosted Card (iOS-like) ---------- */
-.frosted-card {
+    /* ABOUT SECTION – LILAC LIQUID GLASS STYLE */
+.about-section {
   position: relative;
-  margin: 0 auto;
-  max-width: 980px;        /* adjust to fit layout */
-  padding: 34px 32px;
-  border-radius: 16px;
-  color: rgba(30,21,26,0.92);         /* soft charcoal text */
-  background: linear-gradient(180deg,
-              rgba(255,255,255,0.36) 0%,
-              rgba(245,236,250,0.12) 50%,
-              rgba(255,255,255,0.20) 100%);
-  -webkit-backdrop-filter: blur(14px) saturate(120%);
-  backdrop-filter: blur(14px) saturate(120%);
-  box-shadow:
-    0 8px 30px rgba(30,18,40,0.14),      /* soft outer shadow */
-    inset 0 1px 0 rgba(255,255,255,0.25); /* inner sheen */
-  border: 1px solid rgba(255,255,255,0.28);
-  overflow: hidden;
-  transition: transform .28s cubic-bezier(.2,.9,.2,1), box-shadow .28s ease;
+  padding: 80px 0;
+  background: linear-gradient(
+    145deg,
+    rgba(246, 230, 255, 0.8) 0%,
+    rgba(255, 224, 244, 0.85) 50%,
+    rgba(242, 218, 255, 0.9) 100%
+  );
+  backdrop-filter: blur(24px) saturate(140%);
+  -webkit-backdrop-filter: blur(24px) saturate(140%);
+  box-shadow: inset 0 0 120px rgba(130, 100, 150, 0.12);
+  transition: background 0.5s ease, box-shadow 0.5s ease;
 }
 
-/* subtle lift on hover (desktop only) */
-.frosted-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 18px 50px rgba(30,18,40,0.18), inset 0 1px 0 rgba(255,255,255,0.28);
-}
-
-/* delicate highlight band across top (liquid/3D feel) */
-.frosted-card::before{
-  content: "";
-  position: absolute;
-  left: -20%;
-  top: 0;
-  width: 140%;
-  height: 30%;
-  pointer-events: none;
-  background: linear-gradient(90deg,
-              rgba(255,255,255,0.22) 0%,
-              rgba(255,255,255,0.06) 50%,
-              rgba(255,255,255,0.18) 100%);
-  transform: translateY(-30%) rotate(-3deg);
-  filter: blur(6px);
-  mix-blend-mode: overlay;
-}
-
-/* faint bottom vignette */
-.frosted-card::after{
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  height: 30%;
-  background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.02) 60%, rgba(0,0,0,0.04) 100%);
-  pointer-events: none;
-}
-
-/* typography inside card */
-.frosted-card h3, .frosted-card h2 {
-  color: #7a4aa8;      /* elegant lilac heading color */
-  margin: 0 0 10px;
+/* SECTION HEADING */
+.about-section h2 {
+  font-size: 2.3rem;
+  text-align: center;
+  color: #a55cc7;
+  margin-bottom: 1rem;
   font-weight: 600;
-  letter-spacing: 0.2px;
-}
-.frosted-card p {
-  color: rgba(32,22,29,0.85);
-  line-height: 1.6;
-  margin: 0;
+  letter-spacing: 0.5px;
+  text-shadow: 0 0 12px rgba(210, 140, 255, 0.25);
 }
 
-/* small responsive tweaks */
-@media (max-width: 880px) {
-  .frosted-card { padding: 24px 20px; border-radius: 12px; }
-  .frosted-card::before { height: 26%; filter: blur(5px); }
+/* SUBTEXT */
+.about-section p.muted {
+  text-align: center;
+  color: #7a6b80;
+  font-size: 1.05rem;
+  margin-bottom: 50px;
 }
 
-/* accessibility: respect reduced motion */
-@media (prefers-reduced-motion: reduce) {
-  .frosted-card, .frosted-card:hover { transition: none; transform: none; }
+/* ABOUT CONTENT LAYOUT */
+.about-content {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  max-width: 1000px;
+  margin: 0 auto;
 }
 
-/* fallback for browsers that don't support backdrop-filter:
-   provide softer solid color while keeping rounded corners and shadow */
-.no-backdrop .frosted-card {
-  background: linear-gradient(180deg, rgba(250,246,250,0.9), rgba(250,244,246,0.92));
-  border: 1px solid rgba(200,180,210,0.12);
-  -webkit-backdrop-filter: none;
-  backdrop-filter: none;
+/* FROSTED CARD (TEXT BOX) */
+.frosted-card {
+  flex: 1 1 420px;
+  background: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, 0.25) 0%,
+    rgba(245, 220, 255, 0.15) 40%,
+    rgba(240, 200, 255, 0.18) 100%
+  );
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 20px;
+  padding: 30px 35px;
+  box-shadow:
+    0 8px 30px rgba(140, 100, 160, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(20px) saturate(160%);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+  color: #4a3c52;
+  font-size: 1.05rem;
+  line-height: 1.7;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
+
+/* CARD TITLE INSIDE */
+.frosted-card h3 {
+  color: #9b5bc4;
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+/* SMALL FOOTNOTE */
+.frosted-card em {
+  display: block;
+  margin-top: 10px;
+  color: #7d6f8d;
+  font-style: italic;
+}
+
+/* HOVER EFFECT */
+.frosted-card:hover {
+  transform: translateY(-4px);
+  box-shadow:
+    0 10px 40px rgba(140, 100, 160, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.35);
+}
+
+/* IMAGE STYLING */
+.about-content img {
+  flex: 1 1 420px;
+  max-width: 420px;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(100, 60, 120, 0.25);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.about-content img:hover {
+  transform: scale(1.03);
+  box-shadow: 0 15px 40px rgba(100, 60, 120, 0.35);
+}
+
+/* RESPONSIVE DESIGN */
+@media (max-width: 768px) {
+  .about-content {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .frosted-card,
+  .about-content img {
+    flex: 1 1 100%;
+    max-width: 90%;
+  }
+}
+    
     /* GALLERY */
     .gallery-wrap{ margin-top:8px }
     .gallery-grid{
@@ -648,15 +677,30 @@
         <p class="muted">A curated fan tribute celebrating Aditi’s work, style and inspiration.</p>
       </div>
 
-<div class="frosted-card" role="region" aria-label="About Aditi — summary">
-  <h3>About Aditi</h3>
-  <p>
-    Aditi Budhathoki is a Nepali actress and model admired for her elegance and on-screen charisma.
-    This fanpage highlights high-quality photos, latest updates, and fan creations in a refined, respectful space.
-    <br><br>
-    <em style="color:rgba(90,70,95,0.7)">Fan-curated collection — not official.</em>
-  </p>
-</div>
+<!-- ABOUT SECTION -->
+<section id="about" class="about-section reveal" aria-labelledby="about-title">
+  <div class="container">
+    <h2 id="about-title">About Aditi</h2>
+    <p class="muted">
+      A curated fan tribute celebrating Aditi’s work, style and inspiration.
+    </p>
+
+    <div class="about-content">
+      <div class="frosted-card">
+        <h3>About Aditi</h3>
+        <p>
+          Aditi Budhathoki is a Nepali actress and model admired for her elegance,
+          timeless charm, and captivating on-screen presence. This fanpage is
+          dedicated to showcasing her work — through high-quality visuals, latest
+          updates, and beautiful fan creations — all in a refined, elegant space.
+        </p>
+        <em>Fan-curated collection — not official.</em>
+      </div>
+
+      <img src="assets/aditi-about.jpg" alt="Aditi Budhathoki portrait" loading="lazy" />
+    </div>
+  </div>
+</section>
 
     <!-- GALLERY -->
     <section id="gallery" aria-labelledby="gallery-title" class="reveal-delayed">
