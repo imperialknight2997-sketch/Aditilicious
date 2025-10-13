@@ -1567,57 +1567,65 @@ renderVideos();
   })();
 </script>
 
-  <script>
-  document.addEventListener("DOMContentLoaded", function() {
-    const apiKey = "bf0632a83578026a36f4777f5a1c172b";  // paste your key here
-    const query = "Aditi Budhathoki";     // what to search
-    const maxArticles = 6;                // number of news cards
+<script>
+document.addEventListener("DOMContentLoaded", async function() {
+  const apiKey = "bf0632a83578026a36f4777f5a1c172b";  // your key
+  const query = "Aditi Budhathoki";  
+  const maxArticles = 6;
 
-    const newsGrid = document.getElementById("news-grid");
-    const modal = document.getElementById("news-modal");
-    const modalTitle = document.getElementById("modal-title");
-    const modalText = document.getElementById("modal-text");
-    const modalLink = document.getElementById("modal-link");
-    const closeBtn = document.querySelector(".close");
+  const newsGrid = document.getElementById("news-grid");
+  const modal = document.getElementById("news-modal");
+  const modalTitle = document.getElementById("modal-title");
+  const modalText = document.getElementById("modal-text");
+  const modalLink = document.getElementById("modal-link");
+  const closeBtn = document.querySelector(".close");
 
-    fetch(`https://gnews.io/api/v4/search?q=${encodeURIComponent(query)}&token=${apiKey}&lang=en&max=${maxArticles}`)
-      .then(res => res.json())
-      .then(data => {
-        if (data.articles) {
-          data.articles.forEach(article => {
-            const card = document.createElement("div");
-            card.className = "news-card";
-            card.innerHTML = `
-              <h3>${article.title}</h3>
-              <p>${article.description || "Click to read full article."}</p>
-            `;
-            card.dataset.title = article.title;
-            card.dataset.content = article.description || "";
-            card.dataset.url = article.url;
-            newsGrid.appendChild(card);
-          });
-        } else {
-          newsGrid.innerHTML = "<p>No latest news found.</p>";
-        }
-      })
-      .catch(err => {
-        console.error("Error fetching news:", err);
-        newsGrid.innerHTML = "<p>Could not load news.</p>";
+  try {
+    // ✅ use proxy to bypass browser CORS restriction
+    const apiUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(
+      `https://gnews.io/api/v4/search?q=${encodeURIComponent(query)}&token=${apiKey}&lang=en&max=${maxArticles}`
+    )}`;
+
+    const res = await fetch(apiUrl);
+    const proxyData = await res.json();
+    const data = JSON.parse(proxyData.contents);
+
+    if (data.articles && data.articles.length > 0) {
+      data.articles.forEach(article => {
+        const card = document.createElement("div");
+        card.className = "news-card";
+        card.innerHTML = `
+          <h3>${article.title}</h3>
+          <p>${article.description || "Click to read full article."}</p>
+        `;
+        card.dataset.title = article.title;
+        card.dataset.content = article.description || "";
+        card.dataset.url = article.url;
+        newsGrid.appendChild(card);
       });
+    } else {
+      newsGrid.innerHTML = "<p>No latest news found.</p>";
+    }
+  } catch (err) {
+    console.error("Error fetching news:", err);
+    newsGrid.innerHTML = "<p>Could not load news.</p>";
+  }
 
-    // Modal behaviour
-    newsGrid.addEventListener("click", e => {
-      const card = e.target.closest(".news-card");
-      if (!card) return;
-      modalTitle.textContent = card.dataset.title;
-      modalText.textContent = card.dataset.content;
-      modalLink.href = card.dataset.url;
-      modal.classList.add("active");
-    });
-
-    closeBtn.addEventListener("click", () => modal.classList.remove("active"));
-    modal.addEventListener("click", e => { if (e.target === modal) modal.classList.remove("active"); });
+  // ✅ Modal behaviour
+  newsGrid.addEventListener("click", e => {
+    const card = e.target.closest(".news-card");
+    if (!card) return;
+    modalTitle.textContent = card.dataset.title;
+    modalText.textContent = card.dataset.content;
+    modalLink.href = card.dataset.url;
+    modal.classList.add("active");
   });
+
+  closeBtn.addEventListener("click", () => modal.classList.remove("active"));
+  modal.addEventListener("click", e => {
+    if (e.target === modal) modal.classList.remove("active");
+  });
+});
 </script>
 
 </section>
