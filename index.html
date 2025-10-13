@@ -171,7 +171,96 @@
     /* ABOUT */
     .about{ display:grid; grid-template-columns: 1fr 420px; gap:28px; align-items:center }
     .text-card{ padding:26px; border-radius:12px; background: linear-gradient(180deg, rgba(255,255,255,0.95), rgba(250,245,255,0.98)); box-shadow: var(--card-shadow); color:var(--text) }
+    /* ---------- Liquid Glass / Frosted Card (iOS-like) ---------- */
+.frosted-card {
+  position: relative;
+  margin: 0 auto;
+  max-width: 980px;        /* adjust to fit layout */
+  padding: 34px 32px;
+  border-radius: 16px;
+  color: rgba(30,21,26,0.92);         /* soft charcoal text */
+  background: linear-gradient(180deg,
+              rgba(255,255,255,0.36) 0%,
+              rgba(245,236,250,0.12) 50%,
+              rgba(255,255,255,0.20) 100%);
+  -webkit-backdrop-filter: blur(14px) saturate(120%);
+  backdrop-filter: blur(14px) saturate(120%);
+  box-shadow:
+    0 8px 30px rgba(30,18,40,0.14),      /* soft outer shadow */
+    inset 0 1px 0 rgba(255,255,255,0.25); /* inner sheen */
+  border: 1px solid rgba(255,255,255,0.28);
+  overflow: hidden;
+  transition: transform .28s cubic-bezier(.2,.9,.2,1), box-shadow .28s ease;
+}
 
+/* subtle lift on hover (desktop only) */
+.frosted-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 18px 50px rgba(30,18,40,0.18), inset 0 1px 0 rgba(255,255,255,0.28);
+}
+
+/* delicate highlight band across top (liquid/3D feel) */
+.frosted-card::before{
+  content: "";
+  position: absolute;
+  left: -20%;
+  top: 0;
+  width: 140%;
+  height: 30%;
+  pointer-events: none;
+  background: linear-gradient(90deg,
+              rgba(255,255,255,0.22) 0%,
+              rgba(255,255,255,0.06) 50%,
+              rgba(255,255,255,0.18) 100%);
+  transform: translateY(-30%) rotate(-3deg);
+  filter: blur(6px);
+  mix-blend-mode: overlay;
+}
+
+/* faint bottom vignette */
+.frosted-card::after{
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 30%;
+  background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.02) 60%, rgba(0,0,0,0.04) 100%);
+  pointer-events: none;
+}
+
+/* typography inside card */
+.frosted-card h3, .frosted-card h2 {
+  color: #7a4aa8;      /* elegant lilac heading color */
+  margin: 0 0 10px;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+}
+.frosted-card p {
+  color: rgba(32,22,29,0.85);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* small responsive tweaks */
+@media (max-width: 880px) {
+  .frosted-card { padding: 24px 20px; border-radius: 12px; }
+  .frosted-card::before { height: 26%; filter: blur(5px); }
+}
+
+/* accessibility: respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .frosted-card, .frosted-card:hover { transition: none; transform: none; }
+}
+
+/* fallback for browsers that don't support backdrop-filter:
+   provide softer solid color while keeping rounded corners and shadow */
+.no-backdrop .frosted-card {
+  background: linear-gradient(180deg, rgba(250,246,250,0.9), rgba(250,244,246,0.92));
+  border: 1px solid rgba(200,180,210,0.12);
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+}
     /* GALLERY */
     .gallery-wrap{ margin-top:8px }
     .gallery-grid{
@@ -559,17 +648,15 @@
         <p class="muted">A curated fan tribute celebrating Aditi’s work, style and inspiration.</p>
       </div>
 
-      <div class="about" style="margin-top:12px">
-        <div class="text-card glass about-card reveal">
-          <p style="font-size:1.05rem; color:var(--text);">
-            Aditi Budhathoki is a Nepali actress and model admired for her elegance and on-screen charisma.
-            This fanpage highlights high-quality photos, latest updates, and fan creations in a refined, respectful space.
-          </p>
-          <p class="muted" style="margin-top:12px">Fan-curated collection — not official.</p>
-        </div>
-        <img src="images/IMG_0473.jpeg" alt="Aditi portrait" loading="lazy" class="reveal" style="border-radius:12px;"/>
-      </div>
-    </section>
+<div class="frosted-card" role="region" aria-label="About Aditi — summary">
+  <h3>About Aditi</h3>
+  <p>
+    Aditi Budhathoki is a Nepali actress and model admired for her elegance and on-screen charisma.
+    This fanpage highlights high-quality photos, latest updates, and fan creations in a refined, respectful space.
+    <br><br>
+    <em style="color:rgba(90,70,95,0.7)">Fan-curated collection — not official.</em>
+  </p>
+</div>
 
     <!-- GALLERY -->
     <section id="gallery" aria-labelledby="gallery-title" class="reveal-delayed">
@@ -1320,6 +1407,15 @@ function closeLightbox() {
 }
 
 renderVideos();
+</script>
+  <script>
+  (function(){
+    // detect backdrop-filter support
+    const test = CSS.supports('backdrop-filter','blur(2px)') || CSS.supports('-webkit-backdrop-filter','blur(2px)');
+    if(!test){
+      document.documentElement.classList.add('no-backdrop');
+    }
+  })();
 </script>
 
 </section>
