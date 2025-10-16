@@ -169,127 +169,9 @@
     .section-head p{ color:var(--muted) }
 
     /* ABOUT */
-    /* ABOUT SECTION – LILAC LIQUID GLASS STYLE */
-.about-section {
-  position: relative;
-  padding: 80px 0;
-  background: linear-gradient(
-    145deg,
-    rgba(246, 230, 255, 0.8) 0%,
-    rgba(255, 224, 244, 0.85) 50%,
-    rgba(242, 218, 255, 0.9) 100%
-  );
-  backdrop-filter: blur(24px) saturate(140%);
-  -webkit-backdrop-filter: blur(24px) saturate(140%);
-  box-shadow: inset 0 0 120px rgba(130, 100, 150, 0.12);
-  transition: background 0.5s ease, box-shadow 0.5s ease;
-}
+    .about{ display:grid; grid-template-columns: 1fr 420px; gap:28px; align-items:center }
+    .text-card{ padding:26px; border-radius:12px; background: linear-gradient(180deg, rgba(255,255,255,0.95), rgba(250,245,255,0.98)); box-shadow: var(--card-shadow); color:var(--text) }
 
-/* SECTION HEADING */
-.about-section h2 {
-  font-size: 2.3rem;
-  text-align: center;
-  color: #a55cc7;
-  margin-bottom: 1rem;
-  font-weight: 600;
-  letter-spacing: 0.5px;
-  text-shadow: 0 0 12px rgba(210, 140, 255, 0.25);
-}
-
-/* SUBTEXT */
-.about-section p.muted {
-  text-align: center;
-  color: #7a6b80;
-  font-size: 1.05rem;
-  margin-bottom: 50px;
-}
-
-/* ABOUT CONTENT LAYOUT */
-.about-content {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  gap: 40px;
-  max-width: 1000px;
-  margin: 0 auto;
-}
-
-/* FROSTED CARD (TEXT BOX) */
-.frosted-card {
-  flex: 1 1 420px;
-  background: linear-gradient(
-    145deg,
-    rgba(255, 255, 255, 0.25) 0%,
-    rgba(245, 220, 255, 0.15) 40%,
-    rgba(240, 200, 255, 0.18) 100%
-  );
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  border-radius: 20px;
-  padding: 30px 35px;
-  box-shadow:
-    0 8px 30px rgba(140, 100, 160, 0.2),
-    inset 0 1px 0 rgba(255, 255, 255, 0.3);
-  backdrop-filter: blur(20px) saturate(160%);
-  -webkit-backdrop-filter: blur(20px) saturate(160%);
-  color: #4a3c52;
-  font-size: 1.05rem;
-  line-height: 1.7;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-/* CARD TITLE INSIDE */
-.frosted-card h3 {
-  color: #9b5bc4;
-  font-size: 1.2rem;
-  font-weight: 600;
-  margin-bottom: 10px;
-}
-
-/* SMALL FOOTNOTE */
-.frosted-card em {
-  display: block;
-  margin-top: 10px;
-  color: #7d6f8d;
-  font-style: italic;
-}
-
-/* HOVER EFFECT */
-.frosted-card:hover {
-  transform: translateY(-4px);
-  box-shadow:
-    0 10px 40px rgba(140, 100, 160, 0.25),
-    inset 0 1px 0 rgba(255, 255, 255, 0.35);
-}
-
-/* IMAGE STYLING */
-.about-content img {
-  flex: 1 1 420px;
-  max-width: 420px;
-  border-radius: 20px;
-  box-shadow: 0 10px 30px rgba(100, 60, 120, 0.25);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.about-content img:hover {
-  transform: scale(1.03);
-  box-shadow: 0 15px 40px rgba(100, 60, 120, 0.35);
-}
-
-/* RESPONSIVE DESIGN */
-@media (max-width: 768px) {
-  .about-content {
-    flex-direction: column;
-    text-align: center;
-  }
-
-  .frosted-card,
-  .about-content img {
-    flex: 1 1 100%;
-    max-width: 90%;
-  }
-}
-    
     /* GALLERY */
     .gallery-wrap{ margin-top:8px }
     .gallery-grid{
@@ -469,140 +351,23 @@
     /* EXCLUSIVE */
     .exclusive-box{ text-align:center; padding:30px 20px; margin:40px auto; max-width:600px; border-radius:var(--radius); background: linear-gradient(180deg, rgba(255,255,255,0.92), rgba(250,245,255,0.95)); border:2px solid; border-image: linear-gradient(45deg,var(--accent-2),var(--accent)) 1; box-shadow:0 20px 50px rgba(18,8,40,0.1) }
 
-    /* FAN ZONE */
-    .fan-zone {
-  position: relative;
-  padding: 100px 20px;
-  text-align: center;
-  color: #3a2f3f;
-  background: linear-gradient(180deg, #f8edf9 0%, #f9eafc 100%);
-  overflow: hidden;
-}
+    /* FAN */
+    .fan-grid{ display:grid; grid-template-columns: 1fr 420px; gap:24px; margin-top:12px; align-items:start }
+    .fan-box{ padding:18px; border-radius:12px; background: linear-gradient(180deg,#fff,#fff); box-shadow:var(--card-shadow) }
+    .contact-glass{ padding:18px; border-radius:12px; background: linear-gradient(180deg, rgba(255,255,255,0.82), rgba(255,255,255,0.7)); backdrop-filter: blur(10px); }
 
-/* Frosted blur background movement */
-.fan-zone::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle at 20% 30%, rgba(255, 182, 255, 0.5), transparent 40%),
-              radial-gradient(circle at 80% 70%, rgba(204, 164, 255, 0.4), transparent 50%);
-  filter: blur(60px);
-  animation: smoothShift 16s ease-in-out infinite alternate;
-  z-index: 0;
-}
+    .contact-glass label{ display:block; font-weight:600; margin-top:10px }
+    .contact-glass input, .contact-glass textarea{ width:100%; padding:12px; margin-top:8px; border-radius:8px; border:1px solid #eee; font-size:0.95rem }
 
-@keyframes smoothShift {
-  0% { transform: translate(0, 0); opacity: 0.8; }
-  50% { transform: translate(-80px, 60px); opacity: 1; }
-  100% { transform: translate(60px, -40px); opacity: 0.9; }
-}
+    /* LIGHTBOX */
+    .lb{ position:fixed; inset:0; display:none; align-items:center; justify-content:center; z-index:2200; background: rgba(0,0,0,0.6); backdrop-filter: blur(16px); }
+    .lb.open{ display:flex }
+    .lb-inner{ max-width:92%; max-height:92%; border-radius:12px; overflow:hidden; box-shadow:0 30px 80px rgba(10,6,40,0.6); position:relative }
+    .lb-inner img{ display:block; width:100%; height:auto; max-height:90vh; object-fit:contain; background:#000 }
+    .lb-close{ position:absolute; top:14px; right:14px; font-size:28px; color:#fff; cursor:pointer; padding:8px; background: rgba(0,0,0,0.45); border-radius:50%; }
+    .lb-nav{ position:absolute; top:50%; transform:translateY(-50%); color:#fff; font-size:44px; padding:12px; cursor:pointer; user-select:none; }
+    .lb-prev{ left:18px } .lb-next{ right:18px }
 
-.fan-zone-title {
-  font-family: "Playfair Display", serif;
-  font-size: 2.8em;
-  color: #a866c4;
-  letter-spacing: 0.5px;
-  margin-bottom: 0.4em;
-  position: relative;
-  z-index: 2;
-}
-
-.fan-zone-subtitle {
-  font-family: "Poppins", sans-serif;
-  color: #6c5d74;
-  font-size: 1.1em;
-  margin-bottom: 60px;
-  position: relative;
-  z-index: 2;
-}
-
-/* Frosted card design */
-.fan-zone-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 40px;
-  max-width: 1100px;
-  margin: 0 auto;
-  position: relative;
-  z-index: 2;
-}
-
-.fan-zone-card {
-  flex: 1 1 420px;
-  padding: 35px 40px;
-  border-radius: 25px;
-  background: rgba(255, 255, 255, 0.25);
-  backdrop-filter: blur(25px) saturate(160%);
-  -webkit-backdrop-filter: blur(25px) saturate(160%);
-  border: 1px solid rgba(255, 255, 255, 0.4);
-  box-shadow: 0 20px 40px rgba(180, 130, 220, 0.25);
-  transition: all 0.3s ease;
-}
-
-.fan-zone-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 25px 50px rgba(200, 140, 240, 0.3);
-}
-
-.fan-zone-card h3 {
-  font-family: "Playfair Display", serif;
-  font-size: 1.6em;
-  color: #9d58c2;
-  margin-bottom: 12px;
-}
-
-.fan-zone-card p,
-.fan-zone-card li {
-  font-family: "Poppins", sans-serif;
-  font-size: 1em;
-  line-height: 1.6;
-  color: #4e3c58;
-}
-
-.fan-zone-card ul {
-  text-align: left;
-  margin-top: 15px;
-  padding-left: 20px;
-}
-
-/* Inputs */
-.fan-zone-card form {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-.fan-zone-card input,
-.fan-zone-card textarea {
-  padding: 12px 15px;
-  border-radius: 12px;
-  border: 1px solid rgba(220, 180, 250, 0.6);
-  background: rgba(255, 255, 255, 0.45);
-  color: #3b2b4a;
-  font-family: "Poppins", sans-serif;
-  font-size: 0.95em;
-  resize: none;
-}
-
-/* Button */
-.fan-zone-card button {
-  background: linear-gradient(135deg, #dba7f8, #b985f5);
-  color: white;
-  border: none;
-  border-radius: 12px;
-  padding: 12px 0;
-  cursor: pointer;
-  font-family: "Poppins", sans-serif;
-  font-size: 1em;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 10px rgba(180, 100, 255, 0.25);
-}
-
-.fan-zone-card button:hover {
-  background: linear-gradient(135deg, #c995f6, #e2a8f8);
-  transform: translateY(-2px);
-}
     /* FOOTER */
     footer{ margin-top:36px; padding:28px 18px; text-align:center; border-radius:18px; background:linear-gradient(90deg,var(--accent-2),var(--accent)); color:#fff; }
 
@@ -670,30 +435,24 @@
 
   <main class="container">
 
-<!-- ABOUT SECTION -->
-<section id="about" class="about-section reveal" aria-labelledby="about-title">
-  <div class="container">
-    <h2 id="about-title">About Aditi</h2>
-    <p class="muted">
-      A curated fan tribute celebrating Aditi’s work, style and inspiration.
-    </p>
-
-    <div class="about-content">
-      <div class="frosted-card">
-        <h3>About Aditi</h3>
-        <p>
-          Aditi Budhathoki is a Nepali actress and model admired for her elegance,
-          timeless charm, and captivating on-screen presence. This fanpage is
-          dedicated to showcasing her work — through high-quality visuals, latest
-          updates, and beautiful fan creations — all in a refined, elegant space.
-        </p>
-        <em>Fan-curated collection — not official.</em>
+    <!-- ABOUT -->
+    <section id="about" class="reveal" aria-labelledby="about-title">
+      <div class="section-head">
+        <h2 id="about-title">About Aditi</h2>
+        <p class="muted">A curated fan tribute celebrating Aditi’s work, style and inspiration.</p>
       </div>
 
-      <img src="images/IMG_0595.jpeg" alt="Aditi Budhathoki portrait" loading="lazy" />
-    </div>
-  </div>
-</section>
+      <div class="about" style="margin-top:12px">
+        <div class="text-card glass about-card reveal">
+          <p style="font-size:1.05rem; color:var(--text);">
+            Aditi Budhathoki is a Nepali actress and model admired for her elegance and on-screen charisma.
+            This fanpage highlights high-quality photos, latest updates, and fan creations in a refined, respectful space.
+          </p>
+          <p class="muted" style="margin-top:12px">Fan-curated collection — not official.</p>
+        </div>
+        <img src="images/IMG_0473.jpeg" alt="Aditi portrait" loading="lazy" class="reveal" style="border-radius:12px;"/>
+      </div>
+    </section>
 
     <!-- GALLERY -->
     <section id="gallery" aria-labelledby="gallery-title" class="reveal-delayed">
@@ -812,36 +571,39 @@
     </section>
 
     <!-- FAN ZONE -->
-    <section class="fan-zone">
-  <div class="fan-glow"></div>
-  
-  <h2 class="fan-zone-title">Fan Zone</h2>
-  <p class="fan-zone-subtitle">
-    Share your art, wallpapers, and love for Aditi. Selected works will be featured (with credit).
-  </p>
+    <section id="fan" aria-labelledby="fan-title" class="reveal-delayed">
+      <div class="section-head">
+        <h2 id="fan-title">Fan Zone</h2>
+        <p class="muted">Share art, wallpapers, and messages. Selected works will be featured (with credit).</p>
+      </div>
 
-  <div class="fan-zone-container">
-    <div class="fan-zone-card info-card">
-      <h3>Feature Your Fan Art 💫</h3>
-      <p>Tag your posts with <strong>#Aditilicious</strong> or contact us through the form.</p>
-      <ul>
-        <li>High-res fan art preferred (3000 px + on longest side).</li>
-        <li>Include your social handle for credit.</li>
-        <li>Only positive, respectful content will be featured.</li>
-      </ul>
-    </div>
+      <div class="fan-grid">
+        <div class="fan-box glass">
+          <p style="font-size:1.03rem;">Want your fan art featured? Tag your posts with <strong>#Aditilicious</strong> or contact the page admin through the form. Be sure to include credits.</p>
+          <ul style="margin-top:10px;color:var(--muted)">
+            <li>High-res fan art preferred (3000px on longest side).</li>
+            <li>Include your social handle for credit.</li>
+            <li>Only non-offensive, respectful content will be featured.</li>
+          </ul>
+        </div>
 
-    <div class="fan-zone-card form-card">
-      <h3>Contact / Submissions</h3>
-      <form>
-        <input type="text" placeholder="Your name" required />
-        <input type="email" placeholder="your@email.com" required />
-        <textarea placeholder="Tell us about your submission or message"></textarea>
-        <button type="submit">Send Message</button>
-      </form>
-    </div>
-  </div>
-</section>
+        <div class="contact-glass glass" id="contact" aria-labelledby="contact-title">
+          <h3 id="contact-title" style="margin-top:0; margin-bottom:6px;">Contact / Submissions</h3>
+          <form action="https://formspree.io/f/mvgbnrgg" method="POST">
+            <label for="name">Name</label>
+            <input id="name" name="name" type="text" required placeholder="Your name" aria-required="true">
+
+            <label for="email">Email</label>
+            <input id="email" name="_replyto" type="email" required placeholder="your@email.com">
+
+            <label for="message">Message / Submission notes</label>
+            <textarea id="message" name="message" rows="5" placeholder="Tell us about your submission or message"></textarea>
+
+            <button type="submit" class="btn" style="width:100%; margin-top:12px">Send Message</button>
+          </form>
+        </div>
+      </div>
+    </section>
 
     <section aria-labelledby="follow" style="margin-top:28px; text-align:center" class="reveal">
       <p class="muted">Follow Aditi: <a href="https://www.instagram.com/aditi_budhathoki" target="_blank" rel="noopener" style="color:var(--accent)">Instagram</a></p>
@@ -1444,15 +1206,6 @@ function closeLightbox() {
 }
 
 renderVideos();
-</script>
-  <script>
-  (function(){
-    // detect backdrop-filter support
-    const test = CSS.supports('backdrop-filter','blur(2px)') || CSS.supports('-webkit-backdrop-filter','blur(2px)');
-    if(!test){
-      document.documentElement.classList.add('no-backdrop');
-    }
-  })();
 </script>
 
 </section>
