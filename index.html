@@ -355,125 +355,134 @@
 /* FAN ZONE — LILAC GLASS + GLOWING TEXT STYLE */
 /* ========================================= */
 
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
-
-.fanzone {
+/* 🌸 Premium iOS 26 Liquid Glass Fan Zone */
+#fan-zone {
+  background: linear-gradient(145deg, #f7e7ff, #f3d8ff, #f7e7ff);
+  padding: 4rem 1rem;
+  border-radius: 24px;
   position: relative;
-  padding: 100px 0;
-  text-align: center;
-  font-family: "Poppins", sans-serif;
-  background: radial-gradient(
-    circle at top left,
-    rgba(245, 228, 255, 0.85),
-    rgba(230, 210, 255, 0.5),
-    rgba(245, 228, 255, 0.7)
-  );
-  backdrop-filter: blur(25px) saturate(180%);
-  -webkit-backdrop-filter: blur(25px) saturate(180%);
-  color: #fff;
   overflow: hidden;
-  border-top: 1px solid rgba(255, 255, 255, 0.2);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  text-align: center;
 }
 
-.fanzone::before {
+#fan-zone::before {
   content: "";
   position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    135deg,
-    rgba(255, 182, 255, 0.25),
-    rgba(180, 150, 255, 0.25)
-  );
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border-radius: 20px;
-  pointer-events: none;
+  top: -30%;
+  left: -20%;
+  width: 160%;
+  height: 160%;
+  background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.4), transparent 70%),
+              radial-gradient(circle at 70% 70%, rgba(255,182,255,0.35), transparent 80%);
+  filter: blur(80px);
+  z-index: 0;
 }
 
-.fanzone h2 {
-  font-size: 2.8rem;
-  font-weight: 600;
-  background: linear-gradient(135deg, #f4b8ff, #d2b5ff, #e3c8ff);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+.section-title {
+  font-size: 2.2rem;
+  color: #7c3aed;
+  text-shadow: 0 1px 2px rgba(255,255,255,0.8);
+  position: relative;
+  z-index: 2;
+}
+
+.section-subtitle {
+  font-size: 1.1rem;
+  color: #4a3b63;
   margin-bottom: 2rem;
-  letter-spacing: 0.5px;
-  animation: lilacFloat 6s ease-in-out infinite;
+  position: relative;
+  z-index: 2;
 }
 
-.fanzone p {
-  color: rgba(255, 255, 255, 0.9);
-  max-width: 750px;
-  margin: 0 auto 3rem;
-  font-size: 1.05rem;
-  line-height: 1.7;
-}
-
-.fanzone-cards {
+.fanzone-content {
   display: flex;
   flex-wrap: wrap;
+  gap: 2rem;
   justify-content: center;
-  gap: 1.8rem;
-  margin-top: 1rem;
+  position: relative;
+  z-index: 2;
 }
 
 .fanzone-card {
-  position: relative;
-  width: 300px;
+  flex: 1 1 350px;
   padding: 2rem;
-  border-radius: 22px;
-  background: rgba(255, 255, 255, 0.12);
-  box-shadow: 0 8px 32px rgba(31, 38, 135, 0.2);
-  backdrop-filter: blur(25px) saturate(180%);
-  -webkit-backdrop-filter: blur(25px) saturate(180%);
-  border: 1px solid rgba(255, 255, 255, 0.35);
-  color: #fff;
-  text-align: left;
-  transition: all 0.35s ease;
+  border-radius: 20px;
+  backdrop-filter: blur(20px) saturate(180%);
+  background: rgba(255, 255, 255, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 0 8px 25px rgba(183, 148, 255, 0.25);
+  color: #3b2b4d;
+  transition: all 0.3s ease;
 }
 
 .fanzone-card:hover {
-  transform: translateY(-10px);
-  background: rgba(255, 255, 255, 0.22);
-  box-shadow: 0 10px 40px rgba(160, 120, 255, 0.4);
+  transform: translateY(-6px);
+  box-shadow: 0 12px 35px rgba(180, 150, 255, 0.4);
 }
 
 .fanzone-card h3 {
-  font-size: 1.3rem;
+  color: #7c3aed;
   font-weight: 600;
-  color: #ffffff;
-  margin-bottom: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.fanzone-card p, 
+.fanzone-card li {
+  color: #4a3b63;
+  line-height: 1.6;
+  font-size: 1rem;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 0.9rem 1rem;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.6);
+  background: rgba(255,255,255,0.3);
+  color: #2d1a45;
+  backdrop-filter: blur(15px);
+  margin-bottom: 1rem;
   transition: all 0.3s ease;
 }
 
-.fanzone-card:hover h3 {
-  color: #f9e3ff;
-  text-shadow: 0 0 10px rgba(250, 220, 255, 0.8);
+.contact-form input:focus,
+.contact-form textarea:focus {
+  border-color: #b98aff;
+  box-shadow: 0 0 8px rgba(190, 125, 255, 0.4);
 }
 
-.fanzone-card p {
-  font-size: 0.96rem;
-  color: rgba(255, 255, 255, 0.88);
-  line-height: 1.55;
+.contact-form button {
+  background: linear-gradient(135deg, #b98aff, #9b6bff);
+  color: white;
+  border: none;
+  border-radius: 14px;
+  padding: 0.9rem 2rem;
+  font-weight: 600;
+  cursor: pointer;
   transition: all 0.3s ease;
 }
 
-.fanzone-card:hover p {
-  color: #ffffff;
-  text-shadow: 0 0 6px rgba(245, 220, 255, 0.5);
+.contact-form button:hover {
+  background: linear-gradient(135deg, #caa2ff, #a37bff);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(155, 107, 255, 0.4);
 }
 
-/* Soft floating lilac shimmer for heading */
-@keyframes lilacFloat {
-  0%, 100% {
-    transform: translateY(0);
-    filter: drop-shadow(0 0 15px rgba(220, 180, 255, 0.5));
-  }
-  50% {
-    transform: translateY(-8px);
-    filter: drop-shadow(0 0 25px rgba(220, 180, 255, 0.7));
-  }
+.follow-text {
+  margin-top: 2rem;
+  color: #4a3b63;
+  font-size: 1rem;
+}
+
+.follow-text a {
+  color: #7c3aed;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.follow-text a:hover {
+  text-decoration: underline;
 }
 
     /* LIGHTBOX */
