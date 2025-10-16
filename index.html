@@ -351,13 +351,130 @@
     /* EXCLUSIVE */
     .exclusive-box{ text-align:center; padding:30px 20px; margin:40px auto; max-width:600px; border-radius:var(--radius); background: linear-gradient(180deg, rgba(255,255,255,0.92), rgba(250,245,255,0.95)); border:2px solid; border-image: linear-gradient(45deg,var(--accent-2),var(--accent)) 1; box-shadow:0 20px 50px rgba(18,8,40,0.1) }
 
-    /* FAN */
-    .fan-grid{ display:grid; grid-template-columns: 1fr 420px; gap:24px; margin-top:12px; align-items:start }
-    .fan-box{ padding:18px; border-radius:12px; background: linear-gradient(180deg,#fff,#fff); box-shadow:var(--card-shadow) }
-    .contact-glass{ padding:18px; border-radius:12px; background: linear-gradient(180deg, rgba(255,255,255,0.82), rgba(255,255,255,0.7)); backdrop-filter: blur(10px); }
+    /* ========================================= */
+/* FAN ZONE — LILAC GLASS + GLOWING TEXT STYLE */
+/* ========================================= */
 
-    .contact-glass label{ display:block; font-weight:600; margin-top:10px }
-    .contact-glass input, .contact-glass textarea{ width:100%; padding:12px; margin-top:8px; border-radius:8px; border:1px solid #eee; font-size:0.95rem }
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+.fanzone {
+  position: relative;
+  padding: 100px 0;
+  text-align: center;
+  font-family: "Poppins", sans-serif;
+  background: radial-gradient(
+    circle at top left,
+    rgba(245, 228, 255, 0.85),
+    rgba(230, 210, 255, 0.5),
+    rgba(245, 228, 255, 0.7)
+  );
+  backdrop-filter: blur(25px) saturate(180%);
+  -webkit-backdrop-filter: blur(25px) saturate(180%);
+  color: #fff;
+  overflow: hidden;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.fanzone::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 182, 255, 0.25),
+    rgba(180, 150, 255, 0.25)
+  );
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 20px;
+  pointer-events: none;
+}
+
+.fanzone h2 {
+  font-size: 2.8rem;
+  font-weight: 600;
+  background: linear-gradient(135deg, #f4b8ff, #d2b5ff, #e3c8ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 2rem;
+  letter-spacing: 0.5px;
+  animation: lilacFloat 6s ease-in-out infinite;
+}
+
+.fanzone p {
+  color: rgba(255, 255, 255, 0.9);
+  max-width: 750px;
+  margin: 0 auto 3rem;
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+.fanzone-cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.8rem;
+  margin-top: 1rem;
+}
+
+.fanzone-card {
+  position: relative;
+  width: 300px;
+  padding: 2rem;
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.12);
+  box-shadow: 0 8px 32px rgba(31, 38, 135, 0.2);
+  backdrop-filter: blur(25px) saturate(180%);
+  -webkit-backdrop-filter: blur(25px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  color: #fff;
+  text-align: left;
+  transition: all 0.35s ease;
+}
+
+.fanzone-card:hover {
+  transform: translateY(-10px);
+  background: rgba(255, 255, 255, 0.22);
+  box-shadow: 0 10px 40px rgba(160, 120, 255, 0.4);
+}
+
+.fanzone-card h3 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 0.5rem;
+  transition: all 0.3s ease;
+}
+
+.fanzone-card:hover h3 {
+  color: #f9e3ff;
+  text-shadow: 0 0 10px rgba(250, 220, 255, 0.8);
+}
+
+.fanzone-card p {
+  font-size: 0.96rem;
+  color: rgba(255, 255, 255, 0.88);
+  line-height: 1.55;
+  transition: all 0.3s ease;
+}
+
+.fanzone-card:hover p {
+  color: #ffffff;
+  text-shadow: 0 0 6px rgba(245, 220, 255, 0.5);
+}
+
+/* Soft floating lilac shimmer for heading */
+@keyframes lilacFloat {
+  0%, 100% {
+    transform: translateY(0);
+    filter: drop-shadow(0 0 15px rgba(220, 180, 255, 0.5));
+  }
+  50% {
+    transform: translateY(-8px);
+    filter: drop-shadow(0 0 25px rgba(220, 180, 255, 0.7));
+  }
+}
 
     /* LIGHTBOX */
     .lb{ position:fixed; inset:0; display:none; align-items:center; justify-content:center; z-index:2200; background: rgba(0,0,0,0.6); backdrop-filter: blur(16px); }
