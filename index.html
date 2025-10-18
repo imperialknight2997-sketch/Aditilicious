@@ -173,73 +173,28 @@
     .text-card{ padding:26px; border-radius:12px; background: linear-gradient(180deg, rgba(255,255,255,0.95), rgba(250,245,255,0.98)); box-shadow: var(--card-shadow); color:var(--text) }
 
     /* GALLERY */
-    /* ==== GALLERY SECTION FIX ==== */
+    .gallery-wrap{ margin-top:8px }
+    .gallery-grid{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:18px;
+    }
+    .card{ background: linear-gradient(180deg, rgba(255,255,255,0.75), rgba(255,255,255,0.7)); border-radius:12px; padding:10px; box-shadow:var(--card-shadow); transition: transform .28s ease, box-shadow .28s; overflow:hidden; position:relative; }
+    .card img{ width:100%; height:320px; object-fit:cover; display:block; border-radius:8px; transition: transform .28s ease, filter .28s ease; }
+    .card:hover{ transform: translateY(-6px); box-shadow:0 30px 70px rgba(18,8,40,0.12) }
+    .card:hover img{ transform: scale(1.04) }
 
-.gallery {
-  background-color: #fff;
-  padding: 60px 0;
-  text-align: center;
-}
+    /* Gallery filter buttons */
+    .gallery-filters{ display:flex; justify-content:center; gap:10px; margin-bottom:20px; flex-wrap:wrap }
+    .filter-btn{ padding:8px 16px; border-radius:20px; cursor:pointer; font-weight:600; border:1px solid rgba(255,255,255,0.36); background: rgba(255,255,255,0.6); color:var(--muted) }
+    .filter-btn.active{ background: linear-gradient(90deg,var(--accent-2),var(--accent)); color:white; box-shadow:0 10px 30px rgba(181,88,144,0.12) }
 
-.gallery h2 {
-  font-size: 2.2rem;
-  font-weight: 600;
-  margin-bottom: 40px;
-  font-family: "Poppins", sans-serif;
-  color: #333;
-}
-
-.image-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 25px;
-  padding: 0 40px;
-  justify-items: center;
-}
-
-.image-grid img {
-  width: 100%;
-  height: 340px;
-  object-fit: cover;
-  border-radius: 15px;
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  cursor: pointer;
-}
-
-.image-grid img:hover {
-  transform: scale(1.04);
-  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
-}
-
-/* Pagination */
-.pagination {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 40px;
-  gap: 10px;
-  font-family: "Poppins", sans-serif;
-}
-
-.pagination button,
-.pagination .page-number {
-  padding: 8px 14px;
-  border: none;
-  border-radius: 8px;
-  background-color: #f5f5f5;
-  cursor: pointer;
-  font-size: 1rem;
-  color: #555;
-  transition: background-color 0.2s ease, transform 0.2s ease;
-}
-
-.pagination button:hover,
-.pagination .page-number.active {
-  background-color: #ff7cc2;
-  color: #fff;
-  transform: translateY(-2px);
-}
+    /* Pagination */
+    .pagination{ display:flex; justify-content:center; gap:12px; margin-top:24px; align-items:center }
+    .pagination-btn{ padding:10px 16px; border-radius:8px; cursor:pointer; background:rgba(255,255,255,0.7); border:1px solid rgba(255,255,255,0.28); font-weight:700; color:var(--muted) }
+    .pagination-btn.disabled{ opacity:0.5; cursor:not-allowed }
+    .page-number{ padding:8px 12px; border-radius:8px; cursor:pointer; background:rgba(255,255,255,0.7); border:1px solid rgba(255,255,255,0.28); font-weight:700; color:var(--muted) }
+    .page-number.active{ background: linear-gradient(90deg,var(--accent-2),var(--accent)); color:white }
 
     /* NEWS */
     .news-grid{ display:grid; grid-template-columns: repeat(3,1fr); gap:18px; margin-top:8px; perspective:1000px }
@@ -499,42 +454,36 @@
       </div>
     </section>
 
-  <!-- GALLERY -->
-<section id="gallery" aria-labelledby="gallery-title" class="reveal-delayed">
-  <div class="section-head">
-    <h2 id="gallery-title">Gallery</h2>
-    <p class="muted">Click any image to open the full view. High-resolution images optimized for web.</p>
-  </div>
+    <!-- GALLERY -->
+    <section id="gallery" aria-labelledby="gallery-title" class="reveal-delayed">
+      <div class="section-head">
+        <h2 id="gallery-title">Gallery</h2>
+        <p class="muted">Click any image to open the full view. High-resolution images optimized for web.</p>
+      </div>
 
-  <!-- Filters -->
-  <div class="gallery-filters" role="toolbar" aria-label="Gallery filters">
-    <button class="filter-btn active" data-filter="all" aria-pressed="true">All</button>
-    <button class="filter-btn" data-filter="portrait">Portraits</button>
-    <button class="filter-btn" data-filter="event">Events</button>
-    <button class="filter-btn" data-filter="casual">Casual</button>
-  </div>
+      <!-- Filters -->
+      <div class="gallery-filters" role="toolbar" aria-label="Gallery filters">
+        <button class="filter-btn active" data-filter="all" aria-pressed="true">All</button>
+        <button class="filter-btn" data-filter="portrait">Portraits</button>
+        <button class="filter-btn" data-filter="event">Events</button>
+        <button class="filter-btn" data-filter="casual">Casual</button>
+      </div>
 
-  <div class="gallery-wrap">
-    <div class="gallery-grid" id="gallery-grid" aria-live="polite" aria-busy="false">
-      <!-- images inserted dynamically -->
-    </div>
+      <div class="gallery-wrap">
+        <div class="gallery-grid" id="gallery-grid" aria-live="polite" aria-busy="false">
+          <!-- images inserted dynamically -->
+        </div>
 
-    <!-- Pagination Controls -->
-    <div class="pagination" id="pagination" aria-hidden="true" role="navigation" aria-label="Gallery pagination">
-      <button class="pagination-btn" id="prev-btn" disabled aria-disabled="true">
-        <i class="fas fa-chevron-left"></i>&nbsp;Previous
-      </button>
-      <div class="pagination-numbers" id="pagination-numbers" aria-hidden="false" role="group" aria-label="Page numbers"></div>
-      <button class="pagination-btn" id="next-btn">
-        Next&nbsp;<i class="fas fa-chevron-right"></i>
-      </button>
-    </div>
+        <!-- Pagination Controls -->
+        <div class="pagination" id="pagination" aria-hidden="true" role="navigation" aria-label="Gallery pagination">
+          <button class="pagination-btn" id="prev-btn" disabled aria-disabled="true"><i class="fas fa-chevron-left"></i>&nbsp;Previous</button>
+          <div class="pagination-numbers" id="pagination-numbers" aria-hidden="false" role="group" aria-label="Page numbers"></div>
+          <button class="pagination-btn" id="next-btn">Next&nbsp;<i class="fas fa-chevron-right"></i></button>
+        </div>
 
-    <div class="pagination-info center muted" id="pagination-info" style="margin-top:12px" aria-live="polite"></div>
-  </div>
-</section>
+        <div class="pagination-info center muted" id="pagination-info" style="margin-top:12px" aria-live="polite"></div>
+      </div>
 
-                    
 <!-- Lightbox -->
 <div id="video-lightbox" class="lb" aria-hidden="true">
   <div class="lb-inner">
@@ -608,6 +557,18 @@
   </div>
   <div class="lb-close">✕</div>
 </div>
+
+
+    
+    <!-- EXCLUSIVE -->
+    <section id="exclusive" aria-labelledby="exclusive-title" class="reveal">
+      <div class="exclusive-box glass">
+        <div class="lock" style="font-size:36px">🔒</div>
+        <h3 id="exclusive-title">Unlock Exclusive Content</h3>
+        <p>Access high-resolution desktop wallpapers, behind-the-scenes clips, and early access photos.</p>
+        <a href="#contact" class="btn" style="margin-top:12px; display:inline-block">Sign Up for Access</a>
+      </div>
+    </section>
 
     <!-- FAN ZONE -->
     <section id="fan" aria-labelledby="fan-title" class="reveal-delayed">
@@ -777,22 +738,9 @@
   /* =============================
      GALLERY: DATA, FILTERS, PAGINATION, RENDER
      ============================= */
-(function() {
-  const galleryGrid = document.getElementById("gallery-grid");
-  const paginationNumbers = document.getElementById("pagination-numbers");
-  const paginationInfo = document.getElementById("pagination-info");
-  const prevBtn = document.getElementById("prev-btn");
-  const nextBtn = document.getElementById("next-btn");
-  const pagination = document.getElementById("pagination");
-  const filterButtons = document.querySelectorAll(".filter-btn");
-
-  let galleryData = [];
-  let filteredData = [];
-  let currentPage = 1;
-  const itemsPerPage = 9;
-
-  // ✅ Load images (simulate fetching)
-  const galleryImages = [
+  (function(){
+    // gallery images list
+    const galleryData = [
    { src: 'images/IMG_0483.jpeg', alt: 'Aditi portrait', category: 'portrait' },
   { src: 'images/IMG_0467.jpeg', alt: 'Aditi at event', category: 'portrait' },
   { src: 'images/IMG_0473.jpeg', alt: 'Aditi portrait', category: 'portrait' },
@@ -837,141 +785,231 @@
   { src: 'images/IMG_0566.jpeg', alt: 'IMG_0566', category: 'portrait' },
   { src: 'images/IMG_0568.jpeg', alt: 'IMG_0568', category: 'portrait' },
   { src: 'images/IMG_0472.jpeg', alt: 'IMG_0472', category: 'portrait' }
-  ];
+];
 
-  galleryData = galleryImages;
-  filteredData = galleryImages;
+    // DOM refs
+    const galleryGrid = document.getElementById('gallery-grid');
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const prevBtn = document.getElementById('prev-btn');
+    const nextBtn = document.getElementById('next-btn');
+    const paginationNumbers = document.getElementById('pagination-numbers');
+    const paginationInfo = document.getElementById('pagination-info');
+    const pagination = document.getElementById('pagination');
 
-  // ✅ Render gallery images
-  function renderGallery() {
-    galleryGrid.innerHTML = "";
-    const start = (currentPage - 1) * itemsPerPage;
-    const end = start + itemsPerPage;
-    const currentItems = filteredData.slice(start, end);
-
-    currentItems.forEach((item) => {
-      const div = document.createElement("div");
-      div.className = "gallery-item";
-      div.innerHTML = `<img src="${item.src}" alt="Gallery Image" loading="lazy">`;
-      div.addEventListener("click", () => openLightbox(item.src));
-      galleryGrid.appendChild(div);
-    });
-  }
-
-  // ✅ Lightbox functionality
-  const lightbox = document.createElement("div");
-  lightbox.className = "lb";
-  lightbox.innerHTML = `
-    <div class="lb-inner">
-      <img id="lb-img" src="" alt="Full view">
-      <div class="lb-close" title="Close">✕</div>
-    </div>`;
-  document.body.appendChild(lightbox);
-
-  const lbImg = lightbox.querySelector("#lb-img");
-  const lbClose = lightbox.querySelector(".lb-close");
-
-  function openLightbox(src) {
-    lbImg.src = src;
-    lightbox.classList.add("open");
-    document.body.style.overflow = "hidden";
-  }
-
-  lbClose.addEventListener("click", closeLightbox);
-  lightbox.addEventListener("click", (e) => {
-    if (e.target === lightbox) closeLightbox();
-  });
-
-  function closeLightbox() {
-    lightbox.classList.remove("open");
-    document.body.style.overflow = "";
-  }
-
-  // ✅ Pagination (4 visible buttons)
-  function setupPagination() {
-    const totalPages = Math.ceil(filteredData.length / itemsPerPage);
-    const maxVisible = 4;
-    paginationNumbers.innerHTML = "";
-
-    let startPage = Math.max(1, currentPage - Math.floor(maxVisible / 2));
-    let endPage = startPage + maxVisible - 1;
-    if (endPage > totalPages) {
-      endPage = totalPages;
-      startPage = Math.max(1, endPage - maxVisible + 1);
+    // responsive items per page
+    function getItemsPerPage(){
+      if(window.innerWidth < 480) return 6;
+      if(window.innerWidth < 768) return 8;
+      return 9;
     }
 
-    for (let i = startPage; i <= endPage; i++) {
-      const btn = document.createElement("button");
-      btn.className = "page-number";
-      btn.textContent = i;
-      btn.setAttribute("aria-label", `Go to page ${i}`);
+    let itemsPerPage = getItemsPerPage();
+    let currentPage = 1;
+    let currentFilter = 'all';
+    let filteredData = [...galleryData];
 
-      if (i === currentPage) {
-        btn.classList.add("active");
-        btn.setAttribute("aria-current", "page");
+    // update filtered
+    function updateFilteredData(){
+      if(currentFilter === 'all') filteredData = [...galleryData];
+      else filteredData = galleryData.filter(i => i.category === currentFilter);
+      currentPage = 1;
+    }
+
+    // render gallery
+    function renderGallery(){
+      galleryGrid.setAttribute('aria-busy','true');
+      galleryGrid.classList.add('loading');
+      const start = (currentPage - 1) * itemsPerPage;
+      const end = start + itemsPerPage;
+      const pageData = filteredData.slice(start, end);
+      galleryGrid.innerHTML = '';
+
+      setTimeout(()=>{
+        pageData.forEach(item => {
+          const card = document.createElement('div');
+          card.className = 'card reveal';
+          card.setAttribute('data-category', item.category);
+
+          const img = document.createElement('img');
+          img.src = item.src;
+          img.alt = item.alt;
+          img.loading = 'lazy';
+          img.style.borderRadius = '8px';
+          img.style.display = 'block';
+
+          // small caption overlay
+          const cap = document.createElement('div');
+          cap.style.position = 'absolute';
+          cap.style.left = '12px';
+          cap.style.bottom = '12px';
+          cap.style.padding = '6px 10px';
+          cap.style.borderRadius = '999px';
+          cap.style.fontSize = '0.85rem';
+          cap.style.background = 'linear-gradient(90deg, rgba(0,0,0,0.22), rgba(0,0,0,0.12))';
+          cap.style.color = '#fff';
+          cap.textContent = item.category;
+
+          card.appendChild(img);
+          card.appendChild(cap);
+          galleryGrid.appendChild(card);
+        });
+
+        galleryGrid.classList.remove('loading');
+        galleryGrid.setAttribute('aria-busy','false');
+        initLightbox(); // rewire lightbox
+      }, 220);
+    }
+
+    // pagination
+    function setupPagination(){
+      const totalPages = Math.max(1, Math.ceil(filteredData.length / itemsPerPage));
+      paginationNumbers.innerHTML = '';
+
+      let startPage = Math.max(1, currentPage - 2);
+      let endPage = Math.min(totalPages, currentPage + 2);
+
+      if(currentPage <= 3) endPage = Math.min(totalPages, 5);
+      if(currentPage >= totalPages - 2) startPage = Math.max(1, totalPages - 4);
+
+      for(let i=startPage;i<=endPage;i++){
+        const btn = document.createElement('div');
+        btn.className = 'page-number ' + (i===currentPage ? 'active' : '');
+        btn.textContent = i;
+        btn.style.display = 'inline-flex';
+        btn.style.alignItems = 'center';
+        btn.style.justifyContent = 'center';
+        btn.addEventListener('click', ()=> goToPage(i));
+        paginationNumbers.appendChild(btn);
       }
 
-      btn.addEventListener("click", () => {
-        currentPage = i;
+      prevBtn.disabled = currentPage === 1;
+      nextBtn.disabled = currentPage === totalPages;
+
+      if(prevBtn.disabled) prevBtn.classList.add('disabled'); else prevBtn.classList.remove('disabled');
+      if(nextBtn.disabled) nextBtn.classList.add('disabled'); else nextBtn.classList.remove('disabled');
+
+      if(totalPages <= 1) pagination.style.display = 'none'; else pagination.style.display = 'flex';
+    }
+
+    function updatePaginationInfo(){
+      const total = filteredData.length;
+      if(total === 0) paginationInfo.textContent = 'No images found';
+      else {
+        const startIndex = (currentPage - 1) * itemsPerPage + 1;
+        const endIndex = Math.min(currentPage * itemsPerPage, total);
+        paginationInfo.textContent = `Showing ${startIndex}-${endIndex} of ${total} images`;
+      }
+    }
+
+    function goToPage(page){
+      currentPage = page;
+      renderGallery();
+      setupPagination();
+      updatePaginationInfo();
+      document.getElementById('gallery').scrollIntoView({behavior:'smooth'});
+    }
+
+    prevBtn.addEventListener('click', ()=> { if(currentPage>1) goToPage(currentPage-1); });
+    nextBtn.addEventListener('click', ()=> { const totalPages = Math.ceil(filteredData.length/itemsPerPage); if(currentPage < totalPages) goToPage(currentPage+1); });
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', ()=>{
+        filterBtns.forEach(b => { b.classList.remove('active'); b.setAttribute('aria-pressed','false') });
+        btn.classList.add('active'); btn.setAttribute('aria-pressed','true');
+        currentFilter = btn.getAttribute('data-filter');
+        updateFilteredData();
         renderGallery();
         setupPagination();
         updatePaginationInfo();
       });
-
-      paginationNumbers.appendChild(btn);
-    }
-
-    prevBtn.disabled = currentPage === 1;
-    nextBtn.disabled = currentPage === totalPages;
-    pagination.hidden = totalPages <= 1;
-  }
-
-  // ✅ Update pagination info
-  function updatePaginationInfo() {
-    const totalPages = Math.ceil(filteredData.length / itemsPerPage);
-    paginationInfo.textContent = `Page ${currentPage} of ${totalPages}`;
-  }
-
-  // ✅ Prev / Next buttons
-  prevBtn.addEventListener("click", () => {
-    if (currentPage > 1) {
-      currentPage--;
-      renderGallery();
-      setupPagination();
-      updatePaginationInfo();
-    }
-  });
-
-  nextBtn.addEventListener("click", () => {
-    const totalPages = Math.ceil(filteredData.length / itemsPerPage);
-    if (currentPage < totalPages) {
-      currentPage++;
-      renderGallery();
-      setupPagination();
-      updatePaginationInfo();
-    }
-  });
-
-  // ✅ Filters
-  filterButtons.forEach((btn) => {
-    btn.addEventListener("click", () => {
-      filterButtons.forEach((b) => b.classList.remove("active"));
-      btn.classList.add("active");
-      const filter = btn.dataset.filter;
-      filteredData = filter === "all" ? galleryData : galleryData.filter((i) => i.category === filter);
-      currentPage = 1;
-      renderGallery();
-      setupPagination();
-      updatePaginationInfo();
     });
-  });
 
-  // ✅ Initialize
-  renderGallery();
-  setupPagination();
-  updatePaginationInfo();
-})();
+    // on resize adjust items per page
+    window.addEventListener('resize', throttle(()=>{
+      const newItems = getItemsPerPage();
+      if(newItems !== itemsPerPage){
+        itemsPerPage = newItems;
+        updateFilteredData();
+        renderGallery();
+        setupPagination();
+        updatePaginationInfo();
+      }
+    }, 220));
 
+    // initialize
+    updateFilteredData();
+    renderGallery();
+    setupPagination();
+    updatePaginationInfo();
+
+    /* =============================
+       LIGHTBOX (inside gallery function scope)
+       ============================= */
+    function initLightbox(){
+      const images = Array.from(document.querySelectorAll('.gallery-grid .card img'));
+      const lb = document.getElementById('lightbox');
+      const lbImg = document.getElementById('lb-img');
+      const closeBtn = document.querySelector('.lb-close');
+      const prevBtn = document.querySelector('.lb-prev');
+      const nextBtn = document.querySelector('.lb-next');
+      let idx = 0;
+
+      function open(i){
+        if(!images[i]) return;
+        idx = i;
+        lbImg.src = images[i].src;
+        lbImg.alt = images[i].alt || 'Aditi';
+        lb.classList.add('open');
+        lb.setAttribute('aria-hidden','false');
+        document.body.style.overflow = 'hidden';
+      }
+      function close(){
+        lb.classList.remove('open');
+        lb.setAttribute('aria-hidden','true');
+        lbImg.src = '';
+        document.body.style.overflow = '';
+      }
+      function prev(){ idx = (idx - 1 + images.length) % images.length; lbImg.src = images[idx].src }
+      function next(){ idx = (idx + 1) % images.length; lbImg.src = images[idx].src }
+
+      // attach events
+      images.forEach((img,i)=> {
+        // keyboard nav + touch support will be global
+        img.onclick = ()=> open(i);
+        // small tilt effect on mobile / hover
+        img.addEventListener('mouseenter', ()=> img.style.transform='scale(1.03)');
+        img.addEventListener('mouseleave', ()=> img.style.transform='');
+      });
+
+      closeBtn.onclick = close;
+      prevBtn.onclick = prev;
+      nextBtn.onclick = next;
+
+      // keyboard support
+      document.addEventListener('keydown', (e)=>{
+        if(!lb.classList.contains('open')) return;
+        if(e.key === 'Escape') close();
+        if(e.key === 'ArrowLeft') prev();
+        if(e.key === 'ArrowRight') next();
+      });
+
+      // click outside to close
+      lb.onclick = function(e){ if(e.target === lb) close(); };
+
+      // touch swipe support for mobile
+      let touchStartX = 0;
+      let touchEndX = 0;
+      lbImg.addEventListener('touchstart', e => touchStartX = e.changedTouches[0].screenX);
+      lbImg.addEventListener('touchend', e => {
+        touchEndX = e.changedTouches[0].screenX;
+        if(touchEndX + 30 < touchStartX) next();
+        if(touchEndX - 30 > touchStartX) prev();
+      });
+    }
+
+  })();
+</script>
+<script>
   /* =============================
      VIDEO COLLECTION
      ============================= */
