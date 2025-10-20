@@ -211,15 +211,21 @@
   gap: 24px;
   margin-top: 1.5rem;
 }
-
 .video-card {
   position: relative;
   border-radius: 12px;
   overflow: hidden;
-  background: #111;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.25);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background: rgba(255, 255, 255, 0.08); /* ✅ light translucent bg */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
 }
+
+.video-card:hover {
+  background: rgba(255, 182, 193, 0.25); /* ✅ soft pink glow on hover */
+  transform: translateY(-6px);
+  box-shadow: 0 6px 25px rgba(255, 105, 180, 0.3);
+}
+
 
 .video-card:hover {
   transform: translateY(-6px);
@@ -267,15 +273,30 @@
   gap: 10px;
 }
 
-.pagination-btn, .page-num {
-  padding: 8px 18px;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  font-weight: 500;
-  transition: all 0.3s ease;
+.page-num {
+  background: #fff;                /* ✅ white background */
+  color: #444;                     /* readable text */
+  border: 1px solid #eee;
 }
 
+.page-num:hover {
+  background: #ffe4f3;             /* soft pastel hover */
+  color: #000;
+}
+
+.page-num.active {
+  background: linear-gradient(135deg, #ff92d0, #d96bff);
+  color: #fff;
+  border-color: transparent;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2rem;
+  gap: 10px;
+}
 .pagination-btn {
   background: white;
   color: black;
