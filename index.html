@@ -170,8 +170,9 @@
 
     /* ABOUT */
     /* ===== ABOUT SECTION ===== */
+    /* ===== ABOUT SECTION ===== */
 .about-section {
-  background: linear-gradient(135deg, #fce9f8, #fdf6f0);
+  background: transparent; /* use site’s beige background */
   padding: 80px 5%;
   text-align: center;
   position: relative;
@@ -193,16 +194,16 @@
   padding: 28px 34px;
   border-radius: 18px;
 
-  /* glassmorphism background */
-  background: rgba(30, 30, 30, 0.35);
-  backdrop-filter: blur(20px) saturate(1.4);
-  -webkit-backdrop-filter: blur(20px) saturate(1.4);
+  /* glassmorphism background (soft transparent beige tint) */
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(18px) saturate(1.3);
+  -webkit-backdrop-filter: blur(18px) saturate(1.3);
 
-  /* subtle border & soft glow */
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+  /* soft border & shadow */
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
 
-  color: #fff;
+  color: #3b2f2f;
   text-align: left;
   max-width: 480px;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
@@ -210,19 +211,19 @@
 
 .frosted-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.2);
 }
 
 /* text styles */
 .frosted-card h2 {
   font-size: 1.8rem;
   margin-bottom: 12px;
-  color: #fff;
+  color: #402a2a;
 }
 
 .frosted-card p {
   font-size: 1rem;
-  color: rgba(255, 255, 255, 0.88);
+  color: #4a3b3b;
   line-height: 1.6;
 }
 
@@ -230,7 +231,7 @@
   display: block;
   margin-top: 12px;
   font-style: italic;
-  color: rgba(255, 255, 255, 0.7);
+  color: rgba(60, 45, 45, 0.7);
 }
 
 /* ========== IMAGE STYLING ========== */
@@ -238,7 +239,7 @@
   width: 320px;
   max-width: 100%;
   border-radius: 20px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
   transition: transform 0.3s ease;
 }
 
