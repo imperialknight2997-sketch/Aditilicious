@@ -412,23 +412,79 @@
     /* EXCLUSIVE */
     .exclusive-box{ text-align:center; padding:30px 20px; margin:40px auto; max-width:600px; border-radius:var(--radius); background: linear-gradient(180deg, rgba(255,255,255,0.92), rgba(250,245,255,0.95)); border:2px solid; border-image: linear-gradient(45deg,var(--accent-2),var(--accent)) 1; box-shadow:0 20px 50px rgba(18,8,40,0.1) }
 
-    /* FAN */
-    .fan-grid{ display:grid; grid-template-columns: 1fr 420px; gap:24px; margin-top:12px; align-items:start }
-    .fan-box{ padding:18px; border-radius:12px; background: linear-gradient(180deg,#fff,#fff); box-shadow:var(--card-shadow) }
-    .contact-glass{ padding:18px; border-radius:12px; background: linear-gradient(180deg, rgba(255,255,255,0.82), rgba(255,255,255,0.7)); backdrop-filter: blur(10px); }
+    /* FAN ZONE - Original Soft Beige Card Style */
+.fan-box {
+  background: linear-gradient(180deg, #fff6e8, #ffeede);
+  padding: 26px;
+  border-radius: 18px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
 
-    .contact-glass label{ display:block; font-weight:600; margin-top:10px }
-    .contact-glass input, .contact-glass textarea{ width:100%; padding:12px; margin-top:8px; border-radius:8px; border:1px solid #eee; font-size:0.95rem }
+.fan-box:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 45px rgba(0, 0, 0, 0.12);
+}
 
-    /* LIGHTBOX */
-    .lb{ position:fixed; inset:0; display:none; align-items:center; justify-content:center; z-index:2200; background: rgba(0,0,0,0.6); backdrop-filter: blur(16px); }
-    .lb.open{ display:flex }
-    .lb-inner{ max-width:92%; max-height:92%; border-radius:12px; overflow:hidden; box-shadow:0 30px 80px rgba(10,6,40,0.6); position:relative }
-    .lb-inner img{ display:block; width:100%; height:auto; max-height:90vh; object-fit:contain; background:#000 }
-    .lb-close{ position:absolute; top:14px; right:14px; font-size:28px; color:#fff; cursor:pointer; padding:8px; background: rgba(0,0,0,0.45); border-radius:50%; }
-    .lb-nav{ position:absolute; top:50%; transform:translateY(-50%); color:#fff; font-size:44px; padding:12px; cursor:pointer; user-select:none; }
-    .lb-prev{ left:18px } .lb-next{ right:18px }
+.contact-glass {
+  background: linear-gradient(180deg, #fff6e8, #ffeede);
+  padding: 26px;
+  border-radius: 18px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
 
+.contact-glass:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 45px rgba(0, 0, 0, 0.12);
+}
+
+.contact-glass label {
+  display: block;
+  font-weight: 600;
+  margin-top: 10px;
+}
+
+.contact-glass input,
+.contact-glass textarea {
+  width: 100%;
+  padding: 12px;
+  margin-top: 8px;
+  border-radius: 8px;
+  border: 1px solid #f0d9c1;
+  font-size: 0.95rem;
+  background: #fffaf5;
+}
+
+.fan-box h3 {
+  color: #b46dc1;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.fan-box li {
+  color: #2d2d2d;
+  margin-bottom: 8px;
+  line-height: 1.6;
+}
+
+.fan-box button {
+  border: none;
+  border-radius: 12px;
+  padding: 10px 20px;
+  margin: 10px 6px 0;
+  background: linear-gradient(90deg, #ff66cc, #ff99cc);
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.fan-box button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 105, 180, 0.4);
+}
+  
     /* FOOTER */
     footer{ margin-top:36px; padding:28px 18px; text-align:center; border-radius:18px; background:linear-gradient(90deg,var(--accent-2),var(--accent)); color:#fff; }
 
@@ -631,42 +687,49 @@
     </section>
 
     <!-- FAN ZONE -->
-    <section id="fan" aria-labelledby="fan-title" class="reveal-delayed">
-      <div class="section-head">
-        <h2 id="fan-title">Fan Zone</h2>
-        <p class="muted">Share art, wallpapers, and messages. Selected works will be featured (with credit).</p>
+<section id="fan" class="reveal">
+  <h2>Fan Zone</h2>
+  <p>Share art, wallpapers, and messages. Selected works will be featured (with credit).</p>
+
+  <div class="fan-grid">
+    <div class="fan-box">
+      <h3>Want your fan art featured?</h3>
+      <p>
+        Tag your posts with <strong>#Aditilicious</strong> or contact the admin through the form. Be sure to include credits.
+      </p>
+      <ul>
+        <li>📸 High-res fan art preferred (3000px on longest side).</li>
+        <li>💬 Include your social handle for credit.</li>
+        <li>💖 Only respectful, non-offensive content will be featured.</li>
+      </ul>
+
+      <div class="fan-buttons">
+        <button>📂 View Messages</button>
+        <button>🎨 Fan Quiz</button>
+        <button>📸 Join Now</button>
       </div>
+    </div>
 
-      <div class="fan-grid">
-        <div class="fan-box glass">
-          <p style="font-size:1.03rem;">Want your fan art featured? Tag your posts with <strong>#Aditilicious</strong> or contact the page admin through the form. Be sure to include credits.</p>
-          <ul style="margin-top:10px;color:var(--muted)">
-            <li>High-res fan art preferred (3000px on longest side).</li>
-            <li>Include your social handle for credit.</li>
-            <li>Only non-offensive, respectful content will be featured.</li>
-          </ul>
-        </div>
+    <div class="contact-glass">
+      <h3>Contact / Submissions</h3>
+      <form>
+        <label for="name">Name</label>
+        <input type="text" id="name" placeholder="Your name" />
 
-        <div class="contact-glass glass" id="contact" aria-labelledby="contact-title">
-          <h3 id="contact-title" style="margin-top:0; margin-bottom:6px;">Contact / Submissions</h3>
-          <form action="https://formspree.io/f/mvgbnrgg" method="POST">
-            <label for="name">Name</label>
-            <input id="name" name="name" type="text" required placeholder="Your name" aria-required="true">
+        <label for="email">Email</label>
+        <input type="email" id="email" placeholder="you@email.com" />
 
-            <label for="email">Email</label>
-            <input id="email" name="_replyto" type="email" required placeholder="your@email.com">
+        <label for="message">Message / Submission notes</label>
+        <textarea id="message" rows="4" placeholder="Tell us about your submission..."></textarea>
 
-            <label for="message">Message / Submission notes</label>
-            <textarea id="message" name="message" rows="5" placeholder="Tell us about your submission or message"></textarea>
-
-            <button type="submit" class="btn" style="width:100%; margin-top:12px">Send Message</button>
-          </form>
-        </div>
-      </div>
-    </section>
+        <button type="submit">📩 Send Message</button>
+      </form>
+    </div>
+  </div>
+</section>
 
     <section aria-labelledby="follow" style="margin-top:28px; text-align:center" class="reveal">
-      <p class="muted">Follow Aditi: <a href="https://www.instagram.com/aditi_budhathoki" target="_blank" rel="noopener" style="color:var(--accent)">Instagram</a></p>
+      <p class="muted">Follow Aditi: <a href="https://www.instagram.com/aditilicious/?igsh=MW5sMHk3bnE3MmM4Zg%3D%3D&utm_source=qr" target="_blank" rel="noopener" style="color:var(--accent)">Instagram</a></p>
     </section>
 
   </main>
