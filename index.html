@@ -428,42 +428,7 @@
     .lb-close{ position:absolute; top:14px; right:14px; font-size:28px; color:#fff; cursor:pointer; padding:8px; background: rgba(0,0,0,0.45); border-radius:50%; }
     .lb-nav{ position:absolute; top:50%; transform:translateY(-50%); color:#fff; font-size:44px; padding:12px; cursor:pointer; user-select:none; }
     .lb-prev{ left:18px } .lb-next{ right:18px }
-/* ===== iOS 26 GLASS CARD STYLE ===== */
-.ios-glass {
-  background: rgba(255, 255, 255, 0.18);
-  backdrop-filter: blur(25px) saturate(1.8);
-  -webkit-backdrop-filter: blur(25px) saturate(1.8);
-  border-radius: 22px;
-  border: 1px solid rgba(255, 255, 255, 0.35);
-  box-shadow:
-    0 4px 30px rgba(0, 0, 0, 0.1),
-    inset 0 0 0.5px rgba(255, 255, 255, 0.4);
-  padding: 26px 34px;
-  color: #2e2e2e;
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-}
 
-.ios-glass:hover {
-  transform: translateY(-3px);
-  box-shadow:
-    0 8px 35px rgba(0, 0, 0, 0.15),
-    inset 0 0 1px rgba(255, 255, 255, 0.45);
-}
-
-.ios-glass h3,
-.ios-glass h4 {
-  color: #1e1e1e;
-  margin-bottom: 10px;
-  font-weight: 600;
-}
-
-.ios-glass p,
-.ios-glass li {
-  color: #2d2d2d;
-  font-size: 1rem;
-  line-height: 1.6;
-  margin: 6px 0;
-}
     /* FOOTER */
     footer{ margin-top:36px; padding:28px 18px; text-align:center; border-radius:18px; background:linear-gradient(90deg,var(--accent-2),var(--accent)); color:#fff; }
 
@@ -666,22 +631,22 @@
     </section>
 
     <!-- FAN ZONE -->
-    <section id="fanzone" class="fan-zone">
-  <h2>Fan Zone</h2>
-  <p>Share art, wallpapers, and messages. Selected works will be featured.</p>
+    <section id="fan" aria-labelledby="fan-title" class="reveal-delayed">
+      <div class="section-head">
+        <h2 id="fan-title">Fan Zone</h2>
+        <p class="muted">Share art, wallpapers, and messages. Selected works will be featured (with credit).</p>
+      </div>
 
-  <div class="ios-glass">
-    <p>
-      Want your fan art featured? Tag your posts with <strong>#Aditilicious</strong>
-      or contact the page admin through the form. Be sure to include credits.
-    </p>
-    <ul>
-      <li>High-res fan art preferred (3000 px on longest side).</li>
-      <li>Include your social handle for credit.</li>
-      <li>Only respectful, non-offensive content will be featured.</li>
-    </ul>
-  </div>
-      
+      <div class="fan-grid">
+        <div class="fan-box glass">
+          <p style="font-size:1.03rem;">Want your fan art featured? Tag your posts with <strong>#Aditilicious</strong> or contact the page admin through the form. Be sure to include credits.</p>
+          <ul style="margin-top:10px;color:var(--muted)">
+            <li>High-res fan art preferred (3000px on longest side).</li>
+            <li>Include your social handle for credit.</li>
+            <li>Only non-offensive, respectful content will be featured.</li>
+          </ul>
+        </div>
+
         <div class="contact-glass glass" id="contact" aria-labelledby="contact-title">
           <h3 id="contact-title" style="margin-top:0; margin-bottom:6px;">Contact / Submissions</h3>
           <form action="https://formspree.io/f/mvgbnrgg" method="POST">
