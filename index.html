@@ -567,12 +567,12 @@
       </div>
 
 <!-- Lightbox -->
-<div id="video-lightbox" class="lb" aria-hidden="true">
-  <div class="lb-inner">
-    <iframe id="lb-video" frameborder="0" allowfullscreen></iframe>
-  </div>
-  <div class="lb-close" title="Close">✕</div>
-</div>
+<!-- VIDEO LIGHTBOX -->
+  <div id="video-lightbox" aria-hidden="true">
+    <div class="lb-inner" role="dialog" aria-modal="true">
+      <iframe id="lb-video" title="Video player" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      <div class="lb-close" aria-label="Close video">✕</div>
+    </div>
 
     <!-- NEWS -->
     <section id="news" aria-labelledby="news-title" class="reveal">
