@@ -331,22 +331,44 @@
 }
 
 /* Play Button */
+/* Classic centered play button (iOS glass style) */
 .play-btn {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-size: 2.5rem;
-  color: #fff;
-  background: rgba(0, 0, 0, 0.45);
+  width: 70px;
+  height: 70px;
   border-radius: 50%;
-  padding: 10px 16px;
+  background: rgba(255, 255, 255, 0.35);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
-  transition: background 0.3s;
+  transition: all 0.3s ease;
 }
 
+/* White triangle play icon */
+.play-btn::before {
+  content: "";
+  display: block;
+  width: 0;
+  height: 0;
+  border-left: 16px solid white;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  margin-left: 5px; /* centers triangle */
+}
+
+/* Hover glow */
 .play-btn:hover {
-  background: rgba(255, 105, 180, 0.8);
+  transform: translate(-50%, -50%) scale(1.08);
+  background: rgba(255, 255, 255, 0.55);
+  box-shadow: 0 8px 35px rgba(255, 255, 255, 0.4);
 }
 
 /* Pagination */
