@@ -331,43 +331,44 @@
 }
 
 /* Play Button */
-/* Play Button Overlay (new iOS glass style) */
+/* Classic centered play button (iOS glass style) */
 .play-btn {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 68px;
-  height: 68px;
+  width: 70px;
+  height: 70px;
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.35);
-  backdrop-filter: blur(12px);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
   border: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 34px;
-  color: white;
   cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
 }
 
-/* Hover effect (soft white glow) */
-.play-btn:hover {
-  background: rgba(255, 255, 255, 0.55);
-  transform: translate(-50%, -50%) scale(1.08);
-  box-shadow: 0 8px 35px rgba(255, 255, 255, 0.4);
-}
-
-/* iOS glass reflection */
-.play-btn::after {
+/* White triangle play icon */
+.play-btn::before {
   content: "";
-  position: absolute;
-  inset: 4px;
-  border-radius: 50%;
-  background: linear-gradient(145deg, rgba(255,255,255,0.65), rgba(255,255,255,0.1));
-  pointer-events: none;
+  display: block;
+  width: 0;
+  height: 0;
+  border-left: 16px solid white;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  margin-left: 5px; /* centers triangle */
+}
+
+/* Hover glow */
+.play-btn:hover {
+  transform: translate(-50%, -50%) scale(1.08);
+  background: rgba(255, 255, 255, 0.55);
+  box-shadow: 0 8px 35px rgba(255, 255, 255, 0.4);
 }
 
 /* Pagination */
