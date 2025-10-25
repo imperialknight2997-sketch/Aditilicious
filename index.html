@@ -1,253 +1,576 @@
+<!-- Full premium single-file site for "Aditilicious" -->
 <!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Aditilicious — Fanpage (Rebuilt)</title>
+  <title>Aditi Budhathoki ✨ — Aditilicious (Premium Fanpage)</title>
+
+  <!-- SEO / Social -->
+  <meta name="description" content="Aditilicious — premium fan-made tribute to Aditi Budhathoki. Gallery, news, fan zone, and exclusive content." />
+  <meta name="keywords" content="Aditi Budhathoki, fanpage, gallery, photos, Nepali actress, fan site" />
+  <meta property="og:title" content="Aditilicious ✨ — Premium Fanpage" />
+  <meta property="og:description" content="Premium fan-made tribute: photos, updates, and fan creations celebrating Aditi Budhathoki." />
+  <meta property="og:image" content="images/IMG_0483.jpeg" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
 
   <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Arizonia&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Arizonia&family=Charm:wght@400;700&display=swap" rel="stylesheet">
 
   <style>
-  :root{
-    --maxw:1200px;
-    --nav-height:82px;
-    --accent:#ba68c8;
-    --accent-2:#f48fb1;
-    --bg-1:#FFD6FF;
-    --bg-2:#FFEDD8;
-    --glass-bg: rgba(255,255,255,0.14);
-    --glass-border: rgba(255,255,255,0.28);
-    --glass-blur: 18px;
-    --text:#111;
-    --muted:#6b6b7a;
-    --radius:14px;
-    --card-shadow: 0 12px 40px rgba(12,6,30,0.06);
+    /* =============================
+       VARIABLES & BASE STYLES
+       ============================= */
+    :root{
+      --maxw:1200px;
+      --nav-height:82px;
+      --accent:#ba68c8;      /* lavender */
+      --accent-2:#f48fb1;    /* pink */
+      --bg-1:#FFD6FF;        /* pastel start */
+      --bg-2:#FFEDD8;        /* pastel end */
+      --glass-bg: rgba(255,255,255,0.14);
+      --glass-border: rgba(255,255,255,0.28);
+      --glass-blur: 18px;
+      --text:#111;
+      --muted:#6b6b7a;
+      --radius:14px;
+      --transition: 0.34s cubic-bezier(.2,.9,.3,1);
+      --hero-overlay-dark: rgba(0,0,0,0.18);
+      --hero-overlay-light: rgba(255,255,255,0.06);
+      --card-shadow: 0 12px 40px rgba(12,6,30,0.06);
+    }
+
+    [data-theme="dark"]{
+      --glass-bg: rgba(12,12,18,0.46);
+      --glass-border: rgba(255,255,255,0.06);
+      --text: #eaeaf0;
+      --muted: #b3b3bf;
+      --card-shadow: 0 16px 60px rgba(0,0,0,0.6);
+      --hero-overlay-dark: rgba(0,0,0,0.35);
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      color:var(--text);
+      background: linear-gradient(180deg,var(--bg-1),var(--bg-2) 160px);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      padding-top: var(--nav-height);
+      line-height:1.6;
+      overflow-x:hidden;
+    }
+.arizonia-regular {
+  font-family: "Arizonia", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+
+    /* Universal glass utility for containers */
+    .glass {
+      background: var(--glass-bg);
+      backdrop-filter: blur(var(--glass-blur)) saturate(140%);
+      -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(140%);
+      border-radius: var(--radius);
+      border: 1px solid var(--glass-border);
+      box-shadow: var(--card-shadow);
+      transition: box-shadow var(--transition), transform var(--transition);
+    }
+
+    a{ color:inherit; text-decoration:none }
+    img{ max-width:100%; display:block; }
+
+    h1,h2,h3{ font-family:'Playfair Display', serif; margin:0 }
+    h1{ font-weight:600 }
+    h2{ font-weight:600 }
+
+    .muted{ color:var(--muted) }
+    .center{ text-align:center }
+
+    /* Small helpers */
+    .container { max-width:var(--maxw); margin:0 auto; padding:0 18px; }
+    .btn {
+      display:inline-block; padding:10px 18px; border-radius:999px;
+      background:linear-gradient(90deg,var(--accent-2),var(--accent)); color:white; font-weight:700;
+      box-shadow:0 14px 38px rgba(181,88,144,0.12); border:none; cursor:pointer;
+      transition: transform .22s ease, box-shadow .22s ease;
+    }
+    .btn:hover { transform: translateY(-4px); box-shadow:0 22px 60px rgba(181,88,144,0.18) }
+
+    /* =============================
+       NAVIGATION
+       ============================= */
+    .nav {
+      position:fixed; top:16px; left:50%; transform:translateX(-50%);
+      width:calc(100% - 48px); max-width:var(--maxw);
+      display:flex; align-items:center; justify-content:space-between;
+      padding:10px 18px; z-index:1300; gap:12px; border-radius:999px;
+      transition: all .28s ease;
+    }
+    .brand {
+      display:flex; align-items:center; gap:12px;
+      font-weight:700; font-size:1.08rem;
+      background: linear-gradient(90deg,var(--accent-2),var(--accent));
+      -webkit-background-clip:text; background-clip:text; color:transparent;
+    }
+    .nav-links { display:flex; gap:12px; align-items:center; }
+    .nav-links a{
+      padding:8px 12px; border-radius:10px; font-weight:600; color:var(--text); transition:var(--transition);
+      position:relative;
+    }
+    .nav-links a::after{
+      content:''; position:absolute; left:50%; bottom:6px; transform:translateX(-50%); width:0; height:2px; background: linear-gradient(90deg,var(--accent-2),var(--accent)); transition:width .22s;
+    }
+    .nav-links a:hover::after, .nav-links a.active-link::after { width:70% }
+
+    .nav.glass { background: var(--glass-bg); border:1px solid var(--glass-border); backdrop-filter: blur(var(--glass-blur)); -webkit-backdrop-filter: blur(var(--glass-blur)); }
+
+    /* Hamburger for mobile */
+    .hamburger { display:none; background:transparent; border:none; gap:6px; padding:8px; cursor:pointer; }
+    .hamburger span{ display:block; width:22px; height:2px; background:var(--text); border-radius:2px; transition:all .23s ease }
+
+    /* Floating heart CTA */
+    .floating-heart {
+      position:fixed; right:22px; bottom:22px; z-index:1400; width:64px; height:64px; border-radius:50%;
+      display:flex; align-items:center; justify-content:center; color:white; font-size:26px;
+      background: linear-gradient(90deg,var(--accent-2),var(--accent));
+      box-shadow:0 18px 44px rgba(181,88,144,0.18); cursor:pointer;
+    }
+    .floating-heart:hover { transform: translateY(-6px) }
+
+    /* =============================
+       HERO
+       (KEEPING IMAGE EXACTLY AS-IS)
+       ============================= */
+    .hero {
+      min-height: calc(100vh - var(--nav-height));
+      display:flex; align-items:center; justify-content:center; text-align:center;
+      padding:72px 18px 96px; position:relative; overflow:hidden;
+      background: url('images/IMG_0483.jpeg') center/cover no-repeat;
+      -webkit-background-size:cover; background-size:cover;
+    }
+
+    /* soft dynamic glow (subtle): non-obstructive on image */
+    .hero-glow{ position:absolute; inset:-20% -10% auto -10%; height:420px; filter: blur(90px); pointer-events:none; z-index:0; transform: translateZ(-1px) scale(2); transition: background .12s linear; }
+    .hero-overlay{ position:absolute; inset:0; background: linear-gradient(180deg, rgba(0,0,0,0.06), rgba(0,0,0,0.16)); z-index:1 }
+    .hero-inner{ position:relative; z-index:2; max-width:900px; color:white; padding:40px; transform:translateY(12px) }
+    .hero-inner h1{ font-size: clamp(2rem, 7vw, 3.8rem); line-height:1; text-shadow: 0 12px 40px rgba(0,0,0,0.45) }
+    .hero-inner p{ font-size:1.05rem; margin-top:12px; text-shadow: 0 8px 28px rgba(0,0,0,0.32) }
+    .hero .cta{ display:inline-block; margin-top:20px; padding:12px 24px; border-radius:999px; background:linear-gradient(90deg,var(--accent-2),var(--accent)); color:white; font-weight:700; text-decoration:none; box-shadow:0 16px 42px rgba(181,88,144,0.14); transition:var(--transition) }
+    .hero .cta:hover{ transform: translateY(-4px) }
+
+    /* =============================
+       MAIN LAYOUT & SECTIONS
+       ============================= */
+    main{ max-width:var(--maxw); margin:48px auto; padding:0 18px 80px; }
+    .section-head{ text-align:center; margin-bottom:18px }
+    .section-head h2{ font-size: clamp(1.6rem, 4vw, 2.3rem); color:var(--accent); margin-bottom:8px }
+    .section-head p{ color:var(--muted) }
+
+    /* ABOUT */
+    /* ===== ABOUT SECTION ===== */
+    /* ===== ABOUT SECTION ===== */
+.about-section {
+  background: transparent; /* remove lilac */
+  padding: 90px 5%;
+  text-align: center;
+  position: relative;
+}
+
+.about-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 60px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* ===== iOS STYLE GLASS BLUR CARD ===== */
+.frosted-card {
+  padding: 28px 36px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.2); /* translucent white layer */
+  backdrop-filter: blur(22px) saturate(1.3);
+  -webkit-backdrop-filter: blur(22px) saturate(1.3);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  color: #7a5791;
+  max-width: 480px;
+  text-align: left;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.frosted-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+}
+
+/* Typography */
+.frosted-card h2 {
+  font-size: 1.8rem;
+  margin-bottom: 12px;
+  color: #bf00ff;
+}
+
+.frosted-card p {
+  font-size: 1rem;
+  color: #3f3333;
+  line-height: 1.6;
+}
+
+.frosted-card em {
+  display: block;
+  margin-top: 12px;
+  font-style: italic;
+  color: rgba(60, 45, 45, 0.65);
+}
+
+/* ===== IMAGE ===== */
+.about-image img {
+  width: 320px;
+  max-width: 100%;
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
+}
+
+.about-image img:hover {
+  transform: scale(1.05);
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 850px) {
+  .about-container {
+    flex-direction: column-reverse;
+    gap: 30px;
   }
-  [data-theme="dark"]{
-    --glass-bg: rgba(12,12,18,0.46);
-    --glass-border: rgba(255,255,255,0.06);
-    --text:#eaeaf0;
-    --muted:#b3b3bf;
-    --card-shadow: 0 16px 60px rgba(0,0,0,0.6);
+
+  .frosted-card {
+    text-align: center;
   }
-  *{box-sizing:border-box}
-  body{
-    margin:0; font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial;
-    color:var(--text);
-    background: linear-gradient(180deg,var(--bg-1),var(--bg-2) 160px);
-    padding-top:var(--nav-height); -webkit-font-smoothing:antialiased;
-  }
-  img{max-width:100%; display:block}
-  .container{ max-width:var(--maxw); margin:0 auto; padding:0 18px; }
+}
 
-  /* NAV */
-  .nav{
-    position:fixed; top:16px; left:50%; transform:translateX(-50%);
-    width:calc(100% - 48px); max-width:var(--maxw); display:flex; align-items:center;
-    justify-content:space-between; padding:10px 18px; z-index:1300; gap:12px;
-    border-radius:999px; background:var(--glass-bg); backdrop-filter:blur(var(--glass-blur));
-    border:1px solid var(--glass-border);
-  }
-  .brand{ font-weight:700; font-size:1.05rem; background:linear-gradient(90deg,var(--accent-2),var(--accent)); -webkit-background-clip:text; color:transparent; }
-  .nav-links{ display:flex; gap:12px; align-items:center }
-  .nav-links a{ padding:8px 12px; border-radius:10px; font-weight:600; color:var(--text); position:relative}
-  .nav-links a.active-link{ color:var(--accent) }
+    /* GALLERY */
+    .gallery-wrap{ margin-top:8px }
+    .gallery-grid{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:18px;
+    }
+    .card{ background: linear-gradient(180deg, rgba(255,255,255,0.75), rgba(255,255,255,0.7)); border-radius:12px; padding:10px; box-shadow:var(--card-shadow); transition: transform .28s ease, box-shadow .28s; overflow:hidden; position:relative; }
+    .card img{ width:100%; height:320px; object-fit:cover; display:block; border-radius:8px; transition: transform .28s ease, filter .28s ease; }
+    .card:hover{ transform: translateY(-6px); box-shadow:0 30px 70px rgba(18,8,40,0.12) }
+    .card:hover img{ transform: scale(1.04) }
 
-  /* HERO */
-  .hero{
-    min-height:calc(100vh - var(--nav-height)); display:flex; align-items:center; justify-content:center; text-align:center;
-    padding:72px 18px 96px; position:relative; overflow:hidden;
-    background: url('images/IMG_0483.jpeg') center/cover no-repeat;
-  }
-  .hero-inner{ position:relative; z-index:2; color:white; padding:40px; max-width:900px }
-  .cta{ padding:12px 24px; border-radius:999px; background:linear-gradient(90deg,var(--accent-2),var(--accent)); color:white; font-weight:700; text-decoration:none; }
+    /* Gallery filter buttons */
+    .gallery-filters{ display:flex; justify-content:center; gap:10px; margin-bottom:20px; flex-wrap:wrap }
+    .filter-btn{ padding:8px 16px; border-radius:20px; cursor:pointer; font-weight:600; border:1px solid rgba(255,255,255,0.36); background: rgba(255,255,255,0.6); color:var(--muted) }
+    .filter-btn.active{ background: linear-gradient(90deg,var(--accent-2),var(--accent)); color:white; box-shadow:0 10px 30px rgba(181,88,144,0.12) }
 
-  /* ABOUT (iOS-style glass) */
-  .about-section{ padding:72px 5%; text-align:center; background:transparent }
-  .about-container{ max-width:1100px; margin:0 auto; display:flex; gap:40px; align-items:center; justify-content:center; flex-wrap:wrap }
-  .frosted-card{
-    padding:28px 32px; border-radius:18px; background: rgba(255,255,255,0.18);
-    backdrop-filter: blur(22px) saturate(1.1); -webkit-backdrop-filter: blur(22px) saturate(1.1);
-    border:1px solid rgba(255,255,255,0.28); box-shadow:0 10px 30px rgba(0,0,0,0.12); color:#2b1f2e; max-width:520px;
-  }
-  .about-image img{ width:320px; border-radius:20px; box-shadow:0 10px 25px rgba(0,0,0,0.18) }
+    /* Pagination */
+    .pagination{ display:flex; justify-content:center; gap:12px; margin-top:24px; align-items:center }
+    .pagination-btn{ padding:10px 16px; border-radius:8px; cursor:pointer; background:rgba(255,255,255,0.7); border:1px solid rgba(255,255,255,0.28); font-weight:700; color:var(--muted) }
+    .pagination-btn.disabled{ opacity:0.5; cursor:not-allowed }
+    .page-number{ padding:8px 12px; border-radius:8px; cursor:pointer; background:rgba(255,255,255,0.7); border:1px solid rgba(255,255,255,0.28); font-weight:700; color:var(--muted) }
+    .page-number.active{ background: linear-gradient(90deg,var(--accent-2),var(--accent)); color:white }
 
-  /* GALLERY */
-  .gallery-wrap{ margin-top:8px }
-  .gallery-grid{ display:grid; grid-template-columns: repeat(3,1fr); gap:18px; }
-  .card{ background: linear-gradient(180deg, rgba(255,255,255,0.9), rgba(255,255,255,0.85)); border-radius:12px; padding:8px; box-shadow:var(--card-shadow); position:relative; overflow:hidden }
-  .card img{ width:100%; height:320px; object-fit:cover; border-radius:8px; transition:transform .28s }
-  .card:hover img{ transform:scale(1.03) }
+    /* NEWS */
+    .news-grid{ display:grid; grid-template-columns: repeat(3,1fr); gap:18px; margin-top:8px; perspective:1000px }
+    .news-card{ background:linear-gradient(180deg,#fff,#fff); border-radius:12px; overflow:hidden; box-shadow:var(--card-shadow); transition: transform .35s, box-shadow .35s }
+    .news-card:hover{ transform: translateY(-6px) rotateX(0.5deg) }
+    .news-card img{ width:100%; height:160px; object-fit:cover }
+    .news-body{ padding:14px 16px }
 
-  .gallery-filters{ display:flex; justify-content:center; gap:10px; margin-bottom:18px }
-  .filter-btn{ padding:8px 14px; border-radius:20px; background:rgba(255,255,255,0.8); border:1px solid rgba(0,0,0,0.06); cursor:pointer }
-  .filter-btn.active{ background:linear-gradient(90deg,var(--accent-2),var(--accent)); color:white; }
-
-  /* Pagination (gallery) */
-  .pagination{ display:flex; align-items:center; justify-content:center; gap:12px; margin-top:18px }
-  .pagination-btn, .page-number{ padding:8px 12px; border-radius:8px; cursor:pointer; background:rgba(255,255,255,0.95); border:1px solid rgba(0,0,0,0.06); color:var(--muted); font-weight:700 }
-  .page-number.active{ background:linear-gradient(90deg,var(--accent-2),var(--accent)); color:white; border:none }
-
-  /* VIDEO GRID */
+     /* VIDEOS */
+     /* ===== VIDEO GRID ===== */
   .video-grid{ display:grid; grid-template-columns: repeat(auto-fill,minmax(280px,1fr)); gap:18px; margin-top:12px }
   .video-card{ position:relative; border-radius:12px; overflow:hidden; background:transparent; text-align:center; padding-bottom:8px }
   .video-card img{ width:100%; height:180px; object-fit:cover; display:block; border-radius:12px; }
+  .video-card h3 { margin: 10px; color: #333;font-size: 1rem; text-align: center; }
 
-  /* Play button: white circular with triangle */
-  .play-btn{
-    position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
-    width:64px; height:64px; border-radius:50%; display:flex; align-items:center; justify-content:center;
-    background:rgba(255,255,255,0.98); cursor:pointer; box-shadow: 0 8px 24px rgba(0,0,0,0.18); border:none;
-  }
-  /* triangle (classic) */
-  .play-btn::after{
-    content:''; display:block; width:0; height:0;
-    border-left:14px solid var(--accent-2); /* triangle color */
-    border-top:9px solid transparent;
-    border-bottom:9px solid transparent;
-    margin-left:4px;
-  }
-  /* bigger triangle on hover */
-  .play-btn:hover::after{ border-left-color:var(--accent) ; transform:scale(1.02); }
+/* Play Button */
+.play-btn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 2.5rem;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.45);
+  border-radius: 50%;
+  padding: 10px 16px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
 
-  .video-card h3{ margin:10px; font-size:0.95rem; color:var(--text) }
+.play-btn:hover {
+  background: rgba(255, 105, 180, 0.8);
+}
 
-  /* Lightbox (videos) */
-  #video-lightbox{ display:none; position:fixed; inset:0; background:rgba(0,0,0,0.6); z-index:9999; align-items:center; justify-content:center; }
-  #video-lightbox.active{ display:flex }
-  .lb-inner{ width:90%; max-width:960px; border-radius:12px; overflow:hidden; position:relative; background:#000 }
-  .lb-inner iframe{ width:100%; height:56.25vw; max-height:620px; min-height:300px; border:0 }
-  .lb-close{ position:absolute; top:12px; right:12px; font-size:24px; color:#fff; background:rgba(0,0,0,0.45); padding:8px; border-radius:50%; cursor:pointer }
+/* Pagination */
+    .pagination{ display:flex; justify-content:center; gap:12px; margin-top:24px; align-items:center }
+    .pagination-btn{ padding:10px 16px; border-radius:8px; cursor:pointer; background:rgba(255,255,255,0.7); border:1px solid rgba(255,255,255,0.28); font-weight:700; color:var(--muted) }
+    .pagination-btn.disabled{ opacity:0.5; cursor:not-allowed }
+    .page-number{ padding:8px 12px; border-radius:8px; cursor:pointer; background:rgba(255,255,255,0.7); border:1px solid rgba(255,255,255,0.28); font-weight:700; color:var(--muted) }
+    .page-number.active{ background: linear-gradient(90deg,var(--accent-2),var(--accent)); color:white }
 
-  /* image lightbox */
-  .lb{ position:fixed; inset:0; display:none; align-items:center; justify-content:center; z-index:2200; background: rgba(0,0,0,0.6); }
-  .lb.open{ display:flex }
-  .lb-inner.img{ max-width:92%; max-height:92%; border-radius:12px; overflow:hidden; position:relative; }
-  .lb-inner.img img{ width:100%; height:auto; object-fit:contain; background:#000; }
-  .lb-close.img{ position:absolute; top:14px; right:14px; font-size:28px; color:#fff; padding:8px; background: rgba(0,0,0,0.45); border-radius:50%; cursor:pointer }
+/* ===== Lightbox ===== */
+#video-lightbox {
+  display: none;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(18px);
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  animation: fadeIn 0.4s ease forwards;
+}
 
-  /* FAN */
-  .fan-grid{ display:grid; grid-template-columns: 1fr 380px; gap:24px; margin-top:12px; align-items:start }
-  .contact-glass{ padding:18px; border-radius:12px; background: rgba(255,255,255,0.92); box-shadow:var(--card-shadow); }
+#video-lightbox.active {
+  display: flex;
+}
 
-  footer{ margin-top:36px; padding:28px 18px; text-align:center; border-radius:18px; background:linear-gradient(90deg,var(--accent-2),var(--accent)); color:#fff; }
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.96); }
+  to { opacity: 1; transform: scale(1); }
+}
 
-  @media(max-width:1000px){ .gallery-grid{ grid-template-columns:repeat(2,1fr) } .fan-grid{ grid-template-columns:1fr } .about-container{ flex-direction:column } .hero-inner{ padding:20px } }
-  @media(max-width:700px){ .gallery-grid{ grid-template-columns:1fr } .video-card img{ height:200px } .play-btn{ width:56px;height:56px } }
+.lb-inner {
+  position: relative;
+  box-shadow: 0 0 40px rgba(255, 192, 203, 0.4);
+  border-radius: 14px;
+  overflow: hidden;
+}
 
-  /* Focus */
-  :focus{ outline:3px solid rgba(186,104,200,0.18); outline-offset:3px }
+.lb-inner iframe {
+  width: 80vw;
+  height: 45vw; /* 16:9 ratio */
+  max-width: 800px;
+  max-height: 450px;
+  border-radius: 14px;
+  border: none;
+}
+
+.lb-close {
+  position: absolute;
+  top: 22px;
+  right: 32px;
+  color: white;
+  font-size: 2rem;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.lb-close:hover {
+  transform: scale(1.2);
+}
+    
+    /* EXCLUSIVE */
+    .exclusive-box{ text-align:center; padding:30px 20px; margin:40px auto; max-width:600px; border-radius:var(--radius); background: linear-gradient(180deg, rgba(255,255,255,0.92), rgba(250,245,255,0.95)); border:2px solid; border-image: linear-gradient(45deg,var(--accent-2),var(--accent)) 1; box-shadow:0 20px 50px rgba(18,8,40,0.1) }
+
+    /* FAN */
+    .fan-grid{ display:grid; grid-template-columns: 1fr 420px; gap:24px; margin-top:12px; align-items:start }
+    .fan-box{ padding:18px; border-radius:12px; background: linear-gradient(180deg,#fff,#fff); box-shadow:var(--card-shadow) }
+    .contact-glass{ padding:18px; border-radius:12px; background: linear-gradient(180deg, rgba(255,255,255,0.82), rgba(255,255,255,0.7)); backdrop-filter: blur(10px); }
+
+    .contact-glass label{ display:block; font-weight:600; margin-top:10px }
+    .contact-glass input, .contact-glass textarea{ width:100%; padding:12px; margin-top:8px; border-radius:8px; border:1px solid #eee; font-size:0.95rem }
+
+    /* LIGHTBOX */
+    .lb{ position:fixed; inset:0; display:none; align-items:center; justify-content:center; z-index:2200; background: rgba(0,0,0,0.6); backdrop-filter: blur(16px); }
+    .lb.open{ display:flex }
+    .lb-inner{ max-width:92%; max-height:92%; border-radius:12px; overflow:hidden; box-shadow:0 30px 80px rgba(10,6,40,0.6); position:relative }
+    .lb-inner img{ display:block; width:100%; height:auto; max-height:90vh; object-fit:contain; background:#000 }
+    .lb-close{ position:absolute; top:14px; right:14px; font-size:28px; color:#fff; cursor:pointer; padding:8px; background: rgba(0,0,0,0.45); border-radius:50%; }
+    .lb-nav{ position:absolute; top:50%; transform:translateY(-50%); color:#fff; font-size:44px; padding:12px; cursor:pointer; user-select:none; }
+    .lb-prev{ left:18px } .lb-next{ right:18px }
+
+    /* FOOTER */
+    footer{ margin-top:36px; padding:28px 18px; text-align:center; border-radius:18px; background:linear-gradient(90deg,var(--accent-2),var(--accent)); color:#fff; }
+
+    /* Animations */
+    @keyframes fadeInUp { from { opacity:0; transform: translateY(12px) } to { opacity:1; transform:translateY(0) } }
+    .reveal{ animation: fadeInUp .7s ease both }
+    .reveal-delayed{ animation: fadeInUp .85s ease both }
+
+    /* Responsive tweaks */
+    @media (max-width:1000px){
+      .about, .fan-grid { grid-template-columns: 1fr }
+      .gallery-grid { grid-template-columns: repeat(2,1fr) }
+      .news-grid { grid-template-columns: repeat(2,1fr) }
+      .nav-links{ display:none } /* mobile will use hamburger */
+      .hamburger{ display:block }
+    }
+    @media (max-width:700px){
+      .gallery-grid { grid-template-columns: 1fr; }
+      .card img{ height: 260px }
+      .hero-inner{ padding:18px }
+      .floating-heart{ width:56px; height:56px; font-size:22px }
+    }
+
+    /* Accessible focus outlines */
+    :focus { outline: 3px solid rgba(186,104,200,0.18); outline-offset: 3px; }
   </style>
 </head>
 <body>
-  <div class="nav" role="banner">
+
+  <!-- NAV -->
+  <div class="nav glass" role="banner" aria-label="Primary navigation">
     <div class="brand">Aditilicious</div>
-    <nav class="nav-links" aria-label="Main navigation">
+
+    <nav class="nav-links" aria-label="Main">
       <a href="#about">About</a>
       <a href="#gallery">Gallery</a>
-      <a href="#collection">Videos</a>
+      <a href="#news">News</a>
+      <a href="#exclusive">Exclusive</a>
       <a href="#fan">Fan Zone</a>
       <a href="#contact">Contact</a>
     </nav>
-    <div style="display:flex;gap:8px;align-items:center">
-      <button class="theme-toggle" title="Toggle theme">🌓</button>
+
+    <div style="display:flex; gap:8px; align-items:center;">
+      <button class="theme-toggle" aria-label="Toggle dark mode" title="Toggle theme"><i class="fas fa-moon"></i></button>
+      <button class="hamburger" aria-label="Toggle menu" title="Open menu" style="display:none">
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </div>
 
-  <header class="hero" role="img" aria-label="Hero image">
+  <!-- Floating CTA -->
+  <button class="floating-heart" aria-label="Go to Fan Zone" title="Fan Zone" onclick="document.getElementById('fan').scrollIntoView({behavior:'smooth'})">❤️</button>
+
+  <!-- HERO -->
+  <header class="hero" role="img" aria-label="Aditi hero image">
+    <div class="hero-glow" id="hero-glow"></div>
+    <div class="hero-overlay" aria-hidden="true"></div>
     <div class="hero-inner">
-      <h1 style="font-size:2.6rem;margin:0">Aditi Budhathoki</h1>
-      <p style="margin:12px 0 18px;color:rgba(255,255,255,0.95)">Beauty · Elegance · Inspiration</p>
+      <h1>Aditi Budhathoki</h1>
+      <p>Beauty · Elegance · Inspiration</p>
       <a class="cta" href="#gallery">View Gallery</a>
+      <div style="margin-top:14px"><span class="scroll-hint" style="color:rgba(255,255,255,0.95)">Scroll down to explore</span></div>
     </div>
   </header>
 
   <main class="container">
+
     <!-- ABOUT -->
-    <section id="about" class="about-section" aria-labelledby="about-title">
-      <div class="about-container">
-        <div class="frosted-card">
-          <h2 id="about-title">About Aditi</h2>
-          <p style="margin-top:8px">Aditi Budhathoki — Nepali actress & model. Fan-curated high-quality gallery and updates.</p>
-          <em style="display:block;margin-top:12px;color:var(--muted)">Not official — fan-made collection.</em>
-        </div>
-        <div class="about-image"><img src="images/IMG_0473.jpeg" alt="Aditi portrait" loading="lazy"></div>
-      </div>
-    </section>
-
+    <section id="about" class="about-section">
+  <div class="about-container">
+    <div class="about-text frosted-card">
+      <h2>About Aditi</h2>
+      <p>
+        Aditi Budhathoki is a Nepali actress and model admired for her elegance
+        and on-screen charisma. This fanpage highlights high-quality photos,
+        latest updates, and fan creations in a refined, respectful space.
+      </p>
+      <em>Fan-curated collection — not official.</em>
+    </div>
+    <div class="about-image">
+      <img src="images/IMG_0473.jpeg" alt="Aditi portrait" loading="lazy" class="reveal" style="border-radius:12px;"/>
+    </div>
+  </div>
+</section>
+    
     <!-- GALLERY -->
-    <section id="gallery" aria-labelledby="gallery-title" style="margin-top:36px">
-      <div style="text-align:center;margin-bottom:12px"><h2 id="gallery-title">Gallery</h2><p class="muted">Click an image to open full view</p></div>
+    <section id="gallery" aria-labelledby="gallery-title" class="reveal-delayed">
+      <div class="section-head">
+        <h2 id="gallery-title">Gallery</h2>
+        <p class="muted">Click any image to open the full view. High-resolution images optimized for web.</p>
+      </div>
 
+      <!-- Filters -->
       <div class="gallery-filters" role="toolbar" aria-label="Gallery filters">
-        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn active" data-filter="all" aria-pressed="true">All</button>
         <button class="filter-btn" data-filter="portrait">Portraits</button>
-        <button class="filter-btn" data-filter="casual">Casual</button>
         <button class="filter-btn" data-filter="event">Events</button>
+        <button class="filter-btn" data-filter="casual">Casual</button>
       </div>
 
       <div class="gallery-wrap">
-        <div class="gallery-grid" id="gallery-grid" aria-live="polite" aria-busy="false"></div>
-
-        <div class="pagination" id="pagination">
-          <button class="pagination-btn" id="prev-btn" disabled>Previous</button>
-          <div id="pagination-numbers" style="display:flex;gap:8px"></div>
-          <button class="pagination-btn" id="next-btn">Next</button>
+        <div class="gallery-grid" id="gallery-grid" aria-live="polite" aria-busy="false">
+          <!-- images inserted dynamically -->
         </div>
-        <div id="pagination-info" style="text-align:center;color:var(--muted);margin-top:10px"></div>
+
+        <!-- Pagination Controls -->
+        <div class="pagination" id="pagination" aria-hidden="true" role="navigation" aria-label="Gallery pagination">
+          <button class="pagination-btn" id="prev-btn" disabled aria-disabled="true"><i class="fas fa-chevron-left"></i>&nbsp;Previous</button>
+          <div class="pagination-numbers" id="pagination-numbers" aria-hidden="false" role="group" aria-label="Page numbers"></div>
+          <button class="pagination-btn" id="next-btn">Next&nbsp;<i class="fas fa-chevron-right"></i></button>
+        </div>
+
+        <div class="pagination-info center muted" id="pagination-info" style="margin-top:12px" aria-live="polite"></div>
+      </div>
+
+
+
+    <!-- NEWS -->
+    <section id="news" aria-labelledby="news-title" class="reveal">
+      <div class="section-head">
+        <h2 id="news-title">Latest News</h2>
+        <p class="muted">Curated updates related to Aditi’s public appearances and projects.</p>
+      </div>
+
+      <div class="news-grid">
+        <article class="news-card glass reveal">
+          <img src="images/IMG_0510.jpeg" alt="news 1" loading="lazy">
+          <div class="news-body">
+            <h3>New Photoshoot Released</h3>
+            <p>Stunning images from Aditi's recent editorial are circulating on social platforms. See gallery highlights.</p>
+            <p class="muted" style="margin-top:8px;font-size:0.85rem">Sept 2025</p>
+          </div>
+        </article>
+
+        <article class="news-card glass reveal">
+          <img src="images/IMG_0467.jpeg" alt="news 2" loading="lazy">
+          <div class="news-body">
+            <h3>Upcoming Collaboration</h3>
+            <p>Industry reports suggest an upcoming creative collaboration — we’ll update when official details drop.</p>
+            <p class="muted" style="margin-top:8px;font-size:0.85rem">Aug 2025</p>
+          </div>
+        </article>
+
+        <article class="news-card glass reveal">
+          <img src="images/IMG_0469.jpeg" alt="news 3" loading="lazy">
+          <div class="news-body">
+            <h3>Interview & Feature</h3>
+            <p>Aditi is scheduled for an exclusive interview in the coming weeks — highlights will be posted here.</p>
+            <p class="muted" style="margin-top:8px;font-size:0.85rem">Jul 2025</p>
+          </div>
+        </article>
       </div>
     </section>
 
-    <!-- VIDEOS -->
-    <section id="collection" style="margin-top:42px">
-      <div style="text-align:center"><h2>Video Collection</h2><p class="muted">Click play to open video</p></div>
-      <div class="video-grid" id="video-grid" aria-live="polite"></div>
-      <div style="text-align:center;margin-top:14px">
-        <button class="pagination-btn" id="video-prev" disabled>‹ Prev</button>
-        <span id="video-page-numbers" style="display:inline-flex;gap:8px;margin:0 10px"></span>
-        <button class="pagination-btn" id="video-next">Next ›</button>
-      </div>
-    </section>
-
-    <!-- FAN ZONE -->
-    <section id="fan" style="margin-top:42px">
-      <div style="text-align:center;margin-bottom:12px"><h2>Fan Zone</h2><p class="muted">Share your art — selected works featured with credit.</p></div>
-      <div class="fan-grid">
-        <div style="background:rgba(255,255,255,0.98);padding:18px;border-radius:12px;box-shadow:var(--card-shadow)">
-          <p style="margin:0 0 8px">Want to be featured? Tag <strong>#Aditilicious</strong>. High-res preferred.</p>
-        </div>
-        <div class="contact-glass" id="contact">
-          <h3 style="margin-top:0">Contact / Submit</h3>
-          <form action="https://formspree.io/f/mvgbnrgg" method="POST">
-            <label for="name">Name</label><input id="name" name="name" type="text" required style="width:100%;padding:10px;margin-top:6px;border-radius:8px;border:1px solid #eee">
-            <label for="email" style="margin-top:8px;display:block">Email</label><input id="email" name="_replyto" type="email" required style="width:100%;padding:10px;margin-top:6px;border-radius:8px;border:1px solid #eee">
-            <label for="message" style="margin-top:8px;display:block">Message</label><textarea id="message" name="message" rows="4" style="width:100%;padding:10px;margin-top:6px;border-radius:8px;border:1px solid #eee"></textarea>
-            <button class="cta" type="submit" style="display:block;width:100%;text-align:center;margin-top:12px">Send</button>
-          </form>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer style="margin-top:40px">
-    <div class="container" style="text-align:center;color:#fff">
-      <p style="margin:6px 0">Aditilicious — Fan-made tribute</p>
-      <p style="opacity:0.95">© <span id="year"></span></p>
-    </div>
-  </footer>
-
-  <!-- IMAGE LIGHTBOX -->
-  <div id="lightbox" class="lb" aria-hidden="true">
-    <div class="lb-inner img" role="dialog" aria-modal="true">
-      <img id="lb-img" src="" alt="">
-      <div class="lb-close img" aria-label="Close">✕</div>
-    </div>
+      <!-- VIDEOS -->
+     <!-- 🎥 VIDEO COLLECTION -->
+<section id="collection" aria-labelledby="collection-title" class="reveal">
+  <div class="section-head">
+    <h2 id="collection-title">🎥 The Aditi Collection</h2>
+    <p class="muted">Handpicked videos from across YouTube, all in one place</p>
   </div>
 
-  <!-- VIDEO LIGHTBOX -->
+  <div class="video-grid" id="video-grid"></div>
+
+  <div class="pagination" id="video-pagination">
+    <button class="pagination-btn" id="video-prev" disabled>
+      ‹ Previous
+    </button>
+    <div class="pagination-numbers" id="video-page-numbers"></div>
+    <button class="pagination-btn" id="video-next">
+      Next ›
+    </button>
+  </div>
+</section>
+
+<!-- 🎬 Lightbox -->
+<!-- VIDEO LIGHTBOX -->
   <div id="video-lightbox" aria-hidden="true">
     <div class="lb-inner" role="dialog" aria-modal="true">
       <iframe id="lb-video" title="Video player" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -255,53 +578,189 @@
     </div>
   </div>
 
-<script>
-/* Basic utilities */
-document.getElementById('year').textContent = new Date().getFullYear();
-function throttle(fn, wait){ let t; return function(){ if(t) return; t=setTimeout(()=>{ fn(); t=null }, wait) } }
+    
+    <!-- EXCLUSIVE -->
+    <section id="exclusive" aria-labelledby="exclusive-title" class="reveal">
+      <div class="exclusive-box glass">
+        <div class="lock" style="font-size:36px">🔒</div>
+        <h3 id="exclusive-title">Unlock Exclusive Content</h3>
+        <p>Access high-resolution desktop wallpapers, behind-the-scenes clips, and early access photos.</p>
+        <a href="#contact" class="btn" style="margin-top:12px; display:inline-block">Sign Up for Access</a>
+      </div>
+    </section>
 
-/* NAV scroll spy */
-(function(){
-  const links = document.querySelectorAll('.nav-links a');
-  function onScroll(){
-    const sections = document.querySelectorAll('main section, header');
-    sections.forEach(s=>{
-      const top = s.offsetTop - 140;
-      const bottom = top + s.offsetHeight;
-      const id = s.id;
-      if(window.scrollY >= top && window.scrollY < bottom){
-        links.forEach(a => a.classList.remove('active-link'));
-        const match = document.querySelector('.nav-links a[href="#'+id+'"]');
-        if(match) match.classList.add('active-link');
-      }
+    <!-- FAN ZONE -->
+    <section id="fan" aria-labelledby="fan-title" class="reveal-delayed">
+      <div class="section-head">
+        <h2 id="fan-title">Fan Zone</h2>
+        <p class="muted">Share art, wallpapers, and messages. Selected works will be featured (with credit).</p>
+      </div>
+
+      <div class="fan-grid">
+        <div class="fan-box glass">
+          <p style="font-size:1.03rem;">Want your fan art featured? Tag your posts with <strong>#Aditilicious</strong> or contact the page admin through the form. Be sure to include credits.</p>
+          <ul style="margin-top:10px;color:var(--muted)">
+            <li>High-res fan art preferred (3000px on longest side).</li>
+            <li>Include your social handle for credit.</li>
+            <li>Only non-offensive, respectful content will be featured.</li>
+          </ul>
+        </div>
+
+        <div class="contact-glass glass" id="contact" aria-labelledby="contact-title">
+          <h3 id="contact-title" style="margin-top:0; margin-bottom:6px;">Contact / Submissions</h3>
+          <form action="https://formspree.io/f/mvgbnrgg" method="POST">
+            <label for="name">Name</label>
+            <input id="name" name="name" type="text" required placeholder="Your name" aria-required="true">
+
+            <label for="email">Email</label>
+            <input id="email" name="_replyto" type="email" required placeholder="your@email.com">
+
+            <label for="message">Message / Submission notes</label>
+            <textarea id="message" name="message" rows="5" placeholder="Tell us about your submission or message"></textarea>
+
+            <button type="submit" class="btn" style="width:100%; margin-top:12px">Send Message</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section aria-labelledby="follow" style="margin-top:28px; text-align:center" class="reveal">
+      <p class="muted">Follow Aditi: <a href="https://www.instagram.com/aditi_budhathoki" target="_blank" rel="noopener" style="color:var(--accent)">Instagram</a></p>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div style="max-width:var(--maxw); margin:0 auto; padding:0 18px">
+      <p style="margin-bottom:8px">Aditilicious — Fan-made tribute · Not official</p>
+      <p style="opacity:0.95; font-size:0.95rem">© <span id="year"></span> All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- LIGHTBOX -->
+  <div id="lightbox" class="lb" aria-hidden="true" aria-label="Image preview">
+    <div class="lb-inner" role="dialog" aria-modal="true">
+      <img id="lb-img" src="" alt="">
+    </div>
+    <div class="lb-close" role="button" title="Close" aria-label="Close">✕</div>
+    <div class="lb-nav lb-prev" role="button" title="Previous" aria-label="Previous">‹</div>
+    <div class="lb-nav lb-next" role="button" title="Next" aria-label="Next">›</div>
+  </div>
+
+ <script>
+  /* =============================
+     Utilities / Initial Setup
+     ============================= */
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Small helper: throttled resize
+  function throttle(fn, wait){ let t; return function(){ if(t) return; t=setTimeout(()=>{ fn(); t=null }, wait) } }
+
+  /* =============================
+     HERO GLOW (mouse-follow subtle)
+     ============================= */
+  (function(){
+    const heroGlow = document.getElementById('hero-glow');
+    if(!heroGlow) return;
+    const c1 = 'rgba(244,143,177,0.18)';
+    const c2 = 'rgba(186,104,200,0.14)';
+    document.addEventListener('mousemove', (e) => {
+      const x = (e.clientX / window.innerWidth) * 100;
+      const y = (e.clientY / window.innerHeight) * 100;
+      const g = `
+        radial-gradient(700px 380px at ${x}% ${y}%, ${c1}, transparent 28%),
+        radial-gradient(700px 380px at ${100-x}% ${100-y}%, ${c2}, transparent 28%)
+      `;
+      heroGlow.style.background = g;
     });
-  }
-  window.addEventListener('scroll', throttle(onScroll, 80));
-  onScroll();
-})();
+  })();
 
-/* THEME toggle - small */
-(function(){
-  const btn = document.querySelector('.theme-toggle');
-  btn.onclick = () => {
-    const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
-    document.documentElement.setAttribute('data-theme', isDark ? '' : 'dark');
-  };
-})();
+  /* =============================
+     THEME TOGGLE
+     ============================= */
+  (function(){
+    const tbtn = document.querySelector('.theme-toggle');
+    if(!tbtn) return;
+    const icon = tbtn.querySelector('i');
+    const stored = localStorage.getItem('theme');
+    if(stored === 'dark'){ document.documentElement.setAttribute('data-theme','dark'); icon.classList.remove('fa-moon'); icon.classList.add('fa-sun'); }
+    tbtn.addEventListener('click', ()=>{
+      const now = document.documentElement.getAttribute('data-theme');
+      if(now === 'dark'){ document.documentElement.setAttribute('data-theme',''); localStorage.setItem('theme','light'); icon.classList.remove('fa-sun'); icon.classList.add('fa-moon'); }
+      else { document.documentElement.setAttribute('data-theme','dark'); localStorage.setItem('theme','dark'); icon.classList.remove('fa-moon'); icon.classList.add('fa-sun'); }
+    });
+  })();
 
-/* ---------- GALLERY (loads external manifest if present) ---------- */
-(async function(){
-  const galleryGrid = document.getElementById('gallery-grid');
-  const filterBtns = Array.from(document.querySelectorAll('.filter-btn'));
-  const prevBtn = document.getElementById('prev-btn');
-  const nextBtn = document.getElementById('next-btn');
-  const paginationNumbers = document.getElementById('pagination-numbers');
-  const paginationInfo = document.getElementById('pagination-info');
-  const pagination = document.getElementById('pagination');
+  /* =============================
+     NAV SCROLL BEHAVIOR & SCROLL-SPY
+     ============================= */
+  (function(){
+    const nav = document.querySelector('.nav');
+    const links = document.querySelectorAll('.nav-links a');
 
-  // fallback embedded data (works if no manifest)
-  const fallbackData = [
-       { src: 'images/IMG_0483.jpeg', alt: 'Aditi portrait', category: 'portrait' },
+    function onScroll(){
+      if(window.scrollY > 40) nav.classList.add('scrolled'); else nav.classList.remove('scrolled');
+
+      // scroll spy
+      const sections = document.querySelectorAll('main section[id]');
+      sections.forEach(section => {
+        const top = section.offsetTop - 120;
+        const bottom = top + section.offsetHeight;
+        const id = section.getAttribute('id');
+        if(window.scrollY >= top && window.scrollY < bottom){
+          links.forEach(a => a.classList.remove('active-link'));
+          const match = document.querySelector('.nav-links a[href="#' + id + '"]');
+          if(match) match.classList.add('active-link');
+        }
+      });
+    }
+
+    window.addEventListener('scroll', throttle(onScroll, 60));
+    onScroll();
+  })();
+
+  /* =============================
+     MOBILE HAMBURGER (keeps structure)
+     ============================= */
+  (function(){
+    const hb = document.querySelector('.hamburger');
+    const navlinks = document.querySelector('.nav-links');
+    if(!hb) return;
+    hb.addEventListener('click', ()=>{
+      hb.classList.toggle('active');
+      navlinks.classList.toggle('active');
+      document.body.style.overflow = navlinks.classList.contains('active') ? 'hidden' : '';
+    });
+
+    navlinks.querySelectorAll('a').forEach(a => a.addEventListener('click', ()=>{
+      hb.classList.remove('active'); navlinks.classList.remove('active'); document.body.style.overflow = '';
+    }));
+  })();
+
+  /* =============================
+     SCROLL REVEAL FOR SECTIONS
+     ============================= */
+  (function(){
+    const sections = document.querySelectorAll('main section, header .hero-inner, .reveal, .reveal-delayed');
+    function reveal() {
+      const trigger = window.innerHeight * 0.85;
+      sections.forEach(s => {
+        const top = s.getBoundingClientRect().top;
+        if(top < trigger) s.classList.add('visible');
+      });
+    }
+    window.addEventListener('scroll', throttle(reveal, 80));
+    reveal();
+  })();
+
+  /* =============================
+     GALLERY: DATA, FILTERS, PAGINATION, RENDER
+     ============================= */
+  (function(){
+    // gallery images list
+    const galleryData = [
+   { src: 'images/IMG_0483.jpeg', alt: 'Aditi portrait', category: 'portrait' },
   { src: 'images/IMG_0467.jpeg', alt: 'Aditi at event', category: 'portrait' },
   { src: 'images/IMG_0473.jpeg', alt: 'Aditi portrait', category: 'portrait' },
   { src: 'images/IMG_0469.jpeg', alt: 'Aditi casual', category: 'casual' },
@@ -367,145 +826,236 @@ function throttle(fn, wait){ let t; return function(){ if(t) return; t=setTimeou
               { src: 'images/IMG_0620.jpeg', alt: 'IMG_0620', category: 'portrait' },
               { src: 'images/IMG_0621.jpeg', alt: 'IMG_0621', category: 'portrait' },
               { src: 'images/IMG_0622.jpeg', alt: 'IMG_0622', category: 'portrait' },
+];
 
-  ];
+    // DOM refs
+    const galleryGrid = document.getElementById('gallery-grid');
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const prevBtn = document.getElementById('prev-btn');
+    const nextBtn = document.getElementById('next-btn');
+    const paginationNumbers = document.getElementById('pagination-numbers');
+    const paginationInfo = document.getElementById('pagination-info');
+    const pagination = document.getElementById('pagination');
 
-  // Try to fetch /images/images.json (manifest). Format: [ {"src":"images/xxx.jpg","alt":"...","category":"portrait"}, ... ]
-  let galleryData = fallbackData;
-  try{
-    const res = await fetch('images/images.json', { cache: 'no-store' });
-    if(res.ok){
-      const json = await res.json();
-      if(Array.isArray(json) && json.length) galleryData = json;
+    // responsive items per page
+    function getItemsPerPage(){
+      if(window.innerWidth < 480) return 6;
+      if(window.innerWidth < 768) return 8;
+      return 9;
     }
-  }catch(e){
-    // manifest not found — fallback to embedded
-    console.log('No images manifest; using fallback embedded list.');
-  }
 
-  // pagination variables
-  function getItemsPerPage(){
-    if(window.innerWidth < 480) return 6;
-    if(window.innerWidth < 768) return 8;
-    return 9;
-  }
-  let itemsPerPage = getItemsPerPage();
-  let currentPage = 1;
-  let currentFilter = 'all';
-  let filtered = [...galleryData];
+    let itemsPerPage = getItemsPerPage();
+    let currentPage = 1;
+    let currentFilter = 'all';
+    let filteredData = [...galleryData];
 
-  function updateFiltered(){
-    filtered = currentFilter === 'all' ? [...galleryData] : galleryData.filter(i=>i.category===currentFilter);
-    currentPage = 1;
-  }
+    // update filtered
+    function updateFilteredData(){
+      if(currentFilter === 'all') filteredData = [...galleryData];
+      else filteredData = galleryData.filter(i => i.category === currentFilter);
+      currentPage = 1;
+    }
 
-  function render(){
-    galleryGrid.setAttribute('aria-busy','true');
-    galleryGrid.innerHTML = '';
-    const start = (currentPage-1)*itemsPerPage;
-    const pageData = filtered.slice(start, start+itemsPerPage);
-    if(pageData.length === 0){
-      galleryGrid.innerHTML = '<p style="grid-column:1/-1;text-align:center;color:var(--muted)">No images</p>';
-    }else{
-      pageData.forEach((item, i)=>{
-        const card = document.createElement('div'); card.className = 'card';
-        const img = document.createElement('img'); img.src = item.src; img.alt = item.alt || ''; img.loading = 'lazy';
-        card.appendChild(img);
-        galleryGrid.appendChild(card);
+    // render gallery
+    function renderGallery(){
+      galleryGrid.setAttribute('aria-busy','true');
+      galleryGrid.classList.add('loading');
+      const start = (currentPage - 1) * itemsPerPage;
+      const end = start + itemsPerPage;
+      const pageData = filteredData.slice(start, end);
+      galleryGrid.innerHTML = '';
 
-        // click to open image lightbox
-        img.addEventListener('click', ()=> openImageLightbox(start + i));
+      setTimeout(()=>{
+        pageData.forEach(item => {
+          const card = document.createElement('div');
+          card.className = 'card reveal';
+          card.setAttribute('data-category', item.category);
+
+          const img = document.createElement('img');
+          img.src = item.src;
+          img.alt = item.alt;
+          img.loading = 'lazy';
+          img.style.borderRadius = '8px';
+          img.style.display = 'block';
+
+          // small caption overlay
+          const cap = document.createElement('div');
+          cap.style.position = 'absolute';
+          cap.style.left = '12px';
+          cap.style.bottom = '12px';
+          cap.style.padding = '6px 10px';
+          cap.style.borderRadius = '999px';
+          cap.style.fontSize = '0.85rem';
+          cap.style.background = 'linear-gradient(90deg, rgba(0,0,0,0.22), rgba(0,0,0,0.12))';
+          cap.style.color = '#fff';
+          cap.textContent = item.category;
+
+          card.appendChild(img);
+          card.appendChild(cap);
+          galleryGrid.appendChild(card);
+        });
+
+        galleryGrid.classList.remove('loading');
+        galleryGrid.setAttribute('aria-busy','false');
+        initLightbox(); // rewire lightbox
+      }, 220);
+    }
+
+    // pagination
+    function setupPagination(){
+      const totalPages = Math.max(1, Math.ceil(filteredData.length / itemsPerPage));
+      paginationNumbers.innerHTML = '';
+
+      let startPage = Math.max(1, currentPage - 2);
+      let endPage = Math.min(totalPages, currentPage + 2);
+
+      if(currentPage <= 3) endPage = Math.min(totalPages, 5);
+      if(currentPage >= totalPages - 2) startPage = Math.max(1, totalPages - 4);
+
+      for(let i=startPage;i<=endPage;i++){
+        const btn = document.createElement('div');
+        btn.className = 'page-number ' + (i===currentPage ? 'active' : '');
+        btn.textContent = i;
+        btn.style.display = 'inline-flex';
+        btn.style.alignItems = 'center';
+        btn.style.justifyContent = 'center';
+        btn.addEventListener('click', ()=> goToPage(i));
+        paginationNumbers.appendChild(btn);
+      }
+
+      prevBtn.disabled = currentPage === 1;
+      nextBtn.disabled = currentPage === totalPages;
+
+      if(prevBtn.disabled) prevBtn.classList.add('disabled'); else prevBtn.classList.remove('disabled');
+      if(nextBtn.disabled) nextBtn.classList.add('disabled'); else nextBtn.classList.remove('disabled');
+
+      if(totalPages <= 1) pagination.style.display = 'none'; else pagination.style.display = 'flex';
+    }
+
+    function updatePaginationInfo(){
+      const total = filteredData.length;
+      if(total === 0) paginationInfo.textContent = 'No images found';
+      else {
+        const startIndex = (currentPage - 1) * itemsPerPage + 1;
+        const endIndex = Math.min(currentPage * itemsPerPage, total);
+        paginationInfo.textContent = `Showing ${startIndex}-${endIndex} of ${total} images`;
+      }
+    }
+
+    function goToPage(page){
+      currentPage = page;
+      renderGallery();
+      setupPagination();
+      updatePaginationInfo();
+      document.getElementById('gallery').scrollIntoView({behavior:'smooth'});
+    }
+
+    prevBtn.addEventListener('click', ()=> { if(currentPage>1) goToPage(currentPage-1); });
+    nextBtn.addEventListener('click', ()=> { const totalPages = Math.ceil(filteredData.length/itemsPerPage); if(currentPage < totalPages) goToPage(currentPage+1); });
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', ()=>{
+        filterBtns.forEach(b => { b.classList.remove('active'); b.setAttribute('aria-pressed','false') });
+        btn.classList.add('active'); btn.setAttribute('aria-pressed','true');
+        currentFilter = btn.getAttribute('data-filter');
+        updateFilteredData();
+        renderGallery();
+        setupPagination();
+        updatePaginationInfo();
+      });
+    });
+
+    // on resize adjust items per page
+    window.addEventListener('resize', throttle(()=>{
+      const newItems = getItemsPerPage();
+      if(newItems !== itemsPerPage){
+        itemsPerPage = newItems;
+        updateFilteredData();
+        renderGallery();
+        setupPagination();
+        updatePaginationInfo();
+      }
+    }, 220));
+
+    // initialize
+    updateFilteredData();
+    renderGallery();
+    setupPagination();
+    updatePaginationInfo();
+
+    /* =============================
+       LIGHTBOX (inside gallery function scope)
+       ============================= */
+    function initLightbox(){
+      const images = Array.from(document.querySelectorAll('.gallery-grid .card img'));
+      const lb = document.getElementById('lightbox');
+      const lbImg = document.getElementById('lb-img');
+      const closeBtn = document.querySelector('.lb-close');
+      const prevBtn = document.querySelector('.lb-prev');
+      const nextBtn = document.querySelector('.lb-next');
+      let idx = 0;
+
+      function open(i){
+        if(!images[i]) return;
+        idx = i;
+        lbImg.src = images[i].src;
+        lbImg.alt = images[i].alt || 'Aditi';
+        lb.classList.add('open');
+        lb.setAttribute('aria-hidden','false');
+        document.body.style.overflow = 'hidden';
+      }
+      function close(){
+        lb.classList.remove('open');
+        lb.setAttribute('aria-hidden','true');
+        lbImg.src = '';
+        document.body.style.overflow = '';
+      }
+      function prev(){ idx = (idx - 1 + images.length) % images.length; lbImg.src = images[idx].src }
+      function next(){ idx = (idx + 1) % images.length; lbImg.src = images[idx].src }
+
+      // attach events
+      images.forEach((img,i)=> {
+        // keyboard nav + touch support will be global
+        img.onclick = ()=> open(i);
+        // small tilt effect on mobile / hover
+        img.addEventListener('mouseenter', ()=> img.style.transform='scale(1.03)');
+        img.addEventListener('mouseleave', ()=> img.style.transform='');
+      });
+
+      closeBtn.onclick = close;
+      prevBtn.onclick = prev;
+      nextBtn.onclick = next;
+
+      // keyboard support
+      document.addEventListener('keydown', (e)=>{
+        if(!lb.classList.contains('open')) return;
+        if(e.key === 'Escape') close();
+        if(e.key === 'ArrowLeft') prev();
+        if(e.key === 'ArrowRight') next();
+      });
+
+      // click outside to close
+      lb.onclick = function(e){ if(e.target === lb) close(); };
+
+      // touch swipe support for mobile
+      let touchStartX = 0;
+      let touchEndX = 0;
+      lbImg.addEventListener('touchstart', e => touchStartX = e.changedTouches[0].screenX);
+      lbImg.addEventListener('touchend', e => {
+        touchEndX = e.changedTouches[0].screenX;
+        if(touchEndX + 30 < touchStartX) next();
+        if(touchEndX - 30 > touchStartX) prev();
       });
     }
-    galleryGrid.setAttribute('aria-busy','false');
-    setupPagination();
-  }
 
-  function setupPagination(){
-    const totalPages = Math.max(1, Math.ceil(filtered.length / itemsPerPage));
-    paginationNumbers.innerHTML = '';
-    const range = 2;
-    let start = Math.max(1, currentPage - range);
-    let end = Math.min(totalPages, currentPage + range);
-    if(currentPage <= 2) end = Math.min(totalPages, 1 + range*2);
-    if(currentPage >= totalPages - 1) start = Math.max(1, totalPages - range*2);
-
-    for(let i=start;i<=end;i++){
-      const btn = document.createElement('button');
-      btn.className = 'page-number' + (i === currentPage ? ' active' : '');
-      btn.textContent = i;
-      btn.onclick = ()=> { currentPage = i; render(); updateInfo(); window.scrollTo({top:document.getElementById('gallery').offsetTop - 80, behavior:'smooth'}); };
-      paginationNumbers.appendChild(btn);
-    }
-    prevBtn.disabled = currentPage === 1;
-    nextBtn.disabled = currentPage === totalPages;
-    prevBtn.classList.toggle('disabled', prevBtn.disabled);
-    nextBtn.classList.toggle('disabled', nextBtn.disabled);
-    pagination.style.display = (totalPages <= 1) ? 'none' : 'flex';
-    updateInfo();
-  }
-
-  function updateInfo(){
-    const total = filtered.length;
-    if(!total) paginationInfo.textContent = 'No images found';
-    else {
-      const startIndex = (currentPage-1)*itemsPerPage + 1;
-      const endIndex = Math.min(currentPage*itemsPerPage, total);
-      paginationInfo.textContent = `Showing ${startIndex}-${endIndex} of ${total} images`;
-    }
-  }
-
-  function goPrev(){ if(currentPage>1){ currentPage--; render(); } }
-  function goNext(){ const totalPages = Math.ceil(filtered.length/itemsPerPage); if(currentPage < totalPages){ currentPage++; render(); } }
-
-  prevBtn.addEventListener('click', goPrev);
-  nextBtn.addEventListener('click', goNext);
-
-  // filters
-  filterBtns.forEach(b=>{
-    b.addEventListener('click', ()=>{
-      filterBtns.forEach(x=>x.classList.remove('active'));
-      b.classList.add('active');
-      currentFilter = b.dataset.filter;
-      updateFiltered(); render();
-    });
-  });
-
-  window.addEventListener('resize', throttle(()=>{
-    const np = getItemsPerPage();
-    if(np !== itemsPerPage){ itemsPerPage = np; currentPage = 1; render(); }
-  }, 220));
-
-  // image lightbox behavior
-  const lightbox = document.getElementById('lightbox');
-  const lbImg = document.getElementById('lb-img');
-  function openImageLightbox(globalIndex){
-    const item = filtered[globalIndex];
-    if(!item) return;
-    lbImg.src = item.src;
-    lbImg.alt = item.alt || '';
-    lightbox.classList.add('open');
-    lightbox.setAttribute('aria-hidden','false');
-    document.body.style.overflow = 'hidden';
-  }
-  function closeImageLightbox(){
-    lightbox.classList.remove('open');
-    lbImg.src = '';
-    lightbox.setAttribute('aria-hidden','true');
-    document.body.style.overflow = '';
-  }
-  document.querySelectorAll('.lb-close.img').forEach(el=>el.addEventListener('click', closeImageLightbox));
-  lightbox.addEventListener('click', e=> { if(e.target === lightbox) closeImageLightbox(); });
-
-  // init
-  updateFiltered(); render();
-
-})();
-
-/* ---------- VIDEO collection (single lightbox, clear IDs) ---------- */
-(function(){
-  const videoData = [
-    { id: "QCXaa1mEUK0", title: "Darshan Raval - Hawa Banke | Official Music Video Ft. Aditi Budhathoki | Nirmaan | Naushad Khan" },
+  })();
+</script>
+<script>
+  /* =============================
+     VIDEO COLLECTION
+     ============================= */
+const videoData = [
+{ id: "QCXaa1mEUK0", title: "Darshan Raval - Hawa Banke | Official Music Video Ft. Aditi Budhathoki | Nirmaan | Naushad Khan" },
     { id: "djbTz_ZlQ_c", title: "Chulbul Chulbul - BABARI Song 2022 | Ft. Dhiraj Magar, Aditi Budhathoki & Dhiraj Nadakar" },
     { id: "F9XbfHNrwxo", title: "Babari Rang - BABARI Song 2022 | Ft. Dhiraj Magar, Aditi Budhathoki & Dhiraj Nadakar" },
     { id: "n95a7mRXAaQ", title: "Get Picture Perfect: Easy Female Model Poses for Amazing Shoots | Actress Aditi Budhathoki Shoot" },
@@ -614,75 +1164,91 @@ function throttle(fn, wait){ let t; return function(){ if(t) return; t=setTimeou
     { id: "ciqctDOoOdc", title: "अदिति बुढाथोकी र नितेश कुँवर बीच के पाक्दैछ ? लकडाउनमा अदितिले खोलिन मनका कुरा Aditi Budhathoki" },
     { id: "FlSzQjQSsK0", title: "दुई Dhirajमा कसलाई रोजिन् त Aditiले, प्रोड्युसर साब भन्दै जिस्क्याए Aditi Budhathoki लाई |Interview" },
     { id: "d-qzI0tYCfA", title: "Babari Movie Premiere Look | Aditi Budhathoki | Makeup By Lemi" },
-    { id: "DtcuNavOPj4", title: "ADITI BUDHATHOKI | Hitesh Kaneria" }
-
+    { id: "DtcuNavOPj4", title: "ADITI BUDHATHOKI | Hitesh Kaneria" },
+    
   ];
-  const videosPerPage = 6;
-  let currentPage = 1;
-  const totalPages = Math.ceil(videoData.length / videosPerPage);
+const videosPerPage = 6;
+let currentPage = 1;
+const totalPages = Math.ceil(videoData.length / videosPerPage);
 
-  function renderVideos(){
-    const grid = document.getElementById('video-grid');
-    grid.innerHTML = '';
-    const start = (currentPage-1)*videosPerPage;
-    videoData.slice(start, start+videosPerPage).forEach(v=>{
-      const card = document.createElement('div'); card.className = 'video-card';
-      card.innerHTML = `
-        <img src="https://img.youtube.com/vi/${v.id}/hqdefault.jpg" alt="${v.title}">
-        <button class="play-btn" data-id="${v.id}" aria-label="Play ${v.title}"></button>
-        <h3>${v.title}</h3>
-      `;
-      grid.appendChild(card);
-    });
-    updateVideoPagination();
-  }
-  function updateVideoPagination(){
-    const container = document.getElementById('video-page-numbers');
-    container.innerHTML = '';
-    const maxVisible=4;
-    let start = Math.floor((currentPage-1)/maxVisible)*maxVisible + 1;
-    let end = Math.min(start+maxVisible-1, totalPages);
-    for(let i=start;i<=end;i++){
-      const btn = document.createElement('button'); btn.className = (i===currentPage?'page-num active':'page-num'); btn.textContent = i;
-      btn.onclick = ()=>{ currentPage = i; renderVideos(); };
-      container.appendChild(btn);
-    }
-    document.getElementById('video-prev').disabled = currentPage === 1;
-    document.getElementById('video-next').disabled = currentPage === totalPages;
-  }
-  document.getElementById('video-prev').onclick = ()=>{ if(currentPage>1){ currentPage--; renderVideos(); } };
-  document.getElementById('video-next').onclick = ()=>{ if(currentPage<totalPages){ currentPage++; renderVideos(); } };
+function renderVideos() {
+  const grid = document.getElementById("video-grid");
+  grid.innerHTML = "";
+  const start = (currentPage - 1) * videosPerPage;
+  const end = start + videosPerPage;
 
-  // play (delegated)
-  document.body.addEventListener('click', e=>{
-    const btn = e.target.closest('.play-btn');
-    if(!btn) return;
-    const id = btn.dataset.id;
-    openVideoLightbox(id);
+  videoData.slice(start, end).forEach(v => {
+    const card = document.createElement("div");
+    card.className = "video-card";
+    card.innerHTML = `
+      <img src="https://img.youtube.com/vi/${v.id}/hqdefault.jpg" alt="${v.title}">
+      <div class="play-btn" data-id="${v.id}"><i class="fas fa-play"></i></div>
+      <h3>${v.title}</h3>
+    `;
+    grid.appendChild(card);
   });
 
-  // video lightbox
-  const vLightbox = document.getElementById('video-lightbox');
-  const vIframe = document.getElementById('lb-video');
-  function openVideoLightbox(id){
-    // use embed with autoplay=1; note: YouTube player's background cannot be changed — the black around video is from player.
-    vIframe.src = `https://www.youtube.com/embed/${id}?autoplay=1&rel=0`;
-    vLightbox.classList.add('active');
-    vLightbox.setAttribute('aria-hidden','false');
-    document.body.style.overflow = 'hidden';
-  }
-  function closeVideoLightbox(){
-    vIframe.src = '';
-    vLightbox.classList.remove('active');
-    vLightbox.setAttribute('aria-hidden','true');
-    document.body.style.overflow = '';
-  }
-  document.querySelectorAll('.lb-close').forEach(x=> x.addEventListener('click', closeVideoLightbox));
-  vLightbox.addEventListener('click', e=> { if(e.target === vLightbox) closeVideoLightbox(); });
+  updatePagination();
+}
 
-  renderVideos();
-})();
+function updatePagination() {
+  const container = document.getElementById("video-page-numbers");
+  container.innerHTML = "";
+  const maxVisible = 4;
+  let start = Math.floor((currentPage - 1) / maxVisible) * maxVisible + 1;
+  let end = Math.min(start + maxVisible - 1, totalPages);
 
+  for (let i = start; i <= end; i++) {
+    const btn = document.createElement("button");
+    btn.className = "page-num" + (i === currentPage ? " active" : "");
+    btn.textContent = i;
+    btn.onclick = () => {
+      currentPage = i;
+      renderVideos();
+    };
+    container.appendChild(btn);
+  }
+
+  document.getElementById("video-prev").disabled = currentPage === 1;
+  document.getElementById("video-next").disabled = currentPage === totalPages;
+}
+
+document.getElementById("video-prev").onclick = () => {
+  if (currentPage > 1) { currentPage--; renderVideos(); }
+};
+document.getElementById("video-next").onclick = () => {
+  if (currentPage < totalPages) { currentPage++; renderVideos(); }
+};
+
+// 🎬 Lightbox logic
+document.addEventListener("click", e => {
+  const btn = e.target.closest(".play-btn");
+  if (!btn) return;
+  const id = btn.dataset.id;
+  const lb = document.getElementById("video-lightbox");
+  const iframe = document.getElementById("lb-video");
+  iframe.src = `https://www.youtube.com/embed/${id}?autoplay=1`;
+  lb.classList.add("active");
+});
+
+// Close on "X" click
+document.querySelector(".lb-close").addEventListener("click", closeLightbox);
+
+// Close on background click
+document.getElementById("video-lightbox").addEventListener("click", e => {
+  if (e.target.id === "video-lightbox") closeLightbox();
+});
+
+function closeLightbox() {
+  const lb = document.getElementById("video-lightbox");
+  const iframe = document.getElementById("lb-video");
+  iframe.src = "";
+  lb.classList.remove("active");
+}
+
+renderVideos();
 </script>
+
+</section>
 </body>
 </html>
