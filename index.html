@@ -413,32 +413,35 @@
     .exclusive-box{ text-align:center; padding:30px 20px; margin:40px auto; max-width:600px; border-radius:var(--radius); background: linear-gradient(180deg, rgba(255,255,255,0.92), rgba(250,245,255,0.95)); border:2px solid; border-image: linear-gradient(45deg,var(--accent-2),var(--accent)) 1; box-shadow:0 20px 50px rgba(18,8,40,0.1) }
 
     /* FAN ZONE - Original Soft Beige Card Style */
+/* ---------------- FAN ZONE (Classic Adilicious look) ---------------- */
+.fan-grid {
+  display: grid;
+  grid-template-columns: 1fr 420px;
+  gap: 24px;
+  margin-top: 12px;
+  align-items: start;
+}
+
+/* Left box */
 .fan-box {
-  background: linear-gradient(180deg, #fff6e8, #ffeede);
-  padding: 26px;
-  border-radius: 18px;
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  padding: 28px;
+  border-radius: 14px;
+  background: linear-gradient(180deg, #fffaf3, #fff3ea);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(255, 200, 170, 0.4);
+  text-align: left;
 }
 
-.fan-box:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 16px 45px rgba(0, 0, 0, 0.12);
-}
-
+/* Right box (form) */
 .contact-glass {
-  background: linear-gradient(180deg, #fff6e8, #ffeede);
-  padding: 26px;
-  border-radius: 18px;
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  padding: 28px;
+  border-radius: 14px;
+  background: linear-gradient(180deg, #fffaf3, #fff3ea);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(255, 200, 170, 0.4);
 }
 
-.contact-glass:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 16px 45px rgba(0, 0, 0, 0.12);
-}
-
+/* Form elements */
 .contact-glass label {
   display: block;
   font-weight: 600;
@@ -451,40 +454,34 @@
   padding: 12px;
   margin-top: 8px;
   border-radius: 8px;
-  border: 1px solid #f0d9c1;
+  border: 1px solid #f0dcd0;
   font-size: 0.95rem;
   background: #fffaf5;
 }
 
-.fan-box h3 {
-  color: #b46dc1;
-  font-weight: 700;
-  margin-bottom: 10px;
-}
-
-.fan-box li {
-  color: #2d2d2d;
-  margin-bottom: 8px;
-  line-height: 1.6;
-}
-
-.fan-box button {
+/* Send button */
+.contact-glass button {
+  background: linear-gradient(90deg, #ff94e0, #ff7cc4);
+  color: #fff;
   border: none;
-  border-radius: 12px;
-  padding: 10px 20px;
-  margin: 10px 6px 0;
-  background: linear-gradient(90deg, #ff66cc, #ff99cc);
-  color: white;
+  border-radius: 8px;
+  padding: 12px 24px;
   font-weight: 600;
+  margin-top: 14px;
   cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition: transform 0.2s ease;
 }
 
-.fan-box button:hover {
+.contact-glass button:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(255, 105, 180, 0.4);
 }
-  
+
+/* Responsive */
+@media (max-width: 900px) {
+  .fan-grid {
+    grid-template-columns: 1fr;
+  }
+}  
     /* FOOTER */
     footer{ margin-top:36px; padding:28px 18px; text-align:center; border-radius:18px; background:linear-gradient(90deg,var(--accent-2),var(--accent)); color:#fff; }
 
