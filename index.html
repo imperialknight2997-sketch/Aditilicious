@@ -372,11 +372,11 @@
 }
 
 /* Pagination */
-    .pagination{ display:flex; justify-content:center; gap:12px; margin-top:24px; align-items:center }
-    .pagination-btn{ padding:10px 16px; border-radius:8px; cursor:pointer; background:rgba(255,255,255,0.7); border:1px solid rgba(255,255,255,0.28); font-weight:700; color:var(--muted) }
-    .pagination-btn.disabled{ opacity:0.5; cursor:not-allowed }
-    .page-number{ padding:8px 12px; border-radius:8px; cursor:pointer; background:rgba(255,255,255,0.7); border:1px solid rgba(255,255,255,0.28); font-weight:700; color:var(--muted) }
-    .page-number.active{ background: linear-gradient(90deg,var(--accent-2),var(--accent)); color:white }
+    .videopagination{ display:flex; justify-content:center; gap:12px; margin-top:24px; align-items:center }
+    .videopagination-btn{ padding:10px 16px; border-radius:8px; cursor:pointer; background:rgba(255,255,255,0.7); border:1px solid rgba(255,255,255,0.28); font-weight:700; color:var(--muted) }
+    .videopagination-btn.disabled{ opacity:0.5; cursor:not-allowed }
+    .videopage-number{ padding:8px 12px; border-radius:8px; cursor:pointer; background:rgba(255,255,255,0.7); border:1px solid rgba(255,255,255,0.28); font-weight:700; color:var(--muted) }
+    .videopage-number.active{ background: linear-gradient(90deg,var(--accent-2),var(--accent)); color:white }
 
 /* ===== Lightbox ===== */
 #video-lightbox {
@@ -623,10 +623,10 @@
 
   <div class="video-grid" id="video-grid"></div>
 
-  <div class="pagination" id="video-pagination">
-    <button class="pagination-btn" id="video-prev" disabled aria-disabled="true"><i class="fas fa-chevron-left"></i>&nbsp;Previous </button>
-    <div class="pagination-numbers" id="video-page-numbers" aria-hidden="false" role="group" aria-label="Page numbers"></div>
-    <button class="pagination-btn" id="video-next">Next&nbsp;<i class="fas fa-chevron-right"></i></button>
+  <div class="videopagination" id="video-pagination">
+    <button class="videopagination-btn" id="video-prev" disabled aria-disabled="true"><i class="fas fa-chevron-left"></i>&nbsp;Previous </button>
+    <div class="videopagination-numbers" id="video-page-numbers" aria-hidden="false" role="group" aria-label="Page numbers"></div>
+    <button class="videopagination-btn" id="video-next">Next&nbsp;<i class="fas fa-chevron-right"></i></button>
       
   </div>
 </section>
